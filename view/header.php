@@ -1,6 +1,6 @@
 <header>
-    <div class="containerRow"> 
-        <a class="logo" href="accueil.php"><img src="../design/image/music.png"  alt="logo"></a>
+    <div id="firstStage"> 
+        <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.png"  alt="logo"></a>
         <form action="rechercher.php" method="GET" class="containerRow">
             <input class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
             <datalist id="searchList">
@@ -8,15 +8,53 @@
                     <option value="Elvis Presley"></option>
                     <option value="The quick brown fox jumps over a lazy dog."></option>
             </datalist>
-            <a href="https://www.google.com/"><img src="../design/image/research.png" alt="loupe"></a>
+            <a id="loupe" href="https://www.google.com/"><img src="../design/image/search.png" alt="loupe"></a>
         </form>
-                    <button id="darkModeBouton"> </button>
-        <a href="https://www.google.com/"><img src="../design/image/profile.png"  alt="profile"></a>
+                    
+        <button id="darkModeBouton"> </button>
+        
+
+<div class="container">
+  <button class="btn" id="btn">
+  <img src="../design/image/user.png"  alt="profile">
+    <i class="bx bx-chevron-down" id="arrow"></i>
+  </button>
+
+  <div class="dropdown" id="dropdown">
+  <a href="#vendre">
+      <i class="bx bx-cog"></i>
+      Vendre
+    </a>
+    <a href="#draft">
+      <i class="bx bx-book"></i>
+      All Drafts
+    </a>
+    <a href="#move">
+      <i class="bx bx-folder"></i>
+      Move To
+    </a>
+    <a href="#profile">
+      <i class="bx bx-user"></i>
+      Profile Settings
+    </a>
+    <a href="#notification">
+      <i class="bx bx-bell"></i>
+      Notification
+    </a>
+    <a href="#settings">
+      <i class="bx bx-cog"></i>
+      Settings
+    </a>
+    
+  </div>
+</div>
+        
+                    <a class="user" href="https://www.google.com/"></a>
     </div>
     <nav>
         <ul class="containerRow"> 
             <li><a href="test.php">A la une</a></li>
-            <li><a href="https://www.google.com/">Vêtement</a></li>
+            <li><a href="https://www.google.com/">Vêtements</a></li>
             <li><a href="https://www.google.com/">Instruments</a></li>
             <li><a href="https://www.google.com/">Autres</a></li>
         </ul>

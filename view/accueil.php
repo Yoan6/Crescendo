@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Crescendo</title>
+        <link rel="stylesheet" type="text/css" href="../design/header.css">
 		<link rel="stylesheet" type="text/css" href="../design/crescendo.css">
 	</head>
 	<body class="dark-mode">
         <?php include(__DIR__.'/header.php'); ?>
-		
 		
 		<main>
             <img id="banner" src="../design/image/accueil/concert-coeur.png">
@@ -44,4 +44,6 @@
         <?php include(__DIR__.'/footer.php'); ?>	
 	</body>
 	<script src="../js/crescendo.js"></script>
+    <script src="../js/header.js"></script>
+
 </html>
