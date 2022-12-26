@@ -12,6 +12,8 @@ Règles pour éléments du header
 
 header {
 	background-color: var(--header-background-color);
+    position:sticky;
+    top: 0;
 }
 
 header img {
@@ -189,13 +191,11 @@ Drop down bouton utilisateur
   }
   
   .dropdown {
-    border: solid 1px white;
+    background: var(--navBar-background-color);
+    border-radius: 25px;
     position: absolute;
     width: 250px;
-    box-shadow: var(--shadow);
-    border-radius: var(--radius);
     margin-top: 0.3rem;
-    background: var(--navBar-background-color);
     right: 0px;
     visibility: hidden;
     opacity: 0;
@@ -204,23 +204,37 @@ Drop down bouton utilisateur
   }
   
   .dropdown a {
+    background: var(--navBar-background-color);
     display: flex;
     align-items: center;
-    column-gap: var(--gap);
     padding: 0.8rem 1rem;
     text-decoration: none;
-    color: black;
+    color: white;
+    border-left: solid 1px white;
+    border-right: solid 1px white;
   }
   
+  .dropdown a:first-child {
+    border-top: solid 1px white;
+
+    border-radius: 25px 25px 0px 0px;
+  }
+
+    .dropdown a:last-child {
+        border-bottom: solid 1px white;
+
+        border-radius: 0px 0px 25px 25px;
+    }
+
   .dropdown a:hover {
-    background-color: var(--color);
-    color: white;
+    background-color: white;
+    color:  var(--header-background-color);
   }
   
   .show {
     visibility: visible;
     opacity: 1;
-    transform: translateY(1rem);
+    transform: translateY(5px);
   }
   
   .arrow {
