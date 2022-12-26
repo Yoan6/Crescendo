@@ -49,7 +49,6 @@
   </div>
 </div>
         
-                    <a class="user" href="https://www.google.com/"></a>
     </div>
     <nav>
         <ul class="containerRow"> 
