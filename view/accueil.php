@@ -10,7 +10,9 @@
         <?php include(__DIR__.'/header.php'); ?>
 		
 		<main>
-            <img id="banner" src="../design/image/accueil/concert-coeur.png">
+            <div id="banner">
+                <img  src="../design/image/accueil/concert-coeur.png">
+            </div>
             <nav>
                 <ul class="containerRow">
                     <li>
