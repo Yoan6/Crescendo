@@ -113,11 +113,6 @@ header .containerRow {
     
   }
   
- header  .containerColumn {
-    display: flex;
-    flex-flow: column wrap;
-  }
-  
   header a {
       color:white;
       text-decoration: none;

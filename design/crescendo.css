@@ -130,9 +130,15 @@ Accueil
 
 #banner {
 	width: 100%;
-	height:500px;
+	height: 50vh;
+	margin-top: 5px;
 }
 
+#banner img {
+object-fit: cover;
+width: 100%;
+
+}
 main nav ul {
 	justify-content: space-evenly;
 }
@@ -141,7 +147,7 @@ main nav ul li img {
 	height: 300px;
 	width: 300px;
 	border-radius: 300px;
-	;
+
 }
 
 main nav ul a {

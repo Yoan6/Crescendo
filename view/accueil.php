@@ -11,7 +11,7 @@
 		
 		<main>
             <div id="banner">
-                <img  src="../design/image/accueil/concert-coeur.png">
+                <img  src="../design/image/accueil/coeur_concert.jpeg">
             </div>
             <nav>
                 <ul class="containerRow">
