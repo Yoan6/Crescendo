@@ -138,7 +138,7 @@ width: 100%;
 
 main nav ul {
 	display: flex;
-	flex-direction: wrap;
+	flex-direction: row;
 	justify-content: space-evenly;
 }
 

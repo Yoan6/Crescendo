@@ -17,7 +17,7 @@
                 <ul class="containerRow">
                     <li>
                         <a>
-                            <img src="../design/image/accueil/vetement.jpg">
+                            <img src="../design/image/accueil/user.png">
                             <h2>Vêtements</h2>
                         </a>
                     </li>
