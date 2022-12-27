@@ -11,7 +11,7 @@
             <a id="loupe" href="https://www.google.com/"><img src="../design/image/search.png" alt="loupe"></a>
         </form>
                     
-        <button id="darkModeBouton"> </button>
+        
         
 
 <div class="container">
@@ -45,6 +45,14 @@
       <i class="bx bx-cog"></i>
       Settings
     </a>
+    <div class="divToggleDarkMode">
+      <p>Dark Mode</p>
+    <label class="switch">
+      <input type="checkbox" id="darkModeBouton">
+      <span class="slider round"></span>
+    </label>
+    </div>
+    
     
   </div>
 </div>

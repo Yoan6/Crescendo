@@ -20,3 +20,23 @@ document.documentElement.addEventListener("click", function () {
     toggleDropdown();
   }
 });
+
+
+
+//////////////////////////////////////////
+//Dark Mode///////////////////////////////
+//////////////////////////////////////////
+body = document.querySelector("body");
+darkModeBouton = document.getElementById("darkModeBouton");
+		
+					
+function mettreDarkMode() {
+	body.classList.toggle("dark-mode");
+}
+
+darkModeBouton.onclick =  function() {mettreDarkMode();};
+
+
+
+
+
