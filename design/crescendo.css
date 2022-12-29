@@ -29,11 +29,15 @@ Variables
 	--header-background-color: grey;
 	--footer-background-color: grey; 
 	--navBar-background-color: black;
+
+	--main-content-background-color:#161616;
 	
 	/* ==== Couleurs police ====*/
 	--main-font-color: #black;
 	--footer-font-color: #black;
-	--navBar-font-color:  black;
+	--navBar-font-color:  #black;
+
+	--main-content-font-color:white;
 
 }
 
@@ -105,26 +109,91 @@ footer li a {
 
 
 
+/*****************************
+Règles générales ?
+*****************************/
+
+button, a {
+	cursor:pointer;
+}
+
+a {
+	color:white;
+	text-decoration: none;
+	block-size: fit-content;
+	width: auto;
+	height: auto;
+	display:block;
+}
 
 
-p, label, #pageProduit a {
+nav {
+	display: flex;
+	justify-content: center;
+}
+
+nav ul li:first-child a {
+	border-radius: 15px 0px 0px 15px;
+}
+
+nav ul li:last-child a {
+  border-radius: 0px 15px 15px 0px;
+}
+
+nav ul li a:hover {
+	  background-color: white;
+	  color:black;
+  }
+
+button {
+	background-color: white;
+	border: none;
+}
+
+nav ul, nav ol{
+	list-style: none;
+	justify-content: center;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+
+}
+
+
+
+#pageProduit label, h3, output, #pageProduit > a  {
 	margin:10px;
-	color: var(--main-content-font-color);
-	background-color: var(--main-content-background-color);
 	padding: 20px;
 	border-radius: 5px;
 	text-align: center;
+	font-weight: bold;
 }
 
-p label {
-	color: var(--main-font-color);
-	background-color: var(--main-background-color);
+#pageProduit label, #pageProduit > a{
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+}
+
+h3, output {
+	color: var(--main-content-background-color);
+	background-color: var(--main-content-font-color);
+	
+}
+
+button img, label img {
+	width:50px;
+	height:50px;
 }
 
 
-
-
-
+@media only screen and (max-width: 900px) {
+	button img, label img {
+		width:30px;
+		height:30px;
+	}
+}
 
 
 
@@ -204,7 +273,15 @@ main form.conteneur#pageProduit {
 						 "profil 		profil 			lot 		lot"
 						 "description 	description		description	description"
 						 "information	information		information	information";
+	grid-template-columns: 25% 25% 25% 25%;
 }
+
+@media only screen and (max-width: 900px) {
+	main form.conteneur#pageProduit {
+		display:flex;
+		flex-flow: Column;
+	}
+  }
 
 
 #grandeImage {
@@ -212,9 +289,12 @@ main form.conteneur#pageProduit {
 
 }
 
+label.conteneur {
+	flex-flow: column
+}
+
 #profil {
 	grid-area: profil;
-	flex-flow: row;
 }
 
 #profil * {
@@ -231,6 +311,10 @@ main form.conteneur#pageProduit {
 	grid: auto auto / auto auto;
 }
 
+#prixActuel button{
+background-color: var(--bleu);
+}
+
 #lot {
 	grid-area: lot;
 }
@@ -243,7 +327,11 @@ main form.conteneur#pageProduit {
 	grid-area: information;
 }
 
-
+#information  ul {
+	display:grid;
+	grid:auto auto auto auto / auto auto;
+	list-style-type: none;
+}
 
 
 
