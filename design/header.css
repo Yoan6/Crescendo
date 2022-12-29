@@ -104,11 +104,6 @@ header li a {
 Règles générales
 *****************************/
 
-header .containerRow { 
-    display: flex;
-    flex-flow: row;
-    
-  }
   
   header a {
       color:white;

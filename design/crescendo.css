@@ -44,17 +44,30 @@ body.dark-mode {
 	--header-background-color: #272727;
 	--footer-background-color: #161616; /*#161616*/
 	--navBar-background-color:  #1D1D1D;
+
+	--main-content-background-color:white;
 	
 	/* ==== Couleurs police ====*/
 	--main-font-color: white;
 	--footer-font-color: #9B9B9B;
 	--navBar-font-color:  white;
+
+	--main-content-font-color:#161616;
 }
 
 
 
 
 
+/*****************************
+Pour factoriser
+*****************************/
+
+
+
+.conteneur {
+	display: flex;
+}
 
 
 
@@ -78,6 +91,10 @@ footer ul {
 	margin:0px
 }
 
+footer nav ul li {
+	flex-flow:column;
+}
+
 footer h4 {
 	margin: 3px;
 }
@@ -87,6 +104,22 @@ footer li a {
 }
 
 
+
+
+
+p, label, #pageProduit a {
+	margin:10px;
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+}
+
+p label {
+	color: var(--main-font-color);
+	background-color: var(--main-background-color);
+}
 
 
 
@@ -157,3 +190,65 @@ main nav ul a {
 main nav ul h2 {
 	text-align: center;
 }
+
+
+
+/*****************************
+Produits
+*****************************/
+
+main form.conteneur#pageProduit {
+	display:grid;
+	grid-template-areas: "grandeImage	grandeImage	 	nomItem 	nomItem"
+						 "grandeImage 	grandeImage 	prixActuel 	prixActuel"
+						 "profil 		profil 			lot 		lot"
+						 "description 	description		description	description"
+						 "information	information		information	information";
+}
+
+
+#grandeImage {
+	grid-area: grandeImage;
+
+}
+
+#profil {
+	grid-area: profil;
+	flex-flow: row;
+}
+
+#profil * {
+	flex-grow: 1;
+}
+
+#nomItem {
+	grid-area: nomItem;
+}
+
+#prixActuel {
+	grid-area: prixActuel;
+	display:grid;
+	grid: auto auto / auto auto;
+}
+
+#lot {
+	grid-area: lot;
+}
+
+#description {
+	grid-area: description;
+}
+
+#information {
+	grid-area: information;
+}
+
+
+
+
+
+
+
+
+
+
