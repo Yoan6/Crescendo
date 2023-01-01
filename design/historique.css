@@ -1,0 +1,377 @@
+
+
+
+html{
+	max-height:100vh;
+	max-width:100vw;
+	scroll-behavior: smooth;
+	overflow-x:hidden;
+}
+
+body{
+	font-family: Arial, sans-serif;
+	color: var(--main-font-color);
+	margin:0; /*Cacher la Scrollbar en x;*/
+	background-color: var(--main-background-color);
+	display: flex;
+	flex-wrap: wrap;
+}
+
+main {
+	min-height:67vh;
+	display: flex;
+	margin-top: 20px;
+}
+
+
+/*****************************
+Variables
+*****************************/
+:root {
+	/* ==== Couleurs arrière-plan ====*/
+	--main-background-color: white;
+	--header-background-color: grey;
+	--footer-background-color: grey; 
+	--navBar-background-color: black;
+	
+	/* ==== Couleurs police ====*/
+	--main-font-color: #black;
+	--footer-font-color: #black;
+	--navBar-font-color:  black;
+
+}
+
+body.dark-mode {
+	
+	/* ==== Couleurs arrière-plan ====*/
+	--main-background-color: #161616;
+	--header-background-color: #272727;
+	--footer-background-color: #161616; /*#161616*/
+	--navBar-background-color:  #1D1D1D;
+	
+	/* ==== Couleurs police ====*/
+	--main-font-color: white;
+	--footer-font-color: #9B9B9B;
+	--navBar-font-color:  white;
+
+}
+
+
+
+
+
+/*****************************
+Règles générales
+*****************************/
+
+.containerRow { 
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.containerColumn {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+a {
+	color:white;
+	text-decoration: none;
+	block-size: fit-content;
+	width: auto;
+	height: auto;
+	display:block;
+}
+
+
+nav {
+	display: flex;
+	justify-content: center;
+}
+
+nav a:hover {
+    background-color: white;
+	color:black;
+}
+
+
+nav ul, nav ol{
+	list-style: none;
+	justify-content: center;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+
+/*****************************
+Règles pour éléments du header
+*****************************/
+
+header {
+	background-color: var(--header-background-color);
+}
+
+header img {
+	max-width: 100%;
+	height: 40px;
+}
+
+header form {
+	width:60%;
+	justify-content: center;
+}
+
+header .logo {
+	margin-left: 20px;
+}
+
+header .searchBar {
+	width:35%;
+	border-radius: 30px;
+	padding-left:20px;
+	margin-right: 10px;
+}
+
+header div {
+	padding: 10px;
+	/*box-shadow: 0px 1px black;*/
+	border-bottom:1px solid  var(--main-background-color);
+	justify-content: space-between;
+}
+
+header nav ul {
+    background-color: var(--navBar-background-color);
+    border-radius: 15px;
+	margin: 0px;
+	padding-left: 0px;
+	color: var(--navBar-font-color);
+}
+
+header li {
+	flex-grow: 1;
+}
+
+header li a {
+    display:block;
+    padding: 1em 2em 1em 2em;
+	text-align: center;
+}
+
+
+
+/*****************************
+Règles pour éléments du footer
+*****************************/
+
+footer {
+	border-top:1px solid var(--footer-font-color);
+	color: var(--footer-font-color);
+	box-sizing: border-box;
+	background-color: var(--footer-background-color);
+	width:100%;
+	block-size: fit-content;
+	padding:3vh 0 2vh 0 ;
+}
+
+footer ul {
+	padding: 0px;
+	gap:150px;
+	margin:0px
+}
+
+footer h4 {
+	margin: 3px;
+}
+
+footer li a {
+   color: var(--footer-font-color);
+}
+
+
+
+/*****************************
+Règles pour éléments du aside
+*****************************/
+
+aside {
+	margin-right: 80px;
+	background-color: #262525;
+	width: 250px;
+	height: auto;
+}
+
+form {
+	width: 180px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+	background-color: white;
+	border-radius: 10px;
+	padding-left: 20px;
+	padding-top: 1px;
+	padding-bottom: 20px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	padding-right: 20px;
+	color: black;
+}
+
+
+select {
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.artiste {
+	margin-bottom: 50px;
+}
+
+
+
+
+/*****************************
+Règles pour un objet (article)
+*****************************/
+
+.objet {
+	background-color: #272727;
+	border: 1px solid white;
+	width: 1000px;
+	height: 175px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-radius: 10px;
+}
+
+.historique-objet {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.infos {
+	display: flex;
+	flex-direction: column;
+}
+
+.description{
+	width: 300px;
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.like {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 60px;
+}
+
+.libelle-prix {
+	display: flex;
+	flex-direction: row;
+}
+
+.libelle {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 0px;
+}
+
+.prix {
+	color: #79D2BC;
+	margin-left: 80px;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 0px;
+}
+
+.voir-enchere {
+	width: 300px;
+	background-color: #79D2BC;
+	color: black;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.image-article {
+	width: 42px;
+	height: 40px;
+}
+
+
+
+
+
+
+
+/*****************************
+Règles spéciales
+*****************************/
+
+/** Les tirets ne sont pas supportés de base **/
+ul.tiret {
+  list-style-type: none;
+}
+
+ul.tiret li a:before {
+  content: "- ";
+  text-indent: -20px;
+}
+
+
+/* stylisation du bouton pour dark mode */ 
+button#darkModeBouton {
+	width:30px;
+	height:30px;
+}
+
+
+
+
+
+
+
+
+
+/*****************************
+Accueil
+*****************************/
+
+#banner {
+	width: 100%;
+	height:300px;
+}
+
+main nav ul {
+	justify-content: space-evenly;
+}
+
+main nav ul li img {
+	height: 300px;
+	width: 300px;
+	border-radius: 300px;
+	;
+}
+
+main nav ul a {
+	border: 1px solid var(--main-font-color);
+
+}
+
+main nav ul h2 {
+	text-align: center;
+}
