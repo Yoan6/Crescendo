@@ -158,7 +158,6 @@ nav ul, nav ol{
 img {
 	max-width: 100%;
 	max-height: 100%;
-	object-fit: cover;
 }
 
 
@@ -176,10 +175,24 @@ button img, label img {
 }
 
 
+.iconTaille {
+	height:40px;
+	width:40px;
+}
 
 
+button:not(.iconTaille,.btn) {
+	background-color: var(--bleu);
+}
 
-
+/*Pour éviter de refaire le format d'un label, bouton,... en forme d'ellipse*/
+button:not(.iconTaille,.btn,.voir-enchere), #pageProduit :where(label, h3, output, a, input,#btnPaypal, .commeUnlabel, .btnLabel)  {
+	margin:10px;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+}
 
 
 /*****************************
@@ -259,14 +272,28 @@ main#accueil nav ul h2 {
 Produits
 *****************************/
 
+/*****************************
+Produit Grille
+*****************************/
+
 main form.conteneur#pageProduit {
 	display:grid;
 	grid-template-areas: "produitGrandeImage	produitGrandeImage	 	nomItem 	nomItem"
-						 "produitGrandeImage 	produitGrandeImage 	prixActuel 	prixActuel"
+						 "produitGrandeImage 	produitGrandeImage 	prixArticle 	prixArticle"
 						 "profil 		profil 			lot 		lot"
-						 "description 	description		description	description"
-						 "information	information		information	information";
+						 "descriptionArticle 	descriptionArticle		descriptionArticle	descriptionArticle"
+						 "informationTotal	informationTotal		informationTotal	informationTotal";
 	grid-template-columns: 25% 25% 25% 25%;
+}
+
+main#pageProduitCreation form.conteneur#pageProduit {
+	grid-template-columns: 50% 50%;
+	grid-template-areas: "produitGrandeImage nomItem "
+						 "produitGrandeImage prixArticle"
+						 "produitGrandeImage date"
+						 "descriptionArticle descriptionArticle"
+						 "informationEvenement informationArticle"
+						 "annuler valider";
 }
 
 @media only screen and (max-width: 900px) {
@@ -277,8 +304,42 @@ main form.conteneur#pageProduit {
   }
 
 
-#produitGrandeImage {
-	grid-area: produitGrandeImage;
+/*Les zones de la grille*/
+#produitGrandeImage {grid-area: produitGrandeImage;}
+#profil {grid-area: profil;}
+#nomItem {grid-area: nomItem;}
+#lot {grid-area: lot;}
+#descriptionArticle {grid-area: descriptionArticle;}
+#informationTotal {grid-area: informationTotal;}
+#prixArticle {grid-area: prixArticle;}
+
+#date {grid-area: date;}
+.information#informationArticle {grid-area: informationArticle;}
+.information#informationEvenement {grid-area: informationEvenement;}
+#annuler {grid-area: annuler;}
+#valider {grid-area: valider;}
+
+div#prixArticle {
+	display:grid;
+	grid: auto auto / auto auto;
+}
+
+#informationTotal  ul {
+	display:grid;
+	grid:auto auto auto auto / auto auto; /* 4 lignes / 2 colones*/
+}
+
+.information ul {flex-flow: column;}
+.information li {display:flex;flex-flow: row; justify-content: space-between;}
+
+label.conteneur {flex-flow: column}
+#profil * {flex-grow: 1;}
+
+
+/*****************************
+Produit Style
+*****************************/
+div#produitGrandeImage {
 	max-height: 300px;
     width: 100%;
     display: flex;
@@ -287,60 +348,9 @@ main form.conteneur#pageProduit {
 
 #produitGrandeImage img {
 	width: 100%;
+	object-fit: cover;
 }
 
-label.conteneur {
-	flex-flow: column
-}
-
-#profil {
-	grid-area: profil;
-}
-
-#profil * {
-	flex-grow: 1;
-}
-
-#nomItem {
-	grid-area: nomItem;
-}
-
-#prixActuel {
-	grid-area: prixActuel;
-	display:grid;
-	grid: auto auto / auto auto;
-}
-
-#prixActuel button{
-background-color: var(--bleu);
-}
-
-#lot {
-	grid-area: lot;
-}
-
-#description {
-	grid-area: description;
-}
-
-#information {
-	grid-area: information;
-}
-
-#information  ul {
-	display:grid;
-	grid:auto auto auto auto / auto auto;
-	list-style-type: none;
-}
-
-
-#pageProduit :where(label, h3, output, a, input,#btnPaypal)  {
-	margin:10px;
-	padding: 20px;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: bold;
-}
 
 #pageProduit  :where(label, a,input){
 	color: var(--main-content-font-color);
@@ -353,7 +363,19 @@ background-color: var(--bleu);
 	
 }
 
+textarea {color: #9B9B9B;}
+#pageProduitCreation input {width: 100%;}
+.information ul {	list-style-type: none;}
 
+.mettreInformation  {width:300px; height:20px; margin: 21px 0;}
+li h4::after { content: " : ";}
+
+#pageProduitCreation :where(button,a) {
+	width:fit-content;
+	height: fit-content;
+	justify-self: center;
+	border-radius: 100px;
+}
 
 
 

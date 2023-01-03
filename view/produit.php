@@ -16,33 +16,33 @@
 				</div>
 				<div id="profil" class="conteneur">
 					<label><img src="../design/image/profile/chat.png">NomDuVendeur</label>
-					<label><button><img src="../design/image/icon/thumb up.png"></button> 600 <button><img src="../design/image/icon/thumb down.png"></button></label>
+					<label><button class="iconTaille"><img src="../design/image/icon/thumb up.png"></button> 600 <button class="iconTaille"><img src="../design/image/icon/thumb down.png" class="iconTaille"></button></label>
 				</div>
 
 				<label id="nomItem">Veste d'Elton John</label>
-				<div id="prixActuel">
+				<div id="prixArticle">
 					<label>Prix actuel</label>
 					<output>20 000,00 $</output>
 					<input type="number" placeholder="Votre nouveau prix"> 
-					<button id="btnPaypal">Valider <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg"></button>
+					<button id="btnPaypal">Valider <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" class="iconTaille"></button>
 				</div>
-				<a id="lot">Cet article est en lot <img src="../design/image/icon/goTo.png"></a>
+				<a id="lot">Cet article est en lot <img src="../design/image/icon/goTo.png" class="iconTaille"></a>
 
-				<label class="conteneur" id="description">
+				<label class="conteneur" id="descriptionArticle">
 					<h3>Description</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint ...</p>
 				</label>
-								<label class="conteneur" id="information">
-									<h3>Informations</h3>
-									<ul class="conteneur">
-										<li>Artiste:--------</li>
-										<li>Date:--------</li>
-										<li>Lieu:--------</li>
-										<li>Taille:--------</li>
-										<li>Etat:--------</li>
-										<li>Catégorie:--------</li>
-										<li>Ajouté:--------</li>
-									</ul>
+				<label class="conteneur information" id="informationTotal">
+					<h3>Informations</h3>
+					<ul class="conteneur">
+						<li>Artiste:--------</li>
+						<li>Date:--------</li>
+						<li>Lieu:--------</li>
+						<li>Taille:--------</li>
+						<li>Etat:--------</li>
+						<li>Catégorie:--------</li>
+						<li>Ajouté:--------</li>
+					</ul>
 				</label>
 					
 			</form>
