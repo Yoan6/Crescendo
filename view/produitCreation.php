@@ -71,8 +71,10 @@
 						</li>
 					</ul>
 				</label>
-				<a id="annuler" class="commeUnlabel">Annuler les modifs</a>
-				<button id="valider" class="highlight commeUnlabel" type="submit">Valider</button>
+				<div id="grilleBoutonsValiderAnnuler" class="conteneur">
+					<a class="commeUnlabel">Annuler les modifs</a>
+					<button class="highlight commeUnlabel" type="submit">Valider</button>
+				</div>
 					
 			</form>
 

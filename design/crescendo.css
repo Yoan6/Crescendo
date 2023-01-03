@@ -241,7 +241,7 @@ main#pageProduitCreation form.conteneur#pageProduit {
 						 "produitGrandeImage date"
 						 "descriptionArticle descriptionArticle"
 						 "informationEvenement informationArticle"
-						 "annuler valider";
+						 "grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
 }
 
 @media only screen and (max-width: 900px) {
@@ -264,8 +264,7 @@ main#pageProduitCreation form.conteneur#pageProduit {
 #date {grid-area: date;}
 .information#informationArticle {grid-area: informationArticle;}
 .information#informationEvenement {grid-area: informationEvenement;}
-#annuler {grid-area: annuler;}
-#valider {grid-area: valider;}
+#grilleBoutonsValiderAnnuler {grid-area: grilleBoutonsValiderAnnuler; flex-flow: row; justify-content: space-evenly;}
 
 div#prixArticle {
 	display:grid;
