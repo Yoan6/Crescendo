@@ -104,30 +104,10 @@ ul{
 img {
 	max-width: 100%;
 	max-height: 100%;
-}
-
-
-/**************************************/
-
-
-#pageProduit label, h3, output, #pageProduit > a  {
-	margin:10px;
-	padding: 20px;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: bold;
-}
-
-#pageProduit label, #pageProduit > a{
-	color: var(--main-content-font-color);
-	background-color: var(--main-content-background-color);
-}
-
-h3, output {
-	color: var(--main-content-background-color);
-	background-color: var(--main-content-font-color);
+	object-fit: cover;
 	
 }
+
 
 button img, label img {
 	width:50px;
@@ -185,26 +165,39 @@ width: 100%;
 }
 
 
-main nav ul {
+main#accueil nav ul {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+	width: 90%;
 }
 
-main nav ul li img {
-	height: 300px;
-	width: 300px;
+main#accueil nav ul li img {
+	height: 250px;
+	width: 250px;
 	border-radius: 300px;
 
 }
 
-main nav ul a {
+main#accueil nav ul a {
 	border: 1px solid var(--main-font-color);
-
+    padding: 30px 30px 0 30px;
+	border-radius: 15px 15px 15px 15px;
 }
 
-main nav ul h2 {
+main#accueil nav ul h2 {
 	text-align: center;
+}
+
+@media only screen and (max-width: 900px) {
+	main#accueil nav ul li img {
+		height: 100px;
+		width: 100px;
+	}
+
+	main#accueil nav ul h2 {
+		font-size: 15px;
+	}
 }
 
 
@@ -215,8 +208,8 @@ Produits
 
 main form.conteneur#pageProduit {
 	display:grid;
-	grid-template-areas: "grandeImage	grandeImage	 	nomItem 	nomItem"
-						 "grandeImage 	grandeImage 	prixActuel 	prixActuel"
+	grid-template-areas: "produitGrandeImage	produitGrandeImage	 	nomItem 	nomItem"
+						 "produitGrandeImage 	produitGrandeImage 	prixActuel 	prixActuel"
 						 "profil 		profil 			lot 		lot"
 						 "description 	description		description	description"
 						 "information	information		information	information";
@@ -231,9 +224,16 @@ main form.conteneur#pageProduit {
   }
 
 
-#grandeImage {
-	grid-area: grandeImage;
+#produitGrandeImage {
+	grid-area: produitGrandeImage;
+	max-height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 
+#produitGrandeImage img {
+	width: 100%;
 }
 
 label.conteneur {
@@ -281,7 +281,43 @@ background-color: var(--bleu);
 }
 
 
+#pageProduit :where(label, h3, output, a, input,#btnPaypal)  {
+	margin:10px;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+}
 
+#pageProduit  :where(label, a,input){
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+}
+
+#pageProduit :where(h3,output) {
+	color: var(--main-content-background-color);
+	background-color: var(--main-content-font-color);
+	
+}
+
+#pageProduit :where(label, h3, output, a, input,#btnPaypal)  {
+	margin:10px;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#pageProduit  :where(label, a,input){
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+}
+
+#pageProduit :where(h3,output) {
+	color: var(--main-content-background-color);
+	background-color: var(--main-content-font-color);
+	
+}
 
 
 

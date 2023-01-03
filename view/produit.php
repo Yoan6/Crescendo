@@ -11,7 +11,7 @@
 		
 		<main>
 			<form action="../controler/encherir.ctrl.php" method="post" class="conteneur" id="pageProduit">
-				<div id="grandeImage">
+				<div id="produitGrandeImage">
 					<img src="../design/image/accueil/vetement.jpg">
 				</div>
 				<div id="profil" class="conteneur">
@@ -24,7 +24,7 @@
 					<label>Prix actuel</label>
 					<output>20 000,00 $</output>
 					<input type="number" placeholder="Votre nouveau prix"> 
-					<button>Valider <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg"></button>
+					<button id="btnPaypal">Valider <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg"></button>
 				</div>
 				<a id="lot">Cet article est en lot <img src="../design/image/icon/goTo.png"></a>
 
@@ -45,7 +45,7 @@
 									</ul>
 				</label>
 					
-		</form>
+			</form>
 
 		</main>
 		
