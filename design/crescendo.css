@@ -112,6 +112,9 @@ button img, label img {
 	height:50px;
 }
 
+h1 {
+	color: var(--bleu);
+}
 
 @media only screen and (max-width: 900px) {
 	button img, label img {
@@ -129,17 +132,29 @@ button img, label img {
 }
 
 
-button:not(.iconTaille,.btn) {
+button:not(.iconTaille,.btn,.danger), #pageProfil nav a {
 	background-color: var(--bleu);
 }
 
 /*Pour éviter de refaire le format d'un label, bouton,... en forme d'ellipse*/
-button:not(.iconTaille,.btn,.voir-enchere), #pageProduit :where(label, h3, output, a, input,#btnPaypal, .commeUnlabel, .btnLabel)  {
+button:not(.iconTaille,.btn,.voir-enchere), #pageProduit :where(label, h3, output, a, input,#btnPaypal, .commeUnlabel, .btnLabel), #pageProfil nav a  {
 	margin:10px;
 	padding: 20px;
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
+}
+
+button:not(.iconTaille,.btn,.voir-enchere, #btnPaypal), #pageProduitCreation :where(button,a), #pageProfil nav a {
+	width:250px;
+	height: 40px;
+	justify-self: center;
+	border-radius: 100px;
+}
+
+
+.danger {
+	background-color: #D27979;
 }
 
 
@@ -324,15 +339,39 @@ li h4::after { content: " : ";}
 	border-radius: 100px;
 }
 
-#pageProduitCreation :where(button,a) {
-	width:fit-content;
-	height: fit-content;
-	justify-self: center;
-	border-radius: 100px;
+
+/*****************************
+Page de profil
+*****************************/
+#pageProfil {
+	margin-left: 10%;
 }
 
+div#pageProfil div {flex-flow: column;}
 
+#pageProfil nav ul {
+	display: grid;
+	grid: auto auto auto / auto auto;
+}
 
+#pageProfil a {
+	display: flex;
+	flex-flow: row;
+}
+
+#pageProfil .iconTaille {vertical-align: top;}
+
+#pageProfil h2 {
+	margin: 10px 0;
+	text-align: center;
+	padding: 0 0px 0 10px;
+	margin: 5px 0 20px 0;
+	width:100%;
+}
+
+div#pageProfil div img {
+	height:300px;
+}
 
 
 
