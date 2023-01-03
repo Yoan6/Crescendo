@@ -124,6 +124,8 @@ button img, label img {
 .iconTaille {
 	height:40px;
 	width:40px;
+    border: none;
+    background: none;
 }
 
 
@@ -332,3 +334,42 @@ li h4::after { content: " : ";}
 
 
 
+
+
+
+
+
+
+
+/*****************************
+Règles pour éléments du footer
+*****************************/
+
+footer {
+	border-top:1px solid var(--footer-font-color);
+	color: var(--footer-font-color);
+	box-sizing: border-box;
+	background-color: var(--footer-background-color);
+	width:100%;
+	block-size: fit-content;
+	padding:3vh 0 2vh 0 ;
+}
+
+footer ul {
+	padding: 0px;
+	gap:150px;
+	margin:0px;
+	justify-content: space-evenly;
+}
+
+footer nav ul li {
+	flex-flow:column;
+}
+
+footer h4 {
+	margin: 3px;
+}
+
+footer li a {
+   color: var(--footer-font-color);
+}
