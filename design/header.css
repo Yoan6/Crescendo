@@ -65,6 +65,7 @@ header .searchBar {
 	padding-left:20px;
     height: 40px;
     border: none ;
+    width: 20vw;
 
 }
 
@@ -115,20 +116,20 @@ Règles générales
   }
 
   
-  nav {
+  header nav {
       display: flex;
       justify-content: center;
       }
   
-  nav ul li:first-child a {
+  header nav ul li:first-child a {
       border-radius: 15px 0px 0px 15px;
   }
   
-  nav ul li:last-child a {
+  header nav ul li:last-child a {
     border-radius: 0px 15px 15px 0px;
 }
 
-    nav ul li a:hover {
+header    nav ul li a:hover {
         background-color: white;
         color:black;
     }
@@ -138,16 +139,6 @@ Règles générales
         color:black;
     }
   
-  nav ul, nav ol{
-      list-style: none;
-      justify-content: center;
-  }
-  
-  img {
-      max-width: 100%;
-      max-height: 100%;
-  
-  }
 
 /*****************************
 Drop down bouton utilisateur

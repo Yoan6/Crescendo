@@ -1,0 +1,34 @@
+
+#divVIA{
+    justify-content: center;
+}
+
+
+#via { 
+    margin-top: 50px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+#via li {
+    display: flex;
+    align-items: center;
+    border: solid 1px white;
+    border-radius: 15px;
+    background-color: var(--header-background-color);
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#via li a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+#via li img{
+    width: 80%;
+    height: 80%;
+    border-radius: 100%;
+}
