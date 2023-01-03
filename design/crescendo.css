@@ -162,26 +162,6 @@ img {
 }
 
 
-
-#pageProduit label, h3, output, #pageProduit > a  {
-	margin:10px;
-	padding: 20px;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: bold;
-}
-
-#pageProduit label, #pageProduit > a{
-	color: var(--main-content-font-color);
-	background-color: var(--main-content-background-color);
-}
-
-h3, output {
-	color: var(--main-content-background-color);
-	background-color: var(--main-content-font-color);
-	
-}
-
 button img, label img {
 	width:50px;
 	height:50px;
@@ -238,26 +218,39 @@ width: 100%;
 }
 
 
-main nav ul {
+main#accueil nav ul {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
+	width: 90%;
 }
 
-main nav ul li img {
-	height: 300px;
-	width: 300px;
+main#accueil nav ul li img {
+	height: 250px;
+	width: 250px;
 	border-radius: 300px;
 
 }
 
-main nav ul a {
+main#accueil nav ul a {
 	border: 1px solid var(--main-font-color);
-
+    padding: 30px 30px 0 30px;
+	border-radius: 15px 15px 15px 15px;
 }
 
-main nav ul h2 {
+main#accueil nav ul h2 {
 	text-align: center;
+}
+
+@media only screen and (max-width: 900px) {
+	main#accueil nav ul li img {
+		height: 100px;
+		width: 100px;
+	}
+
+	main#accueil nav ul h2 {
+		font-size: 15px;
+	}
 }
 
 
@@ -334,6 +327,24 @@ background-color: var(--bleu);
 }
 
 
+#pageProduit label, #pageProduit h3, #pageProduit output, #pageProduit > a  {
+	margin:10px;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+#pageProduit label, #pageProduit > a{
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+}
+
+#pageProduit h3, #pageProduit output {
+	color: var(--main-content-background-color);
+	background-color: var(--main-content-font-color);
+	
+}
 
 
 

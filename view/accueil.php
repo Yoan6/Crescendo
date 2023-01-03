@@ -9,7 +9,7 @@
 	<body class="dark-mode">
         <?php include(__DIR__.'/header.php'); ?>
 		
-		<main>
+		<main id="accueil">
             <div id="banner">
                 <img  src="../design/image/accueil/coeur_concert.jpeg">
             </div>
@@ -17,7 +17,7 @@
                 <ul class="conteneur">
                     <li>
                         <a>
-                            <img src="../design/image/accueil/user.png">
+                            <img src="../design/image/accueil/vetement.jpg">
                             <h2>Vêtements</h2>
                         </a>
                     </li>
