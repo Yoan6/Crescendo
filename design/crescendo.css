@@ -373,11 +373,13 @@ div#pageProfil div img {
 	height:300px;
 }
 
+/*****************************
+Page de profil
+*****************************/
 
-
-
-
-
+.sideBarProfilConteneur {flex-flow: column; max-width: 20%; align-items: center; justify-content: center;}
+.sideBarProfilConteneur img {height:300px; width:300px;}
+.sideBarProfilConteneur :where(h3,h4,h5) {text-align: center;}
 
 /*****************************
 Règles pour éléments du footer
