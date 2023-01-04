@@ -1,0 +1,95 @@
+/*****************************
+    Règles générale
+*****************************/
+
+
+body {
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: 'Inter', 'sans-serif';
+}
+
+
+
+/********************************
+Règles pour conteneurs principaux
+*********************************/
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items : center;
+    background-color: #333333;
+}
+
+header img {
+	max-width: 100%;
+	height: 50px;
+    margin-right : 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content : center;
+}
+
+div article {
+    width : 50%;
+    font-size: 14px;
+}
+
+div:nth-child(0) {
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+article p {
+    width : 250px;
+    align-items: center;
+}
+
+/*********************************
+Règles pour conteneurs secondaires
+*********************************/
+
+header p {
+    padding-bottom : 30px;
+    font-family : 'Just Another Hand';
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.formulaire {
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+}
+
+label {
+  font-family: 'Inter', 'sans-serif';
+  font-size: 14px;
+}
+
+button {
+    border-radius : 10px;
+    width : 250px;
+    height : 45px;
+    margin-bottom : 20px;
+    border : none;
+}
+
+/*********************************
+Règles pour les éléments simples
+*********************************/
+
+button:hover {
+  cursor: pointer;
+}
+
+.condition {
+    text-decoration: none;
+    color : #79D2BC;
+}
