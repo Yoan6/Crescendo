@@ -3,7 +3,8 @@
 *****************************/
 
 
-body {
+
+#inscription body {
     background-color: #333333;
     color: #ffffff;
     font-size: 20px;
@@ -16,37 +17,24 @@ body {
 Règles pour conteneurs principaux
 *********************************/
 
-header {
+#inscription main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items : center;
-    background-color: #333333;
 }
 
-header img {
-	max-width: 100%;
-	height: 50px;
-    margin-right : 20px;
-}
-
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content : center;
-}
-
-div article {
+#inscription div article {
     width : 50%;
     font-size: 14px;
 }
 
-div:nth-child(0) {
+#inscription div:nth-child(0) {
     display: flex;
     justify-content: center;
     background-color: #ffffff;
 }
 
-article p {
+#inscription article p {
     width : 250px;
     align-items: center;
 }
@@ -55,41 +43,95 @@ article p {
 Règles pour conteneurs secondaires
 *********************************/
 
-header p {
-    padding-bottom : 30px;
-    font-family : 'Just Another Hand';
-    font-weight: bold;
-    font-size: 24px;
+#inscription form {
+    margin-top: 20px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.formulaire {
+#inscription form p {
+    margin-bottom: none;
+}
+
+#inscription .formulaire {
     display : flex;
-    flex-direction : row;
-    justify-content : space-between;
+    justify-content : space-around;
+    width: 100%;
 }
 
-label {
-  font-family: 'Inter', 'sans-serif';
-  font-size: 14px;
+#inscription .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 70px;
 }
 
-button {
-    border-radius : 10px;
-    width : 250px;
-    height : 45px;
-    margin-bottom : 20px;
-    border : none;
+#inscription .petit-article {
+    width: 70%;
 }
+
+#inscription .ville {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%
+}
+
+#inscription .ville div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#inscription .article-condition-generale {
+    display: flex;
+    align-items: center;
+}
+
+#inscription .condition-generale {
+    text-align: center;
+    height: 40px;
+    width: 300px;
+}
+
+
 
 /*********************************
 Règles pour les éléments simples
 *********************************/
 
-button:hover {
+#inscription label {
+  font-family: 'Inter', 'sans-serif';
+  font-size: 14px;
+}
+
+#inscription button {
+    border-radius : 10px;
+    width : 250px;
+    height : 45px;
+    border : none;
+}
+
+#inscription input {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#inscription button:hover {
   cursor: pointer;
 }
 
-.condition {
+#inscription .condition {
     text-decoration: none;
     color : #79D2BC;
+}
+
+#inscription .connexion {
+    color: #79D2BC;
+    margin-bottom: 20px;
 }

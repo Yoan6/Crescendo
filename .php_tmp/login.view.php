@@ -9,16 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="../design/crescendo.css">
   </head>
   <body class="dark-mode">
-
-    <?php
-    include(__DIR__."/header.php");
-    ?>
     
     <main id="connexion">
       <h1>Connexion</h1>
-      <form action="login.ctrl.php" method="post">
+      <form action="../controler/login.ctrl.php" method="post">
         <p>
-          <label for="login">Login : </label>
+          <label for="login">Adresse email / Pseudo : </label>
           <br>
           <input class="input" id="login" type="text" name="login" value="" placeholder="ex : Artus" required>
         </p>
@@ -28,12 +24,12 @@
             <input class="input" id="password" type="password" name="password" value="" placeholder="ex : ahdfukqshxsb" required>
         </p>
         <a class="MDPForgotten" href="">Mot de passe oublié ?</a>
-        <button class="connexion" type="submit" name="connection">Se connecter</button>
+        <button class="connexion" type="submit" name="connection">SE CONNECTER</button>
       </form>
       
         
-        <form action="inscription.ctrl.php" method="post">
-            <button class="inscription" type="submit" name="inscription">S'inscrire</button>
+        <form action="../controler/inscription.ctrl.php" method="post">
+            <button class="inscription" type="submit" name="inscription">S'INSCRIRE</button>
         </form>
     </main>
   </body>
