@@ -23,12 +23,12 @@
   <div class="dropdown" id="dropdown">
   <a href="#vendre">
       Paramètres
-      <i><img src="" alt=""></i>
+      <i><img src="../design/image/settings.svg" alt="settings"></i>
 
     </a>
     <a href="#draft">
       Favoris
-      <i><img src="" alt=""></i>
+      <i><img src="../design/image/heart.svg" alt=""></i>
 
     </a>
     <a href="#move">

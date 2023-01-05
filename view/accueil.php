@@ -27,7 +27,7 @@
                     <li>
                         <a>
                             <div>
-                                <img src="../design/image/accueil/vetement.jpg">
+                                <img src="../design/image/accueil/guitar.png">
                             </div>
                             <h2>Instruments</h2>
                         </a>
@@ -35,7 +35,7 @@
                     <li>
                         <a>
                             <div>
-                                <img src="../design/image/accueil/vetement.jpg">
+                                <img src="../design/image/accueil/autre.png">
                             </div>                            
                             <h2>Autres</h2>
                         </a>
@@ -48,7 +48,7 @@
             <div id="articleSemaine">
                 <div>
                     <h1>Les articles de la semaine</h1>
-                    
+
 
                 </div>
             </div>
