@@ -104,8 +104,6 @@ ul{
 img {
 	max-width: 100%;
 	max-height: 100%;
-	object-fit: cover;
-	
 }
 
 
@@ -114,6 +112,9 @@ button img, label img {
 	height:50px;
 }
 
+h1 {
+	color: var(--bleu);
+}
 
 @media only screen and (max-width: 900px) {
 	button img, label img {
@@ -123,10 +124,38 @@ button img, label img {
 }
 
 
+.iconTaille {
+	height:40px;
+	width:40px;
+    border: none;
+    background: none;
+}
 
 
+button:not(.iconTaille,.btn,.danger), #pageProfil nav a {
+	background-color: var(--bleu);
+}
+
+/*Pour éviter de refaire le format d'un label, bouton,... en forme d'ellipse*/
+button:not(.iconTaille,.btn,.voir-enchere), #pageProduit :where(label, h3, output, a, input,#btnPaypal, .commeUnlabel, .btnLabel), #pageProfil nav a  {
+	margin:10px;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: bold;
+}
+
+button:not(.iconTaille,.btn,.voir-enchere, #btnPaypal), #pageProduitCreation :where(button,a), #pageProfil nav a {
+	width:250px;
+	height: 40px;
+	justify-self: center;
+	border-radius: 100px;
+}
 
 
+.danger {
+	background-color: #D27979;
+}
 
 
 /*****************************
@@ -206,14 +235,28 @@ main#accueil nav ul h2 {
 Produits
 *****************************/
 
+/*****************************
+Produit Grille
+*****************************/
+
 main form.conteneur#pageProduit {
 	display:grid;
 	grid-template-areas: "produitGrandeImage	produitGrandeImage	 	nomItem 	nomItem"
-						 "produitGrandeImage 	produitGrandeImage 	prixActuel 	prixActuel"
+						 "produitGrandeImage 	produitGrandeImage 	prixArticle 	prixArticle"
 						 "profil 		profil 			lot 		lot"
-						 "description 	description		description	description"
-						 "information	information		information	information";
+						 "descriptionArticle 	descriptionArticle		descriptionArticle	descriptionArticle"
+						 "informationTotal	informationTotal		informationTotal	informationTotal";
 	grid-template-columns: 25% 25% 25% 25%;
+}
+
+main#pageProduitCreation form.conteneur#pageProduit {
+	grid-template-columns: 50% 50%;
+	grid-template-areas: "produitGrandeImage nomItem "
+						 "produitGrandeImage prixArticle"
+						 "produitGrandeImage date"
+						 "descriptionArticle descriptionArticle"
+						 "informationEvenement informationArticle"
+						 "grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
 }
 
 @media only screen and (max-width: 900px) {
@@ -224,8 +267,41 @@ main form.conteneur#pageProduit {
   }
 
 
-#produitGrandeImage {
-	grid-area: produitGrandeImage;
+/*Les zones de la grille*/
+#produitGrandeImage {grid-area: produitGrandeImage;}
+#profil {grid-area: profil;}
+#nomItem {grid-area: nomItem;}
+#lot {grid-area: lot;}
+#descriptionArticle {grid-area: descriptionArticle;}
+#informationTotal {grid-area: informationTotal;}
+#prixArticle {grid-area: prixArticle;}
+
+#date {grid-area: date;}
+.information#informationArticle {grid-area: informationArticle;}
+.information#informationEvenement {grid-area: informationEvenement;}
+#grilleBoutonsValiderAnnuler {grid-area: grilleBoutonsValiderAnnuler; flex-flow: row; justify-content: space-evenly;}
+
+div#prixArticle {
+	display:grid;
+	grid: auto auto / auto auto;
+}
+
+#informationTotal  ul {
+	display:grid;
+	grid:auto auto auto auto / auto auto; /* 4 lignes / 2 colones*/
+}
+
+.information ul {flex-flow: column;}
+.information li {display:flex;flex-flow: row; justify-content: space-between;}
+
+label.conteneur {flex-flow: column}
+#profil * {flex-grow: 1;}
+
+
+/*****************************
+Produit Style
+*****************************/
+div#produitGrandeImage {
 	max-height: 300px;
     width: 100%;
     display: flex;
@@ -234,60 +310,9 @@ main form.conteneur#pageProduit {
 
 #produitGrandeImage img {
 	width: 100%;
+	object-fit: cover;
 }
 
-label.conteneur {
-	flex-flow: column
-}
-
-#profil {
-	grid-area: profil;
-}
-
-#profil * {
-	flex-grow: 1;
-}
-
-#nomItem {
-	grid-area: nomItem;
-}
-
-#prixActuel {
-	grid-area: prixActuel;
-	display:grid;
-	grid: auto auto / auto auto;
-}
-
-#prixActuel button{
-background-color: var(--bleu);
-}
-
-#lot {
-	grid-area: lot;
-}
-
-#description {
-	grid-area: description;
-}
-
-#information {
-	grid-area: information;
-}
-
-#information  ul {
-	display:grid;
-	grid:auto auto auto auto / auto auto;
-	list-style-type: none;
-}
-
-
-#pageProduit :where(label, h3, output, a, input,#btnPaypal)  {
-	margin:10px;
-	padding: 20px;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: bold;
-}
 
 #pageProduit  :where(label, a,input){
 	color: var(--main-content-font-color);
@@ -300,23 +325,52 @@ background-color: var(--bleu);
 	
 }
 
-#pageProduit :where(label, h3, output, a, input,#btnPaypal)  {
-	margin:10px;
-	padding: 20px;
-	border-radius: 5px;
+textarea {color: #9B9B9B;}
+#pageProduitCreation input {width: 100%;}
+.information ul {	list-style-type: none;}
+
+.mettreInformation  {width:300px; height:20px; margin: 21px 0;}
+li h4::after { content: " : ";}
+
+#pageProduitCreation :where(button,a) {
+	width:fit-content;
+	height: fit-content;
+	justify-self: center;
+	border-radius: 100px;
+}
+
+
+/*****************************
+Page de profil
+*****************************/
+#pageProfil {
+	margin-left: 10%;
+}
+
+div#pageProfil div {flex-flow: column;}
+
+#pageProfil nav ul {
+	display: grid;
+	grid: auto auto auto / auto auto;
+}
+
+#pageProfil a {
+	display: flex;
+	flex-flow: row;
+}
+
+#pageProfil .iconTaille {vertical-align: top;}
+
+#pageProfil h2 {
+	margin: 10px 0;
 	text-align: center;
-	font-weight: bold;
+	padding: 0 0px 0 10px;
+	margin: 5px 0 20px 0;
+	width:100%;
 }
 
-#pageProduit  :where(label, a,input){
-	color: var(--main-content-font-color);
-	background-color: var(--main-content-background-color);
-}
-
-#pageProduit :where(h3,output) {
-	color: var(--main-content-background-color);
-	background-color: var(--main-content-font-color);
-	
+div#pageProfil div img {
+	height:300px;
 }
 
 
@@ -342,7 +396,8 @@ footer {
 footer ul {
 	padding: 0px;
 	gap:150px;
-	margin:0px
+	margin:0px;
+	justify-content: space-evenly;
 }
 
 footer nav ul li {

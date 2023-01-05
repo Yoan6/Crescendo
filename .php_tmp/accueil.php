@@ -5,6 +5,7 @@
 		<title>Crescendo</title>
         <link rel="stylesheet" type="text/css" href="../design/header.css">
 		<link rel="stylesheet" type="text/css" href="../design/crescendo.css">
+        <link rel="stylesheet" type="text/css" href="../design/accueil.css">
 	</head>
 	<body class="dark-mode">
         <?php include(__DIR__.'/header.php'); ?>
@@ -13,8 +14,8 @@
             <div id="banner">
                 <img  src="../design/image/accueil/coeur_concert.jpeg">
             </div>
-            <nav>
-                <ul class="conteneur">
+            <div class="conteneur" id="divVIA">
+                <ul class="conteneur" id="via">
                     <li>
                         <a>
                             <img src="../design/image/accueil/vetement.jpg">
@@ -34,10 +35,8 @@
                         </a>
                     </li>
                 </ul>
-            </nav>
+</div>
 
-
-            </br>
 
 		</main>
 		

@@ -1,0 +1,77 @@
+/*****************************
+    Règles générale
+*****************************/
+
+
+#connexion body { background-color: #333333;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: 'Inter', 'sans-serif';
+}
+
+
+
+
+/*********************************
+Règles pour conteneurs secondaires
+*********************************/
+
+#connexion header p { padding-bottom : 30px;
+    font-family : 'Just Another Hand';
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#connexion p:nth-child(n+2) { margin-bottom : 0px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+}
+
+#connexion form { display: flex;
+    flex-direction: column;
+    align-items : center;
+}
+
+#connexion label {ont-family: 'Inter', 'sans-serif';
+  font-size: 14px;
+}
+
+#connexion button { border-radius : 10px;
+    width : 270px;
+    height : 45px;
+    margin-bottom : 20px;
+    border : none;
+}
+
+
+/*********************************
+Règles pour les éléments simples
+*********************************/
+
+#connexion button:hover {ursor: pointer;
+}
+
+#connexion .connexion { margin-top : 40px;
+    color : #000000;
+    background-color: #79D2BC;
+}
+
+#connexion .inscription { background-color: #79D2BC;
+    color : #000000;
+}
+
+#connexion .input { width : 250px;
+    height : 45px;
+    border-radius : 10px;
+}
+
+#connexion .MDPForgotten { color: #79D2BC;
+    text-decoration: none;
+    font-size : 14px;
+}
+
+
+
+
+#connexion #connexion {}
