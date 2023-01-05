@@ -33,8 +33,9 @@ Règles pour conteneurs secondaires
     align-items : center;
 }
 
-#connexion label {ont-family: 'Inter', 'sans-serif';
-  font-size: 14px;
+#connexion label {
+    font-family: 'Inter', 'sans-serif';
+    font-size: 14px;
 }
 
 #connexion button { border-radius : 10px;
@@ -49,16 +50,19 @@ Règles pour conteneurs secondaires
 Règles pour les éléments simples
 *********************************/
 
-#connexion button:hover {ursor: pointer;
+#connexion button:hover {
+    cursor: pointer;
 }
 
 #connexion .connexion { margin-top : 40px;
     color : #000000;
     background-color: #79D2BC;
+    border-radius: 10px;
 }
 
 #connexion .inscription { background-color: #79D2BC;
     color : #000000;
+    border-radius: 10px;
 }
 
 #connexion .input { width : 250px;
@@ -71,7 +75,6 @@ Règles pour les éléments simples
     font-size : 14px;
 }
 
-
-
-
-#connexion #connexion {}
+#connexion h1 {
+    text-align: center;
+}
