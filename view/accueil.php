@@ -18,25 +18,41 @@
                 <ul class="conteneur" id="via">
                     <li>
                         <a>
-                            <img src="../design/image/accueil/vetement.jpg">
+                            <div>
+                                <img src="../design/image/accueil/vetement.jpg">
+                            </div>
                             <h2>Vêtements</h2>
                         </a>
                     </li>
                     <li>
                         <a>
-                            <img src="../design/image/accueil/vetement.jpg">
+                            <div>
+                                <img src="../design/image/accueil/vetement.jpg">
+                            </div>
                             <h2>Instruments</h2>
                         </a>
                     </li>
                     <li>
                         <a>
-                            <img src="../design/image/accueil/vetement.jpg">
+                            <div>
+                                <img src="../design/image/accueil/vetement.jpg">
+                            </div>                            
                             <h2>Autres</h2>
                         </a>
                     </li>
                 </ul>
-</div>
 
+                
+            </div>
+            
+            <div id="articleSemaine">
+                <div>
+                    <h1>Les articles de la semaine</h1>
+                    
+
+                </div>
+            </div>
+                
 
 		</main>
 		

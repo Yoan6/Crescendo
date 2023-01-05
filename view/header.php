@@ -11,7 +11,7 @@
             <a id="loupe" href="https://www.google.com/"><img src="../design/image/search.svg" alt="loupe"></a>
         </form>
                     
-  <a id="creationArticle">Vends tes articles</a>
+  <a id="creationArticle" href="creationArticle.php">Vends tes articles</a>
         
 
 <div class="container">
@@ -22,27 +22,27 @@
 
   <div class="dropdown" id="dropdown">
   <a href="#vendre">
-      <i class="bx bx-cog"></i>
-      Vendre
+      Paramètres
+      <i><img src="" alt=""></i>
+
     </a>
     <a href="#draft">
-      <i class="bx bx-book"></i>
-      All Drafts
+      Favoris
+      <i><img src="" alt=""></i>
+
     </a>
     <a href="#move">
-      <i class="bx bx-folder"></i>
-      Move To
+      Enchères remportés
+      <i><img src="" alt=""></i>
+
     </a>
     <a href="#profile">
-      <i class="bx bx-user"></i>
-      Profile Settings
+      Mon espace vente
     </a>
     <a href="#notification">
-      <i class="bx bx-bell"></i>
       Notification
     </a>
     <a href="#settings">
-      <i class="bx bx-cog"></i>
       Settings
     </a>
     <div class="divToggleDarkMode">

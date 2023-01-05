@@ -1,11 +1,4 @@
 
-
-:root {
-
-    --bleu: #79D2BC;
-
-}
-
 /*****************************
 Règles pour éléments du header
 *****************************/
@@ -23,8 +16,8 @@ header img {
 
 #firstStage{
     position: relative;
-    padding-left: 230px;
-    padding-right: 230px;
+    padding-left: 180px;
+    padding-right: 180px;
 }
 
 #firstStage > form{
@@ -63,19 +56,29 @@ height: 40px;
 header .searchBar {
 	border-radius: 50px 0px 0px 50px;
 	padding-left:20px;
-    height: 100%;
-    border: none ;
-    width: 20vw;
+  height: 100%;
+  border: none ;
+  width: 20vw;
 
 }
 
 
 #creationArticle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-left: 10px;
+  right: 80px;
   height: 40px;
-  width: 10vw;
+  min-width: 136px;
+  width: 20vw;
+  max-width: 200px;
+  background-color: var(--bleu);
+  border-radius: 10px;
+  color: black;
+  font-weight: bold;
 }
+
 
 header > div {
 	/*box-shadow: 0px 1px black;*/
@@ -165,6 +168,9 @@ Drop down bouton utilisateur
     border: none;
     position: relative;
     border-radius: 100px;
+    height: 40px;
+    background-size: cover;
+
   }
 
   .container > .btn:hover {
@@ -188,7 +194,7 @@ Drop down bouton utilisateur
   }
   
   .dropdown a {
-    background: var(--navBar-background-color);
+    background: var(--header-background-color);
     display: flex;
     align-items: center;
     padding: 0.8rem 1rem;
@@ -201,18 +207,18 @@ Drop down bouton utilisateur
   .dropdown a:first-child {
     border-top: solid 1px white;
 
-    border-radius: 25px 25px 0px 0px;
+    border-radius: 15px 15px 0px 0px;
   }
 
   .divToggleDarkMode {
-      background-color: var(--navBar-background-color);
+      background-color: var(--header-background-color);
         color: white;
         border-bottom: solid 1px white;
         border-right: solid 1px white;
         border-left: solid 1px white;
         display: flex;
         align-items: center;
-        border-radius: 0px 0px 25px 25px;
+        border-radius: 0px 0px 15px 15px;
         padding-left: 1rem;
     }
 
@@ -238,11 +244,11 @@ Drop down bouton utilisateur
 
   /* Toggle button pour le dark mode */
   .switch {
-    position: relative;
+    position: absolute;
     display: inline-block;
     width: 60px;
     height: 34px;
-    left: 50px;
+    right: 20px;
   }
   
   .switch input { 
@@ -276,11 +282,11 @@ Drop down bouton utilisateur
   }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #1B65A9;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #1B65A9;
   }
   
   input:checked + .slider:before {
