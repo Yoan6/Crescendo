@@ -1,0 +1,158 @@
+body{
+	min-height: 100vh;
+}
+
+main {
+	min-height: 0px;
+}
+
+#principale {
+	display: flex;
+	flex-direction: row;
+
+}
+
+/*****************************
+Règles pour éléments du aside
+*****************************/
+
+aside {
+	width: 25%;
+	min-width: 200px;
+	background-color: #262525;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
+aside button {
+	border-radius: 15px;
+	border: none;
+}
+aside > div {
+	width: 80%;
+
+}
+
+aside > div:first-child{
+	min-width: 150px;
+	margin-top: 20px;
+	background-color: white;
+	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+aside > div:last-child{
+	display: flex;
+	flex-direction: column;
+gap: 15px;
+
+}
+
+aside > div:last-child > button{
+	padding: 20px;
+	width: 100%;
+	font-size: larger;
+	
+}
+aside > div:last-child > button:first-child{
+background-color: var(--bleu);
+color: black;
+
+}
+
+
+aside > div:last-child > button:last-child{
+	border: solid 1px white;
+	background-color: transparent;
+	color: white;
+	}
+
+aside div:first-child > button{
+
+	border-radius: 15px;
+	border: none;
+	background-color: white;
+	font-size: large;
+	font-weight: bold;
+	height: 70px;
+
+}
+aside div:first-child > button > h3{
+	margin: 10px;
+}
+
+aside #filterdown{
+	width: 80%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;	
+	gap:20px;
+	padding: 20px;
+
+}
+
+aside #filterdown > div{
+	display: flex;
+	flex-direction: row;
+	gap:30px;
+	
+}
+
+aside #filterdown > div > label{
+	font-size: larger;
+	color: var(--main-content-font-color);
+}
+
+aside #filterdown > div > input{
+margin: 0px;
+height: 100%;
+width: 30px;
+
+}
+
+
+
+select {
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.artiste {
+	margin-bottom: 50px;
+}
+
+
+
+
+/*****************************
+Règles pour un objet (article)
+*****************************/
+
+.objet {
+	background-color: #272727;
+	border: 1px solid white;
+	width: 1000px;
+	height: 175px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 10px;
+	margin-bottom: 30px;
+	border-radius: 10px;
+}
+
+ .historique-objet {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	
+	gap:30px;
+	width: 100%;
+	max-width: 1000px;
+	margin: 30px;
+
+}

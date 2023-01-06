@@ -135,7 +135,7 @@ h1 {
 }
 
 
-button:not(.iconTaille,.btn,.danger), #pageProfil nav a {
+#pageProduit button:not(.iconTaille,.btn,.danger), #pageProfil nav a {
 	background-color: var(--bleu);
 }
 
@@ -350,7 +350,7 @@ Règles pour éléments du footer
 *****************************/
 
 footer {
-	margin-top: 1000px;
+	
 	border-top:1px solid var(--footer-font-color);
 	color: var(--footer-font-color);
 	box-sizing: border-box;

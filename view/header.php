@@ -60,10 +60,10 @@
     </div>
     <nav>
         <ul class="conteneur"> 
-            <li><a href="historique.php">A la une</a></li>
-            <li><a href="historique.php">Vêtements</a></li>
-            <li><a href="historique.php">Instruments</a></li>
-            <li><a href="historique.php">Autres</a></li>
+            <li><a href="Vetements.php">A la une</a></li>
+            <li><a href="Vetements.php">Vêtements</a></li>
+            <li><a href="Vetements.php">Instruments</a></li>
+            <li><a href="Vetements.php">Autres</a></li>
         </ul>
     </nav>
 </header>

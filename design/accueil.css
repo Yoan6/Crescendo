@@ -111,10 +111,16 @@ justify-content: center;
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
+
 }
 
-#articleSemaine div{
+#articleSemaine > div{
     max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap : 50px;
 
 }
 
