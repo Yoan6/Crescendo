@@ -415,10 +415,21 @@ footer nav ul li {
 	flex-flow:column;
 }
 
+footer nav ul li ul:last-child {
+	flex-flow: row;
+}
+
 footer h4 {
 	margin: 3px;
 }
 
 footer li a {
    color: var(--footer-font-color);
+}
+
+footer #logosCommunaute {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	gap: 0px;
 }
