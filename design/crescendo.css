@@ -30,6 +30,8 @@ Variables
 	--footer-background-color: grey; 
 	--navBar-background-color: black;
 	--bleu: #79d2bc;
+	--rouge: #F85656;
+
 
 	--main-content-background-color:#161616;
 	
@@ -181,55 +183,6 @@ ul.tiret li a:before {
 /*****************************
 Accueil
 *****************************/
-
-#banner {
-	width: 100%;
-	height: 50vh;
-	margin-top: 5px;
-	margin-bottom: 50px;
-}
-
-#banner img {
-object-fit: cover;
-width: 100%;
-
-}
-
-
-main#accueil nav ul {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	width: 90%;
-}
-
-main#accueil nav ul li img {
-	height: 250px;
-	width: 250px;
-	border-radius: 300px;
-
-}
-
-main#accueil nav ul a {
-	border: 1px solid var(--main-font-color);
-    padding: 30px 30px 0 30px;
-	border-radius: 15px 15px 15px 15px;
-}
-
-main#accueil nav ul h2 {
-	text-align: center;
-}
-
-@media only screen and (max-width: 900px) {
-	main#accueil nav ul li img {
-		height: 100px;
-		width: 100px;
-	}
-
-	main#accueil nav ul h2 {
-		font-size: 15px;
-	}
-}
 
 
 
@@ -395,6 +348,7 @@ Règles pour éléments du footer
 *****************************/
 
 footer {
+	margin-top: 1000px;
 	border-top:1px solid var(--footer-font-color);
 	color: var(--footer-font-color);
 	box-sizing: border-box;

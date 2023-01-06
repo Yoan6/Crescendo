@@ -4,9 +4,11 @@ Règles pour éléments du header
 *****************************/
 
 header {
+  
 	background-color: var(--header-background-color);
     position:sticky;
     top: 0;
+    z-index: 10;
 }
 
 header img {

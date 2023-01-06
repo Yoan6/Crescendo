@@ -10,12 +10,30 @@
     border-radius: 15px;
 }
 
-.article #heart{
+.article #divHeart{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 75px;
+    height: 100%;
 }
+.article #divHeart svg{
+    width: 80%;
+    height: 50%;
+ 
+}
+
+.article #divHeart svg path{
+fill: transparent;
+cursor: pointer;
+
+}
+
+.article #divHeart svg path:hover{
+stroke: var(--rouge);
+}
+
+
 
 .article #photo{
     width: 40%;
@@ -109,7 +127,7 @@ margin-top: 10px;
 
 }
 
-.article #likes{
+.article #divLikes{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -119,12 +137,31 @@ margin-top: 10px;
     height: 100%;
     width: 75px;
 }
-.article #likes p{
+.article #divLikes p{
     margin: 0px;
     font-size: larger;
 
 }
-.article #likes img{
-    width: 30px;
-    height: 30px;
+.article #divLikes svg{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+}
+
+.article #divLikes svg path{
+    stroke-width: 1px;
+    
+    fill: transparent;
+    cursor: pointer;
+}
+.article #divLikes #dislike path:hover{
+
+    stroke: var(--rouge);
+
+}
+
+.article #divLikes #like path:hover{
+    stroke: var(--bleu);
+
 }
