@@ -3,6 +3,7 @@
 main {
 	display: flex;
 	margin-top: 20px;
+	flex-wrap: wrap;
 }
 
 /*****************************
@@ -12,29 +13,12 @@ Règles pour éléments du aside
 aside {
 	margin-right: 80px;
 	background-color: #262525;
-	width: 250px;
+	width: 230px;
 	height: auto;
-}
-
-/*
-form {
-	width: 180px;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 20px;
-	background-color: white;
-	border-radius: 10px;
-	padding-left: 20px;
-	padding-top: 1px;
-	padding-bottom: 20px;
-	align-items: center;
 	display: flex;
 	flex-direction: column;
-	padding-right: 20px;
-	color: black;
+	align-items: center;
 }
-*/
-
 
 select {
 	cursor: pointer;
@@ -71,60 +55,6 @@ Règles pour un objet (article)
 	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
+	gap:30px;
+	width: 60%;
 }
-
-.infos {
-	display: flex;
-	flex-direction: column;
-}
-
-.description{
-	width: 300px;
-	border: 1px solid white;
-	padding: 5px;
-}
-
-.like {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 60px;
-}
-
-.libelle-prix {
-	display: flex;
-	flex-direction: row;
-}
-
-.libelle {
-	font-weight: bold;
-	font-size: 20px;
-	margin-top: 0px;
-}
-
-.prix {
-	color: #79D2BC;
-	margin-left: 80px;
-	font-weight: bold;
-	font-size: 20px;
-	margin-top: 0px;
-}
-
-.voir-enchere {
-	width: 300px;
-	background-color: #79D2BC;
-	color: black;
-	text-align: center;
-	border-radius: 10px;
-}
-
-.image-article {
-	width: 42px;
-	height: 40px;
-}
-
-
-
-
-
-
