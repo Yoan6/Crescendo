@@ -241,7 +241,7 @@ Produits
 Produit Grille
 *****************************/
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1000px) {
 	main form.conteneur#pageProduit {
 		width:70%;
 		margin-left: 15%;
@@ -268,10 +268,12 @@ main#pageProduitCreation form.conteneur#pageProduit {
 						 "grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1000px) {
 	main form.conteneur#pageProduit {
 		display:flex;
 		flex-flow: Column;
+		width:90%;
+		margin-left: 5%;
 	}
   }
 
