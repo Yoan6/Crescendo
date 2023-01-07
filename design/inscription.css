@@ -114,10 +114,12 @@ Règles pour les éléments simples
     width : 250px;
     height : 45px;
     border : none;
+    background-color: #79D2BC;
 }
 
 #inscription input {
     width: 100%;
+    height: 30px;
     border-radius: 5px;
     margin-bottom: 15px;
 }

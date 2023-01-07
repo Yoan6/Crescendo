@@ -10,17 +10,17 @@
 }
 
 
+#connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 
 /*********************************
 Règles pour conteneurs secondaires
 *********************************/
-
-#connexion header p { padding-bottom : 30px;
-    font-family : 'Just Another Hand';
-    font-weight: bold;
-    font-size: 24px;
-}
 
 #connexion p:nth-child(n+2) { margin-bottom : 0px;
     display : flex;
@@ -60,7 +60,8 @@ Règles pour les éléments simples
     border-radius: 10px;
 }
 
-#connexion .inscription { background-color: #79D2BC;
+#connexion .inscription { 
+    background-color: #79D2BC;
     color : #000000;
     border-radius: 10px;
 }

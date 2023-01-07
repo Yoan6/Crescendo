@@ -54,7 +54,7 @@
                       <h3>10 000 $</h3>
                   </div>
                   <section>
-                      <p>Concert à New York d’Elton John, le 22 février 2022. Veste queue de pie à imprimé floral, sur la blablablabaalblabalbalablalbalbalbbalbalabablalblbaablabablablblbablalabblabalalbababll </p>
+                      <p>Concert à New York d'Elton John, le 22 février 2022. Veste queue de pie à imprimé floral, sur la blablablabaalblabalbalablalbalbalbbalbalabablalblbaablabablablblbablalabblabalalbababll </p>
                   </section>
                   <a href="">Voir l'enchère</a>
               </div>
