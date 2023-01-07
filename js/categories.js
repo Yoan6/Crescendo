@@ -27,3 +27,22 @@ dropdownButton.addEventListener("click", function(event) {
   toggleDropFilter();
 });
 
+
+
+orderBy = document.getElementById("orderBy");
+orderBy.style.borderRadius = "15px";
+
+orderBy.addEventListener("click", function(event) {
+    event.stopPropagation();
+  if (orderBy.style.borderRadius === "15px" || orderBy.style.borderRadius === "15px 15px 15px 15px") {
+    orderBy.style.borderRadius = "15px 15px 0px 0px";
+  } else {
+    orderBy.style.borderRadius = "15px 15px 15px 15px";
+  }
+});
+
+document.documentElement.addEventListener("click", function(event) {
+    if (orderBy.style.borderRadius = "15px 15px 0px 0px") {
+        orderBy.style.borderRadius = "15px 15px 15px 15px";
+    }
+});

@@ -21,7 +21,7 @@
   </button>
 
   <div class="dropdown" id="dropdown">
-  <a href="#vendre">
+  <a href="parametres.php">
       Paramètres
       <i><img src="../design/image/settings.svg" alt="settings"></i>
 
