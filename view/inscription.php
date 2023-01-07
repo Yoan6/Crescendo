@@ -91,11 +91,9 @@
                     
                 </article>
                 <button type="submit" name="inscription">S'INSCRIRE</button>
-
-                <p>Tu as déja un compte ?</p>
-                <a href="" class="connexion">Connecte-toi</a>
             </form>
- 
+            <p>Tu as déja un compte ?</p>
+            <a href="login.php" class="connexion">Connecte-toi</a>
         </main>
     </div>
     
