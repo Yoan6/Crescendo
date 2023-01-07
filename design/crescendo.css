@@ -115,9 +115,6 @@ button img, label img {
 	height:50px;
 }
 
-h1 {
-	color: var(--bleu);
-}
 
 @media only screen and (max-width: 900px) {
 	button img, label img {

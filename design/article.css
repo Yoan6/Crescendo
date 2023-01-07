@@ -1,6 +1,7 @@
-
-
-.article{
+.article {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     background-color: var(--header-background-color);
     height: 170px;
     display: flex;
@@ -8,60 +9,61 @@
     justify-content: center;
     border: solid 1px white;
     border-radius: 15px;
+    width: 100%;
 }
 
-.article #divHeart{
+.article #divHeart {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 75px;
     height: 100%;
 }
-.article #divHeart svg{
+
+.article #divHeart svg {
     width: 80%;
     height: 50%;
     min-width: 50px;
 
 }
 
-.article #divHeart svg path{
-fill: transparent;
-cursor: pointer;
+.article #divHeart svg path {
+    fill: transparent;
+    cursor: pointer;
 
 }
 
-.article #divHeart svg path:hover{
-stroke: var(--rouge);
+.article #divHeart svg path:hover {
+    stroke: var(--rouge);
 }
 
 
 
-.article #photo{
+.article #photo {
     width: 30%;
     height: 150px;
     border-radius: 15px;
     border: solid 1px black;
 }
 
-.article #photo img{
+.article #photo img {
     object-fit: cover;
     border-radius: 15px;
     width: 100%;
-    height: 100%;   
+    height: 100%;
 }
 
-.article #responsive{
+.article #responsive {
     display: flex;
     flex-direction: row;
     position: relative;
     flex-shrink: 1;
-    
     width: 100%;
 }
 
 
 
-.article #center{
+.article #center {
     position: relative;
     width: 70%;
     height: 150px;
@@ -70,7 +72,7 @@ stroke: var(--rouge);
 
 }
 
-.article #center div{
+.article #center div {
     margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
@@ -79,94 +81,95 @@ stroke: var(--rouge);
     align-items: center;
 }
 
-.article #center div h3:first-child{
+.article #center div h3:first-child {
     margin: 0px;
-    font-weight: normal ;
+    font-weight: normal;
     font-size: 23px;
 }
 
-.article #center div h3:last-child{
+.article #center div h3:last-child {
     margin: 0px;
     margin-bottom: 0px;
     font-weight: bolder;
-    font-size:x-large;
+    font-size: x-large;
     color: var(--bleu);
 }
 
 
-.article #center section{
+.article #center section {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: solid 1px white; 
- 
+    border: solid 1px white;
+
     padding-top: 10px;
     padding-bottom: 10px;
 
 }
 
-.article #center section p{
+.article #center section p {
     display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     width: 95%;
     margin: 0px;
-    font-size:small;
+    font-size: small;
     text-overflow: ellipsis;
-    overflow: hidden;  
+    overflow: hidden;
     white-space: normal;
 }
 
-.article #center a{
+.article #center a {
     display: flex;
     justify-content: center;
     align-items: center;
-width: 100%;
-background-color: var(--bleu);
-border-radius: 10px;
-height: 30px;
-color: black;
-font-weight: bolder;
-margin-top: 10px;
+    width: 100%;
+    background-color: var(--bleu);
+    border-radius: 10px;
+    height: 30px;
+    color: black;
+    font-weight: bolder;
+    margin-top: 10px;
 
 }
 
-.article #divLikes{
+.article #divLikes {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     border-radius: 15px;
-    border: solid 1px white;
+    border-top: solid 1px white;
+    border-left: solid 1px white;
+    border-bottom: solid 1px white;
+
     height: 100%;
     width: 75px;
 }
-.article #divLikes p{
+
+.article #divLikes p {
     margin: 0px;
     font-size: larger;
-
 }
-.article #divLikes svg{
+
+.article #divLikes svg {
     width: 40px;
     height: 40px;
     background-color: transparent;
     border: none;
 }
 
-.article #divLikes svg path{
+.article #divLikes svg path {
     stroke-width: 1px;
-    
     fill: transparent;
     cursor: pointer;
 }
-.article #divLikes #dislike path:hover{
 
+.article #divLikes #dislike path:hover {
     stroke: var(--rouge);
-
 }
 
-.article #divLikes #like path:hover{
+.article #divLikes #like path:hover {
     stroke: var(--bleu);
-
 }
