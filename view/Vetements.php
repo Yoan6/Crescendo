@@ -49,27 +49,27 @@
                     <div id="filterdown">
                         <div>
                             <input type="checkbox" id="Regae" name="Regae">
-                            <label>Regae</label>
+                            <label for="Regae">Regae</label>
                         </div>
                         <div>
                             <input type="checkbox" id="Pop" name="Pop">
-                            <label>Pop</label>
+                            <label for="Pop">Pop</label>
                         </div>
                         <div>
                             <input type="checkbox" id="Rock" name="Rock">
-                            <label>Rock</label>
+                            <label for="Rock">Rock</label>
                         </div>
                         <div>
                             <input type="checkbox" id="Metal" name="Metal">
-                            <label>Metal</label>
+                            <label for="Metal">Metal</label>
                         </div>
                         <div>
                             <input type="checkbox" id="Rap" name="Rap">
-                            <label>Rap</label>
+                            <label for="Rap">Rap</label>
                         </div>
                         <div>
                             <input type="checkbox" id="Regae" name="Regae">
-                            <label>Regae</label>
+                            <label for="Regae">Regae</label>
                         </div>
                     </div>
 
