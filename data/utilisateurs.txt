@@ -1,0 +1,3 @@
+email.gmail.com|pseudo|mot_de_passe|nom|prenom|date_naissance|ville|rue|code_postal
+crescendo.gmail.com|Crescendo|test1234test||||||
+
