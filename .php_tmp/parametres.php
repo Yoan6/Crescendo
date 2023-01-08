@@ -37,19 +37,19 @@
                 <h2>
                     Pseudo
                 </h2>
-                <div>
+                <div class="afficherAttribut">
                     <p>monPseudo392</p>
-                    <button>
+                    <button id="modifPseudo">
                         Modifier le pseudo
                     </button>
                 </div>
-                <form method="post" action="">
+                <form   class="formModif"method="post" action="">
                     <div class="champsAremplir">
                         <input type="text" name="pseudo" value="">
 
                     </div>
                     <div  class="annulerOuValider">
-                        <button class="annuler">
+                        <button class="annuler" type="button">
                             Annuler
                         </button>
                         <button class="valider">
@@ -63,13 +63,13 @@
                 <h2>
                     Addresse email
                 </h2>
-                <div>
+                <div class="afficherAttribut">
                     <p>monMail@gmail.com</p>
-                    <button>
+                    <button id="modifMail">
                         Modifier l'adresse mail
                     </button>
                 </div>
-                <form method="post" action="">
+                <form   class="formModif" method="post" action="">
                     <div class="champsAremplir">
                         <input placeholder="Votre nouveau mail" type="text" name="mail" value="">
                         <input placeholder="Mot de passe" type="text" name="password" value="">
@@ -78,7 +78,7 @@
 
 
                     <div class="annulerOuValider">
-                        <button class="annuler">
+                        <button class="annuler" type="button">
                             Annuler
                         </button>
                         <button class="valider">
@@ -92,15 +92,15 @@
                 <h2>
                     Adresse de livraison
                 </h2>
-                <div>
+                <div class="afficherAttribut">
                     <p> 13 rue des papeteries, 78000 Paris </p>
-                    <button>
+                    <button id="modifAdresse">
                         Modifier l'adresse mail
                     </button>
                 </div>
 
 
-                <form method="post" action="">
+                <form  class="formModif" method="post" action="">
 
                     <div class="champsAremplir">
                         <div id="postalEtVille">
@@ -114,7 +114,7 @@
 
 
                     <div  class="annulerOuValider">
-                        <button class="annuler">
+                        <button class="annuler" type="button">
                             Annuler
                         </button>
                         <button class="valider">
@@ -130,13 +130,13 @@
                     Mot de passe
                 </h2>
 
-                <div>
+                <div class="afficherAttribut">
                     <p> ****** </p>
-                    <button>
+                    <button id="modifMdp">
                         Modifier le mot de passe
                     </button>
                 </div>
-                <form method="post" action="">
+                <form class="formModif" method="post" action="">
                     <div class="champsAremplir">
                         <input placeholder="Ancien mot de passe" type="text" name="password" value="">
                         <input placeholder="Nouveau mot de passe" type="text" name="password" value="">
@@ -146,7 +146,7 @@
 
 
                     <div  class="annulerOuValider">
-                        <button class="annuler">
+                        <button class="annuler" type="button">
                             Annuler
                         </button>
                         <button  class="valider">
@@ -176,6 +176,6 @@
 </body>
 <script src="../js/crescendo.js"></script>
 <script src="../js/header.js"></script>
-<script src="../js/categories.js"></script>
+<script src="../js/parametres.js"></script>
 
 </html>
