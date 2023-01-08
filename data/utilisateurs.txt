@@ -1,3 +1,4 @@
 email.gmail.com|pseudo|mot_de_passe|nom|prenom|date_naissance|ville|rue|code_postal
 crescendo.gmail.com|Crescendo|test1234test||||||
 
+Jean.Bond|Bob l'eponge|234982088829|Bond|Jean|23/08/2000|Grenoble|300 rue de la gazelle|38000
