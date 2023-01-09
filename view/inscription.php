@@ -43,12 +43,6 @@
                             <input type="date" name="birthday" id="birthsday" min="1930-01-01" max="2023-05-01" required>
                         </article>
 
-                        <article class="petit-article">
-                            <label for="rue">Nom de la rue *</label>
-                            <br>
-                            <input type="text" name="rue" id="rue" placeholder="Ex : 13 Rue des papeteries" required>
-                        </article>
-
                         <article class="ville">
                             <div>
                                 <label for="code-postale">Code postale *</label>
@@ -60,6 +54,12 @@
                                 <br>
                                 <input type="text" name="ville" id="ville" placeholder="Ex : Paris" required>
                             </div>
+                        </article>
+
+                        <article class="petit-article">
+                            <label for="rue">Nom de la rue *</label>
+                            <br>
+                            <input type="text" name="rue" id="rue" placeholder="Ex : 13 Rue des papeteries" required>
                         </article>
                     </div>
             
