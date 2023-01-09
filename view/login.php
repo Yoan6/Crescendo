@@ -41,6 +41,8 @@
   <?php
   include(__DIR__ . "/footer.php");
   ?>
+
+  <script src="../js/header.js"></script>
 </body>
 
 </html>
