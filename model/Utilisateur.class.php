@@ -11,11 +11,12 @@ class Utilisateur
     private string $motDePasse;
     private string $nom;
     private string $prenom;
-    //private time $dateDeNaissance;
+    //private DateTime $dateDeNaissance;
     private string $ville;
     private string $rue;
     private string $codePostal;
 
+    private string $imgProfil;
     //private array $notes;
 
     public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal)
@@ -31,6 +32,7 @@ class Utilisateur
         
         // Autres initialisations
         //$this->setDate
+        $this->setImgProfil("");
 
     }
 
@@ -129,19 +131,33 @@ class Utilisateur
         $this->pseudo = $pseudo;
     }
     
+    public function getImgProfil()
+    {
+        return $this->imgProfil;
+    }
 
+    public function setImgProfil($imgProfil)
+    {
+        $this->imgProfil = $imgProfil;
+    }
+
+    /**
+     * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
+     * @return array
+     */
     private function getData() : array {
         return array(
-             $this->getEmail(),
-             $this->getPseudo(),
-             $this->getMotDePasse(),
-             $this->getNom(),
-             $this->getPrenom(),
-             "",//$this->getDate_naissance(),
-             $this->getVille(),
-             $this->getRue(),
-             $this->getCodepostal()
-        );
+             "email" => $this->getEmail(),
+             "pseudo" => $this->getPseudo(),
+             "mot_de_passe" => $this->getMotDePasse(),
+             "nom" => $this->getNom(),
+             "prenom" => $this->getPrenom(),
+             //"date_naissance" => $this->getDate_naissance(),
+             "ville" => $this->getVille(),
+             "rue" => $this->getRue(),
+             "code_postal" => $this->getCodepostal(),
+             "img_profil" => $this->getImgProfil()
+        ); //Note ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
     }
 
     /******************** 
@@ -155,45 +171,53 @@ class Utilisateur
     /////////////////////////// CREATE /////////////////////////////////////
     public function create()
     {
+        $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
+                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
+
+
         $dao = DAO::get();
-        $querry = "INSERT INTO Utilisateur(email,pseudo,mot_de_passe,nom,prenom,date_naissance,ville,rue,code_postal)
-                        Values(?,?,?,?,?,?,?,?,?)";
-        $dao->exec($querry,$this->getData());
+        $dao->exec($query,$this->getData());
         
     }
 
     /////////////////////////// READ /////////////////////////////////////
     public static function read(string $emailOuPseudo, string $motDePasse): Utilisateur
     {
-        //TODO
-        $dao = DAO::get();
-        $querry = "SELECT *
+        $query = "SELECT *
                     FROM Utilisateur
                     WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo) AND mot_de_passe=:motDePasse;";
-        $data = [':emailOuPseudo' => $emailOuPseudo,
-                   ':motDePasse'=> $motDePasse];
-        $table = $dao->query($querry,$data);
-        if(count($table) != 1) {
-            throw new Exception("l'utilisateur n'existe pas");
-        }
+        $data = [
+                ':emailOuPseudo' => $emailOuPseudo,
+                ':motDePasse'=> $motDePasse
+                ];
+
+        $dao = DAO::get();
+        $table = $dao->query($query,$data);
+        if(count($table) != 1) {throw new Exception("l'utilisateur n'existe pas");}
+
         $ligne = $table[0];
-        
         return new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], $ligne['ville'], $ligne['rue'], $ligne['code_postal']);
     }
 
     /////////////////////////// UPDATE /////////////////////////////////////
     public function update()
     {
-        //TODO
+        $query = "UPDATE Utilisateur
+            set (email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil) 
+                = (:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)
+            WHERE email = :email";
+
+        $dao = DAO::get();
+        $dao->exec($query,$this->getData());
     }
 
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
-        //TODO
-        $dao = DAO::get();
         $query = "DELETE FROM Utilisateur WHERE email = ?;";
         $data = [$this->getEmail()];
+
+        $dao = DAO::get();
         $dao->exec($query,$data);
     }
 
