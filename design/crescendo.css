@@ -372,6 +372,7 @@ footer ul {
 
 footer nav ul li {
 	flex-flow:column;
+	width: 161px;
 }
 
 footer nav ul li ul:last-child {
@@ -386,11 +387,19 @@ footer li a {
    color: var(--footer-font-color);
 }
 
+footer li a:hover {
+	background-color: #79d2bc;
+	border-radius: 10px;
+}
+
 footer #logosCommunaute {
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	gap: 0px;
+}
+#logosCommunaute a:nth-child(1) {
+	margin-left: 8px;
 }
 
 .contact {
