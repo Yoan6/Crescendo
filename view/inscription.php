@@ -73,13 +73,13 @@
                         <article class="petit-article">
                             <label for="mdp">Mot de passe (au moins 12 caractères) *</label>
                             <br>
-                            <input type="password" name="mdp" id="mdp" required minlength=12>
+                            <input type="password" name="mdp" id="mdp" required minlength=12 placeholder="Entrez votre mot de passe">
                         </article>
 
                         <article class="petit-article">
                             <label for="verifmdp">Confirme ton mot de passe *</label>
                             <br>
-                            <input type="password" name="verifmdp" id="verifmdp" required minlength=12>
+                            <input type="password" name="verifmdp" id="verifmdp" required minlength=12 placeholder="Confirmez votre mot de passe">
                         </article>
 
                         <article class="article-condition-generale">
