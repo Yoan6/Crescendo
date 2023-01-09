@@ -108,6 +108,7 @@ ul{
 input {
 	border: none;
 	outline: none;
+	margin: none;
 }
   
 img {
