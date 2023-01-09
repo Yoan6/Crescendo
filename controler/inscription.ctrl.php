@@ -32,7 +32,11 @@ $verifmdp = $_POST['verifmdp'] ?? '';
 // grâce à l'attribut required du formulaire html
 
 $error=array();
-if ($birthsday > DateTime()-18) {
+
+$dateMinnimale = new DateTime();
+$interval = new DateInterval('P18Y');
+$dateMinnimale->sub($interval);
+if ($birthsday > $dateMinnimale->format('d/m/y')) {
   $error[] = "L'utilisateur doit avoir au moins 18 ans";
 }
 if ($verifmdp != $password) {

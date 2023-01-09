@@ -373,6 +373,7 @@ footer ul {
 
 footer nav ul li {
 	flex-flow:column;
+	width: 161px;
 }
 
 footer nav ul li ul:last-child {
@@ -387,9 +388,31 @@ footer li a {
    color: var(--footer-font-color);
 }
 
+footer li a:hover {
+	background-color: #79d2bc;
+	border-radius: 10px;
+	color: black;
+}
+
 footer #logosCommunaute {
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	gap: 0px;
+}
+#logosCommunaute a:nth-child(1) {
+	margin-left: 8px;
+}
+
+.contact {
+	color: var(--main-content-font-color);
+	background-color: var(--main-content-background-color);
+	font-weight: bold;
+	width: 100%;
+	height: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
 }
