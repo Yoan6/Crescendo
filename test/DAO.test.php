@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../model/Utilisateur.class.php');
-require_once(__DIR__ . '/../test/helper.php');
+require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
 
 $valeurAttendu = [

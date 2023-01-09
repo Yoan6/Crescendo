@@ -2,7 +2,8 @@
 // 
 // Inclusion du framework
 include_once(__DIR__."/../framework/view.class.php");
-require_once(__DIR__.'/Utilisateur.class.php');
+include_once(__DIR__."/../model/Utilisateur.class.php");
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -16,8 +17,14 @@ $password = $_POST['password'] ?? '';
 // Partie calculs avec le modèle
 ///////////////////////////////////////////////////////////////////////////////
 
-if ($login == 'admin' && $password == 'admin') {
-  $connected = true;
+
+if ($login != '' && $password != '') {
+    if (Utilisateur.read($login,$password) !=null) {
+        $connected = true;
+    }
+    else {
+        $connected = false;
+    }
 } else {
   $connected = false;
 }
@@ -33,10 +40,11 @@ $_SESSION['connected'] = $connected;
 ////////////////////////////////////////////////////////////////////////////
 $view = new View();
 
-if ($connected) {
-  $view->display("accueil.php");
-} else {
-  $view->display("accueil.php");
-}
 // Charge la vue
+if ($_SESSION['connected'] == true) {
+    $view->display("accueil.php");
+  } 
+  else {
+    $view->display("login.php");
+}
 ?>

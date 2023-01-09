@@ -31,18 +31,18 @@
           required>
       </p>
       <a class="MDPForgotten" href="">Mot de passe oublié ?</a>
-      <button class="connexion" type="submit" name="connection">SE CONNECTER</button>
+      <button class="connexion" type="submit" name="connexion">SE CONNECTER</button>
     </form>
 
+    <button class="inscription" onclick="window.location='inscription.php'">S'INSCRIRE</button>
 
-    <form action="../controler/inscription.ctrl.php" method="post">
-      <button class="inscription" type="submit" name="inscription">S'INSCRIRE</button>
-    </form>
   </main>
 
   <?php
   include(__DIR__ . "/footer.php");
   ?>
+
+  <script src="../js/header.js"></script>
 </body>
 
 </html>
