@@ -76,3 +76,25 @@ modifMdp.addEventListener("click", function(event) {
   }
   dropModif(modifMdp);
 });
+
+
+//PopUp Supprimer Compte
+const annulerSupprimer = document.getElementById("annulerSupprimer");
+
+const btnSupprimerCompte = document.getElementById("btnSupprimerCompte");
+const divPopUp = document.getElementsByClassName("divPopUp")[0];
+
+
+btnSupprimerCompte.addEventListener("click", function(event) {
+  event.stopPropagation();
+  divPopUp.style.display = "flex";
+  document.documentElement.style.overflow = 'hidden';
+  });
+
+
+annulerSupprimer.addEventListener("click", function(event) {
+event.stopPropagation();
+annulerSupprimer.parentElement.parentElement.parentElement.parentElement.style.display = "none";
+document.documentElement.style.overflow = 'auto';
+
+});

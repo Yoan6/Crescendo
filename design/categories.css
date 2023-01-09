@@ -1,4 +1,4 @@
-body{
+body {
 	min-height: 100vh;
 }
 
@@ -12,12 +12,13 @@ main {
 	align-items: center;
 	font-size: 50px;
 	height: 100px;
-	margin:  auto;
+	margin: auto;
 	color: white;
 	border-bottom: solid 1px white;
-	
+
 }
-#topAffichageArticle{
+
+#topAffichageArticle {
 	width: 100%;
 	display: flex;
 	flex-direction: row-reverse;
@@ -25,7 +26,7 @@ main {
 
 }
 
-#topAffichageArticle > #contenuOrderBy{
+#topAffichageArticle>#contenuOrderBy {
 	padding-right: 20px;
 	width: 200px;
 	height: 100px;
@@ -33,8 +34,8 @@ main {
 	align-items: center;
 }
 
-#orderBy{
-	
+#orderBy {
+
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -57,23 +58,23 @@ main {
 }
 
 
-#orderBy > option{
-font-size: large;
-color: white;
+#orderBy>option {
+	font-size: large;
+	color: white;
 
 }
 
-#orderBy option:hover{
+#orderBy option:hover {
 
-    background-color: var(--bleu);
+	background-color: var(--bleu);
 	color: black;
 
 }
 
 
-#orderBy > svg{
+#orderBy>svg {
 
-height: 60%;	
+	height: 60%;
 
 }
 
@@ -89,9 +90,9 @@ Règles pour éléments du aside
 *****************************/
 
 aside {
-	min-width: 300px;
+	min-width: 250px;
+	width: 20%;
 	background-color: #262525;
-	height:max-content;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -100,6 +101,7 @@ aside {
 	left: 0;
 
 }
+
 aside button {
 	border-radius: 15px;
 	border: none;
@@ -109,7 +111,7 @@ aside button {
 	justify-content: space-around;
 }
 
-aside svg{
+aside svg {
 	height: 35%;
 }
 
@@ -117,16 +119,16 @@ aside svg{
 	display: none;
 }
 
-#validerOuEffacer{
+#validerOuEffacer {
 	display: none;
 }
 
-aside > div {
+aside>div {
 	width: 80%;
 
 }
 
-aside > div:first-child{
+aside>div:first-child {
 	min-width: 150px;
 	margin-top: 30px;
 	background-color: white;
@@ -135,33 +137,34 @@ aside > div:first-child{
 	flex-direction: column;
 }
 
-aside > div:last-child{
+aside>div:last-child {
 	display: flex;
 	flex-direction: column;
-gap: 15px;
+	gap: 15px;
 
 }
 
-aside > div:last-child > button{
+aside>div:last-child>button {
 	padding: 20px;
 	width: 100%;
 	font-size: larger;
-	
-}
-aside > div:last-child > button:first-child{
-background-color: var(--bleu);
-color: black;
 
 }
 
+aside>div:last-child>button:first-child {
+	background-color: var(--bleu);
+	color: black;
 
-aside > div:last-child > button:last-child{
+}
+
+
+aside>div:last-child>button:last-child {
 	border: solid 1px white;
 	background-color: transparent;
 	color: white;
-	}
+}
 
-aside div:first-child > button{
+aside div:first-child>button {
 
 	border-radius: 15px;
 	border: none;
@@ -171,34 +174,35 @@ aside div:first-child > button{
 	height: 70px;
 
 }
-aside div:first-child > button > h3{
+
+aside div:first-child>button>h3 {
 	margin: 10px;
 }
 
-aside #filterdown{
+aside #filterdown {
 	width: 80%;
 	height: 100%;
 	display: none;
 	flex-direction: column;
-	justify-content: space-evenly;	
-	gap:20px;
+	justify-content: space-evenly;
+	gap: 20px;
 	padding-left: 15px;
 	padding-bottom: 15px;
 }
 
-aside #filterdown > div{
+aside #filterdown>div {
 	display: flex;
 	flex-direction: row;
-	gap:30px;
-	
+	gap: 30px;
+
 }
 
-aside #filterdown > div > label{
+aside #filterdown>div>label {
 	font-size: larger;
 	color: var(--main-content-font-color);
 }
 
-aside #filterdown > div > input[type="checkbox"]{
+aside #filterdown>div>input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	margin: 0px;
@@ -236,23 +240,64 @@ Règles pour un objet (article)
 }
 
 
-#divdroite{
+#divdroite {
 	display: flex;
 	justify-content: center;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	background-color: var(--main-content-font-color);
-	width: 100%;
+	width: 80%;
 
 }
- .affichageArticle {
+
+.affichageArticle {
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap:30px;
+	gap: 30px;
 	width: 100%;
 	max-width: 1000px;
 	overflow: hidden;
+
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+	main #principale {
+		flex-direction: column;
+
+	}
+
+	aside {
+		width: 100%;
+	padding-bottom: 20px;
+	background-color: var(--main-content-font-color);
+	}
+
+	aside>div {
+		width: 90%;
+		max-width: 700px;
+	}
+
+	#buttonDropFilter {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	
+
+	#divdroite {
+		width: 100%;
+	}
+
+	#contenuOrderBy{
+		width: 100%;
+	}
+
 
 }

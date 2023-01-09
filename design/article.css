@@ -56,6 +56,7 @@
 .article #responsive {
     display: flex;
     flex-direction: row;
+    align-items: center;
     position: relative;
     flex-shrink: 1;
     width: 100%;
@@ -64,7 +65,6 @@
 
 
 .article #center {
-    position: relative;
     width: 70%;
     height: 150px;
     margin-left: 15px;
@@ -85,6 +85,7 @@
     margin: 0px;
     font-weight: normal;
     font-size: 23px;
+    
 }
 
 .article #center div h3:last-child {
@@ -172,4 +173,116 @@
 
 .article #divLikes #like path:hover {
     stroke: var(--bleu);
+}
+
+
+#like{
+    fill: var(--bleu);
+}
+
+
+
+
+
+
+@media (min-width: 481px) and (max-width: 1000px) {   
+     .article {
+        height: 200px;
+        position: relative;
+    }
+
+    #responsive > div:first-child {
+        width: 250px;
+        min-width: 250px;
+        height: 180px;
+    }
+
+
+    
+
+
+    .article #center {
+        width: 35%;
+        height: 200px;
+    }
+
+    .article #center section {
+        display: none;
+    }
+
+
+    .article #center div {
+        flex-direction: column;
+        align-items: baseline;
+        height: 45%;
+        margin-top: 18px;
+    }
+
+
+    .article #center >div> h3:first-child {
+        font-size: 1.6em;
+    }
+
+    .article #center >div> h3:last-child {
+        font-size: 1.7em;
+    }
+
+
+    .article #center a {
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0px;
+        width: 15%;
+        height: 200px;
+        border-radius: 0px 15px 15px 0px;
+        text-align: center;
+
+    }
+
+    .article #divLikes {
+        border: solid 1px white;
+        position: absolute;
+        bottom: 10px;
+        left: 330px;
+        
+
+        width: 25%;
+        max-width: 500px;
+        min-width: 170px;
+        height: 50px;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .article #divLikes p {
+        font-size: x-large;
+    }
+
+  
+}
+
+
+@media (min-width: 481px) and (max-width: 600px) {   
+
+
+
+    
+    #responsive > div:first-child {
+        min-width: 180px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .article #center {
+        width: 40%;
+        height: 200px;
+    }
+
+    .article #divLikes {
+        left: 260px;
+    }
+
+
 }
