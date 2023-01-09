@@ -19,22 +19,21 @@
   <main id="connexion">
     <h1>Connexion</h1>
     <form action="../controler/login.ctrl.php" method="post">
-      <p>
+      <div>
         <label for="login">Adresse email / Pseudo : </label>
-        <br>
         <input class="input" id="login" type="text" name="login" value="" placeholder="ex : Artus" required>
-      </p>
-      <p>
+</div>
+      <div>
         <label for="password">Mot de passe (au moins 12 caractères) : </label>
-        <br>
         <input class="input" id="password" type="password" name="password" value="" placeholder="ex : ahdfukqshxsb"
           required>
-      </p>
+      </div>
       <a class="MDPForgotten" href="">Mot de passe oublié ?</a>
       <button class="connexion" type="submit" name="connexion">SE CONNECTER</button>
+      <a href="inscription.php" id="inscription" >S'INSCRIRE</a>
+
     </form>
 
-    <button class="inscription" onclick="window.location='inscription.php'">S'INSCRIRE</button>
 
   </main>
 

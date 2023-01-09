@@ -11,9 +11,17 @@
 
 
 #connexion {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#connexion div { 
+    width: 100%;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
 }
 
 
@@ -31,6 +39,9 @@ Règles pour conteneurs secondaires
 #connexion form { display: flex;
     flex-direction: column;
     align-items : center;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
 }
 
 #connexion label {
@@ -38,13 +49,36 @@ Règles pour conteneurs secondaires
     font-size: 14px;
 }
 
-#connexion button { border-radius : 10px;
-    width : 270px;
+
+
+
+#connexion button { 
+    background-color: var(--bleu);
+    color : black;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius : 10px;
+    width : 100%;
     height : 45px;
     margin-bottom : 20px;
     border : none;
 }
 
+
+#connexion #inscription { 
+    background-color: white;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    border-radius : 10px;
+    width : 100%;
+    height : 45px;
+    margin-bottom : 20px;
+    border : none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /*********************************
 Règles pour les éléments simples
@@ -61,21 +95,27 @@ Règles pour les éléments simples
 }
 
 #connexion .inscription { 
-    background-color: #79D2BC;
-    color : #000000;
+   
     border-radius: 10px;
 }
 
-#connexion .input { width : 250px;
+#connexion input { 
+    width : 100%;
     height : 45px;
     border-radius : 10px;
 }
 
-#connexion .MDPForgotten { color: #79D2BC;
+#connexion .MDPForgotten { 
+    
+    color: var(--bleu);
     text-decoration: none;
-    font-size : 14px;
+    font-size : 0.8em;
+    width: 100%;
 }
 
 #connexion h1 {
     text-align: center;
+    font-size: 2em;
+    position: sticky;
+    top: 0;
 }
