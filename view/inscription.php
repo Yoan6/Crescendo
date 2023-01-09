@@ -44,7 +44,7 @@
                         </article>
 
                         <article class="petit-article">
-                            <label for="birthday">Nom de la rue *</label>
+                            <label for="rue">Nom de la rue *</label>
                             <br>
                             <input type="text" name="rue" id="rue" placeholder="Ex : 13 Rue des papeteries" required>
                         </article>
@@ -53,7 +53,7 @@
                             <div>
                                 <label for="code-postale">Code postale *</label>
                                 <br>
-                                <input type="text" name="code-postale" id="code-postale" placeholder="Ex : 70123" required>
+                                <input type="text" name="code_postale" id="code-postale" placeholder="Ex : 70123" required>
                             </div>
                             <div>
                                 <label for="ville">Ville *</label>
@@ -67,19 +67,19 @@
                         <article class="petit-article">
                             <label for="adresseMail">Adresse mail *</label>
                             <br>
-                            <input type="text" name="adresseMail" id="adresseMail" placeholder="Entrez votre adresse mail" required>
+                            <input type="email" name="adresseMail" id="adresseMail" placeholder="Entrez votre adresse mail" required>
                         </article>
 
                         <article class="petit-article">
-                            <label for="mdp">Mot de passe (au moins 12 caractères) *</label>
+                            <label for="mdp">Mot de passe (au moins 12 caractères et 1 caractère spécial) *</label>
                             <br>
-                            <input type="password" name="mdp" id="mdp" required minlength=12 placeholder="Entrez votre mot de passe">
+                            <input type="password" name="mdp" id="mdp" required minlength=12>
                         </article>
 
                         <article class="petit-article">
                             <label for="verifmdp">Confirme ton mot de passe *</label>
                             <br>
-                            <input type="password" name="verifmdp" id="verifmdp" required minlength=12 placeholder="Confirmez votre mot de passe">
+                            <input type="password" name="verifmdp" id="verifmdp" required minlength=12>
                         </article>
 
                         <article class="article-condition-generale">
@@ -99,4 +99,7 @@
     
     <?php include(__DIR__.'/footer.php'); ?>	
   </body>
+
+  <script src="../js/header.js"></script>
+
 </html>
