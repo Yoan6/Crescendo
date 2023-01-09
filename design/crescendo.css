@@ -366,14 +366,15 @@ footer {
 
 footer ul {
 	padding: 0px;
-	gap:150px;
+
 	margin:0px;
-	justify-content: space-evenly;
+	justify-content: space-between;
 }
 
 footer nav ul li {
 	flex-flow:column;
-	width: 161px;
+	width: 100%;
+	align-items: center;
 }
 
 footer nav ul li ul:last-child {
@@ -389,10 +390,12 @@ footer li a {
 }
 
 footer li a:hover {
-	background-color: #79d2bc;
-	border-radius: 10px;
-	color: black;
+	color: white;
 }
+
+
+
+
 
 footer #logosCommunaute {
 	display: flex;
@@ -400,9 +403,7 @@ footer #logosCommunaute {
 	justify-content: center;
 	gap: 0px;
 }
-#logosCommunaute a:nth-child(1) {
-	margin-left: 8px;
-}
+
 
 .contact {
 	color: var(--main-content-font-color);
@@ -415,4 +416,11 @@ footer #logosCommunaute {
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
+	
+}
+
+.contact:hover {
+	border: solid 1px var(--main-content-background-color);
+	color: var(--main-content-background-color);
+	background-color: var(--main-content-font-color);
 }
