@@ -43,8 +43,8 @@ $view = new View();
 // Charge la vue
 if ($_SESSION['connected'] == true) {
     $view->display("accueil.php");
-  } 
-  else {
+} 
+else {
     $view->display("login.php");
 }
 ?>
