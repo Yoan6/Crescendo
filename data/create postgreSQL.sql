@@ -3,7 +3,7 @@
 
 
 CREATE TABLE IF NOT EXISTS UTILISATEUR  (
-    email VARCHAR primary key,
+    num_utilisateur SERIAL primary key,
     pseudo VARCHAR,
     mot_de_passe chkpass,
     nom VARCHAR,
@@ -40,28 +40,28 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
 );
 
 CREATE TABLE IF NOT EXISTS GAGNE (
-    email VARCHAR REFERENCES UTILISATEUR(email),
+    num_utilisateur VARCHAR REFERENCES UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere INTEGER REFERENCES ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 
 CREATE TABLE IF NOT EXISTS ENCHERIT (
-    email VARCHAR REFERENCES UTILISATEUR(email),
+    num_utilisateur VARCHAR REFERENCES UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere INTEGER REFERENCES ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS FAVORISE (
-    email VARCHAR REFERENCES UTILISATEUR(email),
+    num_utilisateur VARCHAR REFERENCES UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere INTEGER REFERENCES ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS VEND (
-    email VARCHAR REFERENCES UTILISATEUR(email),
+    num_utilisateur VARCHAR REFERENCES UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_article INTEGER REFERENCES ARTICLE(num_article),
-    PRIMARY KEY (email,num_article)
+    PRIMARY KEY (num_utilisateur,num_article)
 );
 
 CREATE TABLE IF NOT EXISTS CONCERNE (

@@ -6,6 +6,7 @@ require_once(__DIR__ . '/../model/DAO.class.php');
 
 class Utilisateur
 {
+    private int $numUtilisateur;
     private string $email;
     private string $pseudo;
     private string $motDePasse;
@@ -33,7 +34,7 @@ class Utilisateur
         // Autres initialisations
         //$this->setDate
         $this->setImgProfil("");
-
+        $this->setNumUtilisateur(-1);
     }
 
     
@@ -141,6 +142,17 @@ class Utilisateur
         $this->imgProfil = $imgProfil;
     }
 
+    public function getNumUtilisateur()
+    {
+        return $this->numUtilisateur;
+    }
+
+    private function setNumUtilisateur($numUtilisateur)
+    {
+        $this->numUtilisateur = $numUtilisateur;
+    }
+
+
     /**
      * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
      * @return array
@@ -177,6 +189,10 @@ class Utilisateur
 
         $dao = DAO::get();
         $dao->exec($query,$this->getData());
+
+        // Récupérer le bon num_utilisateur
+        $dernierNum = $dao->query("SELECT max(num_utilisateur) FROM UTILISATEUR;", array())[0]['max(num_utilisateur)'];
+        $this->setNumUtilisateur($dernierNum);
         
     }
 
@@ -193,11 +209,34 @@ class Utilisateur
 
         $dao = DAO::get();
         $table = $dao->query($query,$data);
+        return Utilisateur::obtenirUtilisateurAPartirTable($table);
+    }
+
+    public static function readNum(int $num_utilisateur): Utilisateur
+    {
+        $query = "SELECT *
+                    FROM Utilisateur
+                    WHERE num_utilisateur = :num_utilisateur";
+
+        $dao = DAO::get();
+        $table = $dao->query($query,[$num_utilisateur]);
+        return Utilisateur::obtenirUtilisateurAPartirTable($table);
+    }
+
+
+
+    private static function obtenirUtilisateurAPartirTable($table) : Utilisateur
+    {
         if(count($table) != 1) {throw new Exception("l'utilisateur n'existe pas");}
 
         $ligne = $table[0];
-        return new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], $ligne['ville'], $ligne['rue'], $ligne['code_postal']);
-    }
+        $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
+                                        $ligne['ville'], $ligne['rue'], $ligne['code_postal']);
+        // Mettre le bon num d'utilisateur
+        $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);
+        return $utilisateur;
+    } 
+
 
     /////////////////////////// UPDATE /////////////////////////////////////
     public function update()
@@ -214,8 +253,8 @@ class Utilisateur
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
-        $query = "DELETE FROM Utilisateur WHERE email = ?;";
-        $data = [$this->getEmail()];
+        $query = "DELETE FROM Utilisateur WHERE num_utilisateur = ?;";
+        $data = [$this->getNumUtilisateur()];
 
         $dao = DAO::get();
         $dao->exec($query,$data);
@@ -228,5 +267,8 @@ class Utilisateur
     }
 
 
+    /******************** 
+     * Autres méthodes
+     *********************/
 
 }

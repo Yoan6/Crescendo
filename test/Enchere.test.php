@@ -2,7 +2,8 @@
 require_once(__DIR__ . '/../model/Article.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-$article = new Article("titreTestEnchere", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
+$utilisateur = Utilisateur::read('a@gmail.com','a');
+$article = new Article($utilisateur,"titreTestEnchere", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
 try {
     $article->create();
     $enchere = $article->getEncheres()[0];

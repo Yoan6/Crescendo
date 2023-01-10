@@ -39,7 +39,7 @@ try {
 } catch (Exception $e) {
     notOK();
     $dao = DAO::get();
-    $dao->query("DELETE FROM UTILISATEUR WHERE email=?;", [$utilisateur->getEmail()]);
+    $dao->query("DELETE FROM Utilisateur WHERE num_utilisateur = ?;", [$utilisateur->getEmail()]);
     exit('\nErreur ' . $e->getMessage() . "\n");
 }
 

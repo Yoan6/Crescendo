@@ -2,7 +2,8 @@
 require_once(__DIR__ . '/../model/Article.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-$article = new Article("titreTest", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
+$utilisateur = Utilisateur::read('a@gmail.com','a');
+$article = new Article($utilisateur,"titreTest", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
 try {
     //--Test--
     print("Création d'un Article : ");
@@ -30,6 +31,7 @@ try {
         throw new Exception("pas le bon Article");
     };
     OK();
+
 
     // --Test--
     print("Suppression d'un Article : ");

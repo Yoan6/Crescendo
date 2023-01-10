@@ -20,7 +20,8 @@ DROP TABLE IF EXISTS UTILISATEUR;
 
 
 CREATE TABLE IF NOT EXISTS UTILISATEUR  (
-    email VARCHAR primary key,
+    num_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT, -- CHANGEMENT
+    email VARCHAR,                                      -- CHANGEMENT
     pseudo VARCHAR,
     mot_de_passe PASSWORD,
     nom VARCHAR,
@@ -57,27 +58,27 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
 );
 
 CREATE TABLE IF NOT EXISTS GAGNE (
-    email references UTILISATEUR(email),
+    num_utilisateur references UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERIT (
-    email references UTILISATEUR(email),
+    num_utilisateur references UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS FAVORISE (
-    email references UTILISATEUR(email),
+    num_utilisateur references UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS VEND (
-    email references UTILISATEUR(email),
+    num_utilisateur references UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_article references ARTICLE(num_article),
-    PRIMARY KEY (email,num_article)
+    PRIMARY KEY (num_utilisateur,num_article)
 );
 
 CREATE TABLE IF NOT EXISTS CONCERNE (
@@ -104,7 +105,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 SELECT * from ARTICLE;
 .print
 
-insert into UTILISATEUR values ('root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert into UTILISATEUR values (4,'root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 SELECT * from UTILISATEUR;
 .print
 

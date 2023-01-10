@@ -2,6 +2,7 @@
 
 require_once(__DIR__ . '/../model/DAO.class.php');
 require_once(__DIR__ . '/../model/Enchere.class.php');
+require_once(__DIR__ . '/../model/Utilisateur.class.php');
 
 class Article
 {
@@ -22,11 +23,11 @@ class Article
     private string $lieu;
     private string $style;
 
+    private Utilisateur $vendeur;
 
 
 
-
-    public function __construct(string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
+    public function __construct(Utilisateur $vendeur, string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
                                     string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="")
     {
         // Initialisation obligatoire
@@ -46,6 +47,7 @@ class Article
 
         $enchere = new Enchere([$this]);
         $this->ajouterEnchere($enchere);
+        $this->setVendeur($vendeur);
     }
 
 
@@ -168,10 +170,21 @@ class Article
     {
         return $this->encheres;
     }
+
+
     public function ajouterEnchere(Enchere $enchere){
         array_push($this->encheres,$enchere);
     }
     
+    public function getVendeur() : Utilisateur
+    {
+        return $this->vendeur;
+    }
+
+    public function setVendeur(Utilisateur $vendeur)
+    {
+        $this->vendeur = $vendeur;
+    }
 
 
     /**
@@ -207,18 +220,25 @@ class Article
     */
     public function create()
     {
-            $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
-                                        etat, categorie, taille, lieu, style)
-                            VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
-                                        :etat, :categorie, :taille, :lieu, :style)";
+        $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
+                                    etat, categorie, taille, lieu, style)
+                        VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
+                                    :etat, :categorie, :taille, :lieu, :style)";
 
-            $dao = DAO::get();
-            $dao->exec($query, $this->getData());
+        $dao = DAO::get();
+        $dao->exec($query, $this->getData());
 
-            // Récupérer le bon num_article
+        // Récupérer le bon num_article
         $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0]['max(num_article)'];
         $this->setNumArticle($dernierNum);
+
+        // Lier l'utilisateur à l'article
+        $queryVend = "INSERT INTO VEND(num_utilisateur,num_article)
+                                VALUES(:num_utilisateur,:num_article)";
+        $dao->exec($queryVend,[$this->getVendeur()->getNumUtilisateur(),$this->getNumArticle()]);
     }
+
+
 
     /////////////////////////// READ /////////////////////////////////////
     public static function read(string $titre, string $description): Article
@@ -229,7 +249,7 @@ class Article
 
         $dao = DAO::get();
         $table = $dao->query($query,[$titre, $description]);
-        return Article::obtenirArticleAPartirTable($table);
+        return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
     public static function readNum(int $num_article): Article
@@ -240,28 +260,48 @@ class Article
 
         $dao = DAO::get();
         $table = $dao->query($query,[$num_article]);
-        return Article::obtenirArticleAPartirTable($table);
+        return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
-    private static function obtenirArticleAPartirTable($table) : Article
-    {
-        if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
-        
-        $ligne = $table[0];
-        $article = new Article($ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
-                            $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
-        $article->setNumArticle($ligne['num_article']);
-        return $article;
-    } 
-
+    /**
+     * @return array retourne un tableau d'objet Article
+     */
     public static function readLike(string $titrePattern): array {
         $query = "SELECT *
                     FROM ARTICLE
                     WHERE titre like concat('%',?,'%');";
 
         $dao = DAO::get();
-        return $dao->query($query,[$titrePattern]);
+        $table = $dao->query($query,[$titrePattern]);
+        return obtenirArticlesAPartirTable($table);
     }
+
+
+        /**
+     * Retourne un tableau d'article à partir de la table
+     * @return array 
+     */
+    private static function obtenirArticlesAPartirTable($table) : array
+    {
+        if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
+        $dao = DAO::get();
+        $query = "SELECT num_utilisateur FROM VEND WHERE num_article = ?";
+        
+        $lesArticles = array();
+        foreach($table as $ligne) {
+            $ligne = $table[0];
+
+            // Récupérer le numéro d'utilisateur du Vendeur
+            $numUtilisateur = $dao->query($query,[$ligne['num_article']])[0]['num_utilisateur'];
+
+            // Obtenir l'article en objet
+            $article = new Article(Utilisateur::readNum($numUtilisateur),$ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
+                                $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
+            $article->setNumArticle($ligne['num_article']);
+            array_push($lesArticles,$article);
+        }
+        return $lesArticles;
+    } 
 
     /////////////////////////// UPDATE /////////////////////////////////////
     public function update()
@@ -280,7 +320,7 @@ class Article
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
-        $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;";
+        $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;"; // Des triggers feront des DELETE dans les autres tables
         
         $dao = DAO::get();
         $dao->exec($query,[$this->getTitre(),$this->getDescription()]);
