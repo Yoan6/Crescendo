@@ -7,6 +7,7 @@ class View {
 
   function __construct() {
     $this->param = array();
+    $this->filePath =  "../view/";
   }
 
   function assign(string $varName,$value) {
@@ -15,7 +16,7 @@ class View {
 
   function display(string $filename) {
 
-    $p = "../view/".$filename;
+    $this->filePath .= $filename;
 
     foreach ($this->param as $key => $value) {
       $$key = $value;
