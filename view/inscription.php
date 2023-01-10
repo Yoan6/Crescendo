@@ -18,7 +18,7 @@
             <div>
                 <h1>Inscription</h1>
             </div>
-            <form action="inscription.ctrl.php" method="post">
+            <form action="../controler/inscription.ctrl.php" method="post">
                 <div class="contenu">
                     <div class="block">
                         <article class="petit-article">
