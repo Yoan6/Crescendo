@@ -12,7 +12,7 @@
 		<main id="pageProduitCreation">
 			<form action="../controler/encherir.ctrl.php" method="post" class="conteneur" id="pageProduit">
 				<div id="produitGrandeImage">
-					<input type="file" placeholder="Ajouter des Images">
+					<input id="addImage" type="file" placeholder="Ajouter des Images">
 				</div>
 				
 				<textarea class="commeUnlabel" id="nomItem">Veste d'Elton John</textarea>
@@ -72,7 +72,7 @@
 					</ul>
 				</label>
 				<div id="grilleBoutonsValiderAnnuler" class="conteneur">
-					<a class="commeUnlabel">Annuler les modif</a>
+					<a class="commeUnlabel" id="annulerModif">Annuler les modifications</a>
 					<button class="highlight commeUnlabel" type="submit">Valider</button>
 				</div>
 					
@@ -86,5 +86,6 @@
 	</body>
 	<script src="../js/crescendo.js"></script>
     <script src="../js/header.js"></script>
+	<script src="../js/produitCreation.js"></script>
 
 </html>

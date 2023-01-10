@@ -401,10 +401,10 @@ footer li a {
 }
 
 footer li a:hover {
-	color: white;
+	color: black;
+	background-color: #79d2bc;
+	border-radius: 10px;
 }
-
-
 
 
 
