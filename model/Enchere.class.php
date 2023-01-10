@@ -6,14 +6,13 @@ require_once(__DIR__ . '/../model/Article.class.php');
     class Enchere {
         private int $numEnchere;
         private int $prixActuel;
-        //private const Time $DUREE_MAX;
-        //private int $prix_min;
-        //private DateTime DATE_DEBUT;
+        private const DUREE_MAX = 7;
+
+        private DateTime $DATE_DEBUT;
         private int $idPaiement;
 
-        private array $articles = array(); // Si ce n'est pas un lot, alors un enchère est toujours reliée à un article
+        private array $articles = array(); // Si ce n'est pas un lot, alors une enchère est toujours reliée à un article
         private bool $estLot;
-        private int $nbLike;
         
 
         public function __construct(array $articles)
@@ -28,6 +27,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
             // Autres initialisation
             $this->setPrixActuel(-1);
             $this->setNumEnchere(-1);
+            $this->setDateDebut(new DateTime());
         }
 
         
@@ -96,6 +96,17 @@ require_once(__DIR__ . '/../model/Article.class.php');
             }
         }
 
+        public function getDateDebut() : string
+        {
+            return $this->dateDebut->format('d/m/y');
+        }
+
+        private function setDateDebut(dateTime $dateDebut)
+        {
+            $this->dateDebut = $dateDebut;
+        }
+
+
 
     /**
      * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
@@ -103,9 +114,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
      */
         private function getData() : array {
             return array(
-                //':prix_actuel' => $this->getPrixActuel(),
-                //':id_paiement' => $this->getIdPaiement(),
-                //':date_debut' => $this->getDateDebut(),
+                ':date_debut' => $this->getDateDebut(),
                 ':est_lot' => $this->getEstLot(),
             ); //Note : ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
         }
@@ -124,7 +133,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
             $dao = DAO::get();
 
             // Insérer les enchères dans la base 
-            $queryEnchere = "INSERT INTO ENCHERE(est_lot) Values(:est_lot)";
+            $queryEnchere = "INSERT INTO ENCHERE(est_lot,date_debut) Values(:est_lot,:date_debut)";
             $dao->exec($queryEnchere,$this->getData());
 
 
@@ -183,8 +192,8 @@ require_once(__DIR__ . '/../model/Article.class.php');
         public function update()
         {
             $query = "UPDATE ENCHERE
-            set (est_lot)
-                = (:est_lot)
+            set (est_lot,date_debut)
+                = (:est_lot,:date_debut)
             WHERE num_enchere = '$this->numEnchere'"; 
 
             $dao = DAO::get();

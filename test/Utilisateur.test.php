@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../model/Utilisateur.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-$utilisateur = new Utilisateur("emailTest","pseudo","motDePasse","nom","prenom","ville","rue","codePostal");
+$utilisateur = new Utilisateur("emailTest","pseudo","motDePasse","nom","prenom","ville","rue","codePostal",(new dateTime())::createFromFormat('d/m/Y','01/01/2000'));
 try {
     //--Test--
     print("Création d'un Utilisateur : ");

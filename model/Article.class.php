@@ -19,7 +19,7 @@ class Article
     private string $etat;
     private string $categorie;
     private string $taille;
-    //private DateTime $date;
+    private DateTime $dateEvenement;
     private string $lieu;
     private string $style;
 
@@ -28,7 +28,7 @@ class Article
 
 
     public function __construct(Utilisateur $vendeur, string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
-                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="")
+                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", DateTime $dateEvenement = new DateTime())
     {
         // Initialisation obligatoire
         $this->setTitre($titre);
@@ -43,6 +43,7 @@ class Article
         $this->setTaille($taille);
         $this->setLieu($lieu);
         $this->setStyle($style);
+        $this->setDateEvenement($dateEvenement);
         $this->setNumArticle(-1);
 
         $enchere = new Enchere([$this]);
@@ -166,6 +167,21 @@ class Article
         $this->prixMin = $prixMin;
     }
 
+
+    public function getDateEvenement() : string
+    {
+        return $this->dateEvenement->format('d/m/y');
+    }
+
+    private function setDateEvenement(dateTime $dateEvenement)
+    {
+        $this->dateEvenement = $dateEvenement;
+    }
+
+
+
+
+
     public function getEncheres() : array
     {
         return $this->encheres;
@@ -187,6 +203,10 @@ class Article
     }
 
 
+
+
+
+
     /**
      * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
      * @return array
@@ -198,7 +218,7 @@ class Article
             'img_url' => $this->getUrlImage(),
             'prix_min' => $this->getPrixMin(),
             'artiste' => $this->getArtiste(),
-            //$this->getDate(),
+            'date_evenement' => $this->getDateEvenement(),
             'etat' => $this->getEtat(),
             'categorie' => $this->getCategorie(),
             'taille' => $this->getTaille(),
@@ -221,9 +241,9 @@ class Article
     public function create()
     {
         $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
-                                    etat, categorie, taille, lieu, style)
+                                    etat, categorie, taille, lieu, style, date_evenement)
                         VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
-                                    :etat, :categorie, :taille, :lieu, :style)";
+                                    :etat, :categorie, :taille, :lieu, :style, :date_evenement)";
 
         $dao = DAO::get();
         $dao->exec($query, $this->getData());
@@ -289,12 +309,10 @@ class Article
         
         $lesArticles = array();
         foreach($table as $ligne) {
-            $ligne = $table[0];
-
-            // Récupérer le numéro d'utilisateur du Vendeur
+            // Récupérer le numéro d'utilisateur du Vendeur à partir de la table VEND
             $numUtilisateur = $dao->query($query,[$ligne['num_article']])[0]['num_utilisateur'];
 
-            // Obtenir l'article en objet
+            // Obtenir l'article sous forme d'objet 
             $article = new Article(Utilisateur::readNum($numUtilisateur),$ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
                                 $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
             $article->setNumArticle($ligne['num_article']);

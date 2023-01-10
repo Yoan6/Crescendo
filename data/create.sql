@@ -34,16 +34,13 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERE (
-    num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, --AUTOINCREMENT par SERIAL pour postGRESQL 
-    prix_actuel INTEGER,
-    id_paiement INTEGER,
+    num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, 
     date_debut DATE,
-    est_lot BOOLEAN,
-    nb_Like INTEGER
-);
+    est_lot BOOLEAN --Suppresion de prix et id_paiement mis dans ENCHERIT
+); --Suppression de nombre de like, Une table intermédiaire ENTRE utilisateur et enchere sera créée plus tard
 
 CREATE TABLE IF NOT EXISTS ARTICLE (
-    num_article INTEGER PRIMARY KEY AUTOINCREMENT, --AUTOINCREMENT par SERIAL pour postGRESQL 
+    num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
     titre VARCHAR,
     img_url VARCHAR,
     prix_min INTEGER,
@@ -66,6 +63,9 @@ CREATE TABLE IF NOT EXISTS GAGNE (
 CREATE TABLE IF NOT EXISTS ENCHERIT (
     num_utilisateur references UTILISATEUR(num_utilisateur), --- CHangement num_utilisateur à la place d'email
     num_enchere references ENCHERE(num_enchere),
+    prix INTEGER,                -- AJOUT 
+    date_encherissement DATE,     -- AJOUT
+    id_paiement INTEGER,            -- AJOUT
     PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
