@@ -72,7 +72,7 @@
 					</ul>
 				</label>
 				<div id="grilleBoutonsValiderAnnuler" class="conteneur">
-					<a class="commeUnlabel">Annuler les modifs</a>
+					<a class="commeUnlabel">Annuler les modif</a>
 					<button class="highlight commeUnlabel" type="submit">Valider</button>
 				</div>
 					

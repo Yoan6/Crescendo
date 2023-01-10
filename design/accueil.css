@@ -68,7 +68,7 @@ justify-content: center;
 #via li {
     display: flex;
     align-items: center;
-    border: solid 1px white;
+    border: solid 2px var(--main-content-background-color);
     border-radius: 15px;
     background-color: var(--header-background-color);
     
@@ -103,6 +103,7 @@ justify-content: center;
     margin: 0px;
     padding-top: 5%;
     font-weight: 100;
+    color: var(--navBar-font-color);
 }
 
 
@@ -125,7 +126,7 @@ justify-content: center;
 
 #articleSemaine div h1{
 
-    color: white;
+    color: var(--navBar-font-color);
     font-weight: 100;
     margin-bottom: 50px;
 }

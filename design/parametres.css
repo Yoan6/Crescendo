@@ -79,12 +79,14 @@ main #divModifImage>div {
 #divModifImage>form>#modifImageProfil {
 
     background-color: var(--bleu);
+    border: 2px solid black;
 
 }
 
 #divModifImage>form>#effacerImageProfil {
     background-color: var(--rouge);
-    color: white;
+    color: var(--main-font-color);
+    border: 2px solid black;
 
 }
 
@@ -93,7 +95,7 @@ main #divModifImage>div {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 15px;
-    background-color: var(--main-background-color);
+    background-color: #161616;
     margin-top: 30px;
     margin-bottom: 30px;
     height: fit-content;
@@ -110,6 +112,7 @@ main #divModifImage>div {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .modif>form {
@@ -273,8 +276,8 @@ form>.annulerOuValider>.valider {
 #btnSupprimerCompte {
 
     background-color: var(--rouge);
-    color: white;
-    border: none;
+    color: var(--main-font-color);
+    border: 2px solid black;
     border-radius: 10px;
     width: 50%;
     height: 50%;

@@ -28,6 +28,7 @@ Variables
 	--main-background-color: white;
 	--header-background-color: grey;
 	--footer-background-color: grey; 
+	--div-background-color: rgb(83, 82, 82);
 	--navBar-background-color: black;
 	--bleu: #79d2bc;
 	--rouge: #F85656;
@@ -36,10 +37,9 @@ Variables
 	--main-content-background-color:#161616;
 	
 	/* ==== Couleurs police ====*/
-	--main-font-color: #black;
-	--footer-font-color: #black;
-	--navBar-font-color:  #black;
-
+	--main-font-color: black;
+	--footer-font-color: black;
+	--navBar-font-color:  black;
 	--main-content-font-color:white;
 
 }
@@ -50,6 +50,7 @@ body.dark-mode {
 	--main-background-color: #161616;
 	--header-background-color: #272727;
 	--footer-background-color: #161616; /*#161616*/
+	--div-background-color: white;
 	--navBar-background-color:  #1D1D1D;
 	--bleu:#79d2bc;
 	--lightGrey: #212121;
@@ -59,7 +60,6 @@ body.dark-mode {
 	--main-font-color: white;
 	--footer-font-color: #9B9B9B;
 	--navBar-font-color:  white;
-
 	--main-content-font-color:#161616;
 }
 
@@ -99,6 +99,9 @@ a {
 	display:block;
 }
 
+h1, h2 {
+	color: var(--navBar-font-color);
+}
 
 ul{
 	list-style: none;
@@ -293,7 +296,7 @@ Produit Style
 	
 }
 
-#pageProduit textarea {color: #9B9B9B;}
+#pageProduit textarea {color: black;}
 #pageProduitCreation input {width: 100%;}
 .information ul {	list-style-type: none;}
 
@@ -305,6 +308,14 @@ li h4::after { content: " : ";}
 	height: fit-content;
 	justify-self: center;
 	border-radius: 100px;
+}
+
+#pageProduitCreation form label {
+	background-color: var(--div-background-color);
+}
+
+#pageProduitCreation #produitGrandeImage input {
+	background-color: var(--div-background-color);
 }
 
 #favorisLikeDislike, #lot {	align-items: center; justify-content: space-around;}
