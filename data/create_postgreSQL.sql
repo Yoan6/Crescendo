@@ -6,7 +6,7 @@
 /*======================================================
 *                       DROP
 ========================================================*/
-DROP TABLE IF EXISTS LIKE_DISLIKE, CONCERNE,FAVORISE, ENCHERIT,GAGNE, ARTICLE, ENCHERE, UTILISATEUR CASCADE;
+DROP TABLE IF EXISTS IMAGE_ARTICLE, LIKE_DISLIKE, CONCERNE,FAVORISE, ENCHERIT,GAGNE, ARTICLE, ENCHERE, UTILISATEUR CASCADE;
 
 
 /*======================================================
@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
     num_article SERIAL PRIMARY KEY, 
     num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur), 
     titre VARCHAR,
-    img_url VARCHAR,
     prix_min INTEGER,
     description_article VARCHAR,
     artiste VARCHAR,
@@ -51,6 +50,8 @@ CREATE TABLE IF NOT EXISTS ENCHERE (
 );
 
 ------------------------------TABLES ASSOCIATION------------------------------
+
+
 
 
 ---------------ENTRE UTILISATEUR ET ENCHERE
@@ -81,6 +82,14 @@ CREATE TABLE IF NOT EXISTS LIKE_DISLIKE(
     num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
     est_like BOOLEAN,
     PRIMARY KEY (num_article,num_enchere)
+);
+
+
+
+CREATE TABLE IF NOT EXISTS IMAGE_ARTICLE(
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    nom_image VARCHAR,
+    PRIMARY KEY (num_article,nom_image)
 );
 
 

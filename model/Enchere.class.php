@@ -182,7 +182,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
                         WHERE num_article = ?;";
             $dao = DAO::get();
             $encheres = array();
-            // Parcourir les articles obtenues pour leur associer le
+            // Parcourir les articles obtenues pour leur associer les enchères
             foreach($articles as $article) {
                 $numEnchere = $dao->query($query, [$article->getNumArticle()])[0][0];
                 array_push($encheres, ENCHERE::read($numEnchere) );
@@ -217,6 +217,42 @@ require_once(__DIR__ . '/../model/Article.class.php');
         {
             return $this->getNumEnchere() == $numEnchere->getNumEnchere();
         }
+
+        
+
+
+
+        /********************************************* AUTRES METHODES ****************************************/
+        public function encherir(Utilisateur $utilisateur, int $prixOffre) {
+            $dao = DAO::get();
+            $dateEncherissement =  (new DateTime("now"))->format('Y-m-d');
+
+            // Insérer en base de données
+            try {
+                $queryEnchere = "INSERT INTO ENCHERIT(num_utilisateur,num_enchere,prix_offre,date_encherissement) Values(:num_utilisateur,:num_enchere,:prix_offre,:date_encherissement)";
+                $data = [
+                    "num_utilisateur" =>$utilisateur->getNumUtilisateur(), 
+                    "num_enchere" => $this->getNumEnchere(), 
+                    "prix_offre" => $prixOffre,
+                    "date_encherissement" =>  $dateEncherissement // Format ISO pour la base de données
+                ];
+                $dao->exec($queryEnchere,$data);
+            } catch (exception $e) {
+                // Une erreur peut être générée si l'offre n'est pas la plus haute
+                print('\nErreur ' . $e->getMessage() . "\n");
+            } 
+        }
+
+        public function obtenirPrixActuel() {
+            $dao = DAO::get();
+            $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";
+            $data = [
+                "num_enchere" => $this->getNumEnchere(), 
+            ];
+            return $dao->query($queryEnchere,$data)[0][0];
+        }
+
+        
     
     }
 ?>

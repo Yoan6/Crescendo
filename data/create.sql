@@ -9,6 +9,7 @@
 
 
 /*SQLITE n'autorise le drop d'une table qu'une par une*/
+DROP TABLE IF EXISTS IMAGE_ARTICLE;
 DROP TABLE IF EXISTS LIKE_DISLIKE;
 DROP TABLE IF EXISTS CONCERNE;
 DROP TABLE IF EXISTS FAVORISE;
@@ -43,9 +44,8 @@ CREATE TABLE IF NOT EXISTS ENCHERE (
 
 CREATE TABLE IF NOT EXISTS ARTICLE (
     num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
-    num_vendeur REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
+    num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
     titre VARCHAR,
-    img_url VARCHAR,
     prix_min INTEGER,
     description_article VARCHAR,
     artiste VARCHAR,
@@ -54,46 +54,62 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
     taille VARCHAR,
     date_evenement DATE,
     lieu VARCHAR,
-    style VARCHAR
-    UNIQUE(description_article)
+    style VARCHAR,
+    UNIQUE(titre,description_article)
 );
 
+------------------------------TABLES ASSOCIATION------------------------------
+
+
+
+
+---------------ENTRE UTILISATEUR ET ENCHERE
 CREATE TABLE IF NOT EXISTS GAGNE (
-    num_utilisateur references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, --- CHangement num_utilisateur à la place d'email
-    num_enchere references ENCHERE(num_enchere) ON DELETE CASCADE,
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
     PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERIT (
-    num_utilisateur references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, --- CHangement num_utilisateur à la place d'email
-    num_enchere references ENCHERE(num_enchere) ON DELETE CASCADE,
-    prix_offre INTEGER,                -- AJOUT 
-    date_encherissement DATE,     -- AJOUT
-    id_paiement INTEGER,            -- AJOUT
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    prix_offre INTEGER,             
+    date_encherissement DATE,     
+    id_paiement INTEGER,          
     PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS FAVORISE (
-    num_utilisateur references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, --- CHangement num_utilisateur à la place d'email
-    num_enchere references ENCHERE(num_enchere) ON DELETE CASCADE,
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
     PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 
---- CHangement Suppression de VEND
-
-CREATE TABLE IF NOT EXISTS CONCERNE (
-    num_article references ARTICLE(num_article) ON DELETE CASCADE,
-    num_enchere references ENCHERE(num_enchere) ON DELETE CASCADE,
-    PRIMARY KEY (num_article,num_enchere)
-);
-
-CREATE TABLE IF NOT EXISTS LIKE_DISLIKE(  --nouvelle table
-    num_article references ARTICLE(num_article) ON DELETE CASCADE,
-    num_enchere references ENCHERE(num_enchere) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS LIKE_DISLIKE( 
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
     est_like BOOLEAN,
     PRIMARY KEY (num_article,num_enchere)
 );
+
+
+
+CREATE TABLE IF NOT EXISTS IMAGE_ARTICLE(
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    nom_image VARCHAR,
+    PRIMARY KEY (num_article,nom_image)
+);
+
+
+---------------ENTRE ARTICLE ET ENCHERE
+CREATE TABLE IF NOT EXISTS CONCERNE (
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    PRIMARY KEY (num_article,num_enchere)
+);
+
+
 
 
 /**************************************

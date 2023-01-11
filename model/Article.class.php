@@ -9,7 +9,7 @@ class Article
     private int $numArticle;
     private string $titre;
     private string $description;
-    private string $urlImage;
+    private array $nomImages;
     private string $artiste;
     private int $prixMin;
 
@@ -22,10 +22,11 @@ class Article
     private string $style;
 
     private Utilisateur $vendeur;
+    private const LOCALURL = "../data/imgArticle/";
 
 
 
-    public function __construct(Utilisateur $vendeur, string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
+    public function __construct(Utilisateur $vendeur, string $titre,string $description, array $nomImgages, int $prixMin, string $artiste, 
                                     string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", 
                                     DateTime $dateEvenement = null // Il faut php8 pour initialiser par défaut les Objets dans les paramètres 
                                 )
@@ -33,7 +34,7 @@ class Article
         // Initialisation obligatoire
         $this->setTitre($titre);
         $this->setDescription($description);
-        $this->setUrlImage($urlImage);
+        $this->ajouterNomsImg($nomImgages);
         $this->setPrixMin($prixMin);
         $this->setArtiste($artiste);
 
@@ -84,14 +85,25 @@ class Article
         $this->description = $description;
     }
 
-    public function getUrlImage()
+    /**
+     * Retourne les images avec le chemin vers le répertoire de stockage des images
+     */
+    public function getUrlImages() : array
     {
-        return $this->urlImage;
+        return self::LOCALURL . $this->nomImages;
     }
 
-    public function setUrlImage($urlImage)
+    /**
+     * 
+     */
+    public function getImages() : array
     {
-        $this->urlImage = $urlImage;
+        return $this->nomImages;
+    }
+
+    public function ajouterNomsImg(array $nomImages)
+    {
+        $this->nomImages = $nomImages;
     }
 
     public function getArtiste()
@@ -203,7 +215,7 @@ class Article
         return array(
             'titre' => $this->getTitre(),
             'description_article' => $this->getDescription(),
-            'img_url' => $this->getUrlImage(),
+            
             'prix_min' => $this->getPrixMin(),
             'artiste' => $this->getArtiste(),
             'date_evenement' => $this->getDateEvenement(),
@@ -228,17 +240,28 @@ class Article
     */
     public function create()
     {
-        $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
+        $query = "INSERT INTO ARTICLE(titre, prix_min, description_article, artiste, 
                                     etat, categorie, taille, lieu, style, date_evenement, num_vendeur)
-                        VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
+                        VALUES(:titre, :prix_min, :description_article, :artiste, 
                                     :etat, :categorie, :taille, :lieu, :style, :date_evenement, :num_vendeur)";
 
         $dao = DAO::get();
         $dao->exec(  $query, array_merge( $this->getData(), ["num_vendeur" => $this->getVendeur()->getNumUtilisateur()] )    );
-
+        
         // Récupérer le bon num_article
         $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0][0];
         $this->setNumArticle($dernierNum);
+        
+        // Insérer l'image
+        $queryImage = "INSERT INTO IMAGE_ARTICLE(num_article,nom_image) values (:num_article,:nom_image);";
+        $data = [
+            'num_article' => $this->getNumArticle(),
+            'nom_image' => ""
+        ];
+        foreach($this->getImages() as $image) {
+            $data['nom_image'] = $image;
+            $dao->exec($queryImage,$data);
+        }
     }
 
 
@@ -287,7 +310,7 @@ class Article
     public static function readLike(string $titrePattern): array {
         $query = "SELECT *
                     FROM ARTICLE
-                    WHERE titre like concat('%',?,'%');";
+                    WHERE titre like '%' ||? ||'%';";
 
         $dao = DAO::get();
         $table = $dao->query($query,[$titrePattern]);
@@ -308,21 +331,39 @@ class Article
         foreach($table as $ligne) {
 
             // Obtenir l'article sous forme d'objet 
-            $article = new Article(Utilisateur::readNum($ligne['num_vendeur']),$ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
+            $article = new Article(Utilisateur::readNum($ligne['num_vendeur']),$ligne['titre'], $ligne['description_article'], array(), $ligne['prix_min'], $ligne['artiste'], 
                                 $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
             $article->setNumArticle($ligne['num_article']);
+            $article->ajouterNomsImg(Article::obtenirImagesAPartirTable($ligne['num_article'])); 
             array_push($lesArticles,$article);
         }
         return $lesArticles;
     } 
 
+
+    /**
+     * Récupérer les images des articles
+     */
+    private static function obtenirImagesAPartirTable(string $num_article) : array
+     {
+        $dao = DAO::get();
+        $query = "SELECT nom_image from IMAGE_ARTICLE WHERE num_article = ?;";
+        $table = $dao->query($query,[$num_article]);
+        
+        $lesImages = array();
+        foreach($table as $ligne) {
+            array_push($lesImages,$ligne['nom_image']);
+        }
+        return $lesImages;
+    }
+
     /////////////////////////// UPDATE /////////////////////////////////////
     public function update()
     {
         $query = "UPDATE ARTICLE
-            set (titre, img_url, prix_min, description_article, artiste, 
+            set (titre, prix_min, description_article, artiste, 
                     etat, categorie, taille, date_evenement, lieu, style)
-              = (:titre, :img_url, :prix_min, :description_article, :artiste, 
+              = (:titre, :prix_min, :description_article, :artiste, 
                     :etat, :categorie, :taille, :date_evenement, :lieu, :style)
             WHERE num_article = :num_article;";
 

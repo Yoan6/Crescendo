@@ -155,7 +155,7 @@ class Utilisateur
 
     public function getDateDeNaissance() : string
     {
-        return $this->dateDeNaissance->format('Y/m/d'); // Format ISO pour la base de données
+        return $this->dateDeNaissance->format('Y-m-d'); // Format ISO pour la base de données
     }
 
     private function setDateDeNaissance(dateTime $dateDeNaissance)
@@ -248,7 +248,7 @@ class Utilisateur
         foreach($table as $ligne) {
             $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
                                             $ligne['ville'], $ligne['rue'], $ligne['code_postal'],
-                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance'])
+                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance']) 
                                         );                                
             // Mettre le bon num d'utilisateur
             $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);

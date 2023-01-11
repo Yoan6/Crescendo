@@ -1,20 +1,21 @@
 <?php
 require_once(__DIR__ . '/../model/Article.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
+$dao = DAO::get();
 
 $utilisateur = Utilisateur::read('a@gmail.com','a');
-$article = new Article($utilisateur,"titreTestEnchere", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
+$article = new Article($utilisateur,"titreTestEnchere", "descriptionTest", ["imgTest"], 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
 try {
     $article->create();
     $enchere = new Enchere([$article]);
 
 
-    //--Test--
+    //------------------------------------------------------Test------------------------------------------------------
     print("Création d'une enchère : ");
     $enchere->create();
     OK();
 
-    // --Test--
+    //------------------------------------------------------Test------------------------------------------------------
     print("Lecture d'un enchère : ");
     $enchere2 = Enchere::read($enchere->getNumEnchere());
     if(!$enchere->egalEnchere($enchere2)) 
@@ -25,7 +26,7 @@ try {
     OK();
 
 
-    // --Test--
+    //------------------------------------------------------Test------------------------------------------------------
     print("Update d'une Enchere : ");
     $enchere->setDateDebut(new DateTime());
     $enchere->update();
@@ -37,14 +38,38 @@ try {
     };
     OK();
 
-    // --Test--
+    //------------------------------------------------------Test------------------------------------------------------
+    print("Recherche avec readLike ");
+    $enchere2 = Enchere::readLike($enchere->getArticles()[0]->getTitre())[0];
+    if(!$enchere->egalEnchere($enchere2)) 
+    {
+        var_dump("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
+        throw new Exception("pas update");
+    };
+    OK();
+
+    //------------------------------------------------------Test------------------------------------------------------
+    print("Encherir et récupérer le dernier prix : ");
+    $enchere->Encherir($utilisateur, 2000);
+    $prix_offre_base = $dao->query("select prix_offre from ENCHERIT where num_enchere= ?;", [$enchere->getNumEnchere()])[0]['prix_offre'];
+    $prix_offre = $enchere->obtenirPrixActuel();
+    if ($prix_offre != $prix_offre_base) {
+        var_dump("\n\nValeurs attendues", $prix_offre_base,"\n\nValeurs obtenues", $prix_offre); 
+        throw new Exception("l'enchere n'a pas aboutit");
+    }
+    OK();
+    
+
+
+
+
+    //------------------------------------------------------Test------------------------------------------------------
     print("Suppression d'une enchère : ");
     $enchere->delete();
     OK();
 
 } catch (Exception | Error  $e) {
     notOK();
-    $dao = DAO::get();
     $dernierNum = $dao->query("SELECT max(num_enchere) FROM ENCHERE;",array())[0][0]; // Récupérer le dernier id crée
     $dao->exec("DELETE FROM ENCHERE WHERE num_enchere = ?;", [$dernierNum]);
     
