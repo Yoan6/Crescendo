@@ -15,9 +15,9 @@
 					<input type="file" placeholder="Ajouter des Images">
 				</div>
 				
-				<textarea class="commeUnlabel" id="nomItem">Veste d'Elton John</textarea>
-				<textarea class="commeUnlabel" id="prixArticle">Prix actuel</textarea>
-				<textarea class="commeUnlabel" id="date">Insérer date</textarea>
+				<input class="commeUnlabel" id="nomItem" placeholder="Veste d'Elton John"></textarea>
+				<input class="commeUnlabel" id="prixArticle"placeholder="Prix actuel"></textarea>
+				<input class="commeUnlabel" id="date" placeholder="Insérer date"></textarea>
 			
 
 				<label class="conteneur" id="descriptionArticle">
@@ -30,15 +30,15 @@
 					<ul class="conteneur">
 						<li>
 							<h4>Artiste</h4>
-							<textarea class="mettreInformation">Insérer artiste</textarea>
+							<input class="mettreInformation">Insérer artiste</textarea>
 						</li>
 						<li>
 							<h4>Date</h4>
-							<textarea class="mettreInformation">JJ/MM/AAAA</textarea>
+							<input class="mettreInformation">JJ/MM/AAAA</textarea>
 						</li>
 						<li>
 							<h4>Lieu</h4>
-							<textarea class="mettreInformation">Insérer lieu</textarea>
+							<input class="mettreInformation">Insérer lieu</textarea>
 						</li>
 						<li>
 							<h4>Style</h4>

@@ -16,9 +16,55 @@
 
     <main>
         <div>
-            <p id="titre">Résultat pour ""</h1>
+            <div>
+
+                <div>
+                    <div>
+                        <img src="../design/image/user/lisa.jpe" alt="">
+                    </div>
+
+                    <div>
+                        <h2>
+                            NomDuProfil
+                        </h2>
+
+                        <div>
+                            <div>
+                                les svg étoiles
+                            </div>
+                            <div>
+                                13 évaluations
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div>
+                    <a>
+                        Modifier le profil
+                    </a>
+                    <a>
+                        Voir les avis
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div>
+                <a>
+                    Nouvel article
+                </a>
+                <a>
+                    Nouveau lot
+                </a>
+            </div>
 
         </div>
+
         <div id="principale">
             <aside class="filtre">
                 <div>

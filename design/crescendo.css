@@ -105,7 +105,7 @@ ul{
 }
 
 
-input {
+input, textarea {
 	border: none;
 	outline: none;
 	margin: none;
@@ -420,7 +420,7 @@ footer #logosCommunaute {
 }
 
 .contact:hover {
-	border: solid 1px var(--main-content-background-color);
+	border: solid 1px var(--main-content-font-color);
 	color: var(--main-content-background-color);
 	background-color: var(--main-content-font-color);
 }
