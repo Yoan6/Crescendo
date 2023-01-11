@@ -42,7 +42,7 @@
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthday" id="birthsday" min="1930-01-01" max="2023-05-01"
+                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="2023-05-01"
                                 required>
                         </article>
 
@@ -76,7 +76,7 @@
                         </article>
 
                         <article class="petit-article">
-                            <label for="mdp">Mot de passe (au moins 12 caractères et 1 caractère spécial) *</label>
+                            <label for="mdp">Mot de passe (au moins 12 caractères 1 majuscule et 1 caractère spécial) *</label>
 
                             <input type="password" name="mdp" id="mdp" required minlength=12>
                         </article>
