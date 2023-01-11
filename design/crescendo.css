@@ -435,3 +435,76 @@ footer #logosCommunaute {
 	color: var(--main-content-background-color);
 	background-color: var(--main-content-font-color);
 }
+
+
+
+
+/*********************************************
+Règles pour éléments du footer (comment vendre)
+**********************************************/
+
+#cmtVendre {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#cmtVendre div {
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%;
+}
+
+#cmtVendre p, h1 {
+	text-align: center;
+}
+
+
+/*********************************************
+Règles pour éléments du footer (comment vendre)
+**********************************************/
+
+#cmtAcheter {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#cmtAcheter div {
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%;
+}
+
+#cmtAcheter p, h1 {
+	text-align: center;
+}
+
+
+/************************************
+Règles pour éléments du footer (FAQ)
+************************************/
+
+#faq {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#faq div {
+	margin-right: auto;
+	margin-left: auto;
+	width: 50%;
+}
+
+#faq p, h1, h3 {
+	text-align: center;
+}
+
+#faq p, h1 {
+	margin-bottom: 70px;
+}
+
+#faq h3 {
+	color: var();
+}

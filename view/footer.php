@@ -17,9 +17,9 @@
                     <h4>Aide</h4>
 
                     <ul class="tiret">
-                        <li><a href="https://www.google.com/">Comment vendre ?</a></li>
-                        <li><a href="https://www.google.com/">Comment acheter ?</a></li>
-                        <li><a href="https://www.google.com/">FAQ</a></li>
+                        <li><a href="../view/commentVendre.php">Comment vendre ?</a></li>
+                        <li><a href="../view/commentAcheter.php">Comment acheter ?</a></li>
+                        <li><a href="../view/faq.php">FAQ</a></li>
                         <li><a href="https://www.google.com/">Espace sécurité</a></li>
                     </ul>
                 </div>
