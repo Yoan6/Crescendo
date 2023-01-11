@@ -1,0 +1,578 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--main-content-font-color);
+
+}
+
+
+main>div {
+    padding-top: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: var(--header-background-color);
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+main>div>div {
+
+    width: 100%;
+    max-width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+main>div>div>h3 {
+
+    border-radius: 15px;
+    width: 100%;
+    margin: 0px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: black;
+    color: var(--bleu);
+
+}
+
+main>div #topForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 300px;
+}
+
+main>div #topForm>#divTopLeft {
+    position: relative;
+    background-color: white;
+    border-radius: 15px;
+    height: auto;
+    width: 50%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+#carousel {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+
+}
+
+#carousel img {
+
+    object-fit: cover;
+    width: 100%;
+
+}
+
+#carousel>svg {
+    position: absolute;
+    top: 45%;
+    height: 50px;
+    width: 50px;
+
+}
+
+#carousel>svg path {
+    fill: white;
+}
+
+#carousel>#buttonPrev {
+
+    left: 0;
+    rotate: -90deg;
+
+}
+
+#carousel>#buttonNext {
+
+    right: 0;
+    rotate: 90deg;
+}
+
+main div #topForm>#divTopLeft>input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+main div #topForm>#divTopLeft>label {
+    cursor: pointer;
+
+}
+
+main div #topForm>#divTopLeft>input+label {
+
+    font-size: 1.25em;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    border-radius: 15px;
+
+}
+
+main div #topForm>#divTopLeft>label>svg {
+
+    width: 60px;
+
+}
+
+main div #topForm>#divTopLeft>input+label:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+main div #topForm>#divTopLeft>img {
+    object-fit: cover;
+}
+
+
+
+main div #topForm>#divTopRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    height: 300px;
+    gap: 30px;
+}
+
+
+
+
+main div #topForm>#divTopRight>div {
+    width: 100%;
+    height: 25%;
+    max-height: 75px;
+}
+
+
+main div #topForm>#divTopRight>h4 {
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40%;
+    max-height: 150px;
+
+    border-radius: 15px;
+    margin: 0px;
+    font-size: 1em;
+    text-align: center;
+    font-weight: 700;
+
+    overflow: hidden;
+    color: black;
+    background-color: white;
+
+}
+
+
+
+main div #topForm>#divTopRight>#divPrixActuel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+main div #topForm>#divTopRight>#divPrixActuel>h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    height: 100%;
+    margin: 0px;
+    font-size: 1em;
+    font-weight: 700;
+
+    overflow: hidden;
+    color: white;
+}
+
+
+main div #topForm>#divTopRight>#divPrixActuel>h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    border-radius: 15px;
+    height: 100%;
+    margin: 0px;
+    font-size: 1em;
+    font-weight: 700;
+
+
+    overflow: hidden;
+    color: white;
+    background-color: black;
+    border: solid 1px white;
+
+}
+
+main div #topForm>#divTopRight>#divNouveauPrix {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+
+main div #topForm>#divTopRight>#divNouveauPrix>input {}
+
+
+main div #topForm>#divTopRight>#divNouveauPrix>button {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    border-radius: 50px;
+    background-color: var(--bleu);
+    border: none;
+    font-size: 1em;
+
+}
+
+main div #topForm>#divTopRight>#divNouveauPrix>button>img {
+    width: 30px;
+    height: 30px;
+}
+
+
+main div #topForm>#divTopRight>#divNouveauPrix>input {
+
+    border-radius: 15px;
+    margin: 0px;
+    font-size: 1em;
+    text-align: center;
+    font-weight: 700;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 55%;
+}
+
+
+
+
+
+main div #features {
+
+    margin-top: 10px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    gap: 20px;
+}
+
+
+
+
+main div #features #featuresLeft #heart {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+#SVGRepo_iconCarrier {
+    height: 100%;
+}
+
+
+
+
+
+main div #features #featuresLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+
+main div #features #featuresLeft>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid 1px white;
+    border-radius: 15px;
+    height: 50px;
+    width: 40%;
+
+}
+
+main div #features #featuresLeft>div>svg {
+    height: 30px;
+    width: 30px;
+}
+
+main div #features #featuresLeft>div>p {
+    font-size: 1.2em;
+
+}
+
+main div #features #featuresLeft>a svg {
+    height: 30px;
+    width: 30px;
+
+}
+
+main div #features #featuresLeft>a svg :where(path, polygon) {
+    fill: black;
+
+}
+
+
+main div #features #featuresLeft>a {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+    height: 100%;
+}
+
+
+main div #features #featuresRight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    background-color: white;
+    color: black;
+    border-radius: 15px;
+
+}
+
+main div #features #featuresRight>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+
+}
+
+main div #features #featuresRight img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 1000px;
+}
+
+
+main div #middleForm {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    border-radius: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 90%;
+    margin-bottom: 40px;
+
+}
+
+
+
+main div #middleForm>h3 {
+    color: black;
+    width: 90%;
+    margin: 0;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+main div #middleForm>p {
+    width: 90%;
+    color: black;
+}
+
+#bottomForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    height: fit-content;
+    width: 100%;
+    color: black;
+    background-color: var(--header-background-color);
+    border-radius: 15px;
+    color: white;
+    padding-top: 0px;
+}
+
+#bottomForm>div {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    border-radius: 15px;
+
+    gap: 20px;
+    height: 100%;
+}
+
+#bottomForm>h2 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    height: 70px;
+    margin: 0;
+    background-color: white;
+    color: black;
+    border-radius: 15px 15px 0px 0px;
+    color: black;
+    padding-top: 0px;
+
+}
+
+
+@media (min-width: 481px) and (max-width: 1000px) {
+
+    main div>div {
+
+        align-items: center;
+
+    }
+
+    main div #topForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 300px;
+        height: fit-content;
+        width: 90%;
+
+    }
+
+
+
+    main div #topForm>#divTopLeft {
+        position: relative;
+        background-color: white;
+        border-radius: 15px;
+        height: auto;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+
+    }
+
+
+    main div #topForm>#divTopRight {
+        width: 100%;
+        height: 300px;
+    }
+
+    main div #topForm>#divTopRight>input,
+    main div #topForm>#divTopRight>input:first-child {
+        height: 33%;
+    }
+
+
+
+    main div #features {
+
+        flex-direction: column-reverse;
+        gap: 20px;
+        height: fit-content;
+        width: 90%;
+    }
+
+
+
+
+
+    main div #features #featuresRight {
+        width: 100%;
+        height: 50px;
+    }
+
+    main div #features #featuresLeft {
+        width: 100%;
+    }
+
+    main div #features #featuresLeft>a {
+        height: 52px;
+    }
+
+
+
+
+
+    main div #bottomForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        width: 100%;
+        height: fit-content;
+        color: black;
+
+    }
+
+    main div #bottomForm>div {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+
+
+
+}
