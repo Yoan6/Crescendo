@@ -43,12 +43,12 @@
                         Modifier le pseudo
                     </button>
                 </div>
-                <form   class="formModif"method="post" action="">
+                <form class="formModif" method="post" action="">
                     <div class="champsAremplir">
                         <input type="text" name="pseudo" value="">
 
                     </div>
-                    <div  class="annulerOuValider">
+                    <div class="annulerOuValider">
                         <button class="annuler" type="button">
                             Annuler
                         </button>
@@ -69,7 +69,7 @@
                         Modifier l'adresse mail
                     </button>
                 </div>
-                <form   class="formModif" method="post" action="">
+                <form class="formModif" method="post" action="">
                     <div class="champsAremplir">
                         <input placeholder="Votre nouveau mail" type="text" name="mail" value="">
                         <input placeholder="Mot de passe" type="text" name="password" value="">
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <form  class="formModif" method="post" action="">
+                <form class="formModif" method="post" action="">
 
                     <div class="champsAremplir">
                         <div id="postalEtVille">
@@ -113,7 +113,7 @@
 
 
 
-                    <div  class="annulerOuValider">
+                    <div class="annulerOuValider">
                         <button class="annuler" type="button">
                             Annuler
                         </button>
@@ -145,11 +145,11 @@
                     </div>
 
 
-                    <div  class="annulerOuValider">
+                    <div class="annulerOuValider">
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button  class="valider">
+                        <button class="valider">
                             Valider
                         </button>
                     </div>
@@ -166,6 +166,34 @@
             </div>
 
         </div>
+
+
+        <form class="divPopUp">
+
+            <div id="popUpSupprimerCompte">
+                <section>
+                    <p>
+                        Supprimer définitivement votre compte ?
+                    </p>
+                </section>
+                <div>
+                    <p>
+                        Cette action est irréversible, toutes les données relatives à votre profil seront effacées
+                    </p>
+                    <div>
+                        <button id="annulerSupprimer"type="button">
+                            Annuler
+                        </button>
+                        <button id="confirmerSupprimer">
+                            Supprimer
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
 
 
 

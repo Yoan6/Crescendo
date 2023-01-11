@@ -7,7 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: solid 1px white;
+    border: solid 2px var(--main-content-background-color);
     border-radius: 15px;
     width: 100%;
 }
@@ -102,7 +102,7 @@
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: solid 1px white;
+    border: solid 1px var(--main-content-background-color);
 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -141,9 +141,9 @@
     justify-content: space-evenly;
     align-items: center;
     border-radius: 15px;
-    border-top: solid 1px white;
-    border-left: solid 1px white;
-    border-bottom: solid 1px white;
+    border-top: solid 1px var(--main-content-background-color);
+    border-left: solid 1px var(--main-content-background-color);
+    border-bottom: solid 1px var(--main-content-background-color);
 
     height: 100%;
     width: 75px;
@@ -242,7 +242,7 @@
     }
 
     .article #divLikes {
-        border: solid 1px white;
+        border: solid 2px var(--main-content-background-color);
         position: absolute;
         bottom: 10px;
         left: 330px;

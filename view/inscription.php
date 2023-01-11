@@ -18,7 +18,7 @@
             <div>
                 <h1>Inscription</h1>
             </div>
-            <form action="inscription.ctrl.php" method="post">
+            <form action="../controler/inscription.ctrl.php" method="post">
                 <div class="contenu">
                     <div class="block">
                         <article class="petit-article">
@@ -42,7 +42,7 @@
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthday" id="birthsday" min="1930-01-01" max="2023-05-01"
+                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="2023-05-01"
                                 required>
                         </article>
 

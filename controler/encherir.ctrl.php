@@ -19,12 +19,7 @@ $password = $_POST['password'] ?? '';
 
 
 if ($login != '' && $password != '') {
-    try {
-        $utilisateur = Utilisateur::read($login,$password);
-    } catch (Exception $e) {
-        $utilisateur = null;
-    }
-    if ($utilisateur !=null) {
+    if (Utilisateur.read($login,$password) !=null) {
         $connected = true;
     }
     else {

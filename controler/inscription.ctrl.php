@@ -15,12 +15,15 @@ $prenom = $_POST['prenom'] ?? '';
 $nom = $_POST['nom'] ?? '';
 $pseudo = $_POST['pseudo'] ?? '';
 $birthsday = $_POST['birthsday'] ?? '';
+$birthsday = new DateTime($birthsday);
+var_dump($birthsday);
 $rue = $_POST['rue'] ?? '';
 $code_postale = $_POST['code_postale'] ?? '';
 $ville = $_POST['ville'] ?? '';
 $adresseMail = $_POST['adresseMail'] ?? '';
 $password = $_POST['mdp'] ?? '';
 $verifmdp = $_POST['verifmdp'] ?? '';
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Partie calculs avec le modèle
@@ -33,14 +36,14 @@ $verifmdp = $_POST['verifmdp'] ?? '';
 
 $error=array();
 
-$dateMinnimale = new DateTime();
-$interval = new DateInterval('P18Y');
-$dateMinnimale->sub($interval);
-if ($birthsday > $dateMinnimale->format('d/m/y')) {
-  $error[] = "L'utilisateur doit avoir au moins 18 ans";
+$dateMinimale = new DateTime();   // date d'aujourd'hui
+$interval = new DateInterval('P18Y');   // intervalle de temps à changer : 18 ans
+$dateMinimale->sub($interval);    // date minimale : aujourd'hui - 18 ans
+if ($birthsday > $dateMinimale->format('d/m/y')) {
+  $error[] = ["L'utilisateur doit avoir au moins 18 ans"];
 }
 if ($verifmdp != $password) {
-  $error[] = "Le mot de passe n'est pas confirmé 2 fois";
+  $error[] = ["Le mot de passe n'est pas confirmé 2 fois"];
 }
 
 if (count($error) == 0) {
@@ -50,7 +53,7 @@ if (count($error) == 0) {
     $utilisateur->create();
   }
   catch (Exception $e) {
-    $error = $e->getMessage();
+    array_push($error,$e->getMessage());
   }
 }
 
@@ -63,6 +66,9 @@ if (count($error) == 0) {
 } else {
   $message = '';
 }
+
+
+var_dump($error);
 
 
 ////////////////////////////////////////////////////////////////////////////
