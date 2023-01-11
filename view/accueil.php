@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
     <link rel="stylesheet" type="text/css" href="../design/accueil.css">
     <link rel="stylesheet" type="text/css" href="../design/article.css">
-
+    <link rel="icon" href="../design/image/icone.png">
 </head>
 
 <body class="dark-mode">
