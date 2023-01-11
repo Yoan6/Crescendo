@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
 $utilisateur = Utilisateur::read('a@gmail.com','a');
-$article = new Article($utilisateur,"titreTest", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
+$article = new Article($utilisateur,"titreTest", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest", new DateTime());
 try {
     //--Test--
     print("Création d'un Article : ");
@@ -37,10 +37,11 @@ try {
     print("Suppression d'un Article : ");
     $article->delete();
     OK();
-} catch (Exception $e) {
+} catch (Exception |Error $e) {
     notOK();
     $dao = DAO::get();
-    $dao->query("DELETE FROM Article WHERE titre = ? AND description_article = ?;", [$article->getTitre(), $article->getDescription()]);
+    var_dump($article);
+    $dao->exec("DELETE FROM Article WHERE (titre,description_article) = (?,?);", [$article->getTitre(), $article->getDescription()]);
     exit('\nErreur ' . $e->getMessage() . "\n");
 }
 ?>

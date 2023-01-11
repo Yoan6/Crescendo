@@ -13,8 +13,6 @@ class Article
     private string $artiste;
     private int $prixMin;
 
-    private array $encheres = array();
-
 
     private string $etat;
     private string $categorie;
@@ -28,7 +26,9 @@ class Article
 
 
     public function __construct(Utilisateur $vendeur, string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
-                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", DateTime $dateEvenement = new DateTime())
+                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", 
+                                    DateTime $dateEvenement = null // Il faut php8 pour initialiser par défaut les Objets dans les paramètres 
+                                )
     {
         // Initialisation obligatoire
         $this->setTitre($titre);
@@ -43,11 +43,8 @@ class Article
         $this->setTaille($taille);
         $this->setLieu($lieu);
         $this->setStyle($style);
-        $this->setDateEvenement($dateEvenement);
+        $this->setDateEvenement($dateEvenement ?? new DateTime()); // Support fonctionnel avant php8
         $this->setNumArticle(-1);
-
-        $enchere = new Enchere([$this]);
-        $this->ajouterEnchere($enchere);
         $this->setVendeur($vendeur);
     }
 
@@ -170,7 +167,7 @@ class Article
 
     public function getDateEvenement() : string
     {
-        return $this->dateEvenement->format('d/m/y');
+        return $this->dateEvenement->format('Y-m-d'); // Format ISO pour la base de données
     }
 
     private function setDateEvenement(dateTime $dateEvenement)
@@ -182,16 +179,7 @@ class Article
 
 
 
-    public function getEncheres() : array
-    {
-        return $this->encheres;
-    }
 
-
-    public function ajouterEnchere(Enchere $enchere){
-        array_push($this->encheres,$enchere);
-    }
-    
     public function getVendeur() : Utilisateur
     {
         return $this->vendeur;
@@ -241,26 +229,28 @@ class Article
     public function create()
     {
         $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
-                                    etat, categorie, taille, lieu, style, date_evenement)
+                                    etat, categorie, taille, lieu, style, date_evenement, num_vendeur)
                         VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
-                                    :etat, :categorie, :taille, :lieu, :style, :date_evenement)";
+                                    :etat, :categorie, :taille, :lieu, :style, :date_evenement, :num_vendeur)";
 
         $dao = DAO::get();
-        $dao->exec($query, $this->getData());
+        $dao->exec(  $query, array_merge( $this->getData(), ["num_vendeur" => $this->getVendeur()->getNumUtilisateur()] )    );
 
         // Récupérer le bon num_article
-        $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0]['max(num_article)'];
+        $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0][0];
         $this->setNumArticle($dernierNum);
-
-        // Lier l'utilisateur à l'article
-        $queryVend = "INSERT INTO VEND(num_utilisateur,num_article)
-                                VALUES(:num_utilisateur,:num_article)";
-        $dao->exec($queryVend,[$this->getVendeur()->getNumUtilisateur(),$this->getNumArticle()]);
     }
 
 
 
     /////////////////////////// READ /////////////////////////////////////
+    /**
+     * 
+     * Récupérer un article à partir de sa description et de son titre
+     * @param string $titre
+     * @param string $description
+     * @return Article
+     */
     public static function read(string $titre, string $description): Article
     {
         $query = "SELECT *
@@ -272,6 +262,12 @@ class Article
         return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
+    /**
+     * 
+     * Récupérer un article à partir de son numéro
+     * @param int $num_article
+     * @return Article
+     */
     public static function readNum(int $num_article): Article
     {
         $query = "SELECT *
@@ -284,6 +280,8 @@ class Article
     }
 
     /**
+     * Cherche des articles, s'ils contiennent le pattern
+     * @param string $titrePattern
      * @return array retourne un tableau d'objet Article
      */
     public static function readLike(string $titrePattern): array {
@@ -293,7 +291,7 @@ class Article
 
         $dao = DAO::get();
         $table = $dao->query($query,[$titrePattern]);
-        return obtenirArticlesAPartirTable($table);
+        return Article::obtenirArticlesAPartirTable($table);
     }
 
 
@@ -305,15 +303,12 @@ class Article
     {
         if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
         $dao = DAO::get();
-        $query = "SELECT num_utilisateur FROM VEND WHERE num_article = ?";
         
         $lesArticles = array();
         foreach($table as $ligne) {
-            // Récupérer le numéro d'utilisateur du Vendeur à partir de la table VEND
-            $numUtilisateur = $dao->query($query,[$ligne['num_article']])[0]['num_utilisateur'];
 
             // Obtenir l'article sous forme d'objet 
-            $article = new Article(Utilisateur::readNum($numUtilisateur),$ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
+            $article = new Article(Utilisateur::readNum($ligne['num_vendeur']),$ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
                                 $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
             $article->setNumArticle($ligne['num_article']);
             array_push($lesArticles,$article);
@@ -332,7 +327,7 @@ class Article
             WHERE num_article = :num_article;";
 
         $dao = DAO::get();
-        $dao->exec($query,$this->getData());
+        $dao->exec($query, array_merge( $this->getData(), ["num_article" => $this->getNumArticle()] ));
     }
 
     /////////////////////////// DELETE /////////////////////////////////////

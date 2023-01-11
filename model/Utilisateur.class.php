@@ -155,7 +155,7 @@ class Utilisateur
 
     public function getDateDeNaissance() : string
     {
-        return $this->dateDeNaissance->format('d/m/y');
+        return $this->dateDeNaissance->format('Y/m/d'); // Format ISO pour la base de données
     }
 
     private function setDateDeNaissance(dateTime $dateDeNaissance)
@@ -206,7 +206,7 @@ class Utilisateur
         $dao->exec($query,$this->getData());
 
         // Récupérer le bon num_utilisateur
-        $dernierNum = $dao->query("SELECT max(num_utilisateur) FROM UTILISATEUR;", array())[0]['max(num_utilisateur)'];
+        $dernierNum = $dao->query(   "SELECT max(num_utilisateur) FROM UTILISATEUR;", array()    )[0][0]; 
         $this->setNumUtilisateur($dernierNum);
         
     }
@@ -248,7 +248,7 @@ class Utilisateur
         foreach($table as $ligne) {
             $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
                                             $ligne['ville'], $ligne['rue'], $ligne['code_postal'],
-                                            (new dateTime())::createFromFormat('d/m/Y',$ligne['date_naissance'])
+                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance'])
                                         );                                
             // Mettre le bon num d'utilisateur
             $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);
@@ -273,7 +273,7 @@ class Utilisateur
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
-        $query = "DELETE FROM Utilisateur WHERE num_utilisateur = ?;";
+        $query = "DELETE FROM Utilisateur WHERE num_utilisateur = ?;"; // Des triggers feront des DELETE dans les autres tables
         $data = [$this->getNumUtilisateur()];
 
         $dao = DAO::get();

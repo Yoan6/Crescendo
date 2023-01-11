@@ -5,11 +5,9 @@ require_once(__DIR__ . '/../model/Article.class.php');
 
     class Enchere {
         private int $numEnchere;
-        private int $prixActuel;
         private const DUREE_MAX = 7;
 
-        private DateTime $DATE_DEBUT;
-        private int $idPaiement;
+        private DateTime $dateDebut;
 
         private array $articles = array(); // Si ce n'est pas un lot, alors une enchère est toujours reliée à un article
         private bool $estLot;
@@ -25,9 +23,8 @@ require_once(__DIR__ . '/../model/Article.class.php');
                 $this->faireLot($articles);
             }
             // Autres initialisation
-            $this->setPrixActuel(-1);
             $this->setNumEnchere(-1);
-            $this->setDateDebut(new DateTime());
+            $this->setDateDebut(new DateTime()); // N'est pas mis en paramètre dans le constructeur car le lot prendra le minimun des dates des enchères des articles
         }
 
         
@@ -47,22 +44,13 @@ require_once(__DIR__ . '/../model/Article.class.php');
             $this->numEnchere = $numEnchere;
         }
 
-        public function getPrixActuel()
-        {
-            return $this->prixActuel;
-        }
 
-        public function setPrixActuel(int $prixActuel)
-        {
-            $this->prixActuel = $prixActuel;
-        }
-
-        public function getEstLot()
+        public function getEstLot() : bool
         {
             return $this->estLot;
         }
 
-        private function setEstLot(int $estLot)
+        private function setEstLot(bool $estLot)
         {
             $this->estLot = $estLot;
         }
@@ -98,10 +86,10 @@ require_once(__DIR__ . '/../model/Article.class.php');
 
         public function getDateDebut() : string
         {
-            return $this->dateDebut->format('d/m/y');
+            return $this->dateDebut->format('Y-m-d'); // Format ISO pour la base de données
         }
 
-        private function setDateDebut(dateTime $dateDebut)
+        public function setDateDebut(dateTime $dateDebut)
         {
             $this->dateDebut = $dateDebut;
         }
@@ -114,8 +102,8 @@ require_once(__DIR__ . '/../model/Article.class.php');
      */
         private function getData() : array {
             return array(
-                ':date_debut' => $this->getDateDebut(),
-                ':est_lot' => $this->getEstLot(),
+                'date_debut' => $this->getDateDebut(),
+                'est_lot' => (int) $this->getEstLot(), // postgresql n'accepte pas les bool des PHP, donc on fait une conversion en int
             ); //Note : ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
         }
 
@@ -124,21 +112,17 @@ require_once(__DIR__ . '/../model/Article.class.php');
          * CRUD
          *********************/
 
-
-
-
         /////////////////////////// CREATE /////////////////////////////////////
         public function create()
         {
             $dao = DAO::get();
-
             // Insérer les enchères dans la base 
             $queryEnchere = "INSERT INTO ENCHERE(est_lot,date_debut) Values(:est_lot,:date_debut)";
             $dao->exec($queryEnchere,$this->getData());
 
 
-            //assigner le bon id à cet objet
-            $num_enchere_serial = $dao->query("SELECT max(num_enchere) FROM ENCHERE;",array())[0]['max(num_enchere)'];
+            //assigner le bon numéro à cet objet, car c'est la base qui le génère
+            $num_enchere_serial = $dao->query("SELECT max(num_enchere) FROM ENCHERE;",array())[0][0];
             $this->setNumEnchere($num_enchere_serial); 
 
 
@@ -151,7 +135,13 @@ require_once(__DIR__ . '/../model/Article.class.php');
         }
 
         /////////////////////////// READ /////////////////////////////////////
-        public static function read($numEnchere) : Enchere
+        /**
+         * Récupère une enchère à partir de son numéro, puis récupère les articles de l'enchères (un si c'est pour objet, plusieurs si c'est un lot)
+         * @param int $numEnchere
+         * @throws Exception
+         * @return Enchere
+         */
+        public static function read(int $numEnchere) : Enchere
         {
             $query = "SELECT *
                     FROM ENCHERE e natural left join CONCERNE c
@@ -159,18 +149,28 @@ require_once(__DIR__ . '/../model/Article.class.php');
 
             $dao = DAO::get();
             $table = $dao->query($query,[$numEnchere]);
-            if(count($table) != 1) {throw new Exception("l'enchère n'existe pas");}
-
+            if(count($table) != 1) {
+                throw new Exception("l'enchère n'existe pas");
+            }
 
             // Récupérer les articles
             $articles = array();
-            foreach($table as $ligne) {array_push( $articles, Article::readNum($ligne["num_article"]) );}
-            $ligne = $table[0];
+            foreach($table as $ligne) {
+                array_push( $articles, Article::readNum($ligne["num_article"]) );
+            }
+
+            // Avoir l'enchère et mettre le bon numéro
             $enchere = new Enchere($articles);
-            $enchere->setNumEnchere($ligne['num_enchere']);
+            $enchere->setNumEnchere($numEnchere); // La base de donnée attribue le numéro
+            $enchere->setDateDebut(new DateTime($ligne["date_debut"])); 
             return $enchere;
         }
 
+        /**
+         * Rechercher les Enchères ayant des articles avec des titres contenant le pattern
+         * @param string $titrePattern
+         * @return array
+         */
         public static function readLike(string $titrePattern) : array
         {
             // Chercher les articles ayants ces noms
@@ -178,14 +178,16 @@ require_once(__DIR__ . '/../model/Article.class.php');
             
             // Récupérer les enchères associées
             $query = "SELECT distinct num_enchere
-                FROM ARTICLE a natural left join CONCERNE c
-                WHERE num_article = ?;";
+                        FROM ARTICLE a natural left join CONCERNE c
+                        WHERE num_article = ?;";
             $dao = DAO::get();
             $encheres = array();
+            // Parcourir les articles obtenues pour leur associer le
             foreach($articles as $article) {
-                array_push($encheres, ENCHERE::read($dao->exec($query, [$article->getNumArticle()])) );
+                $numEnchere = $dao->query($query, [$article->getNumArticle()])[0][0];
+                array_push($encheres, ENCHERE::read($numEnchere) );
             }
-            return array();
+            return $encheres;
         }
 
         /////////////////////////// UPDATE /////////////////////////////////////
@@ -203,7 +205,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
         /////////////////////////// DELETE /////////////////////////////////////
         public function delete()
         {
-            $query = "DELETE FROM ENCHERE WHERE num_ENCHERE = :num_enchere;";
+            $query = "DELETE FROM ENCHERE WHERE num_ENCHERE = :num_enchere;"; // Des triggers feront des DELETE dans les autres tables
             
             $dao = DAO::get();
             $dao->exec($query,[$this->getNumEnchere()]);

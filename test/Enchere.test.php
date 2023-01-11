@@ -6,7 +6,7 @@ $utilisateur = Utilisateur::read('a@gmail.com','a');
 $article = new Article($utilisateur,"titreTestEnchere", "descriptionTest", "urlImageTest", 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest");
 try {
     $article->create();
-    $enchere = $article->getEncheres()[0];
+    $enchere = new Enchere([$article]);
 
 
     //--Test--
@@ -27,7 +27,7 @@ try {
 
     // --Test--
     print("Update d'une Enchere : ");
-    $enchere->setPrixActuel(1);
+    $enchere->setDateDebut(new DateTime());
     $enchere->update();
     $enchere2 = Enchere::read($enchere->getNumEnchere());
     if(!$enchere->egalEnchere($enchere2)) 
@@ -42,11 +42,11 @@ try {
     $enchere->delete();
     OK();
 
-} catch (Exception $e) {
+} catch (Exception | Error  $e) {
     notOK();
     $dao = DAO::get();
-    $dernierNum = $dao->query("SELECT max(num_enchere) FROM ENCHERE;",array())[0]['max(num_enchere)']; // Récupérer le dernier id crée
-    $dao->query("DELETE FROM ENCHERE WHERE num_enchere = ?;", [$dernierNum]);
+    $dernierNum = $dao->query("SELECT max(num_enchere) FROM ENCHERE;",array())[0][0]; // Récupérer le dernier id crée
+    $dao->exec("DELETE FROM ENCHERE WHERE num_enchere = ?;", [$dernierNum]);
     
     print('\nErreur ' . $e->getMessage() . "\n");
 }
