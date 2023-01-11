@@ -48,28 +48,56 @@
 
                     <div id="filterdown">
                         <div>
-                            <input type="checkbox" id="Regae" name="Regae">
-                            <label for="Regae">Regae</label>
+                            <input type="checkbox" id="blues" name="Blues">
+                            <label for="Blues">Blues</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="Pop" name="Pop">
-                            <label for="Pop">Pop</label>
+                            <input type="checkbox" id="classique" name="Classique">
+                            <label for="Classique">Classique</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="Rock" name="Rock">
-                            <label for="Rock">Rock</label>
+                            <input type="checkbox" id="disco" name="Disco">
+                            <label for="Disco">Disco</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="Metal" name="Metal">
+                            <input type="checkbox" id="electro" name="Electro">
+                            <label for="Electro">Electro</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="funk" name="Funk">
+                            <label for="Funk">Funk</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hiphop" name="Hip-hop">
+                            <label for="Hip-hop">Hip-hop</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="jazz" name="Jazz">
+                            <label for="Jazz">Jazz</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="metal" name="Metal">
                             <label for="Metal">Metal</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="Rap" name="Rap">
-                            <label for="Rap">Rap</label>
+                            <input type="checkbox" id="film" name="MusiqueDeFilm">
+                            <label for="MusiqueDeFilm">Musique de film</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="Regae" name="Regae">
-                            <label for="Regae">Regae</label>
+                            <input type="checkbox" id="pop" name="Pop">
+                            <label for="Pop">Pop</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="reggae" name="Reggae">
+                            <label for="Reggae">Reggae</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="rock" name="Rock">
+                            <label for="Rock">Rock</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="techno" name="Techno">
+                            <label for="Techno">Techno</label>
                         </div>
                     </div>
 
