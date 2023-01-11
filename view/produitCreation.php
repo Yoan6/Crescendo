@@ -14,10 +14,23 @@
 				<div id="produitGrandeImage">
 					<input id="addImage" type="file" placeholder="Ajouter des Images">
 				</div>
-				
+				<div>
+				<p>Titre</p>
 				<input class="commeUnlabel" id="nomItem" placeholder="Veste d'Elton John"></textarea>
+				</div>
+				<div>
+				<p>
+				Prix de départ
+				</p>
 				<input class="commeUnlabel" id="prixArticle"placeholder="Prix actuel"></textarea>
+				</div>
+				<div>
+					<p>
+						Date 
+					</p>
 				<input class="commeUnlabel" id="date" placeholder="Insérer date"></textarea>
+
+				</div>
 			
 
 				<label class="conteneur" id="descriptionArticle">

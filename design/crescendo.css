@@ -1,22 +1,20 @@
-
-
-
-html{
-	max-height:100vh;
-	max-width:100vw;
+html {
+	max-height: 100vh;
+	max-width: 100vw;
 	scroll-behavior: smooth;
-	overflow-x:hidden;
+	overflow-x: hidden;
 }
 
-body{
+body {
 	font-family: Arial, sans-serif;
 	color: var(--main-font-color);
-	margin:0; /*Cacher la Scrollbar en x;*/
+	margin: 0;
+	/*Cacher la Scrollbar en x;*/
 	background-color: var(--main-background-color);
 }
 
 main {
-	min-height:67vh;
+	min-height: 67vh;
 }
 
 
@@ -27,40 +25,41 @@ Variables
 	/* ==== Couleurs arrière-plan ====*/
 	--main-background-color: white;
 	--header-background-color: grey;
-	--footer-background-color: grey; 
+	--footer-background-color: grey;
 	--div-background-color: rgb(83, 82, 82);
 	--navBar-background-color: black;
 	--bleu: #79d2bc;
 	--rouge: #F85656;
 
 
-	--main-content-background-color:#161616;
-	
+	--main-content-background-color: #161616;
+
 	/* ==== Couleurs police ====*/
 	--main-font-color: black;
 	--footer-font-color: black;
-	--navBar-font-color:  black;
-	--main-content-font-color:white;
+	--navBar-font-color: black;
+	--main-content-font-color: white;
 
 }
 
 body.dark-mode {
-	
+
 	/* ==== Couleurs arrière-plan ====*/
 	--main-background-color: #161616;
 	--header-background-color: #272727;
-	--footer-background-color: #161616; /*#161616*/
+	--footer-background-color: #161616;
+	/*#161616*/
 	--div-background-color: white;
-	--navBar-background-color:  #1D1D1D;
-	--bleu:#79d2bc;
+	--navBar-background-color: #1D1D1D;
+	--bleu: #79d2bc;
 	--lightGrey: #212121;
-	--main-content-background-color:white;
-	
+	--main-content-background-color: white;
+
 	/* ==== Couleurs police ====*/
 	--main-font-color: white;
 	--footer-font-color: #9B9B9B;
-	--navBar-font-color:  white;
-	--main-content-font-color:#161616;
+	--navBar-font-color: white;
+	--main-content-font-color: #161616;
 }
 
 
@@ -86,77 +85,99 @@ Pour factoriser
 Règles générales ?
 *****************************/
 
-button, a {
-	cursor:pointer;
+button,
+a {
+	cursor: pointer;
 }
 
 a {
-	color:white;
+	color: white;
 	text-decoration: none;
 	block-size: fit-content;
 	width: auto;
 	height: auto;
-	display:block;
+	display: block;
 }
 
-h1, h2 {
+h1,
+h2 {
 	color: var(--navBar-font-color);
 }
 
-ul{
+ul {
 	list-style: none;
 }
 
+p {
+	margin: 0px;
+}
 
-input, textarea {
+input,
+textarea {
 	border: none;
 	outline: none;
 	margin: none;
+	padding: 0;
 }
-  
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 
-button img, label img {
-	width:50px;
-	height:50px;
+button img,
+label img {
+	width: 50px;
+	height: 50px;
 }
 
 
 @media only screen and (max-width: 900px) {
-	button img, label img {
-		width:30px;
-		height:30px;
+
+	button img,
+	label img {
+		width: 30px;
+		height: 30px;
 	}
 }
 
 
 .iconTaille {
-	height:40px;
-	width:40px;
-    border: none;
-    background: none;
+	height: 40px;
+	width: 40px;
+	border: none;
+	background: none;
 }
 
 
-#pageProduit button:not(.iconTaille,.btn,.danger), #pageProfil nav a {
+#pageProduit button:not(.iconTaille, .btn, .danger),
+#pageProfil nav a {
 	background-color: var(--bleu);
 }
 
 /*Pour éviter de refaire le format d'un label, bouton,... en forme d'ellipse*/
-:where(#pageProduit) :where(button:not(.iconTaille,.btn,.voir-enchere),label, h3, output, a, input,#btnPaypal, .commeUnlabel, .btnLabel), #pageProfil nav a  {
-	margin:10px;
+:where(#pageProduit) :where(button:not(.iconTaille, .btn, .voir-enchere), label, h3, output, a, input, #btnPaypal, .commeUnlabel, .btnLabel),
+#pageProfil nav a {
+	margin: 10px;
 	padding: 20px;
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
 }
 
-:where(#pageProduitCreation) :where(button:not(.iconTaille,.btn,.voir-enchere, #btnPaypal),button,a), #pageProfil nav a {
-	width:250px;
+:where(#pageProduitCreation) :where(button:not(.iconTaille, .btn, .voir-enchere, #btnPaypal), button, a),
+#pageProfil nav a {
+	width: 250px;
 	height: 40px;
 	justify-self: center;
 	border-radius: 100px;
@@ -174,12 +195,12 @@ Règles spéciales
 
 /** Les tirets ne sont pas supportés de base **/
 ul.tiret {
-  list-style-type: none;
+	list-style-type: none;
 }
 
 ul.tiret li a:before {
-  content: "- ";
-  text-indent: -20px;
+	content: "- ";
+	text-indent: -20px;
 }
 
 
@@ -203,71 +224,120 @@ Produit Grille
 
 @media only screen and (min-width: 1000px) {
 	main form.conteneur#pageProduit {
-		width:70%;
+		width: 70%;
 		margin-left: 15%;
 	}
-  }
+}
 
 main form.conteneur#pageProduit {
-	display:grid;
+	display: grid;
 	grid-template-areas: "produitGrandeImage	produitGrandeImage	 	nomItem 	nomItem"
-						 "produitGrandeImage 	produitGrandeImage 	prixArticle 	prixArticle"
-						 "lot 		favorisLikeDislike 			profil 		profil"
-						 "descriptionArticle 	descriptionArticle		descriptionArticle	descriptionArticle"
-						 "informationTotal	informationTotal		informationTotal	informationTotal";
+		"produitGrandeImage 	produitGrandeImage 	prixArticle 	prixArticle"
+		"lot 		favorisLikeDislike 			profil 		profil"
+		"descriptionArticle 	descriptionArticle		descriptionArticle	descriptionArticle"
+		"informationTotal	informationTotal		informationTotal	informationTotal";
 	grid-template-columns: 25% 25% 25% 25%;
 }
 
 main#pageProduitCreation form.conteneur#pageProduit {
 	grid-template-columns: 50% 50%;
 	grid-template-areas: "produitGrandeImage nomItem "
-						 "produitGrandeImage prixArticle"
-						 "produitGrandeImage date"
-						 "descriptionArticle descriptionArticle"
-						 "informationEvenement informationArticle"
-						 "grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
+		"produitGrandeImage prixArticle"
+		"produitGrandeImage date"
+		"descriptionArticle descriptionArticle"
+		"informationEvenement informationArticle"
+		"grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
 }
 
 @media only screen and (max-width: 1000px) {
 	main form.conteneur#pageProduit {
-		display:flex;
+		display: flex;
 		flex-flow: Column;
-		width:90%;
+		width: 90%;
 		margin-left: 5%;
 	}
-  }
+}
 
 
 /*Les zones de la grille*/
-#pageProduit #produitGrandeImage {grid-area: produitGrandeImage;}
-#pageProduit #profil {grid-area: profil;}
-#pageProduit #favorisLikeDislike {grid-area: favorisLikeDislike;}
-#pageProduit #nomItem {grid-area: nomItem;}
-#pageProduit #lot {grid-area: lot;}
-#pageProduit #descriptionArticle {grid-area: descriptionArticle;}
-#pageProduit #informationTotal {grid-area: informationTotal;}
-#pageProduit #prixArticle {grid-area: prixArticle;}
+#pageProduit #produitGrandeImage {
+	grid-area: produitGrandeImage;
+}
 
-#pageProduit #date {grid-area: date;}
-#pageProduit .information#informationArticle {grid-area: informationArticle;}
-#pageProduit .information#informationEvenement {grid-area: informationEvenement;}
-#pageProduit #grilleBoutonsValiderAnnuler {grid-area: grilleBoutonsValiderAnnuler; flex-flow: row; justify-content: space-evenly;}
+#pageProduit #profil {
+	grid-area: profil;
+}
+
+#pageProduit #favorisLikeDislike {
+	grid-area: favorisLikeDislike;
+}
+
+#pageProduit #nomItem {
+	grid-area: nomItem;
+}
+
+#pageProduit #lot {
+	grid-area: lot;
+}
+
+#pageProduit #descriptionArticle {
+	grid-area: descriptionArticle;
+}
+
+#pageProduit #informationTotal {
+	grid-area: informationTotal;
+}
+
+#pageProduit #prixArticle {
+	grid-area: prixArticle;
+}
+
+#pageProduit #date {
+	grid-area: date;
+}
+
+#pageProduit .information#informationArticle {
+	grid-area: informationArticle;
+}
+
+#pageProduit .information#informationEvenement {
+	grid-area: informationEvenement;
+}
+
+#pageProduit #grilleBoutonsValiderAnnuler {
+	grid-area: grilleBoutonsValiderAnnuler;
+	flex-flow: row;
+	justify-content: space-evenly;
+}
 
 #pageProduit div#prixArticle {
-	display:grid;
+	display: grid;
 	grid: auto auto / auto auto;
 }
 
-#pageProduit #informationTotal  ul {
-	display:grid;
-	grid:auto auto auto auto / auto auto; /* 4 lignes / 2 colones*/
+#pageProduit #informationTotal ul {
+	display: grid;
+	grid: auto auto auto auto / auto auto;
+	/* 4 lignes / 2 colones*/
 }
 
-#pageProduit .information ul {flex-flow: column;}
-#pageProduit .information li {display:flex;flex-flow: row; justify-content: space-between;}
+#pageProduit .information ul {
+	flex-flow: column;
+}
 
-#pageProduit label.conteneur {flex-flow: column}
-#pageProduit #profil * {flex-grow: 1;}
+#pageProduit .information li {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
+#pageProduit label.conteneur {
+	flex-flow: column
+}
+
+#pageProduit #profil * {
+	flex-grow: 1;
+}
 
 
 /*****************************
@@ -275,9 +345,9 @@ Produit Style
 *****************************/
 #pageProduit div#produitGrandeImage {
 	max-height: 300px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 #pageProduit #produitGrandeImage img {
@@ -286,26 +356,41 @@ Produit Style
 }
 
 
-#pageProduit  :where(label, a,input){
+#pageProduit :where(label, a, input) {
 	color: var(--main-content-font-color);
 	background-color: var(--main-content-background-color);
 }
 
-#pageProduit :where(h3,output) {
+#pageProduit :where(h3, output) {
 	color: var(--main-content-background-color);
 	background-color: var(--main-content-font-color);
-	
+
 }
 
-#pageProduit textarea {color: black;}
-#pageProduitCreation input {width: 100%;}
-.information ul {	list-style-type: none;}
+#pageProduit textarea {
+	color: black;
+}
 
-#pageProduitCreation .mettreInformation  {width:300px; height:20px; margin: 21px 0;}
-li h4::after { content: " : ";}
+#pageProduitCreation input {
+	width: 100%;
+}
 
-#pageProduitCreation :where(button,a) {
-	width:fit-content;
+.information ul {
+	list-style-type: none;
+}
+
+#pageProduitCreation .mettreInformation {
+	width: 300px;
+	height: 20px;
+	margin: 21px 0;
+}
+
+li h4::after {
+	content: " : ";
+}
+
+#pageProduitCreation :where(button, a) {
+	width: fit-content;
 	height: fit-content;
 	justify-self: center;
 	border-radius: 100px;
@@ -319,7 +404,11 @@ li h4::after { content: " : ";}
 	background-color: var(--div-background-color);
 }
 
-#favorisLikeDislike, #lot {	align-items: center; justify-content: space-around;}
+#favorisLikeDislike,
+#lot {
+	align-items: center;
+	justify-content: space-around;
+}
 
 /*****************************
 Page de profil
@@ -328,7 +417,9 @@ Page de profil
 	margin-left: 10%;
 }
 
-div#pageProfil div {flex-flow: column;}
+div#pageProfil div {
+	flex-flow: column;
+}
 
 #pageProfil nav ul {
 	display: grid;
@@ -340,18 +431,20 @@ div#pageProfil div {flex-flow: column;}
 	flex-flow: row;
 }
 
-#pageProfil .iconTaille {vertical-align: top;}
+#pageProfil .iconTaille {
+	vertical-align: top;
+}
 
 #pageProfil h2 {
 	margin: 10px 0;
 	text-align: center;
 	padding: 0 0px 0 10px;
 	margin: 5px 0 20px 0;
-	width:100%;
+	width: 100%;
 }
 
 div#pageProfil div img {
-	height:300px;
+	height: 300px;
 }
 
 
@@ -365,25 +458,25 @@ Règles pour éléments du footer
 *****************************/
 
 footer {
-	
-	border-top:1px solid var(--footer-font-color);
+
+	border-top: 1px solid var(--footer-font-color);
 	color: var(--footer-font-color);
 	box-sizing: border-box;
 	background-color: var(--footer-background-color);
-	width:100%;
+	width: 100%;
 	block-size: fit-content;
-	padding:3vh 0 2vh 0 ;
+	padding: 3vh 0 2vh 0;
 }
 
 footer ul {
 	padding: 0px;
 
-	margin:0px;
+	margin: 0px;
 	justify-content: space-between;
 }
 
 footer nav ul li {
-	flex-flow:column;
+	flex-flow: column;
 	width: 100%;
 	align-items: center;
 }
@@ -397,7 +490,7 @@ footer h4 {
 }
 
 footer li a {
-   color: var(--footer-font-color);
+	color: var(--footer-font-color);
 }
 
 footer li a:hover {
@@ -427,7 +520,7 @@ footer #logosCommunaute {
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
-	
+
 }
 
 .contact:hover {
@@ -455,7 +548,8 @@ Règles pour éléments du footer (comment vendre)
 	width: 50%;
 }
 
-#cmtVendre p, h1 {
+#cmtVendre p,
+h1 {
 	text-align: center;
 }
 
@@ -476,7 +570,8 @@ Règles pour éléments du footer (comment vendre)
 	width: 50%;
 }
 
-#cmtAcheter p, h1 {
+#cmtAcheter p,
+h1 {
 	text-align: center;
 }
 
@@ -497,11 +592,14 @@ Règles pour éléments du footer (FAQ)
 	width: 50%;
 }
 
-#faq p, h1, h3 {
+#faq p,
+h1,
+h3 {
 	text-align: center;
 }
 
-#faq p, h1 {
+#faq p,
+h1 {
 	margin-bottom: 70px;
 }
 

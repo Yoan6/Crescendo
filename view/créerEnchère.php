@@ -16,7 +16,7 @@
 
 
 
-        <form action="">
+        <form method="post" action="">
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
@@ -83,9 +83,28 @@
                     </div>
 
                     <div id="divTopRight">
-                        <input type="text" placeholder="INSERER TITRE">
-                        <input type="text" placeholder="INSERER PRIX DE DEPART">
-                        <input type="text" placeholder="DATE DE DEBUT D'ENCHERE">
+                        <div>
+                            <h4>
+                                Nom de l'enchère
+                            </h4>
+                            <input type="text" placeholder="INSERER TITRE">
+
+                        </div>
+                        <div>
+                            <h4>
+                                Prix de départ
+                            </h4>
+                            <input type="text" placeholder="INSERER PRIX DE DEPART">
+
+                        </div>
+                        <div>
+                            <h4>
+                                Date de début d'enchère
+                            </h4>
+
+                            <input type="date" id="date">
+
+                        </div>
                     </div>
                 </div>
 
@@ -200,7 +219,7 @@
 
 
             <div id="buttons">
-                <button type="button">Annuler</button>
+                <a href="accueil.php">Annuler</a>
                 <button>Confirmer</button>
             </div>
 

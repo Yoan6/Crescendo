@@ -11,7 +11,7 @@
             <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
         </form>
                     
-  <a id="creationArticle" href="produitCreation.php">Vends tes articles</a>
+  <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
         
 
 <div class="container">
