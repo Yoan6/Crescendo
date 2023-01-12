@@ -22,29 +22,30 @@
         <div id="principale">
             <aside class="filtre">
                 <div>
-                    <button id="buttonDropFilter">
-                        <h3>Style musical </h3>
-                        <svg id="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <title>plus</title>
-                                <path
-                                    d="M30 14.75h-12.75v-12.75c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0 12.75h-12.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h12.75v12.75c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-12.75h12.75c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                </path>
-                            </g>
-                        </svg>
-                        <svg id="minus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <title>minus</title>
-                                <path
-                                    d="M30 14.75h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                </path>
-                            </g>
-                        </svg>
-                    </button>
+                    <div>
+                        <button class="buttonDropFilter">
+                            <h3>Style musical </h3>
+                            <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <title>plus</title>
+                                    <path
+                                        d="M30 14.75h-12.75v-12.75c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0 12.75h-12.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h12.75v12.75c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-12.75h12.75c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
+                                    </path>
+                                </g>
+                            </svg>
+                            <svg class="minus" fill="#000000" viewBox="0 0 32 32" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                    <title>minus</title>
+                                    <path
+                                        d="M30 14.75h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </button>
 
                     <div id="filterdown">
                         <div>
@@ -101,8 +102,8 @@
                         </div>
                     </div>
 
-
                 </div>
+
                 <div id="validerOuEffacer">
                     <button>
                         Valider
@@ -123,7 +124,7 @@
                                 <option value="1">Plus aimés</option>
                                 <option value="2">Moins aimés</option>
                             </select>
-                            
+
 
 
 
@@ -131,7 +132,7 @@
                         </div>
                     </div>
 
-                    
+
                     <div class="article">
 
                         <div id="divHeart">

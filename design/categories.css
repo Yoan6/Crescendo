@@ -130,13 +130,21 @@ aside>div {
 
 }
 
-aside>div:first-child {
+aside>div{
+	display: flex;
+	gap: 15px;
 	min-width: 150px;
 	margin-top: 30px;
-	background-color: white;
 	border-radius: 15px;
 	display: flex;
 	flex-direction: column;
+
+}
+
+aside div div {
+
+	height: fit-content;
+
 }
 
 aside>div:last-child {
@@ -166,7 +174,7 @@ aside>div:last-child>button:last-child {
 	color: white;
 }
 
-aside div:first-child>button {
+aside .buttonDropFilter {
 
 	border-radius: 15px;
 	border: none;
@@ -174,37 +182,46 @@ aside div:first-child>button {
 	font-size: large;
 	font-weight: bold;
 	height: 70px;
+	width: 100%;
 
 }
 
-aside div:first-child>button>h3 {
-	margin: 10px;
+
+
+aside .buttonDropFilter h3 {
+	width: 20%;
+	min-width: 140px;
 }
 
-aside #filterdown {
-	width: 80%;
-	height: 100%;
+aside .filterdown {
+	width: 100%;
 	display: none;
 	flex-direction: column;
 	justify-content: space-evenly;
 	gap: 20px;
-	padding-left: 15px;
-	padding-bottom: 15px;
+
+	padding-top: 15px;
+	padding-bottom: 30px;
+
+	border-radius: 0px 0px 15px 15px;
+	
+	background-color: var(--main-font-color);
 }
 
-aside #filterdown>div {
+aside .filterdown>div {
 	display: flex;
 	flex-direction: row;
 	gap: 30px;
+	height: fit-content;
 
 }
 
-aside #filterdown>div>label {
+aside .filterdown>div>label {
 	font-size: larger;
 	color: black;
 }
 
-aside #filterdown>div>input[type="checkbox"] {
+aside .filterdown>div>input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	margin: 0px;
@@ -212,6 +229,7 @@ aside #filterdown>div>input[type="checkbox"] {
 	width: 30px;
 	cursor: pointer;
 	accent-color: var(--bleu);
+	margin-left: 15%;
 }
 
 
@@ -284,13 +302,8 @@ Règles pour un objet (article)
 		max-width: 700px;
 	}
 
-	#buttonDropFilter {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-	}
+
+
 	
 
 	#divdroite {

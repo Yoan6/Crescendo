@@ -35,7 +35,7 @@ try {
 
 try {
     $dao->exec("DELETE FROM UTILISATEUR WHERE email=?;", [$valeurAttendu['email']]);
-} catch (Exception $e) {
+} catch (Exception | Error  $e) {
     // Ne rien faire, car l'utilisateur n'est plus dans la base de données
 }
 ?>

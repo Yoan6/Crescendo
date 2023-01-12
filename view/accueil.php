@@ -85,7 +85,7 @@
                                         d s dsds rd zdz dzf fz erfrgefgdge ergrg re ger erhergregzrg zr zh zrh zrzrrzrzrzr z
                                         zrrz rz r</p>
                                 </section>
-                                <a href="produit.php">Voir l'enchère</a>
+                                <a href="voirEnchère.php">Voir l'enchère</a>
                             </div>
                         </div>
 
