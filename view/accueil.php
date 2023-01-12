@@ -53,6 +53,8 @@
             <div>
                 <h1>Les articles de la semaine</h1>
                 <?php for ($i = 0; $i < 3; $i++) { ?>
+                    
+
                     <form class="article">
 
                         <div id="divHeart">
