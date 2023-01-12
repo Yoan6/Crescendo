@@ -1,0 +1,6 @@
+<?php
+
+
+$environnement = new SandboxEnvironnement()
+
+?>

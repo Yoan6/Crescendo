@@ -2,37 +2,39 @@
 
 require_once(__DIR__ . '/../model/DAO.class.php');
 require_once(__DIR__ . '/../model/Enchere.class.php');
+require_once(__DIR__ . '/../model/Utilisateur.class.php');
 
 class Article
 {
     private int $numArticle;
     private string $titre;
     private string $description;
-    private string $urlImage;
+    private array $nomImages;
     private string $artiste;
     private int $prixMin;
-
-    private array $encheres = array();
 
 
     private string $etat;
     private string $categorie;
     private string $taille;
-    //private DateTime $date;
+    private DateTime $dateEvenement;
     private string $lieu;
     private string $style;
 
+    private Utilisateur $vendeur;
+    private const LOCALURL = "../data/imgArticle/";
 
 
 
-
-    public function __construct(string $titre,string $description, string $urlImage, int $prixMin, string $artiste, 
-                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="")
+    public function __construct(Utilisateur $vendeur, string $titre,string $description, array $nomImgages, int $prixMin, string $artiste, 
+                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", 
+                                    DateTime $dateEvenement = null // Il faut php8 pour initialiser par défaut les Objets dans les paramètres 
+                                )
     {
         // Initialisation obligatoire
         $this->setTitre($titre);
         $this->setDescription($description);
-        $this->setUrlImage($urlImage);
+        $this->ajouterNomsImg($nomImgages);
         $this->setPrixMin($prixMin);
         $this->setArtiste($artiste);
 
@@ -42,10 +44,9 @@ class Article
         $this->setTaille($taille);
         $this->setLieu($lieu);
         $this->setStyle($style);
+        $this->setDateEvenement($dateEvenement ?? new DateTime()); // Support fonctionnel avant php8
         $this->setNumArticle(-1);
-
-        $enchere = new Enchere([$this]);
-        $this->ajouterEnchere($enchere);
+        $this->setVendeur($vendeur);
     }
 
 
@@ -84,14 +85,29 @@ class Article
         $this->description = $description;
     }
 
-    public function getUrlImage()
+    /**
+     * Retourne les images avec le chemin vers le répertoire de stockage des images
+     */
+    public function getImagesURL() : array
     {
-        return $this->urlImage;
+        $imagesURL = array();
+        foreach($this->nomImages as $nomImage) {
+            array_push($imagesURL, $nomImage);
+        }
+        return $imagesURL;
     }
 
-    public function setUrlImage($urlImage)
+    /**
+     * 
+     */
+    public function getImages() : array
     {
-        $this->urlImage = $urlImage;
+        return $this->nomImages;
+    }
+
+    public function ajouterNomsImg(array $nomImages)
+    {
+        $this->nomImages = $nomImages;
     }
 
     public function getArtiste()
@@ -164,14 +180,35 @@ class Article
         $this->prixMin = $prixMin;
     }
 
-    public function getEncheres() : array
+
+    public function getDateEvenement() : string
     {
-        return $this->encheres;
+        return $this->dateEvenement->format('Y-m-d'); // Format ISO pour la base de données
     }
-    public function ajouterEnchere(Enchere $enchere){
-        array_push($this->encheres,$enchere);
+
+    private function setDateEvenement(dateTime $dateEvenement)
+    {
+        $this->dateEvenement = $dateEvenement;
     }
-    
+
+
+
+
+
+
+    public function getVendeur() : Utilisateur
+    {
+        return $this->vendeur;
+    }
+
+    public function setVendeur(Utilisateur $vendeur)
+    {
+        $this->vendeur = $vendeur;
+    }
+
+
+
+
 
 
     /**
@@ -182,10 +219,10 @@ class Article
         return array(
             'titre' => $this->getTitre(),
             'description_article' => $this->getDescription(),
-            'img_url' => $this->getUrlImage(),
+            
             'prix_min' => $this->getPrixMin(),
             'artiste' => $this->getArtiste(),
-            //$this->getDate(),
+            'date_evenement' => $this->getDateEvenement(),
             'etat' => $this->getEtat(),
             'categorie' => $this->getCategorie(),
             'taille' => $this->getTaille(),
@@ -207,20 +244,40 @@ class Article
     */
     public function create()
     {
-            $query = "INSERT INTO ARTICLE(titre, img_url, prix_min, description_article, artiste, 
-                                        etat, categorie, taille, lieu, style)
-                            VALUES(:titre, :img_url, :prix_min, :description_article, :artiste, 
-                                        :etat, :categorie, :taille, :lieu, :style)";
+        $query = "INSERT INTO ARTICLE(titre, prix_min, description_article, artiste, 
+                                    etat, categorie, taille, lieu, style, date_evenement, num_vendeur)
+                        VALUES(:titre, :prix_min, :description_article, :artiste, 
+                                    :etat, :categorie, :taille, :lieu, :style, :date_evenement, :num_vendeur)";
 
-            $dao = DAO::get();
-            $dao->exec($query, $this->getData());
-
-            // Récupérer le bon num_article
-        $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0]['max(num_article)'];
+        $dao = DAO::get();
+        $dao->exec(  $query, array_merge( $this->getData(), ["num_vendeur" => $this->getVendeur()->getNumUtilisateur()] )    );
+        
+        // Récupérer le bon num_article
+        $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0][0];
         $this->setNumArticle($dernierNum);
+        
+        // Insérer l'image
+        $queryImage = "INSERT INTO IMAGE_ARTICLE(num_article,nom_image) values (:num_article,:nom_image);";
+        $data = [
+            'num_article' => $this->getNumArticle(),
+            'nom_image' => ""
+        ];
+        foreach($this->getImages() as $image) {
+            $data['nom_image'] = $image;
+            $dao->exec($queryImage,$data);
+        }
     }
 
+
+
     /////////////////////////// READ /////////////////////////////////////
+    /**
+     * 
+     * Récupérer un article à partir de sa description et de son titre
+     * @param string $titre
+     * @param string $description
+     * @return Article
+     */
     public static function read(string $titre, string $description): Article
     {
         $query = "SELECT *
@@ -229,9 +286,15 @@ class Article
 
         $dao = DAO::get();
         $table = $dao->query($query,[$titre, $description]);
-        return Article::obtenirArticleAPartirTable($table);
+        return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
+    /**
+     * 
+     * Récupérer un article à partir de son numéro
+     * @param int $num_article
+     * @return Article
+     */
     public static function readNum(int $num_article): Article
     {
         $query = "SELECT *
@@ -240,47 +303,82 @@ class Article
 
         $dao = DAO::get();
         $table = $dao->query($query,[$num_article]);
-        return Article::obtenirArticleAPartirTable($table);
+        return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
-    private static function obtenirArticleAPartirTable($table) : Article
-    {
-        if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
-        
-        $ligne = $table[0];
-        $article = new Article($ligne['titre'], $ligne['description_article'], $ligne['img_url'], $ligne['prix_min'], $ligne['artiste'], 
-                            $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
-        $article->setNumArticle($ligne['num_article']);
-        return $article;
-    } 
-
+    /**
+     * Cherche des articles, s'ils contiennent le pattern
+     * @param string $titrePattern
+     * @return array retourne un tableau d'objet Article
+     */
     public static function readLike(string $titrePattern): array {
         $query = "SELECT *
                     FROM ARTICLE
-                    WHERE titre like concat('%',?,'%');";
+                    WHERE titre like '%' ||? ||'%';";
 
         $dao = DAO::get();
-        return $dao->query($query,[$titrePattern]);
+        $table = $dao->query($query,[$titrePattern]);
+        return Article::obtenirArticlesAPartirTable($table);
+    }
+
+
+        /**
+     * Retourne un tableau d'article à partir de la table
+     * @return array 
+     */
+    private static function obtenirArticlesAPartirTable($table) : array
+    {
+        if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
+        $dao = DAO::get();
+        
+        $lesArticles = array();
+        foreach($table as $ligne) {
+
+            // Obtenir l'article sous forme d'objet 
+            $article = new Article(Utilisateur::readNum($ligne['num_vendeur']),$ligne['titre'], $ligne['description_article'], array(), $ligne['prix_min'], $ligne['artiste'], 
+                                $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
+            $article->setNumArticle($ligne['num_article']);
+            $article->ajouterNomsImg(Article::obtenirImagesAPartirTable($ligne['num_article'])); 
+            array_push($lesArticles,$article);
+        }
+        return $lesArticles;
+    } 
+
+
+    /**
+     * Récupérer les images des articles
+     */
+    private static function obtenirImagesAPartirTable(string $num_article) : array
+     {
+        $dao = DAO::get();
+        $query = "SELECT nom_image from IMAGE_ARTICLE WHERE num_article = ?;";
+        $table = $dao->query($query,[$num_article]);
+        
+        $lesImages = array();
+        foreach($table as $ligne) {
+            array_push($lesImages,$ligne['nom_image']);
+        }
+        return $lesImages;
     }
 
     /////////////////////////// UPDATE /////////////////////////////////////
     public function update()
     {
         $query = "UPDATE ARTICLE
-            set (titre, img_url, prix_min, description_article, artiste, 
+            set (titre, prix_min, description_article, artiste, 
                     etat, categorie, taille, date_evenement, lieu, style)
-              = (:titre, :img_url, :prix_min, :description_article, :artiste, 
+              = (:titre, :prix_min, :description_article, :artiste, 
                     :etat, :categorie, :taille, :date_evenement, :lieu, :style)
             WHERE num_article = :num_article;";
 
         $dao = DAO::get();
-        $dao->exec($query,$this->getData());
+        $dao->exec($query, array_merge( $this->getData(), ["num_article" => $this->getNumArticle()] ));
     }
 
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
-        $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;";
+        $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;"; // Des triggers feront des DELETE dans les autres tables
         
         $dao = DAO::get();
         $dao->exec($query,[$this->getTitre(),$this->getDescription()]);

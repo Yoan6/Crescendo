@@ -2,7 +2,8 @@
 require_once(__DIR__ . '/../model/Utilisateur.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-$utilisateur = new Utilisateur("emailTest","pseudo","motDePasse","nom","prenom","ville","rue","codePostal");
+// Les dates ont besoin d'être au format ISO Y/m/d (par défaut normalement) pour la base de données
+$utilisateur = new Utilisateur("emailTest","pseudo","motDePasse","nom","prenom","ville","rue","codePostal",DateTime::createFromFormat('Y/m/d','2000/01/01'));
 try {
     //--Test--
     print("Création d'un Utilisateur : ");
@@ -39,7 +40,7 @@ try {
 } catch (Exception $e) {
     notOK();
     $dao = DAO::get();
-    $dao->query("DELETE FROM UTILISATEUR WHERE email=?;", [$utilisateur->getEmail()]);
+    $dao->exec("DELETE FROM Utilisateur WHERE email = ?;", [$utilisateur->getEmail()]);
     exit('\nErreur ' . $e->getMessage() . "\n");
 }
 
