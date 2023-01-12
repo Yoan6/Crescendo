@@ -46,7 +46,6 @@ main #divModifImage>div {
 
 #divModifImage>div>div>img {
     border-radius: 100%;
-
     object-fit: cover;
 }
 
@@ -389,3 +388,4 @@ form>.annulerOuValider>.valider {
 
 
 }
+
