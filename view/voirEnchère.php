@@ -15,12 +15,12 @@
 
     <div id="bandeau1">
         <h3> Enchère validée </h3>
-        <button id="btnFermer"> Fermer </button>
+        <button class="btnFermer"> Fermer </button>
     </div>  
         
     <div id="bandeau2">
         <h3> Problème lors de la mise en place du moyen de paiement </h3>
-        <button id="btnFermer"> Fermer </button>
+        <button class="btnFermer"> Fermer </button>
     </div>
 
     <main>

@@ -635,7 +635,7 @@ main form #bottomForm>div>div>section>h4 {
     z-index: 1;
 }
 
-#btnFermer{
+.btnFermer{
     position: sticky;
     top: 0px; left: 1370px;
     width: 150px;
