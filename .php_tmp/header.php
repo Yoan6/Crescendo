@@ -1,14 +1,14 @@
 <header>
     <div id="firstStage"> 
         <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
-        <form action="rechercher.php" method="GET" class="conteneur">
+        <form action="recherche.php" method="GET" class="conteneur">
             <input class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
             <datalist id="searchList">
                     <option value="concert"></option>
                     <option value="Elvis Presley"></option>
                     <option value="The quick brown fox jumps over a lazy dog."></option>
             </datalist>
-            <a id="loupe" href="https://www.google.com/"><img src="../design/image/search.svg" alt="loupe"></a>
+            <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
         </form>
                     
   <a id="creationArticle" href="produitCreation.php">Vends tes articles</a>
@@ -42,8 +42,8 @@
     <a href="#notification">
       Notification
     </a>
-    <a href="#settings">
-      Settings
+    <a href="../view/logout.php">
+      Se déconnecter
     </a>
     <div class="divToggleDarkMode">
       <p>Dark Mode</p>
@@ -63,7 +63,7 @@
             <li><a href="Vetements.php">A la une</a></li>
             <li><a href="Vetements.php">Vêtements</a></li>
             <li><a href="Vetements.php">Instruments</a></li>
-            <li><a href="Vetements.php">Autres</a></li>
+            <li><a href="Vetements.php">Accessoires</a></li>
         </ul>
     </nav>
 </header>

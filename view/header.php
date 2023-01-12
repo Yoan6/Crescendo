@@ -11,7 +11,7 @@
             <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
         </form>
                     
-  <a id="creationArticle" href="produitCreation.php">Vends tes articles</a>
+  <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
         
 
 <div class="container">
@@ -42,8 +42,8 @@
     <a href="#notification">
       Notification
     </a>
-    <a href="#settings">
-      Settings
+    <a href="../view/logout.php">
+      Se déconnecter
     </a>
     <div class="divToggleDarkMode">
       <p>Dark Mode</p>
@@ -63,7 +63,7 @@
             <li><a href="Vetements.php">A la une</a></li>
             <li><a href="Vetements.php">Vêtements</a></li>
             <li><a href="Vetements.php">Instruments</a></li>
-            <li><a href="Vetements.php">Autres</a></li>
+            <li><a href="Vetements.php">Accessoires</a></li>
         </ul>
     </nav>
 </header>
