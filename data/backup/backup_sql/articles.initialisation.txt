@@ -1,8 +1,0 @@
-|'Chaussures Goldman'|257|'Chaussures portées'|'Jean Jack Goldman'|'bon état'|'vetements'|'m'|15/05/2003|'Paris'|'chanson francaise'|
-|'Jupe ariana grande'|965|'Chaussures d''ariana grande bercy'|'Ariana Grande'|'Très bon etat'|'vetements'|'xs'|12/12/2019|'Etats unis'|'pop'|
-|'Kalash gonflable de Angele'|341|'trouée donc on peut plus la gonfler'|'Angele'|'tres mauvais'|'accessoire'||02/05/2021|'Lyon'|'pop'|
-|'lunette de damso'|3500000|'lunette bresom de damso, un peu rayées'|'damso'|'moyen'|'accessoires'||23/07/2018|'saint quentin sur isere'|'rap'|
-|'guitare hans zimmer'|25336|'guitare de sa tournée 2017'|'hans zimmer'|'mauvais'|'instruments'||17/01/2015|'allemand'|'musique cinématographique'|
-|'saxo de danakil'|32750|'saxophone comme neuf'|'danakil'|'tres bon etat'|'instrumnts'||25/11/2006|'paris'|'reggae'|
-
-
