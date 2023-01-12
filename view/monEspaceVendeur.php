@@ -8,17 +8,17 @@
     <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
     <link rel="stylesheet" type="text/css" href="../design/article.css">
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
-
+    <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
-        <div>
-            <div>
+        <div id="topPage">
+            <div id="topPageLeft">
 
-                <div>
+                <div id="userInformations">
                     <div>
                         <img src="../design/image/user/lisa.jpe" alt="">
                     </div>
@@ -30,7 +30,7 @@
 
                         <div>
                             <div>
-                                les svg étoiles
+                            <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect x="0" fill="none" width="20" height="20"></rect> <g> <path d="M10 1L7 7l-6 .75 4.13 4.62L4 19l6-3 6 3-1.12-6.63L19 7.75 13 7zm0 2.24l2.34 4.69 4.65.58-3.18 3.56.87 5.15L10 14.88V3.24z"></path> </g> </g></svg>
                             </div>
                             <div>
                                 13 évaluations
@@ -54,7 +54,7 @@
 
             </div>
 
-            <div>
+            <div id="topPageRight">
                 <a>
                     Nouvel article
                 </a>
