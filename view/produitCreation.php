@@ -56,7 +56,19 @@
 						<li>
 							<h4>Style</h4>
 							<select class="mettreInformation" name="Selectionner style">
-								<option value="rock">rock</option>
+								<option value="blues">Blues</option>
+								<option value="classique">Classique</option>
+								<option value="disco">Disco</option>
+								<option value="electro">Electro</option>
+								<option value="funk">Funk</option>
+								<option value="hip-hop">Hip-hop</option>
+								<option value="jazz">Jazz</option>
+								<option value="metal">Metal</option>
+								<option value="film">Musique de film</option>
+								<option value="pop">Pop</option>
+								<option value="reggae">Reggae</option>
+								<option value="rock">Rock</option>
+								<option value="techno">Techno</option>
 							</select>
 						</li>
 					</ul>
@@ -67,19 +79,29 @@
 						<li>
 							<h4>Taille</h4>
 							<select class="mettreInformation" name="Selectionner taille">
+								<option value="XS">XS</option>
 								<option value="S">S</option>
+								<option value="M">M</option>
+								<option value="L">L</option>
+								<option value="XL">XL</option>
 							</select>
 						</li>
 						<li>
 							<h4>Etat</h4>
 							<select class="mettreInformation" name="Selectionner état">
-								<option value="Bon">Bon</option>
+								<option value="TMauvais">Très mauvais</option>
+								<option value="mauvais">Mauvais</option>
+								<option value="moyen">Moyen</option>
+								<option value="bon">Bon</option>
+								<option value="TB">Très bon</option>
 							</select>
 						</li>
 						<li>
 							<h4>Catégorie</h4>
 							<select class="mettreInformation" name="Selectionner catégorie">
-								<option value="elton-john">Elton John</option>
+								<option value="vetement">Vêtement</option>
+								<option value="instrument">Instrument</option>
+								<option value="accessoire">Accessoire</option>
 							</select>
 						</li>
 					</ul>

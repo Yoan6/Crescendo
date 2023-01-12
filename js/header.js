@@ -13,7 +13,7 @@ dropdownBtn.addEventListener("click", function (event) {
   toggleDropdown();
 });
 
-// Close dropdown when dom element is clicked
+// Close dropdown when document element is clicked
 document.documentElement.addEventListener("click", function (event) {
   if (dropdownMenu.classList.contains("show") && event.target != document.getElementsByClassName("divToggleDarkMode")) {
     toggleDropdown();
@@ -35,7 +35,12 @@ function mettreDarkMode() {
 
 darkModeBouton.onclick =  function() {mettreDarkMode();};
 
+let bandeau1 = document.getElementById("bandeau1");
+let bandeau2 = document.getElementById("bandeau2");
+let btnFermer = document.getElementsByClassName("btnFermer");
 
-
-
-
+for (let i = 0; i < btnFermer.length; i++) {
+  btnFermer[i].addEventListener("click", function(event){
+    event.currentTarget.parentElement.style.display = "none";
+  });
+}

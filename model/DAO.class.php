@@ -4,7 +4,7 @@ class DAO
 {
   private static $instance = null;
   private PDO $db;
-  private string $database = 'sqlite:' . __DIR__ . '/../data/crescendo.db'; //SQLITE
+  private string $database = 'sqlite:' . __DIR__ . '/../data/b/backup_ancienneBase/crescendo.db'; //SQLITE
   //private string $database = 'pgsql:host=localhost;port=5433;dbname=crescendo;user=crescendo;password=crescendo;'; // Postgresql 
 
   private function __construct()

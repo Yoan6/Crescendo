@@ -22,7 +22,7 @@
 
   <div class="dropdown" id="dropdown">
   <a href="parametres.php">
-      Paramètres
+      Modifier profil
       <i><img src="../design/image/settings.svg" alt="settings"></i>
 
     </a>
@@ -32,7 +32,7 @@
 
     </a>
     <a href="#move">
-      Enchères remportés
+      Enchères remportées
       <i><img src="" alt=""></i>
 
     </a>
@@ -40,7 +40,7 @@
       Mon espace vente
     </a>
     <a href="#notification">
-      Notification
+      Notifications
     </a>
     <a href="../view/logout.php">
       Se déconnecter
