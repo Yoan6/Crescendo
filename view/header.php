@@ -42,8 +42,8 @@
     <a href="#notification">
       Notification
     </a>
-    <a href="#settings">
-      Settings
+    <a href="../view/logout.php">
+      Se déconnecter
     </a>
     <div class="divToggleDarkMode">
       <p>Dark Mode</p>
@@ -63,7 +63,7 @@
             <li><a href="Vetements.php">A la une</a></li>
             <li><a href="Vetements.php">Vêtements</a></li>
             <li><a href="Vetements.php">Instruments</a></li>
-            <li><a href="Vetements.php">Autres</a></li>
+            <li><a href="Vetements.php">Accessoires</a></li>
         </ul>
     </nav>
 </header>

@@ -20,7 +20,7 @@ $password = $_POST['password'] ?? '';
 
 if ($login != '' && $password != '') {
     try {
-        $utilisateur = Utilisateur::read($login,$password);
+        $utilisateur = Utilisateur::read($login);
     } catch (Exception $e) {
         $utilisateur = null;
     }

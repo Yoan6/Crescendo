@@ -9,18 +9,22 @@
 
 
 /*SQLITE n'autorise le drop d'une table qu'une par une*/
+DROP TABLE IF EXISTS IMAGE_ARTICLE;
+DROP TABLE IF EXISTS LIKE_DISLIKE;
 DROP TABLE IF EXISTS CONCERNE;
-DROP TABLE IF EXISTS VEND;
 DROP TABLE IF EXISTS FAVORISE;
 DROP TABLE IF EXISTS ENCHERIT;
 DROP TABLE IF EXISTS GAGNE;
+
 DROP TABLE IF EXISTS ARTICLE;
 DROP TABLE IF EXISTS ENCHERE;
 DROP TABLE IF EXISTS UTILISATEUR;
 
 
+
 CREATE TABLE IF NOT EXISTS UTILISATEUR  (
-    email VARCHAR primary key,
+    num_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT, -- CHANGEMENT
+    email VARCHAR,                                      -- CHANGEMENT
     pseudo VARCHAR,
     mot_de_passe PASSWORD,
     nom VARCHAR,
@@ -33,18 +37,15 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERE (
-    num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, --AUTOINCREMENT par SERIAL pour postGRESQL 
-    prix_actuel INTEGER,
-    id_paiement INTEGER,
+    num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, 
     date_debut DATE,
-    est_lot BOOLEAN,
-    nb_Like INTEGER
-);
+    est_lot BOOLEAN --Suppresion de prix et id_paiement mis dans ENCHERIT
+); --Suppression de nombre de like, Une table intermédiaire ENTRE utilisateur et enchere sera créée plus tard
 
 CREATE TABLE IF NOT EXISTS ARTICLE (
-    num_article INTEGER PRIMARY KEY AUTOINCREMENT, --AUTOINCREMENT par SERIAL pour postGRESQL 
+    num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
+    num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
     titre VARCHAR,
-    img_url VARCHAR,
     prix_min INTEGER,
     description_article VARCHAR,
     artiste VARCHAR,
@@ -53,38 +54,62 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
     taille VARCHAR,
     date_evenement DATE,
     lieu VARCHAR,
-    style VARCHAR
+    style VARCHAR,
+    UNIQUE(titre,description_article)
 );
 
+------------------------------TABLES ASSOCIATION------------------------------
+
+
+
+
+---------------ENTRE UTILISATEUR ET ENCHERE
 CREATE TABLE IF NOT EXISTS GAGNE (
-    email references UTILISATEUR(email),
-    num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERIT (
-    email references UTILISATEUR(email),
-    num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    prix_offre INTEGER,             
+    date_encherissement DATE,     
+    id_paiement INTEGER,          
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
 CREATE TABLE IF NOT EXISTS FAVORISE (
-    email references UTILISATEUR(email),
-    num_enchere references ENCHERE(num_enchere),
-    PRIMARY KEY (email,num_enchere)
+    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
-CREATE TABLE IF NOT EXISTS VEND (
-    email references UTILISATEUR(email),
-    num_article references ARTICLE(num_article),
-    PRIMARY KEY (email,num_article)
-);
 
-CREATE TABLE IF NOT EXISTS CONCERNE (
-    num_article references ARTICLE(num_article),
-    num_enchere references ENCHERE(num_enchere),
+CREATE TABLE IF NOT EXISTS LIKE_DISLIKE( 
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    est_like BOOLEAN,
     PRIMARY KEY (num_article,num_enchere)
 );
+
+
+
+CREATE TABLE IF NOT EXISTS IMAGE_ARTICLE(
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    nom_image VARCHAR,
+    PRIMARY KEY (num_article,nom_image)
+);
+
+
+---------------ENTRE ARTICLE ET ENCHERE
+CREATE TABLE IF NOT EXISTS CONCERNE (
+    num_article INTEGER references ARTICLE(num_article) ON DELETE CASCADE,
+    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    PRIMARY KEY (num_article,num_enchere)
+);
+
+
 
 
 /**************************************
@@ -96,15 +121,17 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .nullvalue Null
 
 .import ./initialisation/encheres.initialisation.txt ENCHERE
-.import  ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
+.import ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
 .import ./initialisation/articles.initialisation.txt ARTICLE
+.import ./initialisation/concernes.initialisation.txt CONCERNE
+.import ./initialisation/images.initialisation.txt IMAGE_ARTICLE
 
 .print '===========================  TESTS  ==========================='
 
 SELECT * from ARTICLE;
 .print
 
-insert into UTILISATEUR values ('root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert into UTILISATEUR values (4,'root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 SELECT * from UTILISATEUR;
 .print
 
@@ -118,37 +145,6 @@ SELECT * from ENCHERE;
 .print '===========================  TRIGGER  ==========================='
 
 
-DROP TRIGGER IF EXISTS encherir_delete;
-CREATE TRIGGER encherir_delete 
-    BEFORE DELETE 
-    on ENCHERE
-    FOR EACH ROW
-    BEGIN --Sqlite n'a pas de fonction
-        DELETE FROM CONCERNE
-        WHERE num_enchere = OLD.num_enchere;
-    END;
-
-
-DROP TRIGGER IF EXISTS encherir_delete;
-CREATE TRIGGER encherir_delete 
-    BEFORE DELETE 
-    on ARTICLE
-    FOR EACH ROW
-    BEGIN --Sqlite n'a pas de fonction
-        DELETE FROM ENCHERE WHERE (SELECT num_enchere FROM CONCERNE where num_article = OLD.num_article); -- Une enchere dépend d'un article
-        DELETE FROM CONCERNE
-        WHERE num_article = OLD.num_article;
-    END;
-
-DROP TRIGGER IF EXISTS eviter_article_doublon;
-CREATE TRIGGER eviter_article_doublon
-    BEFORE INSERT 
-    on ARTICLE
-    FOR EACH ROW
-    BEGIN --sqlite n'a pas de fonction
-        SELECT CASE WHEN ( (SELECT titre from ARTICLE WHERE (titre,description_article) = (new.titre,new.description_article)) is NOT NULL)
-        THEN RAISE(FAIL,'Doublon') END; --SYNTAXE spécifique à SQLITE
-    END;
 
 
 

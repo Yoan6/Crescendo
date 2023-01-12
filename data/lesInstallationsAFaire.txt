@@ -1,0 +1,20 @@
+apt-get install php
+apt-get install sqlite php-sqlite3 sqlite3
+
+
+sudo su - postgres
+psql postgres
+CREATE DATABASE crescendo
+\c crescendo
+create user crescendo with password 'crescendo';
+GRANT CONNECT ON DATABASE crescendo to crescendo;
+GRANT ALL PRIVILEGES ON DATABASE crescendo to crescendo;
+ALTER USER crescendo WITH SUPERUSER;
+
+sudo apt-get install php-pgsql
+C:\AppServ\php7\php.ini
+Chercher ;extension=pdo_pgsql et enlever ; (; est un commentaire)
+
+
+
+\i /mnt/c/xampp/htdocs/crescendo/crescendo/data/create_postgreSQL.sql 
