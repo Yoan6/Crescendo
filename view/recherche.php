@@ -195,21 +195,7 @@
 
 
 
-
-
-
-
-
-
                 </div>
-
-
-
-
-
-
-
-
 
 
                 <div id="validerOuEffacer">
@@ -220,6 +206,8 @@
                         Tout effacer
                     </button>
                 </div>
+
+
             </aside>
             <div id="divdroite">
 
