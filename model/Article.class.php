@@ -88,9 +88,13 @@ class Article
     /**
      * Retourne les images avec le chemin vers le répertoire de stockage des images
      */
-    public function getUrlImages() : array
+    public function getImagesURL() : array
     {
-        return self::LOCALURL . $this->nomImages;
+        $imagesURL = array();
+        foreach($this->nomImages as $nomImage) {
+            array_push($imagesURL, $nomImage);
+        }
+        return $imagesURL;
     }
 
     /**
