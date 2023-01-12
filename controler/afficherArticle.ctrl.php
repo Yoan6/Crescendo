@@ -12,7 +12,7 @@
     $num_enchere = 0;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
-    $dateFin = $enchere->getDateFin();
+    $dateFin = $enchere->getDateFin()->format('d-m-Y');
 
     /***************************************************************************
     **                         Données de l'article

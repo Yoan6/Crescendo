@@ -20,7 +20,7 @@ class PaypalPaiement {
 
         
         <!-- Le conteneur du bouton-->
-        <div id="paypal-button-container"></div>
+        <div id="paypal-button-container"> Enchérir</div>
 
         <script>
 
@@ -62,9 +62,9 @@ class PaypalPaiement {
 
                 // Or go to another URL:  actions.redirect('thank_you.html');
 
-            });
+            };
 
-            }
+        
 
         }).render('#paypal-button-container');
 

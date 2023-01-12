@@ -95,19 +95,19 @@ require_once(__DIR__ . '/../model/Article.class.php');
             }
         }
 
-        public function getDateDebut() : string
+        public function getDateDebut() : DateTime
         {
-            return $this->dateDebut->format('Y-m-d'); // Format ISO pour la base de données
+            return $this->dateDebut;
         }
 
-        public function getDateFin() : string
+        public function getDateFin() : DateTime
         {
-            return ($this->dateDebut->modify('+ 7day'))->format('Y-m-d'); // Format ISO pour la base de données
+            return ($this->dateDebut->modify('+ 7day'));
         }
 
         public function setDateDebut(dateTime $dateDebut)
         {
-            $this->dateDebut = $dateDebut;
+            $this->dateDebut = $dateDebut; // Format ISO pour la base de données;
         }
 
 
@@ -118,7 +118,7 @@ require_once(__DIR__ . '/../model/Article.class.php');
      */
         private function getData() : array {
             return array(
-                'date_debut' => $this->getDateDebut(),
+                'date_debut' => $this->getDateDebut()->format('Y-m-d'),
                 'est_lot' => (int) $this->getEstLot(), // postgresql n'accepte pas les bool des PHP, donc on fait une conversion en int
             ); //Note : ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
         }
