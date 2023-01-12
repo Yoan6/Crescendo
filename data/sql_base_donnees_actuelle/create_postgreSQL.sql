@@ -106,6 +106,6 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
 -- Chemin à changer en fonction de celui qui lance le fichier
-\copy utilisateur from './initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ARTICLE from './initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ENCHERE from './initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy utilisateur from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ARTICLE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ENCHERE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
