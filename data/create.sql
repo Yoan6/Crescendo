@@ -121,8 +121,10 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .nullvalue Null
 
 .import ./initialisation/encheres.initialisation.txt ENCHERE
-.import  ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
+.import ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
 .import ./initialisation/articles.initialisation.txt ARTICLE
+.import ./initialisation/concernes.initialisation.txt CONCERNE
+.import ./initialisation/images.initialisation.txt IMAGE_ARTICLE
 
 .print '===========================  TESTS  ==========================='
 
