@@ -1,4 +1,6 @@
 # ignorer le fichier fiveserver.config.js
 fiveserver.config.js
 
+# ignorer les fichiers temporaires du fiveServer
+.php_tmp/
 .php_tmp/*
