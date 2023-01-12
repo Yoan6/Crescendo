@@ -198,13 +198,7 @@ class Utilisateur
      */
     public function create()
     {
-        $reqmail = "SELECT * FROM Utilisateur WHERE email = :email OR pseudo=:pseudo";
-        $dao = DAO::get();
-        $table->query($reqmail,$this->getData());
-        // On compte le nombre de ligne en commun entre les adresses mail et les pseudo 
-        // S'il n'y a pas 0 ligne c'est qu'il y a déjà une adresse mail/pseudo
-        if (count($table) == 0) {
-            // On peut créer l'utilisateur
+        try {
             $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
                         Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
 
@@ -216,17 +210,20 @@ class Utilisateur
             $dernierNum = $dao->query("SELECT max(num_utilisateur) FROM UTILISATEUR;", array())[0][0];
             $this->setNumUtilisateur($dernierNum);
         }
-        
+        catch (Exception $e) {
+            throw new Exception("L'adresse mail ou le pseudo existe déjà");
+        }  
     }
 
     /////////////////////////// READ /////////////////////////////////////
-    public static function read(string $emailOuPseudo): Utilisateur
+    public static function read(string $emailOuPseudo, string $motDePasse): Utilisateur
     {
         $query = "SELECT *
                     FROM Utilisateur
-                    WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo)";
+                    WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo) AND mot_de_passe=:motDePasse;";
         $data = [
                 ':emailOuPseudo' => $emailOuPseudo,
+                ':motDePasse'=> $motDePasse
                 ];
 
         $dao = DAO::get();
