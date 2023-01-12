@@ -12,11 +12,23 @@
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
+
+    <div id="bandeau1">
+        <h3> Enchère validée </h3>
+        <button id="btnFermer"> Fermer </button>
+    </div>  
+        
+    <div id="bandeau2">
+        <h3> Problème lors de la mise en place du moyen de paiement </h3>
+        <button id="btnFermer"> Fermer </button>
+    </div>
+
     <main>
 
-
+        
 
         <form method="post" action="">
+            
 
             <div>
 
@@ -280,6 +292,8 @@
 
 
         </form>
+
+        
 
     </main>
 
