@@ -54,6 +54,17 @@ class Article
      * Getter and Setter
      *********************/
 
+    /**
+     * Pour récupèrer le type article quand on utilise une array
+     * @param array $articles
+     * @param int $num_dans_array
+     * @return Article
+     */
+    public static function getTypeArticleFromArray(array $articles, int $num_dans_array): Article
+    {
+        return $articles[$num_dans_array];
+    }
+
 
     public function getNumArticle()
     {
@@ -92,7 +103,7 @@ class Article
     {
         $imagesURL = array();
         foreach($this->nomImages as $nomImage) {
-            array_push($imagesURL, $nomImage);
+            array_push($imagesURL, self::LOCALURL . $nomImage);
         }
         return $imagesURL;
     }

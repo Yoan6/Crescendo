@@ -106,6 +106,6 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
 -- Chemin à changer en fonction de celui qui lance le fichier
-\copy utilisateur from '/mnt/c/xampp/htdocs/crescendo/crescendo/data/initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ARTICLE from '/mnt/c/xampp/htdocs/crescendo/crescendo/data/initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ENCHERE from '/mnt/c/xampp/htdocs/crescendo/crescendo/data/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy utilisateur from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ARTICLE from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ENCHERE from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');

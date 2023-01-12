@@ -55,12 +55,23 @@ require_once(__DIR__ . '/../model/Article.class.php');
             $this->estLot = $estLot;
         }
 
-
+        /**
+         * Récupère une array d'article' Article (à coupler avec getTypeArticleFromArray de Article pour récupérer le type)
+         * @return array Article
+         */
         public function getArticles() : array
         {
             return $this->articles;
         }
 
+
+
+
+        /**
+         * Ajoute des articles (pour les lots)
+         * @param Article $article
+         * @return void
+         */
         public function ajouterArticle(Article $article)
         {
             array_push($this->articles,$article);
@@ -87,6 +98,11 @@ require_once(__DIR__ . '/../model/Article.class.php');
         public function getDateDebut() : string
         {
             return $this->dateDebut->format('Y-m-d'); // Format ISO pour la base de données
+        }
+
+        public function getDateFin() : string
+        {
+            return ($this->dateDebut->modify('+ 7day'))->format('Y-m-d'); // Format ISO pour la base de données
         }
 
         public function setDateDebut(dateTime $dateDebut)
@@ -243,13 +259,20 @@ require_once(__DIR__ . '/../model/Article.class.php');
             } 
         }
 
-        public function obtenirPrixActuel() {
+        public function obtenirPrixActuel() : int|string {
             $dao = DAO::get();
             $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";
             $data = [
                 "num_enchere" => $this->getNumEnchere(), 
             ];
-            return $dao->query($queryEnchere,$data)[0][0];
+            $table = $dao->query($queryEnchere,$data);
+
+            $prix = $table[0][0];
+            if($prix == null) {
+                $prix = "Aucun prix pour l'instant, min : " . Article::getTypeArticleFromArray($this->getArticles(),0)->getPrixMin(); 
+            }
+
+            return $prix;
         }
 
         
