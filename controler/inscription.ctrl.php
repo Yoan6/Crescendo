@@ -4,6 +4,8 @@
 include_once(__DIR__."/../framework/view.class.php");
 // Inclusion du modèle
 include_once(__DIR__."/../model/Utilisateur.class.php");
+// Inclusion du DAO
+require_once(__DIR__ . '/../model/DAO.class.php');
 
 
 
@@ -21,7 +23,10 @@ $code_postale = $_POST['code_postale'] ?? '';
 $ville = $_POST['ville'] ?? '';
 $adresseMail = $_POST['adresseMail'] ?? '';
 $password = $_POST['mdp'] ?? '';
+$password = password_hash($password, PASSWORD_DEFAULT);
 $verifmdp = $_POST['verifmdp'] ?? '';
+
+var_dump($password);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,6 +50,9 @@ if ($verifmdp != $password) {
   $error[] = ["Le mot de passe n'est pas confirmé 2 fois"];
 }
 
+// Vérification s'il n'existe pas déja un utilisateur avec ce pseudo :
+  if ($utilisateur)
+
 $header="MIME-Version: 1.0\r\n";
 $header.='From:"[VOUS]"<votremail@mail.com>'."\n";
 $header.='Content-Type:text/html; charset="uft-8"'."\n";
@@ -53,7 +61,7 @@ $message='
 <html>
   <body>
       <div align="center">
-        <a href="http://localhost/crescendo/view/inscription.php?pseudo='.urlencode($pseudo).'&kadresseMail='.$adresseMail.'">Confirmez votre compte !</a>
+        <a href="http://localhost/crescendo/view/inscription.php?pseudo='.urlencode($pseudo).'&adresseMail='.$adresseMail.'">Confirmez votre compte !</a>
         
       </div>
   </body>
@@ -74,6 +82,8 @@ if (count($error) == 0) {
 }
 
 
+
+
 // Si finalement aucune erreur, on envois le message Ok et l'utilisateur est connecté
 if (count($error) == 0) {
   $message = "L'utilisateur a correctement été inséré dans la base";
@@ -83,8 +93,7 @@ if (count($error) == 0) {
   $message = '';
 }
 
-// Vérification s'il n'existe pas déja un utilisateur avec ce pseudo :
-if ($utilisateur)
+
 
 
 ////////////////////////////////////////////////////////////////////////////

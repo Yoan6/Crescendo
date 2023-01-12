@@ -171,29 +171,51 @@ class Utilisateur
     /////////////////////////// CREATE /////////////////////////////////////
     public function create()
     {
-        $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
-                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
-
-
+        $reqmail = "SELECT * FROM Utilisateur WHERE email = :email OR pseudo=:pseudo";
         $dao = DAO::get();
-        $dao->exec($query,$this->getData());
-        
+        $table->query($reqmail,$this->getData());
+        // On compte le nombre de ligne en commun entre les adresses mail et les pseudo 
+        // S'il n'y a pas 0 ligne c'est qu'il y a déjà une adresse mail/pseudo
+        if (count($table) == 0) {
+            // On peut créer l'utilisateur
+            $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
+                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
+            $dao = DAO::get();
+            $dao->exec($query,$this->getData());
+        }  
+        else {
+            throw new Exception("L'adresse mail ou le pseudo existe déjà");
+        }  
     }
 
     /////////////////////////// READ /////////////////////////////////////
-    public static function read(string $emailOuPseudo, string $motDePasse): Utilisateur
+    public static function read(string $emailOuPseudo): Utilisateur
     {
         $query = "SELECT *
                     FROM Utilisateur
-                    WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo) AND mot_de_passe=:motDePasse;";
+                    WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo)";
         $data = [
                 ':emailOuPseudo' => $emailOuPseudo,
-                ':motDePasse'=> $motDePasse
                 ];
 
         $dao = DAO::get();
         $table = $dao->query($query,$data);
-        if(count($table) != 1) {throw new Exception("l'utilisateur n'existe pas");}
+
+        
+
+        if(count($table) != 1) {
+            throw new Exception("L'utilisateur n'existe pas");
+        }
+        else {
+            if(password_verify($motDePasse, $table['motDePasse'])) {
+                echo "Connexion réussie !";
+            }
+            else {
+                echo "Identifiants invalides";
+            }
+        }
+
+        
 
         $ligne = $table[0];
         return new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], $ligne['ville'], $ligne['rue'], $ligne['code_postal']);
