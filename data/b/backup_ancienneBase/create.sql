@@ -1,23 +1,32 @@
-/*======================================================
-*                       CONFIG
-========================================================*/
--- \i ./create_postgreSQL.sql; (mon chemin windows pour créer lancer le fichier)
+/**************************************
+**  Génération des tables Utiliser la commande (sur sqlite)   
+**
+** .read create.sql
+**
+**************************************/
+.print ''
+.print '===========================  CREATION DES TABLES  ==========================='
 
-/*======================================================
-*                       DROP
-========================================================*/
-DROP TABLE IF EXISTS IMAGE_ARTICLE, LIKE_DISLIKE, CONCERNE,FAVORISE, ENCHERIT,GAGNE, ARTICLE, ENCHERE, UTILISATEUR CASCADE;
+
+/*SQLITE n'autorise le drop d'une table qu'une par une*/
+DROP TABLE IF EXISTS IMAGE_ARTICLE;
+DROP TABLE IF EXISTS LIKE_DISLIKE;
+DROP TABLE IF EXISTS CONCERNE;
+DROP TABLE IF EXISTS FAVORISE;
+DROP TABLE IF EXISTS ENCHERIT;
+DROP TABLE IF EXISTS GAGNE;
+
+DROP TABLE IF EXISTS ARTICLE;
+DROP TABLE IF EXISTS ENCHERE;
+DROP TABLE IF EXISTS UTILISATEUR;
 
 
-/*======================================================
-*                       CREATE TABLE
-========================================================*/
-------------------------------TABLES ENTITES------------------------------
+
 CREATE TABLE IF NOT EXISTS UTILISATEUR  (
-    num_utilisateur SERIAL PRIMARY KEY, 
-    email VARCHAR UNIQUE,                                      
+    num_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT, -- CHANGEMENT
+    email VARCHAR,                                      -- CHANGEMENT
     pseudo VARCHAR,
-    mot_de_passe VARCHAR, --chkpass
+    mot_de_passe PASSWORD,
     nom VARCHAR,
     prenom VARCHAR,
     date_naissance DATE,
@@ -27,9 +36,15 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     img_profil VARCHAR
 );
 
+CREATE TABLE IF NOT EXISTS ENCHERE (
+    num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, 
+    date_debut DATE,
+    est_lot BOOLEAN --Suppresion de prix et id_paiement mis dans ENCHERIT
+); --Suppression de nombre de like, Une table intermédiaire ENTRE utilisateur et enchere sera créée plus tard
+
 CREATE TABLE IF NOT EXISTS ARTICLE (
-    num_article SERIAL PRIMARY KEY, 
-    num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur), 
+    num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
+    num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
     titre VARCHAR,
     prix_min INTEGER,
     description_article VARCHAR,
@@ -41,12 +56,6 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
     lieu VARCHAR,
     style VARCHAR,
     UNIQUE(titre,description_article)
-);
-
-CREATE TABLE IF NOT EXISTS ENCHERE (
-    num_enchere SERIAL PRIMARY KEY, 
-    date_debut DATE,
-    est_lot BOOLEAN
 );
 
 ------------------------------TABLES ASSOCIATION------------------------------
@@ -102,10 +111,44 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 
 
 
-/*======================================================
-*                      IMPORTAGE DES DONNEES
-========================================================*/
--- Chemin à changer en fonction de celui qui lance le fichier
-\copy utilisateur from './initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ARTICLE from './initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ENCHERE from './initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+
+/**************************************
+**  Autres
+**************************************/
+.headers on
+.separator ROW "\n"
+.separator '|'
+.nullvalue Null
+
+.import ./initialisation/encheres.initialisation.txt ENCHERE
+.import ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
+.import ./initialisation/articles.initialisation.txt ARTICLE
+.import ./initialisation/concernes.initialisation.txt CONCERNE
+.import ./initialisation/images.initialisation.txt IMAGE_ARTICLE
+
+.print '===========================  TESTS  ==========================='
+
+SELECT * from ARTICLE;
+.print
+
+insert into UTILISATEUR values (4,'root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+SELECT * from UTILISATEUR;
+.print
+
+SELECT * from ENCHERE;
+.print
+
+
+/*SELECT * from UTILISATEUR where rue is NULL;*/
+--.quit;
+
+.print '===========================  TRIGGER  ==========================='
+
+
+
+
+
+
+
+
+

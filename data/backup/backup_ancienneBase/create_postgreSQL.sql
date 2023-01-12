@@ -1,7 +1,7 @@
 /*======================================================
 *                       CONFIG
 ========================================================*/
--- \i ./create_postgreSQL.sql; (mon chemin windows pour créer lancer le fichier)
+-- \i /mnt/c/xampp/htdocs/crescendo/crescendo/data/create_postgreSQL.sql; (mon chemin windows pour créer lancer le fichier)
 
 /*======================================================
 *                       DROP
@@ -106,6 +106,6 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
 -- Chemin à changer en fonction de celui qui lance le fichier
-\copy utilisateur from './initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ARTICLE from './initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ENCHERE from './initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy utilisateur from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ARTICLE from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ENCHERE from '/mnt/c/xampp/htdocs/crescendo/data/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
