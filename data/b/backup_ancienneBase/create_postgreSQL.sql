@@ -100,6 +100,22 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
     PRIMARY KEY (num_article,num_enchere)
 );
 
+/*======================================================
+*                         TRIGGER
+========================================================*/
+CREATE FUNCTION check_price_func() RETURNS TRIGGER AS $$
+BEGIN
+    IF (NEW.prix_offre <= (SELECT MAX(prix_offre) FROM ENCHERIT WHERE num_enchere = NEW.num_enchere)) THEN
+        RAISE EXCEPTION 'Prix proposé inférieur ou égal à l''enchère actuelle';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_price
+BEFORE INSERT ON ENCHERIT
+FOR EACH ROW
+EXECUTE FUNCTION check_price_func();
 
 
 /*======================================================
