@@ -139,7 +139,7 @@
 
 }
 
-.article #divLikes {
+.article #divSupprimer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -153,29 +153,29 @@
     width: 75px;
 }
 
-.article #divLikes p {
+.article #divSupprimer p {
     margin: 0px;
     font-size: larger;
 }
 
-.article #divLikes svg {
+.article #divSupprimer svg {
     width: 40px;
     height: 40px;
     background-color: transparent;
     border: none;
 }
 
-.article #divLikes svg path {
+.article #divSupprimer svg path {
     stroke-width: 1px;
     fill: transparent;
     cursor: pointer;
 }
 
-.article #divLikes #dislike path:hover {
+.article #divSupprimer #dislike path:hover {
     stroke: var(--rouge);
 }
 
-.article #divLikes #like path:hover {
+.article #divSupprimer #like path:hover {
     stroke: var(--bleu);
 }
 
@@ -245,7 +245,7 @@
 
     }
 
-    .article #divLikes {
+    .article #divSupprimer {
         border: solid 2px var(--main-content-background-color);
         position: absolute;
         bottom: 10px;
@@ -260,7 +260,7 @@
         justify-content: space-evenly;
     }
 
-    .article #divLikes p {
+    .article #divSupprimer p {
         font-size: x-large;
     }
 
@@ -340,7 +340,7 @@
         height: 200px;
     }
 
-    .article #divLikes {
+    .article #divSupprimer {
         left: 200px;
     }
 

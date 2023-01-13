@@ -23,7 +23,7 @@
                 <li>
                     <a>
                         <div>
-                            <img src="../design/image/accueil/vetement.jpg">
+                            <img src="../design/image/accueil/vete.jpeg">
                         </div>
                         <h2>Vêtements</h2>
                     </a>
@@ -31,7 +31,7 @@
                 <li>
                     <a>
                         <div>
-                            <img src="../design/image/accueil/guitar.png">
+                            <img src="../design/image/accueil/instr.jpg">
                         </div>
                         <h2>Instruments</h2>
                     </a>
@@ -39,9 +39,9 @@
                 <li>
                     <a>
                         <div>
-                            <img src="../design/image/accueil/autre.png">
+                            <img src="../design/image/accueil/acc.jpg">
                         </div>
-                        <h2>Autres</h2>
+                        <h2>Accessoires</h2>
                     </a>
                 </li>
             </ul>
@@ -53,6 +53,8 @@
             <div>
                 <h1>Les articles de la semaine</h1>
                 <?php for ($i = 0; $i < 3; $i++) { ?>
+                    
+
                     <form class="article">
 
                         <div id="divHeart">
