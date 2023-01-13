@@ -1,3 +1,8 @@
+<?php
+    // Inclusion du framework
+    include_once(__DIR__."/../framework/view.class.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -15,6 +20,28 @@
         <main>
         <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
 
+        <?php
+        if (isset($error) && count($error) != 0) {
+            foreach($error as $e) {
+                $e->getMessage();
+
+            }
+        }
+
+        if(!isset($_SESSION)) { 
+            session_start(); 
+        } 
+
+        // Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
+        if(isset($_SESSION['num_utilisateur'])) {
+            $view = new View();
+
+            // Charge la vue
+            $view->display("../view/accueil.php");
+            echo ("Vous êtes déja connecté !");
+        } 
+        ?>
+
             <div>
                 <h1>Inscription</h1>
             </div>
@@ -30,7 +57,7 @@
                         <article class="petit-article">
                             <label for="nom">Nom *</label>
 
-                            <input type="text" name="nom" id="nom" placeholder="Entrez votre nom" required>
+                            <input value="" type="text" name="nom" id="nom" placeholder="Entrez votre nom" required>
                         </article>
 
                         <article class="petit-article">
@@ -78,7 +105,7 @@
                         <article class="petit-article">
                             <label for="mdp">Mot de passe (au moins 12 caractères 1 majuscule et 1 caractère spécial) *</label>
 
-                            <input type="password" name="mdp" id="mdp" required minlength=12>
+                            <input type="password" name="mdp" id="mdp" required minlength=12  placeholder="Votre mot de passe">
                         </article>
 
                         <article class="petit-article">

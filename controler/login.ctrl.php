@@ -4,52 +4,55 @@
 include_once(__DIR__."/../framework/view.class.php");
 include_once(__DIR__."/../model/Utilisateur.class.php");
 
+if(!isset($_SESSION)) { 
+    session_start(); 
+} 
 
+// Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
+if(isset($_SESSION['num_utilisateur'])) {
+    $view = new View();
 
-///////////////////////////////////////////////////////////////////////////////
-// Partie récupération des données
-///////////////////////////////////////////////////////////////////////////////
-
-$login = $_POST['login'] ?? '';
-$password = $_POST['password'] ?? '';
-
-///////////////////////////////////////////////////////////////////////////////
-// Partie calculs avec le modèle
-///////////////////////////////////////////////////////////////////////////////
-
-
-if ($login != '' && $password != '') {
-    try {
-        $utilisateur = Utilisateur::read($login);
-    } catch (Exception $e) {
-        $utilisateur = null;
-    }
-    if ($utilisateur !=null) {
-        $connected = true;
-    }
-    else {
-        $connected = false;
-    }
-} else {
-  $connected = false;
-}
-
-session_start();
-$_SESSION['connected'] = $connected;
-
-
-// 
-
-////////////////////////////////////////////////////////////////////////////
-// Construction de la vue
-////////////////////////////////////////////////////////////////////////////
-$view = new View();
-
-// Charge la vue
-if ($_SESSION['connected'] == true) {
+    // Charge la vue
     $view->display("accueil.php");
+    echo ("Vous êtes déja connecté !");
 } 
 else {
+    ///////////////////////////////////////////////////////////////////////////////
+    // Partie récupération des données
+    ///////////////////////////////////////////////////////////////////////////////
+
+    $login = $_POST['login'] ?? '';
+    $password = $_POST['password'] ?? '';
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Partie calculs avec le modèle
+    ///////////////////////////////////////////////////////////////////////////////
+
+    $error = array();
+
+    // Si le login ou l'utilisateur ne sont pas fournis :
+    if ($login != '' && $password != '') {
+        // Tentative de lecture d'un utilisateur en fonction du login/email et du mot de passe
+        try {
+            $utilisateur = Utilisateur::read($login,$password);
+            $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
+            $view = new View();
+        
+            // Charge la vue
+            $view->display("accueil.php");
+            echo ("Vous êtes maintenant connecté !");
+        } catch (Exception $e) {
+            array_push($error,$e->getMessage());
+        }
+
+    } else {
+        array_push($error, "Vous n'avez pas rentré de login ou mot de passe");
+    }
+
+    $view = new View();
+    $view->assign('error',$error);
+        
+    // Charge la vue
     $view->display("login.php");
 }
 ?>
