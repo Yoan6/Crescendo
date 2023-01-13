@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     ville VARCHAR,
     rue VARCHAR NULL,
     code_postal VARCHAR, 
+    date_creation DATE,
     img_profil VARCHAR
 );
 
