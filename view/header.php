@@ -58,9 +58,9 @@
 </div>
         
     </div>
-    <form action="../controler/afficherEncadresArticles.php" method="POST">
+    <form action="../controler/categorie.ctrl.php" method="GET">
         <ul class="conteneur"> 
-            <li><button name="categorie">A la une</button></li>
+            <li><button name="categorie" value="AlaUne">A la une</button></li>
             <li><button name="categorie" value="vetements">Vêtements</button></li>
             <li><button name="categorie" value="instruments">Instruments</button></li>
             <li><button name="categorie" value="accessoires">Accessoires</button></li>
