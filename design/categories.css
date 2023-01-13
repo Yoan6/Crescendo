@@ -160,15 +160,19 @@ aside>div:last-child>button {
 	font-size: larger;
 
 }
-
-aside>div:last-child>button:first-child {
-	background-color: var(--bleu);
-	color: black;
-
+aside #validerOuEffacer {
+    flex-direction: column;
+    gap: 15px;
 }
 
 
-aside>div:last-child>button:last-child {
+aside #validerOuEffacer button:first-child {
+	background-color: var(--bleu);
+	color: black;
+}
+
+
+aside #validerOuEffacer button:last-child {
 	border: solid 1px white;
 	background-color: transparent;
 	color: white;

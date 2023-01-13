@@ -85,6 +85,10 @@
     margin: 0px;
     font-weight: normal;
     font-size: 23px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    text-align:left;
     
 }
 
@@ -260,6 +264,62 @@
         font-size: x-large;
     }
 
+
+
+
+    #via {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 30px;
+    }
+
+    #divVIA #via li{
+
+        height: 120px;
+        border-radius: 0px;
+        border-right: none;
+        border-left: none;
+        border-bottom: solid 1px white;
+        border-top: solid 1px white;
+    }
+
+    #divVIA #via li a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        max-width: unset;
+        width: 100%;
+        height: 100%;
+      
+       
+    }
+
+
+    #via li h2 {
+         padding-top: 0px;
+         height: 100%;
+         width: 50%;
+         display: flex;
+            align-items: center;
+            justify-content: center;
+    }
+
+    #divVIA #via li a div {
+        width: 50%;
+        height: 100px;
+
+    }
+
+    #divVIA #via li a img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+   
   
 }
 
@@ -281,8 +341,20 @@
     }
 
     .article #divLikes {
-        left: 260px;
+        left: 200px;
     }
+
+    .article #divHeart {
+        display: none;
+    }
+
+    #banner {
+        width: 100%;
+        height: 250px;
+
+    }
+
+
 
 
 }

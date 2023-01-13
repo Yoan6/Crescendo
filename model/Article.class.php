@@ -26,10 +26,11 @@ class Article
 
 
 
-    public function __construct(Utilisateur $vendeur, string $titre,string $description, array $nomImgages, int $prixMin, string $artiste, 
-                                    string $etat="", string $categorie ="", string $taille="", string $lieu="", string $style="", 
-                                    DateTime $dateEvenement = null // Il faut php8 pour initialiser par défaut les Objets dans les paramètres 
-                                )
+    public function __construct(
+        Utilisateur $vendeur, string $titre, string $description, array $nomImgages, int $prixMin, string $artiste,
+        string $etat = "", string $categorie = "", string $taille = "", string $lieu = "", string $style = "",
+        DateTime $dateEvenement = null // Il faut php8 pour initialiser par défaut les Objets dans les paramètres 
+    )
     {
         // Initialisation obligatoire
         $this->setTitre($titre);
@@ -99,10 +100,10 @@ class Article
     /**
      * Retourne les images avec le chemin vers le répertoire de stockage des images
      */
-    public function getImagesURL() : array
+    public function getImagesURL(): array
     {
         $imagesURL = array();
-        foreach($this->nomImages as $nomImage) {
+        foreach ($this->nomImages as $nomImage) {
             array_push($imagesURL, self::LOCALURL . $nomImage);
         }
         return $imagesURL;
@@ -111,7 +112,7 @@ class Article
     /**
      * 
      */
-    public function getImages() : array
+    public function getImages(): array
     {
         return $this->nomImages;
     }
@@ -192,7 +193,7 @@ class Article
     }
 
 
-    public function getDateEvenement() : string
+    public function getDateEvenement(): string
     {
         return $this->dateEvenement->format('Y-m-d'); // Format ISO pour la base de données
     }
@@ -207,7 +208,7 @@ class Article
 
 
 
-    public function getVendeur() : Utilisateur
+    public function getVendeur(): Utilisateur
     {
         return $this->vendeur;
     }
@@ -226,11 +227,12 @@ class Article
      * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
      * @return array
      */
-    private function getData() : array {
+    private function getData(): array
+    {
         return array(
             'titre' => $this->getTitre(),
             'description_article' => $this->getDescription(),
-            
+
             'prix_min' => $this->getPrixMin(),
             'artiste' => $this->getArtiste(),
             'date_evenement' => $this->getDateEvenement(),
@@ -250,9 +252,9 @@ class Article
 
     /////////////////////////// CREATE /////////////////////////////////////
     /*
-    * Création d'un article
-    * Note : Un article ne peut avoir le même titre et description
-    */
+     * Création d'un article
+     * Note : Un article ne peut avoir le même titre et description
+     */
     public function create()
     {
         $query = "INSERT INTO ARTICLE(titre, prix_min, description_article, artiste, 
@@ -261,21 +263,21 @@ class Article
                                     :etat, :categorie, :taille, :lieu, :style, :date_evenement, :num_vendeur)";
 
         $dao = DAO::get();
-        $dao->exec(  $query, array_merge( $this->getData(), ["num_vendeur" => $this->getVendeur()->getNumUtilisateur()] )    );
-        
+        $dao->exec($query, array_merge($this->getData(), ["num_vendeur" => $this->getVendeur()->getNumUtilisateur()]));
+
         // Récupérer le bon num_article
         $dernierNum = $dao->query("SELECT max(num_article) FROM ARTICLE;", array())[0][0];
         $this->setNumArticle($dernierNum);
-        
+
         // Insérer l'image
         $queryImage = "INSERT INTO IMAGE_ARTICLE(num_article,nom_image) values (:num_article,:nom_image);";
         $data = [
             'num_article' => $this->getNumArticle(),
             'nom_image' => ""
         ];
-        foreach($this->getImages() as $image) {
+        foreach ($this->getImages() as $image) {
             $data['nom_image'] = $image;
-            $dao->exec($queryImage,$data);
+            $dao->exec($queryImage, $data);
         }
     }
 
@@ -296,7 +298,7 @@ class Article
                     WHERE titre = ? AND description_article = ? ;";
 
         $dao = DAO::get();
-        $table = $dao->query($query,[$titre, $description]);
+        $table = $dao->query($query, [$titre, $description]);
         return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
@@ -313,7 +315,7 @@ class Article
                     WHERE num_article = ? ;";
 
         $dao = DAO::get();
-        $table = $dao->query($query,[$num_article]);
+        $table = $dao->query($query, [$num_article]);
         return Article::obtenirArticlesAPartirTable($table)[0];
     }
 
@@ -322,52 +324,94 @@ class Article
      * @param string $titrePattern
      * @return array retourne un tableau d'objet Article
      */
-    public static function readLike(string $titrePattern): array {
+    public static function readLike(string $titrePattern): array
+    {
         $query = "SELECT *
                     FROM ARTICLE
                     WHERE titre like '%' ||? ||'%';";
 
         $dao = DAO::get();
-        $table = $dao->query($query,[$titrePattern]);
+        $table = $dao->query($query, [$titrePattern]);
+        return Article::obtenirArticlesAPartirTable($table);
+    }
+
+    public static function readCategorie(string $categorieName): array
+    {
+        $query = "SELECT *
+                    FROM ARTICLE
+                    WHERE categorie = ?;";
+
+        $dao = DAO::get();
+        $table = $dao->query($query, [$categorieName]);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
 
-        /**
+
+    public static function readPageCategorie(int $page,int $pageSize, string $categorie){
+        $query = "SELECT *
+                    FROM ARTICLE
+                    WHERE categorie = ?
+                    ORDER BY num_article
+                    OFFSET ? ROWS
+                    FETCH NEXT ? ROWS ONLY;";
+        $dao = DAO::get();
+        $table = $dao->query($query, [$categorie, ($page - 1)*$pageSize, $pageSize]);
+        return Article::obtenirArticlesAPartirTable($table);
+    }
+
+
+    public static function nombreArticles(string $categorie){
+        $query = "SELECT COUNT(*)
+                    FROM ARTICLE
+                    WHERE categorie = ?;";
+        $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, [$categorie]);
+        return $tableContenantLeNombre[0][0];
+    }
+
+
+    
+    /**
      * Retourne un tableau d'article à partir de la table
      * @return array 
      */
-    private static function obtenirArticlesAPartirTable($table) : array
+    private static function obtenirArticlesAPartirTable($table): array
     {
-        if(count($table) == 0) {throw new Exception("l'article n'existe pas");} 
+        if (count($table) == 0) {
+            throw new Exception("l'article n'existe pas");
+        }
         $dao = DAO::get();
-        
+
         $lesArticles = array();
-        foreach($table as $ligne) {
+        foreach ($table as $ligne) {
 
             // Obtenir l'article sous forme d'objet 
-            $article = new Article(Utilisateur::readNum($ligne['num_vendeur']),$ligne['titre'], $ligne['description_article'], array(), $ligne['prix_min'], $ligne['artiste'], 
-                                $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']);
+            $article = new Article(
+                Utilisateur::readNum($ligne['num_vendeur']), $ligne['titre'], $ligne['description_article'],
+                array(), $ligne['prix_min'], $ligne['artiste'],
+                $ligne['etat'], $ligne['categorie'], $ligne['taille'], $ligne['lieu'], $ligne['style']
+            );
             $article->setNumArticle($ligne['num_article']);
-            $article->ajouterNomsImg(Article::obtenirImagesAPartirTable($ligne['num_article'])); 
-            array_push($lesArticles,$article);
+            $article->ajouterNomsImg(Article::obtenirImagesAPartirTable($ligne['num_article']));
+            array_push($lesArticles, $article);
         }
         return $lesArticles;
-    } 
+    }
 
 
     /**
      * Récupérer les images des articles
      */
-    private static function obtenirImagesAPartirTable(string $num_article) : array
-     {
+    private static function obtenirImagesAPartirTable(string $num_article): array
+    {
         $dao = DAO::get();
         $query = "SELECT nom_image from IMAGE_ARTICLE WHERE num_article = ?;";
-        $table = $dao->query($query,[$num_article]);
-        
+        $table = $dao->query($query, [$num_article]);
+
         $lesImages = array();
-        foreach($table as $ligne) {
-            array_push($lesImages,$ligne['nom_image']);
+        foreach ($table as $ligne) {
+            array_push($lesImages, $ligne['nom_image']);
         }
         return $lesImages;
     }
@@ -383,19 +427,19 @@ class Article
             WHERE num_article = :num_article;";
 
         $dao = DAO::get();
-        $dao->exec($query, array_merge( $this->getData(), ["num_article" => $this->getNumArticle()] ));
+        $dao->exec($query, array_merge($this->getData(), ["num_article" => $this->getNumArticle()]));
     }
 
     /////////////////////////// DELETE /////////////////////////////////////
     public function delete()
     {
         $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;"; // Des triggers feront des DELETE dans les autres tables
-        
+
         $dao = DAO::get();
-        $dao->exec($query,[$this->getTitre(),$this->getDescription()]);
+        $dao->exec($query, [$this->getTitre(), $this->getDescription()]);
     }
 
-    function egalArticle(Article $autreArticle) : bool
+    function egalArticle(Article $autreArticle): bool
     {
         return $this->getTitre() == $autreArticle->getTitre() && $this->getDescription() == $autreArticle->getDescription();
     }
