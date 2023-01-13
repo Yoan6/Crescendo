@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 /*======================================================
 *                         TRIGGER
 ========================================================*/
-CREATE FUNCTION check_price_func() RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION check_price_func() RETURNS TRIGGER AS $$
 BEGIN
     IF (NEW.prix_offre <= (SELECT MAX(prix_offre) FROM ENCHERIT WHERE num_enchere = NEW.num_enchere)) THEN
         RAISE EXCEPTION 'Prix proposé inférieur ou égal à l''enchère actuelle';
