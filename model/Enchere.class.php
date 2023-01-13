@@ -210,7 +210,7 @@ class Enchere
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
 
     }
-    public static function nombreArticles(string $categorie): array
+    public static function nombreArticles(string $categorie): int
     {
         $nbArticles = Article::nombreArticles($categorie);
         return $nbArticles;
@@ -297,7 +297,7 @@ class Enchere
         }
     }
 
-    public function obtenirPrixActuel(): int|string
+    public function obtenirPrixActuel()
     {
         $dao = DAO::get();
         $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";
