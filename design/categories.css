@@ -188,7 +188,19 @@ aside .buttonDropFilter {
 	height: 70px;
 	width: 100%;
 
+	/*
+	max-height: 0;
+  	overflow: hidden;
+  	transition: max-height 2s ease-out;
+	*/
+
 }
+
+/*
+.menu-open {
+	max-height: 500px;
+  }
+  */
 
 
 
