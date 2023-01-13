@@ -18,7 +18,7 @@
     <div id="inscription">
 
         <main>
-        <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+        <a class="logo" href="../view/accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
 
         <?php
         if (isset($error) && count($error) != 0) {

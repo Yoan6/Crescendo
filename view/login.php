@@ -18,7 +18,7 @@
 
 
   <main id="connexion">
-  <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+  <a class="logo" href="../view/accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
 
   <?php 
     if (isset($error) && count($error) != 0) {
@@ -30,7 +30,7 @@
     if(!isset($_SESSION)) { 
       session_start(); 
     } 
-    
+
     // Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
     if(isset($_SESSION['num_utilisateur'])) {
         $view = new View();
