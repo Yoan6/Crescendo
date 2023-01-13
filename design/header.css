@@ -90,12 +90,12 @@ header > div {
     height: 64px;
 }
 
-header nav ul {
-    background-color: var(--navBar-background-color);
+header form ul {
+    background-color: var(--formBar-background-color);
     border-radius: 15px;
 	margin: 0px;
 	padding-left: 0px;
-	color: var(--navBar-font-color);
+	color: var(--formBar-font-color);
 }
 
 header li {
@@ -103,12 +103,17 @@ header li {
     
 }
 
-header li a {
+header li button {
+  background-color: var(--main-background-color);
     display:block;
     padding: 16px 25px 16px 25px;   
 	text-align: center;
     border-right: solid rgb(103, 103, 103) 1px;
     border-left: solid rgb(103, 103, 103) 1px;
+    border-top: solid white 0px;
+    border-bottom: solid white 0px;
+
+    color: white;
 
 }
 
@@ -128,20 +133,20 @@ Règles générales
   }
 
   
-  header nav {
+  header form {
       display: flex;
       justify-content: center;
       }
   
-  header nav ul li:first-child a {
+  header form ul li:first-child button {
       border-radius: 15px 0px 0px 15px;
   }
   
-  header nav ul li:last-child a {
+  header form ul li:last-child button {
     border-radius: 0px 15px 15px 0px;
 }
 
-header    nav ul li a:hover {
+header    form ul li button:hover {
         background-color: white;
         color:black;
     }
@@ -184,7 +189,7 @@ Drop down bouton utilisateur
   }
   
   .dropdown {
-    background: var(--navBar-background-color);
+    background: var(--formBar-background-color);
     border-radius: 25px;
     position: absolute;
     width: 250px;
