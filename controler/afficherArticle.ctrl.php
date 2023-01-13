@@ -4,11 +4,14 @@
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
+    $prix = $_POST['prix'] ?? 0; 
+
 
 
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
+    $utilisateur = Utilisateur::readNum(1);
     $num_enchere = 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
@@ -24,6 +27,7 @@
 
     $imgUrl = $article->getImagesURL()[0];
     $nomEnchere = $article->getTitre();
+    $vendeur = $article->getVendeur();
     $pseudo = $article->getVendeur()->getPseudo();
     $description = $article->getDescription();
 
@@ -39,7 +43,6 @@
     $dateEvenement = $article->getDateEvenement();
     $lieu = $article->getLieu();
     $style = $article->getStyle();
-    $vendeur = $article->getVendeur();
 
 
 
@@ -72,7 +75,7 @@
     $view->assign('style', $style);
     $view->assign('vendeur', $vendeur);
 
-    $view->display("voirEnchère.php")
+    $view->display("z.test.afficherArticler.view.php")
 
     /***************************************************************************
     **                         Gestion des erreurs
@@ -80,5 +83,12 @@
 
     // modifs Pablo
 
-    
+    // test encherir
+    try {
+        $enchere->encherir($utilisateur, $prix);
+    } catch (exception $e) {
+        // Une erreur peut être générée si l'offre n'est pas la plus haute
+        print('\n Erreur ' . $e->getMessage() . "\n");
+    }
+
 ?>

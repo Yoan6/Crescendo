@@ -109,7 +109,7 @@
                         </div>
 
                         <div id="divNouveauPrix">
-                            <input type="number" name="" id="prix" min="0" placeholder="Votre nouveau prix">
+                            <input type="number" name="prix" id="prix" min="0" placeholder="Votre nouveau prix">
                             <button>
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
