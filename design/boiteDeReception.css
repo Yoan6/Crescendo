@@ -19,6 +19,22 @@ main{
     font-size: 1.25em;
 }
 
+.texte{
+    flex-flow: column;
+    width: 80%;
+    margin : 10%;
+    text-align: left;
+}
+
+.bouton{
+    flex-flow: column;
+    width: 20%;
+    margin : 5%;
+    text-align: center;
+}
+
+
+
 .enchere{
     display: flex;
     align-items: center;
@@ -28,17 +44,10 @@ main{
     height: 180px;
     background:#161616;
     border-radius: 15px;
-    text-align: left;
     font-size: 1.5em;
     color :white;
     margin : 2em;
-    gap: 40%;
-    border-color: red;
-    border-width : 10px;
-}
-
-.texte{
-    flex-flow: column;
+    /* width: 90%; */
 }
 
 .btnVoirE{
@@ -47,7 +56,6 @@ main{
     width: 200px;
     border: 0;
     font-size: 1em;
-    text-align: center;
     color: black;
     border-radius: 15px;
     background-color: #79D2BC;
@@ -62,7 +70,6 @@ main{
     height: 100px;
     background:#161616;
     border-radius: 15px;
-    text-align: left;
     font-size: 1.5em;
     color :white;
     margin : 2em;
@@ -75,7 +82,6 @@ main{
     width: 200px;
     border: 0;
     font-size: 1em;
-    text-align: center;
     color: black;
     border-radius: 15px;
     background-color: #79D2BC;

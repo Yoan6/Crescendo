@@ -27,7 +27,9 @@
                     <p><b> Article : </b> Perruque d'Elton Johnn </p>
                     <p><b> Nouvelle enchère : </b> 10900 (+350€) </p>
                 </div>
-                <button class="btnVoirE"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirE"> Voir </button>
+                </div>
             </div>
             <div class="enchere">
                 <div class="texte">
@@ -35,10 +37,13 @@
                     <p><b> Article : </b> Cache-oeil Madonna </p>
                     <p><b> Nouvelle enchère : </b> 5200 (+100€) </p>
                 </div>
-                <button class="btnVoirE"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirE"> Voir </button>
+                </div>
             </div>
 
             <h3 class="autres"> Voir les autres enchères (3) </h3>
+            
         </div>
 
         <div id="notifications">
@@ -49,28 +54,37 @@
                 <div class="texte">
                     <p><b> Adam Khalid </b> vous a laissé une évaluation </p>
                 </div>
-                <button class="btnVoirN"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirN"> Voir </button>
+                </div>
             </div>
             <div class="notification">
                 <div class="texte">
                     <p> Votre commande a été envoyée </p>
                 </div>
-                <button class="btnVoirN"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirN"> Voir </button>
+                </div>
             </div>
             <div class="notification">
                 <div class="texte">
                     <p><b> Julien Law </b> a ajouté des nouveaux articles </p>
                 </div>
-                <button class="btnVoirN"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirN"> Voir </button>
+                </div>
             </div>
             <div class="notification">
                 <div class="texte">
                     <p> Votre article favori <b> Lunettes Damso </b> a été vendu </p>
                 </div>
-                <button class="btnVoirN"> Voir </button>
+                <div class="bouton">
+                    <button class="btnVoirN"> Voir </button>
+                </div>
             </div>
 
             <h3 class="autres"> Voir les autres notifications (7) </h3>
+
         </div>
 
     </main>
