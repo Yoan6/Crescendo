@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     num_utilisateur SERIAL PRIMARY KEY, 
     email VARCHAR UNIQUE,                                      
     pseudo VARCHAR,
-    mot_de_passe VARCHAR, --chkpass
+    mot_de_passe chkpass, --chkpass
     nom VARCHAR,
     prenom VARCHAR,
     date_naissance DATE,
