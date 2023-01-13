@@ -81,4 +81,10 @@ document.documentElement.addEventListener("click", function (event) {
   }
 });
 
+/*
+document.getElementsByClassName("buttonDropFilter").onclick = function() {
+  var dropdownButton = document.getElementsByClassName("buttonDropFilter");
+  dropdownButton.classList.toggle("menu-open");
+};
 
+*/
