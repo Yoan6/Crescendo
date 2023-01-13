@@ -22,15 +22,33 @@ main{
 .texte{
     flex-flow: column;
     width: 80%;
-    margin : 10%;
     text-align: left;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bouton{
     flex-flow: column;
     width: 20%;
-    margin : 5%;
+    height: 160px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.btnVoirE{
+    justify-content: center;
+    height: 80%;
+    width: 80%;
+    border: 0;
+    font-size: 1em;
+    color: black;
+    border-radius: 15px;
+    background-color: #79D2BC;
 }
 
 
@@ -47,19 +65,9 @@ main{
     font-size: 1.5em;
     color :white;
     margin : 2em;
-    /* width: 90%; */
 }
 
-.btnVoirE{
-    justify-content: center;
-    height: 140px;
-    width: 200px;
-    border: 0;
-    font-size: 1em;
-    color: black;
-    border-radius: 15px;
-    background-color: #79D2BC;
-}
+
 
 .notification{
     display: flex;
@@ -73,16 +81,35 @@ main{
     font-size: 1.5em;
     color :white;
     margin : 2em;
-    gap: 40%;
 }
 
 .btnVoirN{
     justify-content: center;
-    height: 50px;
-    width: 200px;
+    height: 35%;
+    width: 80%;
     border: 0;
     font-size: 1em;
     color: black;
     border-radius: 15px;
     background-color: #79D2BC;
+}
+
+
+
+@media (min-width: 500px) and (max-width: 1000px) {   
+
+.enchere, .notification{
+    flex-direction: column;
+}
+
+.btnVoirE{
+    height: 60%;
+    width: 300%;
+}
+
+.btnVoirN{
+    height: 70%;
+    width: 300%;
+}
+
 }

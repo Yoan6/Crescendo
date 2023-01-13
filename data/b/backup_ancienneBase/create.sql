@@ -120,9 +120,9 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .separator '|'
 .nullvalue Null
 
-.import ./initialisation/encheres.initialisation.txt ENCHERE
-.import ./initialisation/utilisateurs.initialisation.txt UTILISATEUR
-.import ./initialisation/articles.initialisation.txt ARTICLE
+.import ../../sql_base_donnees_actuelle/initialisation/encheres.initialisation.txt ENCHERE
+.import ../../sql_base_donnees_actuelle/initialisation/utilisateurs.initialisation.txt UTILISATEUR
+.import ../../sql_base_donnees_actuelle/initialisation/articles.initialisation.txt ARTICLE
 .import ./initialisation/concernes.initialisation.txt CONCERNE
 .import ./initialisation/images.initialisation.txt IMAGE_ARTICLE
 
