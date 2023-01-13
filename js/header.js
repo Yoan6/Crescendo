@@ -41,6 +41,6 @@ let btnFermer = document.getElementsByClassName("btnFermer");
 
 for (let i = 0; i < btnFermer.length; i++) {
   btnFermer[i].addEventListener("click", function(event){
-    event.currentTarget.parentElement.style.display = "none";
+    event.currentTarget.parentElement.parentElement.style.display = "none";
   });
 }
