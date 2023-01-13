@@ -9,7 +9,7 @@
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
-    $num_enchere = 0;
+    $num_enchere = 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -27,6 +27,22 @@
     $pseudo = $article->getVendeur()->getPseudo();
     $description = $article->getDescription();
 
+    // modifs Pablo
+    $numArticle = $article->getNumArticle();
+    $titre = $article->getTitre();
+    $nomImages = $article->getImages();
+    $artiste = $article->getArtiste();
+    $prixMin = $article->getPrixMin();
+    $etat = $article->getEtat();
+    $categorie = $article->getCategorie();
+    $taille = $article->getTaille();
+    $dateEvenement = $article->getDateEvenement();
+    $lieu = $article->getLieu();
+    $style = $article->getStyle();
+    $vendeur = $article->getVendeur();
+
+
+
     /***************************************************************************
     **                         Construction de la vue
     ***************************************************************************/
@@ -41,5 +57,28 @@
     $view->assign('nomEnchere', $nomEnchere);
     $view->assign('pseudo', $pseudo);
     $view->assign('description', $description);
-    $view->display("z.test.afficherArticler.view.php")
+
+    // modifs Pablo
+    $view->assign('numArticle', $numArticle);
+    $view->assign('titre', $titre);
+    $view->assign('nomImages', $nomImages);
+    $view->assign('artiste', $artiste);
+    $view->assign('prixMin', $prixMin);
+    $view->assign('etat', $etat);
+    $view->assign('categorie', $categorie);
+    $view->assign('taille', $taille);
+    $view->assign('dateEvenement', $dateEvenement);
+    $view->assign('lieu', $lieu);
+    $view->assign('style', $style);
+    $view->assign('vendeur', $vendeur);
+
+    $view->display("voirEnchère.php")
+
+    /***************************************************************************
+    **                         Gestion des erreurs
+    ***************************************************************************/
+
+    // modifs Pablo
+
+    
 ?>

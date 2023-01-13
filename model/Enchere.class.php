@@ -13,6 +13,8 @@ class Enchere
     private array $articles = array(); // Si ce n'est pas un lot, alors une enchère est toujours reliée à un article
     private bool $estLot;
 
+    private string $nomLot;
+
 
     public function __construct(array $articles)
     {
