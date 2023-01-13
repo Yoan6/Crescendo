@@ -349,12 +349,11 @@ class Article
 
 
     public static function readPageCategorie(int $page,int $pageSize, string $categorie){
-        $query = "SELECT *
+                $query = "SELECT *
                     FROM ARTICLE
                     WHERE categorie = ?
                     ORDER BY num_article
-                    OFFSET ? ROWS
-                    FETCH NEXT ? ROWS ONLY;";
+                    LIMIT ? OFFSET ?;";
         $dao = DAO::get();
         $table = $dao->query($query, [$categorie, ($page - 1)*$pageSize, $pageSize]);
         return Article::obtenirArticlesAPartirTable($table);

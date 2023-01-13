@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     ville VARCHAR,
     rue VARCHAR NULL,
     code_postal VARCHAR, 
+    date_creation DATE,
     img_profil VARCHAR
 );
 
@@ -100,7 +101,46 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
     PRIMARY KEY (num_article,num_enchere)
 );
 
+/*======================================================
+*                         TRIGGER
+========================================================*/
+CREATE FUNCTION check_price_func() RETURNS TRIGGER AS $$
+BEGIN
+    IF (NEW.prix_offre <= (SELECT MAX(prix_offre) FROM ENCHERIT WHERE num_enchere = NEW.num_enchere)) THEN
+        RAISE EXCEPTION 'Prix proposé inférieur ou égal à l''enchère actuelle';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 
+CREATE TRIGGER check_price
+BEFORE INSERT ON ENCHERIT
+FOR EACH ROW
+EXECUTE FUNCTION check_price_func();
+
+-- Create the function
+CREATE OR REPLACE FUNCTION delete_enchere_on_article_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+  DELETE FROM enchere e
+  USING CONCERNE c
+  WHERE c.num_article = OLD.num_article AND c.num_enchere = e.num_enchere;
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create the trigger
+CREATE TRIGGER delete_enchere
+AFTER DELETE ON article
+FOR EACH ROW
+EXECUTE FUNCTION delete_enchere_on_article_delete();
+/*======================================================
+*                      view
+========================================================*/
+CREATE VIEW upcoming_auctions AS
+SELECT num_article, num_enchere
+FROM CONCERNE
+WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 /*======================================================
 *                      IMPORTAGE DES DONNEES

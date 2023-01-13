@@ -1,6 +1,6 @@
 <header>
     <div id="firstStage"> 
-        <a class="logo" href="accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+        <a class="logo" href="accueil.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
         <form action="recherche.php" method="GET" class="conteneur">
             <input class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
             <datalist id="searchList">
@@ -58,12 +58,12 @@
 </div>
         
     </div>
-    <nav>
+    <form action="../controler/categorie.ctrl.php" method="GET">
         <ul class="conteneur"> 
-            <li><a href="Vetements.php">A la une</a></li>
-            <li><a href="Vetements.php">Vêtements</a></li>
-            <li><a href="Vetements.php">Instruments</a></li>
-            <li><a href="Vetements.php">Accessoires</a></li>
+            <li><button name="categorie" value="AlaUne">A la une</button></li>
+            <li><button name="categorie" value="vetements">Vêtements</button></li>
+            <li><button name="categorie" value="instruments">Instruments</button></li>
+            <li><button name="categorie" value="accessoires">Accessoires</button></li>
         </ul>
-    </nav>
+</form>
 </header>
