@@ -297,7 +297,7 @@ class Enchere
         }
     }
 
-    public function obtenirPrixActuel(): string
+    public function obtenirPrixActuel()
     {
         $dao = DAO::get();
         $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";

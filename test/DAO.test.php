@@ -4,10 +4,10 @@ require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
 
 $valeurAttendu = [
-    'email' => 'testDAO',
-    0 => 'testDAO',
-    'mot_de_passe' => 'testDAO',
-    1 => 'testDAO',
+    'email' => 'testDAOD3',
+    0 => 'testDAOD3',
+    'mot_de_passe' => 'testDAOD3',
+    1 => 'testDAOD3',
 ];
 try {
     //--Test--

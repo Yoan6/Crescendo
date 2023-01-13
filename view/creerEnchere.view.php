@@ -16,11 +16,11 @@
 
 
 
-        <form method="post" action="">
+        <form method="post" action="creerEnchere.ctrl.php">
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input type="file" name="images" id="btnImage" accept="image/*">
+                        <input type="file" name="images[]" id="btnImage"  accept="image/png, image/jpeg">
                         <label for="btnImage" id="labelAjout"><svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -87,14 +87,14 @@
                             <h4>
                                 Nom de l'enchère
                             </h4>
-                            <input type="text" placeholder="INSERER TITRE">
+                            <input name="titre" value="<?=$titre?>" type="text" placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
                                 Prix de départ
                             </h4>
-                            <input type="text" placeholder="INSERER PRIX DE DEPART">
+                            <input name="prixMin" value="<?=$prixMin?>" type="number" min="0" placeholder="INSERER PRIX DE DEPART">
 
                         </div>
                         <div>
@@ -102,7 +102,7 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input type="date" id="date">
+                            <input name="dateEnchere" value="<?=$dateEnchere?>" type="date" id="date">
 
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         Description
                     </h3>
 
-                    <textarea name="" id="" cols="30" rows="10" placeholder="INSERER DESCRIPTION"></textarea>
+                    <textarea name="description" value="<?=$description?>" id="" cols="30" rows="10" placeholder="INSERER DESCRIPTION"></textarea>
                 </div>
 
                 <div id="bottomForm">
@@ -130,29 +130,26 @@
                                 <p>
                                     Artiste:
                                 </p>
-                                <input type="text" placeholder="Insérer artiste">
+                                <input name="artiste" value="<?=$artiste?>" type="text" placeholder="Insérer artiste">
                             </section>
                             <section>
                                 <p>
                                     Date du concert:
                                 </p>
-                                <input type="date">
+                                <input  name="dateEvenement" value="<?=$dateEvenement?>" type="date">
                             </section>
                             <section>
                                 <p>
                                     Lieu:
                                 </p>
-                                <input type="text" placeholder="Insérer lieu">
+                                <input name="lieu" value="<?=$lieu?>" type="text" placeholder="Insérer lieu">
                             </section>
                             <section>
                                 <p>
                                     Style musical:
                                 </p>
-                                <select>
-
-                                    <option value="0">Selectionner Style</option>
-                                    <option value="1">Rock</option>
-                                    <option value="2">Moins aimés</option>
+                                <select name="style" value="<?=$style?>">
+                                    <?php include(__DIR__ . '/section/styleOption.view.php'); ?>
 
                                 </select>
                             </section>
@@ -172,36 +169,24 @@
                                 <p>
                                     Taille:
                                 </p>
-                                <select>
-
-                                    <option value="0">Selectionner taille</option>
-                                    <option value="1">Rock</option>
-                                    <option value="2">Moins aimés</option>
-
+                                <select  name="taille" value="<?=$taille?>">
+                                    <?php include(__DIR__ . '/section/tailleOption.view.php'); ?>
                                 </select>
                             </section>
                             <section>
                                 <p>
                                     Etat:
                                 </p>
-                                <select>
-
-                                    <option value="0">Selectionner Etat</option>
-                                    <option value="1">Rock</option>
-                                    <option value="2">Moins aimés</option>
-
+                                <select name="etat" value="<?=$etat?>">
+                                    <?php include(__DIR__ . '/section/etatOption.view.php'); ?>
                                 </select>
                             </section>
                             <section>
                                 <p>
                                     Catégorie:
                                 </p>
-                                <select>
-
-                                    <option value="0">Selectionner Catégorie</option>
-                                    <option value="1">Rock</option>
-                                    <option value="2">Moins aimés</option>
-
+                                <select name="categorie" value="<?=$categorie?>">
+                                    <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
                                 </select>
                             </section>
 

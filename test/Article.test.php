@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../model/Article.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-$utilisateur = Utilisateur::read('a@gmail.com','a');
+$utilisateur = Utilisateur::readNum(1);
 $article = new Article($utilisateur,"titreTest", "descriptionTest", ["imageTest"], 2, "artisteTest", "etatTest", "categorieTest", "tailleTest", "lieuTest", "styleTest", new DateTime());
 try {
     //--Test--
