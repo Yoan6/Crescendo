@@ -1,0 +1,365 @@
+.article {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background-color: var(--header-background-color);
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 2px var(--main-content-background-color);
+    border-radius: 15px;
+    width: 100%;
+}
+
+.article #divHeart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75px;
+    height: 100%;
+}
+
+.article #divHeart svg {
+    width: 80%;
+    height: 50%;
+    min-width: 50px;
+
+}
+
+.article #divHeart svg path {
+    fill: transparent;
+    cursor: pointer;
+
+}
+
+.article #divHeart svg path:hover {
+    stroke: var(--rouge);
+}
+
+
+
+.article #photo {
+    width: 30%;
+    height: 150px;
+    border-radius: 15px;
+    border: solid 1px black;
+}
+
+.article #photo img {
+    object-fit: cover;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+.article #responsive {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    flex-shrink: 1;
+    width: 100%;
+}
+
+
+
+.article #center {
+    width: 70%;
+    height: 150px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+}
+
+.article #center div {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article #center div h3:first-child {
+    margin: 0px;
+    font-weight: normal;
+    font-size: 23px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+    text-align:left;
+    
+}
+
+.article #center div h3:last-child {
+    margin: 0px;
+    margin-bottom: 0px;
+    font-weight: bolder;
+    font-size: x-large;
+    color: var(--bleu);
+}
+
+
+.article #center section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: solid 1px var(--main-content-background-color);
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+.article #center section p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    width: 95%;
+    margin: 0px;
+    font-size: small;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+}
+
+.article #center a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: var(--bleu);
+    border-radius: 10px;
+    height: 30px;
+    color: black;
+    font-weight: bolder;
+    margin-top: 10px;
+
+}
+
+.article #divSupprimer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+    border-top: solid 1px var(--main-content-background-color);
+    border-left: solid 1px var(--main-content-background-color);
+    border-bottom: solid 1px var(--main-content-background-color);
+
+    height: 100%;
+    width: 75px;
+}
+
+.article #divSupprimer p {
+    margin: 0px;
+    font-size: larger;
+}
+
+.article #divSupprimer svg {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+}
+
+.article #divSupprimer svg path {
+    stroke-width: 1px;
+    fill: transparent;
+    cursor: pointer;
+}
+
+.article #divSupprimer #dislike path:hover {
+    stroke: var(--rouge);
+}
+
+.article #divSupprimer #like path:hover {
+    stroke: var(--bleu);
+}
+
+
+#like{
+    fill: var(--bleu);
+}
+
+
+
+
+
+
+@media (min-width: 481px) and (max-width: 1000px) {   
+     .article {
+        height: 200px;
+        position: relative;
+    }
+
+    #responsive > div:first-child {
+        width: 250px;
+        min-width: 250px;
+        height: 180px;
+    }
+
+
+    
+
+
+    .article #center {
+        width: 35%;
+        height: 200px;
+    }
+
+    .article #center section {
+        display: none;
+    }
+
+
+    .article #center div {
+        flex-direction: column;
+        align-items: baseline;
+        height: 45%;
+        margin-top: 18px;
+    }
+
+
+    .article #center >div> h3:first-child {
+        font-size: 1.6em;
+    }
+
+    .article #center >div> h3:last-child {
+        font-size: 1.7em;
+    }
+
+
+    .article #center a {
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin: 0px;
+        width: 15%;
+        height: 200px;
+        border-radius: 0px 15px 15px 0px;
+        text-align: center;
+
+    }
+
+    .article #divSupprimer {
+        border: solid 2px var(--main-content-background-color);
+        position: absolute;
+        bottom: 10px;
+        left: 330px;
+        
+
+        width: 25%;
+        max-width: 500px;
+        min-width: 170px;
+        height: 50px;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .article #divSupprimer p {
+        font-size: x-large;
+    }
+
+
+
+
+    #via {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 0px;
+        margin-bottom: 30px;
+    }
+
+    #divVIA #via li{
+
+        height: 120px;
+        border-radius: 0px;
+        border-right: none;
+        border-left: none;
+        border-bottom: solid 1px white;
+        border-top: solid 1px white;
+    }
+
+    #divVIA #via li a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        max-width: unset;
+        width: 100%;
+        height: 100%;
+      
+       
+    }
+
+
+    #via li h2 {
+         padding-top: 0px;
+         height: 100%;
+         width: 50%;
+         display: flex;
+            align-items: center;
+            justify-content: center;
+    }
+
+    #divVIA #via li a div {
+        width: 50%;
+        height: 100px;
+
+    }
+
+    #divVIA #via li a img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+   
+  
+}
+
+
+@media (min-width: 481px) and (max-width: 600px) {   
+
+
+
+    
+    #responsive > div:first-child {
+        min-width: 180px;
+        width: 180px;
+        height: 180px;
+    }
+
+    .article #center {
+        width: 40%;
+        height: 200px;
+    }
+
+    .article #divSupprimer {
+        left: 200px;
+    }
+
+    .article #divHeart {
+        display: none;
+    }
+
+    #banner {
+        width: 100%;
+        height: 250px;
+
+    }
+
+
+
+
+}
+
+
+.article input {
+    display: none;
+}
