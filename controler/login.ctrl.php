@@ -34,13 +34,24 @@ else {
     if ($login != '' && $password != '') {
         // Tentative de lecture d'un utilisateur en fonction du login/email et du mot de passe
         try {
-            $utilisateur = Utilisateur::read($login,$password);
+            $utilisateur = Utilisateur::readHash($login);
+            var_dump($utilisateur->getMotDePasse());
             $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
-            $view = new View();
+
+            // Teste si le mot de passe encrypté est bon :
+            $passwordHash = $utilisateur->getMotDePasse();
+            if (password_verify($password, $passwordHash)) {
+                $view = new View();
         
-            // Charge la vue
-            $view->display("accueil.php");
-            echo ("Vous êtes maintenant connecté !");
+                // Charge la vue
+                $view->display("accueil.php");
+                echo ("Vous êtes maintenant connecté !");
+            }
+            else {
+                array_push($error, "L'identifiant ou le mot de passe n'est pas bon");
+            }
+
+            
         } catch (Exception $e) {
             array_push($error,$e->getMessage());
         }
@@ -48,6 +59,9 @@ else {
     } else {
         array_push($error, "Vous n'avez pas rentré de login ou mot de passe");
     }
+
+    var_dump($error);
+    
 
     $view = new View();
     $view->assign('error',$error);
