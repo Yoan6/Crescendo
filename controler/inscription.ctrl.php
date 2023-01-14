@@ -44,12 +44,10 @@ if(isset($_SESSION['num_utilisateur'])) {
 
     // Charge la vue
     $view->display("accueil.php");
-    echo ("Vous êtes déja connecté !");
 } 
 
 $error=array();
 
-$dateDeCreation = new DateTime();   // Date de création du compte de l'utilisateur
 $dateMinimale = new DateTime();   // date d'aujourd'hui
 $interval = new DateInterval('P18Y');   // intervalle de temps à changer : 18 ans
 $dateMinimale->sub($interval);    // date minimale : aujourd'hui - 18 ans
@@ -72,7 +70,7 @@ $password = password_hash($password, PASSWORD_DEFAULT);
       array_push($error,"Il y a déjà un utilisateur avec ce pseudo ou email");
     }
     catch (Exception $e) {
-      $utilisateur = new Utilisateur($adresseMail,$pseudo,$password,$nom,$prenom,$ville,$rue,$code_postale,$birthsday,$dateDeCreation);
+      $utilisateur = new Utilisateur($adresseMail,$pseudo,$password,$nom,$prenom,$ville,$rue,$code_postale,$birthsday);
       $utilisateur->create();
     }
   }
@@ -82,16 +80,11 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 // Si finalement aucune erreur, on envois un message de connexion et l'utilisateur est connecté
 if (count($error) == 0) {
-  $message = "L'utilisateur a correctement été inséré dans la base";
-  session_start();
   $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
   $view = new View();
 
     // Charge la vue
     $view->display("../view/accueil.php");
-    echo ("Vous êtes connecté !");
-} else {
-  $message = '';
 }
 
 

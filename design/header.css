@@ -93,9 +93,9 @@ header > div {
 header form ul {
     background-color: var(--formBar-background-color);
     border-radius: 15px;
-	margin: 0px;
-	padding-left: 0px;
-	color: var(--formBar-font-color);
+	  margin: 0px;
+	  padding-left: 0px;
+	  color: var(--formBar-font-color);
 }
 
 header li {
@@ -104,7 +104,7 @@ header li {
 }
 
 header li button {
-  background-color: var(--main-background-color);
+  background-color: black;
     display:block;
     padding: 16px 25px 16px 25px;   
 	text-align: center;

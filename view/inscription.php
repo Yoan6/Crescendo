@@ -126,8 +126,21 @@
                 </div>
                 <button type="submit" name="inscription">S'INSCRIRE</button>
             </form>
+
+            <div>
+                <?php 
+
+                if (isset($error) && count($error) != 0) {
+                    foreach($error as $e) { ?>
+                        <p class="error"><?php echo($e);?></p>
+                        <?php
+                    }
+                } 
+                ?>
+            
+            </div>
             <p>Tu as déja un compte ?</p>
-            <a href="login.php" class="connexion">Connecte-toi</a>
+            <a href="../view/login.php" class="connexion">Connecte-toi</a>
         </main>
     </div>
 
