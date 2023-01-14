@@ -95,9 +95,7 @@ Règles générales ?
 	/*text-decoration: underline red;*/
 }
 
-
-button,
-a {
+input[type=submit] , button, a {
 	cursor: pointer;
 }
 

@@ -8,7 +8,7 @@
                     <option value="Elvis Presley"></option>
                     <option value="The quick brown fox jumps over a lazy dog."></option>
             </datalist>
-            <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
+            <input value="" type="submit" id="loupe" href="recherche.ctrl.php"><img src="../design/image/search.svg" alt="loupe">
         </form>
                     
   <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
