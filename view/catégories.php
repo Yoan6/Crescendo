@@ -129,22 +129,18 @@
                     <div id="topAffichageArticle">
                         <div id="contenuOrderBy">
 
-                            <select id="orderBy">
+                            <select name="orderBy" id="orderBy">
                                 <option value="0">Trier par</option>
                                 <option value="1">Plus aimés</option>
                                 <option value="2">Moins aimés</option>
                             </select>
-
-
-
-
 
                         </div>
                     </div>
 
 
                     <?php foreach ($encheres as $enchere) { ?>
-                        <?php if($enchere->getEstLot()){ ?>
+                        <?php if(!$enchere->getEstLot()){ ?>
                         <form class="article">
 
                             <div id="divHeart">
@@ -165,13 +161,13 @@
                                 </div>
                                 <div id="center">
                                     <div>
-                                        <h3><?php $enchere->getArticles[0]->getTitre()?></h3>
-                                        <h3><?php $enchere->getArticles[0]->getPrixMin()?></h3>
+                                        <h3 class="titreEnchere"><?= $enchere->getArticles[0]->getTitre()?></h3>
+                                        <h3 class="prixMin"><?= $enchere->getArticles[0]->getPrixMin()?></h3>
                                     </div>
                                     <section>
-                                        <p><?php $enchere->getArticles[0]->getDescription()?></p>
+                                        <p class="descriptionEnchere"><?= $enchere->getArticles[0]->getDescription()?></p>
                                     </section>
-                                    <a href="voirEnchère.php?<?php $enchere->getArticles[0]->getNumArticle() ?>">Voir l'enchère</a>
+                                    <a class="lienEnchere" href="voirEnchère.php?"><?= $enchere->getArticles[0]->getNumArticle() ?>Voir l'enchère</a>
                                 </div>
                             </div>
 
