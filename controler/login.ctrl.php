@@ -35,7 +35,6 @@ else {
         // Tentative de lecture d'un utilisateur en fonction du login/email et du mot de passe
         try {
             $utilisateur = Utilisateur::readHash($login);
-            var_dump($utilisateur->getMotDePasse());
             $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
 
             // Teste si le mot de passe encrypté est bon :
