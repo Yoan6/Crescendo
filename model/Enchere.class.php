@@ -205,6 +205,18 @@ class Enchere
         $articles = Article::readCategorie($categorie);
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
     }
+
+
+
+    /////////////////////////// ReadPage /////////////////////////////////////
+    public static function readPageLike(int $page, int $pageSize, string $titreArtistePattern): array
+    {
+        $articles = Article::readPageLike($page, $pageSize, $titreArtistePattern);
+
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+
+    }
+
     public static function readPageCategorie(int $page, int $pageSize, string $categorie): array
     {
         $articles = Article::readPageCategorie($page, $pageSize, $categorie);
@@ -212,6 +224,14 @@ class Enchere
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
 
     }
+
+    public static function readPageCategorieTri(int $page, int $pageSize, string $categorie, $tri): array
+    {
+        $articles = Article::readPageCategorie($page, $pageSize, $categorie);
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+
+    }
+
     public static function nombreArticles(string $categorie): int
     {
         $nbArticles = Article::nombreArticles($categorie);
@@ -220,8 +240,13 @@ class Enchere
 
 
     
+    //retourne les articles sans spécifier la categorie dans l'ordre des likes
 
-
+    public static function readPage(int $page, int $pageSize): array
+    {
+        $articles = Article::readPage($page, $pageSize);
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+    }
 
 
     public static function obtenirEncheresAPartirDesNumerosArticles(array $articles)
