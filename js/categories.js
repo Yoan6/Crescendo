@@ -14,7 +14,7 @@ const toggleDropFilter = function (numero) {
 
   if (plus[numero].style.display === "inline") {
     dropdownButton[numero].style.borderRadius = "15px 15px 0px 0px";
-    dropdownFilter[numero].style.display = "flex";
+    dropdownFilter[numero].style.maxHeight = "fit-content";
     plus[numero].style.display = "none";
     minus[numero].style.display = "inline";
     validerOuEffacer.style.display = "flex";
@@ -22,7 +22,7 @@ const toggleDropFilter = function (numero) {
   } else {
     dropdownButton[numero].style.borderRadius = "15px";
 
-    dropdownFilter[numero].style.display = "none";
+    dropdownFilter[numero].style.maxHeight = "0px";
     plus[numero].style.display = "inline";
     minus[numero].style.display = "none";
 
@@ -43,7 +43,7 @@ const toggleDropFilter = function (numero) {
 
 for (let i = 0; i < dropdownButton.length; i++) {
 
-  dropdownFilter[i].style.display = "none";
+  dropdownFilter[i].style.maxHeight = "0px";
   dropdownButton[i].style.display = "flex";
   minus[i].style.display = "none";
   plus[i].style.display = "inline";
