@@ -6,44 +6,59 @@ var minus = document.getElementsByClassName("minus");
 const validerOuEffacer = document.getElementById("validerOuEffacer");
 
 
-
+let animationEnCours = false;
 
 // Toggle dropdown function
 
 const toggleDropFilter = function (numero) {
+  if (!animationEnCours) {
+    dropdownButton[numero].removeEventListener("click", this, false);
+    animationEnCours = true;
 
-  if (plus[numero].style.display === "inline") {
-    dropdownButton[numero].style.borderRadius = "15px 15px 0px 0px";
-    dropdownFilter[numero].style.maxHeight = "fit-content";
-    plus[numero].style.display = "none";
-    minus[numero].style.display = "inline";
-    validerOuEffacer.style.display = "flex";
 
-  } else {
-    dropdownButton[numero].style.borderRadius = "15px";
+    if (plus[numero].style.display === "inline") {
+      dropdownButton[numero].style.borderRadius = "15px 15px 0px 0px";
+      setTimeout(function () {
+        // code à exécuter après un délai de 2 secondes
+        dropdownFilter[numero].classList.toggle("open");
+        plus[numero].style.display = "none";
+        minus[numero].style.display = "inline";
+        validerOuEffacer.style.visibility = "visible";
+        validerOuEffacer.style.opacity = "1";
 
-    dropdownFilter[numero].style.maxHeight = "0px";
-    plus[numero].style.display = "inline";
-    minus[numero].style.display = "none";
+        
+      }, 100);
 
-    //on vérifie si toute les fenetres sont fermé et si c'est le cas on ferme le "ValiderOuEffacer"
-    let toutReduit = true;
-    for (let i = 0; i < dropdownButton.length; i++) {
-      if (dropdownFilter[i].style.display === "flex" && toutReduit) {
-        toutReduit = false;
+
+    } else {
+      setTimeout(function () {
+        dropdownButton[numero].style.borderRadius = "15px";
+      }, 700);
+      dropdownFilter[numero].classList.toggle("open");
+      plus[numero].style.display = "inline";
+      minus[numero].style.display = "none";
+
+      //on vérifie si toute les fenetres sont fermé et si c'est le cas on ferme le "ValiderOuEffacer"
+      let toutReduit = true;
+      for (let i = 0; i < dropdownButton.length; i++) {
+        if (dropdownFilter[i].style.display === "flex" && toutReduit) {
+          toutReduit = false;
+        }
+      }
+
+      if (toutReduit === true) {
+        validerOuEffacer.style.visibility = "hidden";
+        validerOuEffacer.style.opacity = "0";
       }
     }
-
-    if (toutReduit === true) {
-      validerOuEffacer.style.display = "none";
-    }
   }
+  dropdownButton[numero].addEventListener("click", this, false);
+  animationEnCours = false;
 }
 
 
 for (let i = 0; i < dropdownButton.length; i++) {
 
-  dropdownFilter[i].style.maxHeight = "0px";
   dropdownButton[i].style.display = "flex";
   minus[i].style.display = "none";
   plus[i].style.display = "inline";
@@ -57,6 +72,7 @@ for (let i = 0; i < dropdownButton.length; i++) {
     toggleDropFilter(event.currentTarget.myParametre);
   });
   */
+
 
   dropdownButton[i].addEventListener("click", toggleDropFilter.bind(null, i), false);
 
