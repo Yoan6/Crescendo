@@ -210,8 +210,8 @@ class Utilisateur
     public function create()
     {
         try {
-            $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
-                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
+            $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil, date_creation)
+                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil, :date_creation)";
 
 
             $dao = DAO::get();
@@ -293,8 +293,8 @@ class Utilisateur
     public function update()
     {
         $query = "UPDATE Utilisateur
-            set (email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil) 
-                = (:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)
+            set (email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil, date_creation) 
+                = (:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil, :date_creation)
             WHERE email = :email";
 
         $dao = DAO::get();
