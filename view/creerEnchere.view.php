@@ -20,8 +20,11 @@
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input required="" type="file" name="image" id="btnImage"  accept="image/png, image/jpeg">
-                        <label for="btnImage" id="labelAjout"><svg fill="#000000" version="1.1" id="Layer_1"
+                        <input required="" type="file" name="image[]" id="btnImage" accept="image/png, image/jpeg" size="3">
+                        <input required="" type="file" name="image[]" id="btnImage2" accept="image/png, image/jpeg" size="3">
+                        <input required="" type="file" name="image[]" id="btnImage3" accept="image/png, image/jpeg" size="3">
+                        <label id="labelAjout">
+                        <svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -87,14 +90,15 @@
                             <h4>
                                 Nom de l'enchère
                             </h4>
-                            <input required="" name="titre" value="<?=$titre?>" type="text" placeholder="INSERER TITRE">
+                            <input required="" name="titre" value="<?= $titre ?>" type="text" placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
                                 Prix de départ (min = 10€)
                             </h4>
-                            <input required="" name="prixMin" value="<?=$prixMin?>" type="number" min="10" placeholder="INSERER PRIX DE DEPART">
+                            <input required="" name="prixMin" value="<?= $prixMin ?>" type="number" min="10"
+                                placeholder="INSERER PRIX DE DEPART">
 
                         </div>
                         <div>
@@ -102,7 +106,8 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input  min="<?=$todayDate?>" required="" name="dateEnchere" value="<?=$dateEnchere?>" type="date" id="date">
+                            <input min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
+                                type="date" id="date">
 
                         </div>
                     </div>
@@ -115,7 +120,8 @@
                         Description
                     </h3>
 
-                    <textarea required="" name="description" id="" cols="30" rows="10" placeholder="INSERER DESCRIPTION"><?=$description?></textarea>
+                    <textarea required="" name="description" id="" cols="30" rows="10"
+                        placeholder="INSERER DESCRIPTION"><?= $description ?></textarea>
                 </div>
 
                 <div id="bottomForm">
@@ -130,19 +136,22 @@
                                 <p>
                                     Artiste:
                                 </p>
-                                <input required="" name="artiste" value="<?=$artiste?>" type="text" placeholder="Insérer artiste">
+                                <input required="" name="artiste" value="<?= $artiste ?>" type="text"
+                                    placeholder="Insérer artiste">
                             </section>
                             <section>
                                 <p>
                                     Date du concert:
                                 </p>
-                                <input max="<?=$todayDate?>" required="" name="dateEvenement" value="<?=$dateEvenement?>" type="date">
+                                <input max="<?= $todayDate ?>" required="" name="dateEvenement"
+                                    value="<?= $dateEvenement ?>" type="date">
                             </section>
                             <section>
                                 <p>
                                     Lieu:
                                 </p>
-                                <input required="" name="lieu" value="<?=$lieu?>" type="text" placeholder="Insérer lieu">
+                                <input required="" name="lieu" value="<?= $lieu ?>" type="text"
+                                    placeholder="Insérer lieu">
                             </section>
                             <section>
                                 <p>
