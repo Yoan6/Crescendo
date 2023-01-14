@@ -8,7 +8,7 @@
     **                         Données
     ***************************************************************************/
     // initialisation
-    $titreArtistePattern = $_POST["titreArtistePattern"] ?? "Goldman"; 
+    $titreArtistePattern = $_GET["recherche"] ?? "old"; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
 
@@ -26,7 +26,7 @@
         $errors[] = $e->getMessage();
     }
 
-    var_dump($encheres);
+    //var_dump($encheres);
     /***************************************************************************
     **                         Construction de la vue
     ***************************************************************************/

@@ -1,8 +1,8 @@
 <header>
     <div id="firstStage"> 
         <a class="logo" href="accueil.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
-        <form action="recherche.php" method="GET" class="conteneur">
-            <input class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
+        <form action="recherche.ctrl.php" method="GET" class="conteneur">
+            <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
             <datalist id="searchList">
                     <option value="concert"></option>
                     <option value="Elvis Presley"></option>

@@ -11,90 +11,38 @@ include_once(__DIR__."/../model/Article.class.php");
 include_once(__DIR__."/../model/Enchere.class.php");
 
 
-//////////////////////////////////////////////////////////////////////////////
-// Partie récupération des données
-///////////////////////////////////////////////////////////////////////////////
+/***************************************************************************
+**                         Données
+***************************************************************************/
 
-$pageSize = 20;
-//Get OrderBy
-$orderBy = $_GET['orderBy'] ?? "triParDefaut";
+$encheres = array(); // S'il y'a une erreur
+$errors = array();
+$categorie = $_GET['categorie'] ??  "";
 
+// Gérer les pages
 $page = $_GET['page'] ?? 1;
-$categorie = $GET['categorie'] ?? "vetements";
-//si la liste des styles musicaux n'est pas vide, on récupère les valeurs de la liste 
-if (!empty($_GET['styleMusical'])) {
-    $styleMusical = $_GET['styleMusical'];
-} else {
-    $styleMusical = "";
-}
-var_dump($categorie);
+$pageSize = 5; 
+$pageMax = article::nombreArticlesTotal() / $pageSize;
+$pagePrec = ($page == 1 ? 1 : $page - 1); 
+$pageSuiv = ($page == $pageMax ? $pageMax : $page + 1);
 
+// Autres données
+$choix = "style";
+$valeurChoix = "pop";
 
-$encheres = Enchere::readPageCategorie($page, $pageSize, $categorie);
-$pageMax = (Enchere::nombreArticles($categorie) / $pageSize) + 1;
-
-// Calcul du No de la page précécent
-if ($page > 1) {
-    // il suffit de passer à la précédente
-    $pagePrec = $page - 1;
-} else {
-    $pagePrec = 1;
-}
-
-// Si la page est indiquée, il suffit de passer à la suivante
-if ($page < $pageMax) {
-    $pageSuiv = $page + 1;
-} else {
-    $pageSuiv = $pageMax;
-}
-
-
-//si la catégorie est vide ou ne correspond pas à nos catégories, on affiche les plus likés (A la une) sinon on affiche la catégorie demandée
-if ($categorie != "vetements" || $categorie != "instruments" || $categorie != "accessoires" || $categorie != "lot") {
-    $encheres = Enchere::readPage($page, $pageSize);
-    $categorie = "A la une";    // sauvegarde le nom de la cateogrie dans une variable pour l'afficher dans la page en fonction de la catégorie
-
-} else {
-    // sauvegarde le nom de la cateogrie dans une variable pour l'afficher dans la page en fonction de la catégorie
-
-    if ($categorie == "vetements") {
-        $categorie = "Vêtements";
-    } elseif ($categorie == "instruments") {
-        $categorie = "Instruments";
-    } elseif ($categorie == "accessoires") {
-        $categorie = "Accessoires";
-    } elseif ($categorie == "lot") {
-        $categorie = "Lots";
-    }
-
-//si la variable tri n'est pas égale à nos parmètres de tris 
-    if ($orderBy != "triParDefaut" || $orderBy != "triPrixCroissant" || $orderBy != "triPrixDecroissant" || $orderBy != "triDateFinCroissant" || $orderBy != "triDateFinDecroissant") {
-        $encheres = Enchere::readPageCategorie($page, $pageSize, $categorie);
-    } else {
-        //si la variable tri est égale à nos parmètres de tris 
-        if ($orderBy == "triParDefaut") {
-            $encheres = Enchere::readPageCategorie($page, $pageSize, $categorie);
-        } elseif ($orderBy == "triPrixCroissant") {
-            $encheres = Enchere::readPageCategorieTriPrixCroissant($page, $pageSize, $categorie);
-        } elseif ($orderBy == "triPrixDecroissant") {
-            $encheres = Enchere::readPageCategorieTriPrixDecroissant($page, $pageSize, $categorie);
-        } elseif ($orderBy == "triDateFinCroissant") {
-            $encheres = Enchere::readPageCategorieTriDateFinCroissant($page, $pageSize, $categorie);
-        } elseif ($orderBy == "triDateFinDecroissant") {
-            $encheres = Enchere::readPageCategorieTriDateFinDecroissant($page, $pageSize, $categorie);
-        }
-    }
+try {
+    $encheres = Enchere::readPageChoix($page, $pageSize, $choix, $valeurChoix);
+} catch (exception | error $e) {
+    $errors[] = $e->getMessage();
 }
 
 
 
-
-
-
+$view = new View();
 
 // Si aucune enchère n'est trouvée, on affiche une page d'erreur
 if (empty($encheres)) {
-    $view->display("catégories.php");
+    $view->display("categories.view.php");
 } else {
     // Sinon on affiche la page des enchères
     $view->assign('pagePrec', $pagePrec);
@@ -104,7 +52,7 @@ if (empty($encheres)) {
     $view->assign('nombrePages', $pageMax);
     $view->assign('categorie', $categorie);
     $view->assign('encheres', $encheres);
-    $view->display("catégories.php");
+    $view->display("categories.view.php");
 }
 
 $view = new View();
