@@ -13,63 +13,75 @@
                     
   <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
         
-
-<div class="container">
-  <button class="btn" id="btn">
-  <img src="../design/image/user.svg"  alt="profile">
-    <i class="bx bx-chevron-down" id="arrow"></i>
-  </button>
-
-  <div class="dropdown" id="dropdown">
-    <?php
-    if(!isset($_SESSION)) { 
-      session_start(); 
-    } 
-  
-    if(isset($_SESSION['num_utilisateur'])) { ?>
-      <a href="../view/parametres.php"> 
       <?php
-    }
-    else { ?>
-      <a href="../view/accueil.php"> 
-      <?php
-    }
-    ?>
+      if(!isset($_SESSION)) { 
+        session_start(); 
+      } 
     
-      Modifier profil
-      <i><img src="../design/image/settings.svg" alt="settings"></i>
-
-    </a>
-    <a href="#draft">
-      Favoris
-      <i><img src="../design/image/heart.svg" alt=""></i>
-
-    </a>
-    <a href="#move">
-      Enchères remportées
-      <i><img src="" alt=""></i>
-
-    </a>
-    <a href="#profile">
-      Mon espace vente
-    </a>
-    <a href="#notification">
-      Notifications
-    </a>
-    <a href="../view/logout.php">
-      Se déconnecter
-    </a>
-    <div class="divToggleDarkMode">
-      <p>Dark Mode</p>
-    <label class="switch">
-      <input type="checkbox" id="darkModeBouton">
-      <span class="slider round"></span>
-    </label>
-    </div>
+      if(isset($_SESSION['num_utilisateur'])) { ?>
+        <a id="creationArticle" href="../view/creerEnchere.view.php">Vends tes articles</a>
+        <?php
+      }
+      else { ?>
+        <a id="creationArticle" href="../view/accueil.php">Vends tes articles</a>
+        <?php
+      }
+      ?>
     
-    
-  </div>
-</div>
+        
+
+      <div class="container">
+        <button class="btn" id="btn">
+        <img src="../design/image/user.svg"  alt="profile">
+          <i class="bx bx-chevron-down" id="arrow"></i>
+        </button>
+
+        <div class="dropdown" id="dropdown">
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/parametres.php"> 
+            <?php
+          }
+          else { ?>
+            <a href="../view/accueil.php"> 
+            <?php
+          }
+          ?>
+          
+            Modifier profil
+            <i><img src="../design/image/settings.svg" alt="settings"></i>
+
+          </a>
+          <a href="#draft">
+            Favoris
+            <i><img src="../design/image/heart.svg" alt=""></i>
+
+          </a>
+          <a href="#move">
+            Enchères remportées
+            <i><img src="" alt=""></i>
+
+          </a>
+          <a href="#profile">
+            Mon espace vente
+          </a>
+          <a href="#notification">
+            Notifications
+          </a>
+          <a href="../view/logout.php">
+            Se déconnecter
+          </a>
+          <div class="divToggleDarkMode">
+            <p>Dark Mode</p>
+          <label class="switch">
+            <input type="checkbox" id="darkModeBouton">
+            <span class="slider round"></span>
+          </label>
+          </div>
+          
+          
+        </div>
+      </div>
         
     </div>
     <form action="../controler/categorie.ctrl.php" method="GET">
@@ -79,5 +91,5 @@
             <li><button name="categorie" value="instruments">Instruments</button></li>
             <li><button name="categorie" value="accessoires">Accessoires</button></li>
         </ul>
-</form>
+    </form>
 </header>
