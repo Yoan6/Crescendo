@@ -346,7 +346,28 @@ class Article
         return Article::obtenirArticlesAPartirTable($table);
     }
 
+    /////////////////////////// ReadPage /////////////////////////////////////
 
+
+    public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
+    {
+        $query = "SELECT *
+                    FROM ARTICLE
+                    WHERE titre like '%' ||:titreArtiste ||'%'
+                        OR artiste like '%' ||:titreArtiste ||'%'
+                    ORDER BY num_article
+                    LIMIT :pageSize OFFSET :articleOffset ;";
+
+        $data = [
+            "titreArtiste" => $titreArtistePattern,
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize
+        ];
+
+        $dao = DAO::get();
+        $table = $dao->query($query,$data);
+        return Article::obtenirArticlesAPartirTable($table);
+    }
 
     public static function readPageCategorie(int $page,int $pageSize, string $categorie){
                 $query = "SELECT *
@@ -370,6 +391,13 @@ class Article
     }
 
 
+    public static function nombreArticlesTotal(){
+        $query = "SELECT COUNT(*)
+                    FROM ARTICLE";
+                    $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, array());
+        return $tableContenantLeNombre[0][0];
+    }
     
     /**
      * Retourne un tableau d'article à partir de la table

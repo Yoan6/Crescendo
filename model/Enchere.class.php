@@ -205,6 +205,18 @@ class Enchere
         $articles = Article::readCategorie($categorie);
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
     }
+
+
+
+    /////////////////////////// ReadPage /////////////////////////////////////
+    public static function readPageLike(int $page, int $pageSize, string $titreArtistePattern): array
+    {
+        $articles = Article::readPageLike($page, $pageSize, $titreArtistePattern);
+
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+
+    }
+
     public static function readPageCategorie(int $page, int $pageSize, string $categorie): array
     {
         $articles = Article::readPageCategorie($page, $pageSize, $categorie);
