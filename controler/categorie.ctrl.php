@@ -20,7 +20,7 @@ $pageSize = 20;
 $orderBy = $_GET['orderBy'] ?? "triParDefaut";
 
 $page = $_GET['page'] ?? 1;
-$categorie = $GET['categorie'] ?? "";
+$categorie = $GET['categorie'] ?? "vetements";
 //si la liste des styles musicaux n'est pas vide, on récupère les valeurs de la liste 
 if (!empty($_GET['styleMusical'])) {
     $styleMusical = $_GET['styleMusical'];
@@ -28,6 +28,8 @@ if (!empty($_GET['styleMusical'])) {
     $styleMusical = "";
 }
 var_dump($categorie);
+
+
 $encheres = Enchere::readPageCategorie($page, $pageSize, $categorie);
 $pageMax = (Enchere::nombreArticles($categorie) / $pageSize) + 1;
 

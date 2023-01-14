@@ -370,14 +370,19 @@ class Article
     }
 
 
-    public static function readPage(int $page,int $pageSize){
+    public static function readPage(int $page, int $pageSize)
+    {
         $query = "SELECT *
                     FROM ARTICLE
                     ORDER BY num_article
                     LIMIT ? OFFSET ?;";
         $dao = DAO::get();
-        $table = $dao->query($query, [($page - 1)*$pageSize, $pageSize]);
-        return Article::obtenirArticlesAPartirTable($table);
+        try {
+            $table = $dao->query($query, [($page - 1) * $pageSize, $pageSize]);
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération des articles");
+            return Article::obtenirArticlesAPartirTable($table);
+        }
     }
 
 
