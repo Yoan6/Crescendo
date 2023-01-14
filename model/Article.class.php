@@ -339,7 +339,7 @@ class Article
     {
         $query = "SELECT *
                     FROM ARTICLE
-                    WHERE categorie = ?;";
+                    WHERE catégorie like '%' ||?||'%';";
 
         $dao = DAO::get();
         $table = $dao->query($query, [$categorieName]);
@@ -351,7 +351,7 @@ class Article
     public static function readPageCategorie(int $page,int $pageSize, string $categorie){
                 $query = "SELECT *
                     FROM ARTICLE
-                    WHERE categorie = ?
+                    WHERE catégorie like '%' ||?||'%'
                     ORDER BY num_article
                     LIMIT ? OFFSET ?;";
         $dao = DAO::get();
@@ -363,10 +363,21 @@ class Article
     public static function nombreArticles(string $categorie){
         $query = "SELECT COUNT(*)
                     FROM ARTICLE
-                    WHERE categorie = ?;";
+                    WHERE catégorie like '%' ||?||'%';";
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, [$categorie]);
         return $tableContenantLeNombre[0][0];
+    }
+
+
+    public static function readPage(int $page,int $pageSize){
+        $query = "SELECT *
+                    FROM ARTICLE
+                    ORDER BY num_article
+                    LIMIT ? OFFSET ?;";
+        $dao = DAO::get();
+        $table = $dao->query($query, [($page - 1)*$pageSize, $pageSize]);
+        return Article::obtenirArticlesAPartirTable($table);
     }
 
 

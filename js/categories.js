@@ -25,16 +25,16 @@ const toggleDropFilter = function (numero) {
     dropdownFilter[numero].style.display = "none";
     plus[numero].style.display = "inline";
     minus[numero].style.display = "none";
-  
+
     //on vérifie si toute les fenetres sont fermé et si c'est le cas on ferme le "ValiderOuEffacer"
     let toutReduit = true;
-    for(let i = 0; i < dropdownButton.length; i++){
-      if(dropdownFilter[i].style.display === "flex" && toutReduit){
+    for (let i = 0; i < dropdownButton.length; i++) {
+      if (dropdownFilter[i].style.display === "flex" && toutReduit) {
         toutReduit = false;
       }
     }
-    
-    if(toutReduit === true){
+
+    if (toutReduit === true) {
       validerOuEffacer.style.display = "none";
     }
   }
@@ -88,3 +88,28 @@ document.getElementsByClassName("buttonDropFilter").onclick = function() {
 };
 
 */
+
+
+
+//whene the select is changed, we reload the page with GET parameters
+
+var orderBy = document.getElementById("orderBy");
+orderBy.addEventListener("change", function () {
+  var url = new URL(window.location.href);
+  if (orderBy.value) {
+    //On retire les espaces
+    orderBy.value = orderBy.value.replace(/\s/g, '');
+    url.searchParams.set("orderBy", orderBy.value);
+    window.location.href = url.href;
+  }
+});
+
+
+//Lors du chargement de la page, on vérifie si il y a des paramètres GET et on change la valeur du select
+var url = new URL(window.location.href);
+var orderBy = document.getElementById("orderBy");
+if (url.searchParams.get("orderBy")) {
+  orderBy.value = url.searchParams.get("orderBy");
+}
+
+
