@@ -20,12 +20,7 @@
   <main id="connexion">
   <a class="logo" href="../view/accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
 
-  <?php 
-    if (isset($error) && count($error) != 0) {
-      foreach($error as $e) {
-        echo($e);
-      }
-    } 
+    <?php 
 
     if(!isset($_SESSION)) { 
       session_start(); 
@@ -37,7 +32,6 @@
 
         // Charge la vue
         $view->display("accueil.php");
-        echo ("Vous êtes déja connecté !");
     } 
     ?>
 
@@ -46,7 +40,7 @@
       <div>
         <label for="login">Adresse email / Pseudo : </label>
         <input class="input" id="login" type="text" name="login" value="" placeholder="Exemple : Bernard" required>
-</div>
+      </div>
       <div>
         <label for="password">Mot de passe (au moins 12 caractères) : </label>
         <input class="input" id="password" type="password" name="password" value="" placeholder="Votre mot de passe"
@@ -55,6 +49,19 @@
       <a class="MDPForgotten" href="">Mot de passe oublié ?</a>
       <button class="connexion" type="submit" name="connexion">SE CONNECTER</button>
       <a href="../view/inscription.php" id="inscription" >S'INSCRIRE</a>
+
+      <div>
+        <?php 
+
+        if (isset($error) && count($error) != 0) {
+          foreach($error as $e) { ?>
+            <p class="error"><?php echo($e);?></p>
+            <?php
+          }
+        } 
+        ?>
+    
+      </div>
 
     </form>
 

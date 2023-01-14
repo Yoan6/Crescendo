@@ -211,8 +211,8 @@ class Utilisateur
     public function create()
     {
         try {
-            $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil, date_creation)
-                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil, :date_creation)";
+            $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
+                        Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
 
 
             $dao = DAO::get();
@@ -272,7 +272,7 @@ class Utilisateur
 
     private static function obtenirUtilisateurAPartirTable($table) : array
     {
-        if(count($table) == 0) {throw new Exception("l'utilisateur n'existe pas");}
+        if(count($table) == 0) {throw new Exception("L'utilisateur n'existe pas");}
 
         $lesUtilisateurs = array();
         foreach($table as $ligne) {

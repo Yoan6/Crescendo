@@ -76,7 +76,10 @@ Pour factoriser
 	display: flex;
 }
 
-
+.error {
+	color: red;
+	font-weight: bold;
+}
 
 
 

@@ -59,8 +59,6 @@ else {
     } else {
         array_push($error, "Vous n'avez pas rentré de login ou mot de passe");
     }
-
-    var_dump($error);
     
 
     $view = new View();
