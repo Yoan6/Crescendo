@@ -21,8 +21,8 @@
                 <div id="topForm">
                     <div id="divTopLeft">
                         <input required="" type="file" name="image[]" id="btnImage" accept="image/png, image/jpeg" size="3">
-                        <input required="" type="file" name="image[]" id="btnImage2" accept="image/png, image/jpeg" size="3">
-                        <input required="" type="file" name="image[]" id="btnImage3" accept="image/png, image/jpeg" size="3">
+                        <input type="file" name="image[]" id="btnImage2" accept="image/png, image/jpeg" size="3">
+                        <input type="file" name="image[]" id="btnImage3" accept="image/png, image/jpeg" size="3">
                         <label id="labelAjout">
                         <svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -39,7 +39,8 @@
                                         </path>
                                     </g>
                                 </g>
-                            </svg><span>Choisir in fichier...</span> <span class="danger">(obligatoire)</span>
+                            </svg>
+                            <span>Ajouter une image</span> 
                         </label>
 
 
@@ -120,7 +121,7 @@
                         Description
                     </h3>
 
-                    <textarea required="" name="description" id="" cols="30" rows="10"
+                    <textarea required="" pattern=".*\S+.*" name="description" id="" cols="30" rows="10"
                         placeholder="INSERER DESCRIPTION"><?= $description ?></textarea>
                 </div>
 
@@ -174,7 +175,17 @@
                             Information sur l'article
                         </h4>
                         <div>
-                            <section>
+                            
+                            <section >
+                                <p>
+                                    Catégorie:
+                                </p>
+                                <select required="" name="categorie" value="" id="categorie">
+                                    <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
+                                </select>
+                            </section>
+
+                            <section id="taille">
                                 <p>
                                     Taille:
                                 </p>
@@ -188,14 +199,6 @@
                                 </p>
                                 <select required="" name="etat" value="">
                                     <?php include(__DIR__ . '/section/etatOption.view.php'); ?>
-                                </select>
-                            </section>
-                            <section>
-                                <p>
-                                    Catégorie:
-                                </p>
-                                <select required="" name="categorie" value="">
-                                    <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
                                 </select>
                             </section>
 
