@@ -21,7 +21,7 @@ class Utilisateur
     private DateTime $dateCreation;
     //private array $notes;
 
-    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance)
+    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance,DateTime $dateCreation)
     {
         $this->setEmail($email);
         $this->setPseudo($pseudo);
@@ -31,6 +31,9 @@ class Utilisateur
         $this->setVille($ville);
         $this->setRue($rue);
         $this->setCodePostal($codePostal);
+        $this->setDateDeNaissance($dateDeNaissance);
+        $this->setDateCreation($dateCreation);
+
         // Autres initialisations
         //$this->setDate
         $this->setImgProfil("");
