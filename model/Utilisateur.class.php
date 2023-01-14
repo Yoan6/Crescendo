@@ -18,7 +18,7 @@ class Utilisateur
     private string $codePostal;
 
     private string $imgProfil;
-    private DateTime $dateCreation;
+    //private DateTime $dateCreation;
     //private array $notes;
 
     public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance)
@@ -32,7 +32,7 @@ class Utilisateur
         $this->setRue($rue);
         $this->setCodePostal($codePostal);
         // Autres initialisations
-        //$this->setDate
+        $this->setDateDeNaissance($dateDeNaissance);
         $this->setImgProfil("");
         $this->setNumUtilisateur(-1);
     }
@@ -162,6 +162,7 @@ class Utilisateur
         $this->dateDeNaissance = $dateDeNaissance;
     }
 
+    /*
     public function getDateCreation() : string {
         return $this->dateCreation->format('y-m-d');
     }
@@ -169,6 +170,7 @@ class Utilisateur
     public function setDateCreation(dateTime $dateCreation) {
         $this->dateCreation = $dateCreation;
     }
+    */
 
 
     /**
@@ -186,8 +188,8 @@ class Utilisateur
              "ville" => $this->getVille(),
              "rue" => $this->getRue(),
              "code_postal" => $this->getCodepostal(),
-             "img_profil" => $this->getImgProfil(),
-             "dateCreation" => $this->getDateCreation()
+             "img_profil" => $this->getImgProfil()
+             //"dateCreation" => $this->getDateCreation()
         ); //Note ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
     }
 
@@ -274,12 +276,10 @@ class Utilisateur
         foreach($table as $ligne) {
             $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
                                             $ligne['ville'], $ligne['rue'], $ligne['code_postal'],
-                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance'], DateTime::createFromFormat('y-m-d',$ligne['dateCreation'])) 
+                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance']) 
                                         );                                
             // Mettre le bon num d'utilisateur
             $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);
-            $currentDate = new DateTime();
-            $utilisateur->setDateCreation($currentDate->format('y-m-d'));
             array_push($lesUtilisateurs,$utilisateur);
         }
         return $lesUtilisateurs;

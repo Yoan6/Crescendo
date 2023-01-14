@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../model/Utilisateur.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
 // Les dates ont besoin d'être au format ISO Y/m/d (par défaut normalement) pour la base de données
-$utilisateur = new Utilisateur("emailTest","pseudo","motDePasse","nom","prenom","ville","rue","codePostal",DateTime::createFromFormat('Y/m/d','2000/01/01'));
+$utilisateur = new Utilisateur("emailTest","pseudo",$passwordTest = password_hash("motDePasse", PASSWORD_DEFAULT),"nom","prenom","ville","rue","codePostal",DateTime::createFromFormat('Y/m/d','2000/01/01'));
 try {
     //--Test--
     print("Création d'un Utilisateur : ");
