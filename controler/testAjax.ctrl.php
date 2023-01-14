@@ -7,5 +7,5 @@
 
     $view = new View();
     $view->assign('numEnchere',$numEnchere);
-    $view->display('../ajax/testAjax.view.php');
+    $view->display('testAjax.view.php');
 ?>
