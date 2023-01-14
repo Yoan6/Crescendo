@@ -400,9 +400,9 @@ class Article
         $dao = DAO::get();
         try {
             $table = $dao->query($query, [($page - 1) * $pageSize, $pageSize]);
+            return Article::obtenirArticlesAPartirTable($table);
         } catch (Exception $e) {
             throw new Exception("Erreur lors de la récupération des articles");
-            return Article::obtenirArticlesAPartirTable($table);
         }
     }
 
