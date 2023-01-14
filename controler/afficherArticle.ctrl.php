@@ -75,7 +75,7 @@
     $view->assign('style', $style);
     $view->assign('vendeur', $vendeur);
 
-    $view->display("z.test.afficherArticler.view.php")
+$view->display("z.test.afficherArticler.view.php");
 
     /***************************************************************************
     **                         Gestion des erreurs

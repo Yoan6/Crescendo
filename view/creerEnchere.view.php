@@ -20,7 +20,7 @@
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input type="file" name="images[]" id="btnImage"  accept="image/png, image/jpeg">
+                        <input required="" type="file" name="image" id="btnImage"  accept="image/png, image/jpeg">
                         <label for="btnImage" id="labelAjout"><svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -36,7 +36,7 @@
                                         </path>
                                     </g>
                                 </g>
-                            </svg><span>Choose a file…</span>
+                            </svg><span>Choisir in fichier...</span> <span class="danger">(obligatoire)</span>
                         </label>
 
 
@@ -87,14 +87,14 @@
                             <h4>
                                 Nom de l'enchère
                             </h4>
-                            <input name="titre" value="<?=$titre?>" type="text" placeholder="INSERER TITRE">
+                            <input required="" name="titre" value="<?=$titre?>" type="text" placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
-                                Prix de départ
+                                Prix de départ (min = 10€)
                             </h4>
-                            <input name="prixMin" value="<?=$prixMin?>" type="number" min="0" placeholder="INSERER PRIX DE DEPART">
+                            <input required="" name="prixMin" value="<?=$prixMin?>" type="number" min="10" placeholder="INSERER PRIX DE DEPART">
 
                         </div>
                         <div>
@@ -102,7 +102,7 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input name="dateEnchere" value="<?=$dateEnchere?>" type="date" id="date">
+                            <input  min="<?=$todayDate?>" required="" name="dateEnchere" value="<?=$dateEnchere?>" type="date" id="date">
 
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         Description
                     </h3>
 
-                    <textarea name="description" value="<?=$description?>" id="" cols="30" rows="10" placeholder="INSERER DESCRIPTION"></textarea>
+                    <textarea required="" name="description" id="" cols="30" rows="10" placeholder="INSERER DESCRIPTION"><?=$description?></textarea>
                 </div>
 
                 <div id="bottomForm">
@@ -130,25 +130,25 @@
                                 <p>
                                     Artiste:
                                 </p>
-                                <input name="artiste" value="<?=$artiste?>" type="text" placeholder="Insérer artiste">
+                                <input required="" name="artiste" value="<?=$artiste?>" type="text" placeholder="Insérer artiste">
                             </section>
                             <section>
                                 <p>
                                     Date du concert:
                                 </p>
-                                <input  name="dateEvenement" value="<?=$dateEvenement?>" type="date">
+                                <input max="<?=$todayDate?>" required="" name="dateEvenement" value="<?=$dateEvenement?>" type="date">
                             </section>
                             <section>
                                 <p>
                                     Lieu:
                                 </p>
-                                <input name="lieu" value="<?=$lieu?>" type="text" placeholder="Insérer lieu">
+                                <input required="" name="lieu" value="<?=$lieu?>" type="text" placeholder="Insérer lieu">
                             </section>
                             <section>
                                 <p>
                                     Style musical:
                                 </p>
-                                <select name="style" value="<?=$style?>">
+                                <select required="" name="style" value="">
                                     <?php include(__DIR__ . '/section/styleOption.view.php'); ?>
 
                                 </select>
@@ -169,7 +169,7 @@
                                 <p>
                                     Taille:
                                 </p>
-                                <select  name="taille" value="<?=$taille?>">
+                                <select required="" name="taille" value="">
                                     <?php include(__DIR__ . '/section/tailleOption.view.php'); ?>
                                 </select>
                             </section>
@@ -177,7 +177,7 @@
                                 <p>
                                     Etat:
                                 </p>
-                                <select name="etat" value="<?=$etat?>">
+                                <select required="" name="etat" value="">
                                     <?php include(__DIR__ . '/section/etatOption.view.php'); ?>
                                 </select>
                             </section>
@@ -185,7 +185,7 @@
                                 <p>
                                     Catégorie:
                                 </p>
-                                <select name="categorie" value="<?=$categorie?>">
+                                <select required="" name="categorie" value="">
                                     <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
                                 </select>
                             </section>
@@ -205,6 +205,7 @@
 
             <div id="buttons">
                 <a href="accueil.php">Annuler</a>
+                <input type="hidden" name="confirmer" value="confirmer">
                 <button>Confirmer</button>
             </div>
 

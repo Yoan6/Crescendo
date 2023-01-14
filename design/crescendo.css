@@ -85,6 +85,14 @@ Pour factoriser
 Règles générales ?
 *****************************/
 
+*:required:invalid  {
+    background-color: #FF7F7F;
+	border: #b93636 2px solid;
+	border-radius: 5px;
+	/*text-decoration: underline red;*/
+}
+
+
 button,
 a {
 	cursor: pointer;
@@ -160,32 +168,9 @@ label img {
 }
 
 
-#pageProduit button:not(.iconTaille, .btn, .danger),
-#pageProfil nav a {
-	background-color: var(--bleu);
-}
-
-/*Pour éviter de refaire le format d'un label, bouton,... en forme d'ellipse*/
-:where(#pageProduit) :where(button:not(.iconTaille, .btn, .voir-enchere), label, h3, output, a, input, #btnPaypal, .commeUnlabel, .btnLabel),
-#pageProfil nav a {
-	margin: 10px;
-	padding: 20px;
-	border-radius: 5px;
-	text-align: center;
-	font-weight: bold;
-}
-
-:where(#pageProduitCreation) :where(button:not(.iconTaille, .btn, .voir-enchere, #btnPaypal), button, a),
-#pageProfil nav a {
-	width: 250px;
-	height: 40px;
-	justify-self: center;
-	border-radius: 100px;
-}
-
 
 .danger {
-	background-color: #D27979;
+	text-decoration: underline #D27979 3px;
 }
 
 
@@ -202,253 +187,6 @@ ul.tiret li a:before {
 	content: "- ";
 	text-indent: -20px;
 }
-
-
-
-
-
-
-/*****************************
-Accueil
-*****************************/
-
-
-
-/*****************************
-Produits
-*****************************/
-
-/*****************************
-Produit Grille
-*****************************/
-
-@media only screen and (min-width: 1000px) {
-	main form.conteneur#pageProduit {
-		width: 70%;
-		margin-left: 15%;
-	}
-}
-
-main form.conteneur#pageProduit {
-	display: grid;
-	grid-template-areas: "produitGrandeImage	produitGrandeImage	 	nomItem 	nomItem"
-		"produitGrandeImage 	produitGrandeImage 	prixArticle 	prixArticle"
-		"lot 		favorisLikeDislike 			profil 		profil"
-		"descriptionArticle 	descriptionArticle		descriptionArticle	descriptionArticle"
-		"informationTotal	informationTotal		informationTotal	informationTotal";
-	grid-template-columns: 25% 25% 25% 25%;
-}
-
-main#pageProduitCreation form.conteneur#pageProduit {
-	grid-template-columns: 50% 50%;
-	grid-template-areas: "produitGrandeImage nomItem "
-		"produitGrandeImage prixArticle"
-		"produitGrandeImage date"
-		"descriptionArticle descriptionArticle"
-		"informationEvenement informationArticle"
-		"grilleBoutonsValiderAnnuler grilleBoutonsValiderAnnuler";
-}
-
-@media only screen and (max-width: 1000px) {
-	main form.conteneur#pageProduit {
-		display: flex;
-		flex-flow: Column;
-		width: 90%;
-		margin-left: 5%;
-	}
-}
-
-
-/*Les zones de la grille*/
-#pageProduit #produitGrandeImage {
-	grid-area: produitGrandeImage;
-}
-
-#pageProduit #profil {
-	grid-area: profil;
-}
-
-#pageProduit #favorisLikeDislike {
-	grid-area: favorisLikeDislike;
-}
-
-#pageProduit #nomItem {
-	grid-area: nomItem;
-}
-
-#pageProduit #lot {
-	grid-area: lot;
-}
-
-#pageProduit #descriptionArticle {
-	grid-area: descriptionArticle;
-}
-
-#pageProduit #informationTotal {
-	grid-area: informationTotal;
-}
-
-#pageProduit #prixArticle {
-	grid-area: prixArticle;
-}
-
-#pageProduit #date {
-	grid-area: date;
-}
-
-#pageProduit .information#informationArticle {
-	grid-area: informationArticle;
-}
-
-#pageProduit .information#informationEvenement {
-	grid-area: informationEvenement;
-}
-
-#pageProduit #grilleBoutonsValiderAnnuler {
-	grid-area: grilleBoutonsValiderAnnuler;
-	flex-flow: row;
-	justify-content: space-evenly;
-}
-
-#pageProduit div#prixArticle {
-	display: grid;
-	grid: auto auto / auto auto;
-}
-
-#pageProduit #informationTotal ul {
-	display: grid;
-	grid: auto auto auto auto / auto auto;
-	/* 4 lignes / 2 colones*/
-}
-
-#pageProduit .information ul {
-	flex-flow: column;
-}
-
-#pageProduit .information li {
-	display: flex;
-	flex-flow: row;
-	justify-content: space-between;
-}
-
-#pageProduit label.conteneur {
-	flex-flow: column
-}
-
-#pageProduit #profil * {
-	flex-grow: 1;
-}
-
-
-/*****************************
-Produit Style
-*****************************/
-#pageProduit div#produitGrandeImage {
-	max-height: 300px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-#pageProduit #produitGrandeImage img {
-	width: 100%;
-	object-fit: cover;
-}
-
-
-#pageProduit :where(label, a, input) {
-	color: var(--main-content-font-color);
-	background-color: var(--main-content-background-color);
-}
-
-#pageProduit :where(h3, output) {
-	color: var(--main-content-background-color);
-	background-color: var(--main-content-font-color);
-
-}
-
-#pageProduit textarea {
-	color: black;
-}
-
-#pageProduitCreation input {
-	width: 100%;
-}
-
-.information ul {
-	list-style-type: none;
-}
-
-#pageProduitCreation .mettreInformation {
-	width: 300px;
-	height: 20px;
-	margin: 21px 0;
-}
-
-li h4::after {
-	content: " : ";
-}
-
-#pageProduitCreation :where(button, a) {
-	width: fit-content;
-	height: fit-content;
-	justify-self: center;
-	border-radius: 100px;
-}
-
-#pageProduitCreation form label {
-	background-color: var(--div-background-color);
-}
-
-#pageProduitCreation #produitGrandeImage input {
-	background-color: var(--div-background-color);
-}
-
-#favorisLikeDislike,
-#lot {
-	align-items: center;
-	justify-content: space-around;
-}
-
-/*****************************
-Page de profil
-*****************************/
-#pageProfil {
-	margin-left: 10%;
-}
-
-div#pageProfil div {
-	flex-flow: column;
-}
-
-#pageProfil nav ul {
-	display: grid;
-	grid: auto auto auto / auto auto;
-}
-
-#pageProfil a {
-	display: flex;
-	flex-flow: row;
-}
-
-#pageProfil .iconTaille {
-	vertical-align: top;
-}
-
-#pageProfil h2 {
-	margin: 10px 0;
-	text-align: center;
-	padding: 0 0px 0 10px;
-	margin: 5px 0 20px 0;
-	width: 100%;
-}
-
-div#pageProfil div img {
-	height: 300px;
-}
-
-
-
 
 
 

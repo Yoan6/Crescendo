@@ -5,11 +5,12 @@
     include_once(__DIR__."/../model/Enchere.class.php");
 
 
-    $utilisateur = Utilisateur::read('crescendo.uga@gmail.com', 'Crescendo.uga*');
+    $utilisateur = Utilisateur::readNum(1);
     $errors = array();
     $article = null;
     $enchere = null;
     $todayDate = new DateTime();
+    $confirmer = $_POST['confirmer'] ?? "";
     
     /***************************************************************************
     **                         Données de l'enchère
@@ -33,102 +34,89 @@
     $etat = $_POST['etat'] ?? "";
     $categorie =  $_POST['categorie'] ?? "";
     
+
+    // Récupérer les images
     var_dump($images);
     var_dump($_FILES);
-    /*
+    
+    
     $file_name = $_FILES['img']['name'] ?? "";
     $file_type = $_FILES['img']['type'] ?? "";
     $file_tmp_name = $_FILES['img']['tmp_name'] ?? "";  
     $file_error = $_FILES['img']['error'] ?? "";
     $file_size = $_FILES['img']['size'] ?? 0;
-    */
+    
 
 
     /***************************************************************************
     **                         Gestion des erreurs
     ***************************************************************************/
-    if($titre == "") {
-        $errors[] = new Exception("Mauvais titre");
-    }
-    if($prixMin < 1) {
-        $errors[] = new Exception("Mauvais prix");
-    }
-    if($dateEnchere == "") {
-        $errors[] = new Exception("Date pas remplie");
-    } else if($dateEnchere < $todayDate->format('Y-m-d')) {
-        $errors[] = new Exception("La date doit être supérieure à aujourd'hui");
-    }
-    if($description == "") {
-        $errors[] = new Exception("Mauvaise description");
-    }
-    //////////////////////////////// Informations sur l'évenement
-    if($artiste == "") {
-        $errors[] = new Exception("Mauvais artiste");
-    }
-    if($dateEvenement == "") {
-        $errors[] = new Exception("Date pas remplie");
-    } else if ($dateEvenement > $todayDate->format('Y-m-d')) {
-        $errors[] = new Exception("La date du concert doit être inférieure à aujourd'hui");
-    }
-    if($lieu == "") {
-        $errors[] = new Exception("Mauvais lieu");
-    }
-    if($style == "") {
-        $errors[] = new Exception("Mauvais style");
-    }
+    // L'attribut required dans les balises html vérifie la pluspart des erreurs
 
-    ////////////////////////////////// Informations sur l'article
-    if($taille == "") {
-        $errors[] = new Exception("Mauvaise taille");
+    if ($file_name == "") {
+        $errors[] = "Il faut mettre un nom sur l'image";
     }
-    if($etat == "") {
-        $errors[] = new Exception("Mauvais état");
+    if ($file_tmp_name== "") {
+        $errors[] = "Il faut mettre un nom sur l'image";
     }
-    if($categorie == "") {
-        $errors[] = new Exception("Mauvaise categorie");
+    if ($file_type != 'image/jpeg' && $file_type != 'image/png') {
+        $errors[] = "L'image doit être un jpeg ou PNG"; // normalement l'input de l'html  vérifie ce format
+    } 
+    if ($file_error == "") {
+        $errors[] = "L'erreur " . $file_error ." a été détectée ";
     }
 
 
-    var_dump($errors);
-    if (isset($errors) && count($errors) == 0) {
-        /***************************************************************************
-        **                         Création de l'article
-        ***************************************************************************/
+
+    /***************************************************************************
+     **                         Création de l'article
+     ***************************************************************************/
+    if ($confirmer=="confirmer" && count($errors) == 0) 
+    {
         try {
             $article = new article($utilisateur, $titre, $description, [$images], $prixMin, $artiste, 
                                     $etat, $categorie, $taille, $lieu, $style, new DateTime($dateEvenement)
                                 );
             $article->create();
         } catch (Exception $e) {
-            $errors[] = new Exception( "L'article n'a pas pu être crée");
+            $errors[] =  "L'article n'a pas pu être crée";
         } catch (Error $e) {
-            print($e->getMessage());
+            $errors[] =  $e->getMessage();
         }
                             
         /***************************************************************************
          **                         Création de l'enchère
         ***************************************************************************/
-        if (isset($errors) && count($errors) == 0) {
+        if (count($errors) == 0) {
             try {
                 $enchere = new Enchere([$article]);
                 $enchere->setDateDebut(new DateTime($dateEnchere));
                 $enchere->create();
             } catch (Exception ) {
-                $errors[] = new Exception("L'enchère n'a pas pu être créée");
+                $errors[] = "L'enchère n'a pas pu être créée";
             }
         }
     }
 
     
 
-
+    if ($confirmer == "") {
+        $errors = array(); // L'utilisateur arrive sur la page, il ne doit pas y'avoir d'erreur
+    }
+    var_dump($errors);
     /***************************************************************************
     **                         Construction de la vue
     ***************************************************************************/
 
     $view = new View();
     
-    if (isset($errors) && count($errors) == 0) {
+    if ($confirmer == "confirmer" && count($errors) == 0)
+    {
+        // Aller vers une autre page et prévenir de la réussite
+        $view->display("recherche.php");
+
+    } else {
+        // Aller vers la création d'une enchère
         $view->assign('titre',$titre);
         $view->assign('prixMin',$prixMin);
         $view->assign('dateEnchere',$dateEnchere);
@@ -143,11 +131,9 @@
         $view->assign('etat',$etat);
         $view->assign('lieu',$lieu);
 
+        $view->assign('todayDate',$todayDate->format('Y-m-d'));
         $view->assign('errors',$errors);
        
         $view->display("creerEnchere.view.php");
-    } else {
-        
-        $view->display("recherche.php");
     }
 ?>

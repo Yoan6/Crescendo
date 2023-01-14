@@ -2,12 +2,12 @@
 require_once(__DIR__ . '/../model/Utilisateur.class.php');
 require_once(__DIR__ . '/../test/classeFormatage/helper.php');
 
-
+$passwordTest = password_hash('testDAOD3', PASSWORD_DEFAULT);
 $valeurAttendu = [
     'email' => 'testDAOD3',
     0 => 'testDAOD3',
-    'mot_de_passe' => 'testDAOD3',
-    1 => 'testDAOD3',
+    'mot_de_passe' => $passwordTest,
+    1 => $passwordTest,
 ];
 try {
     //--Test--
