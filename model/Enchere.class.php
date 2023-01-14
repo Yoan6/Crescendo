@@ -209,28 +209,28 @@ class Enchere
 
 
     /////////////////////////// ReadPage /////////////////////////////////////
+    /**
+     * Chercher avec la barre de recherche
+     * @param int $page
+     * @param int $pageSize
+     * @param string $titreArtistePattern
+     * @return array d'Encheres
+     */
     public static function readPageLike(int $page, int $pageSize, string $titreArtistePattern): array
     {
+        // Chercher dans les articles, puis récupérer les enchères à partir des articles
         $articles = Article::readPageLike($page, $pageSize, $titreArtistePattern);
-
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
-
     }
 
-    public static function readPageCategorie(int $page, int $pageSize, string $categorie): array
+    public static function readPageChoix(int $page, int $pageSize, string $choix="", string $valeurChoix="", string $orderByChoix ="num_article",string $orderBy="Asc"): array
     {
-        $articles = Article::readPageCategorie($page, $pageSize, $categorie);
+        $articles = Article::readPageChoix($page, $pageSize, $choix, $valeurChoix, $orderByChoix, $orderBy);
 
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
 
     }
 
-    public static function readPageCategorieTri(int $page, int $pageSize, string $categorie, $tri): array
-    {
-        $articles = Article::readPageCategorie($page, $pageSize, $categorie);
-        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
-
-    }
 
     public static function nombreArticles(string $categorie): int
     {
@@ -335,7 +335,7 @@ class Enchere
 
         $prix = $table[0][0];
         if ($prix == null) {
-            $prix = "Aucun prix pour l'instant, min : " . Article::getTypeArticleFromArray($this->getArticles(), 0)->getPrixMin();
+            $prix = Article::getTypeArticleFromArray($this->getArticles(), 0)->getPrixMin();
         }
 
         return $prix;

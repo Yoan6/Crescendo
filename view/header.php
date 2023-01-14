@@ -1,75 +1,104 @@
 <header>
-    <div id="firstStage"> 
-        <a class="logo" href="accueil.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
-        <form action="recherche.php" method="GET" class="conteneur">
-            <input class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
-            <datalist id="searchList">
-                    <option value="concert"></option>
-                    <option value="Elvis Presley"></option>
-                    <option value="The quick brown fox jumps over a lazy dog."></option>
-            </datalist>
-            <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
-        </form>
-                    
-  <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
+  <div id="firstStage"> 
+      <a class="logo" href="accueil.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
+      <form action="recherche.ctrl.php" method="GET" class="conteneur">
+          <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
+          <datalist id="searchList">
+                  <option value="concert"></option>
+                  <option value="Elvis Presley"></option>
+                  <option value="The quick brown fox jumps over a lazy dog."></option>
+          </datalist>
+          <a id="loupe" href="recherche.php"><img src="../design/image/search.svg" alt="loupe"></a>
+      </form>
+        
+      <?php
+      if(!isset($_SESSION)) { 
+        session_start(); 
+      } 
+    
+      if(isset($_SESSION['num_utilisateur'])) { ?>
+        <a id="creationArticle" href="../view/creerEnchere.view.php">Vends tes articles</a>
+        <?php
+      }
+      else { ?>
+        <a id="creationArticle" href="../view/accueil.php">Vends tes articles</a>
+        <?php
+      }
+      ?>
+    
         
 
-<div class="container">
-  <button class="btn" id="btn">
-  <img src="../design/image/user.svg"  alt="profile">
-    <i class="bx bx-chevron-down" id="arrow"></i>
-  </button>
+      <div class="container">
+        <button class="btn" id="btn">
+        <img src="../design/image/user.svg"  alt="profile">
+          <i class="bx bx-chevron-down" id="arrow"></i>
+        </button>
 
-  <div class="dropdown" id="dropdown">
-    <?php
-    if(!isset($_SESSION)) { 
-      session_start(); 
-    } 
-  
-    if(isset($_SESSION['num_utilisateur'])) { ?>
-      <a href="../view/parametres.php"> 
-      <?php
-    }
-    else { ?>
-      <a href="../view/accueil.php"> 
-      <?php
-    }
-    ?>
-    
-      Modifier profil
-      <i><img src="../design/image/settings.svg" alt="settings"></i>
+        <div class="dropdown" id="dropdown">
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/parametres.php"> 
+            <?php
+          }
+          else { ?>
+            <a href="../view/accueil.php"> 
+            <?php
+          }
+          ?>
+          
+            Modifier profil
+            <i><img src="../design/image/settings.svg" alt="settings"></i>
 
-    </a>
-    <a href="#draft">
-      Favoris
-      <i><img src="../design/image/heart.svg" alt=""></i>
+          </a>
+          <a href="#draft">
+            Favoris
+            <i><img src="../design/image/heart.svg" alt=""></i>
 
-    </a>
-    <a href="#move">
-      Enchères remportées
-      <i><img src="" alt=""></i>
+          </a>
+          <a href="#move">
+            Enchères remportées
+            <i><img src="" alt=""></i>
 
-    </a>
-    <a href="#profile">
-      Mon espace vente
-    </a>
-    <a href="#notification">
-      Notifications
-    </a>
-    <a href="../view/logout.php">
-      Se déconnecter
-    </a>
-    <div class="divToggleDarkMode">
-      <p>Dark Mode</p>
-    <label class="switch">
-      <input type="checkbox" id="darkModeBouton">
-      <span class="slider round"></span>
-    </label>
-    </div>
-    
-    
-  </div>
-</div>
+          </a>
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/monEspaceVendeur.php"> 
+            <?php
+          }
+          else { ?>
+            <a href="../view/accueil.php"> 
+            <?php
+          }
+          ?>
+            Mon espace vente
+          </a>
+          <a href="#notification">
+            Notifications
+          </a>
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/logout.php"> 
+              Se déconnecter
+            <?php
+          }
+          else { ?>
+            <a href="../view/login.php"> 
+            Se connecter
+            <?php
+          }
+          ?>
+          </a>
+          <div class="divToggleDarkMode">
+            <p>Dark Mode</p>
+          <label class="switch">
+            <input type="checkbox" id="darkModeBouton">
+            <span class="slider round"></span>
+          </label>
+          </div>
+          
+          
+        </div>
+      </div>
         
     </div>
     <form action="../controler/categorie.ctrl.php" method="GET">
@@ -79,5 +108,5 @@
             <li><button name="categorie" value="instruments">Instruments</button></li>
             <li><button name="categorie" value="accessoires">Accessoires</button></li>
         </ul>
-</form>
+    </form>
 </header>

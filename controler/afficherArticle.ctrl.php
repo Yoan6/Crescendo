@@ -12,7 +12,7 @@
     **                         Données de l'enchère
     ***************************************************************************/
     $utilisateur = Utilisateur::readNum(1);
-    $num_enchere = 1;
+    $num_enchere = $_GET['numEnchere'] ?? 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');

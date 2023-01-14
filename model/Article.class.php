@@ -339,7 +339,7 @@ class Article
     {
         $query = "SELECT *
                     FROM ARTICLE
-                    WHERE catégorie like '%' ||?||'%';";
+                    WHERE categorie like '%' ||?||'%';";
 
         $dao = DAO::get();
         $table = $dao->query($query, [$categorieName]);
@@ -364,19 +364,29 @@ class Article
             "pageSize" => $pageSize
         ];
 
+        
         $dao = DAO::get();
         $table = $dao->query($query,$data);
+        var_dump($table);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
-    public static function readPageCategorie(int $page,int $pageSize, string $categorie){
-                $query = "SELECT *
+    public static function readPageChoix(int $page,int $pageSize, string $choix, string $valeurChoix, string $orderByChoix ="num_article",string $orderBy="Asc"){
+        /*$choix et $orderBy mis directement pour éviter les '', l'utilisateur ne peut pas manipuler cette donnée*/        
+        $query = "SELECT *
                     FROM ARTICLE
-                    WHERE catégorie like '%' ||?||'%'
-                    ORDER BY num_article
-                    LIMIT ? OFFSET ?;";
+                    WHERE $choix like '%' ||:valeurChoix||'%' 
+                    ORDER BY $orderByChoix $orderBy                   
+                    LIMIT :pageSize OFFSET :articleOffset ;";
+        $data = [
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize,
+            "valeurChoix" => $valeurChoix,
+        ];
+        var_dump($query);
+        
         $dao = DAO::get();
-        $table = $dao->query($query, [$categorie, ($page - 1)*$pageSize, $pageSize]);
+        $table = $dao->query($query, $data);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
@@ -384,7 +394,7 @@ class Article
     public static function nombreArticles(string $categorie){
         $query = "SELECT COUNT(*)
                     FROM ARTICLE
-                    WHERE catégorie like '%' ||?||'%';";
+                    WHERE categorie like '%' ||?||'%';";
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, [$categorie]);
         return $tableContenantLeNombre[0][0];

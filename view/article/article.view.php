@@ -1,6 +1,6 @@
 <?php // var_dump($encheres)?>
 <?php foreach($encheres as $enchere) : $article = Article::getTypeArticleFromArray($enchere->getArticles(),0);?> 
-    <div class="article" onload="reactualiserPrixActuel(<?=$enchere->getNumEnchere()?>)" >
+    <div class="article" >
 
         <div id="divHeart">
             <svg id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -21,13 +21,13 @@
             <div id="center">
                 <div>
                     <h3><?=$article->getTitre()?></h3>
-                    <h3><span id="prixActuelText"></span>€</h3>
+                    <h3><?=$enchere->obtenirPrixActuel()?>€</h3>
                 </div>
                 <section>
                     <p><?=$article->getDescription()?>
                     </p>
                 </section>
-                <a href="../controler/afficherArticle.ctrl.php?num_enchere=<?=$enchere->getNumEnchere()?>">Voir l'enchère</a>
+                <a href="../controler/afficherArticle.ctrl.php?numEnchere=<?=$enchere->getNumEnchere()?>">Voir l'enchère</a>
             </div>
         </div>
 
@@ -69,4 +69,4 @@
 
     </div>
     <?php endforeach;?>
-<script src="/crescendo/ajax/getPrixActuel.js" defer></script>
+    
