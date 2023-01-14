@@ -23,7 +23,6 @@ $code_postale = $_POST['code_postale'] ?? '';
 $ville = $_POST['ville'] ?? '';
 $adresseMail = $_POST['adresseMail'] ?? '';
 $password = $_POST['mdp'] ?? '';
-$password = password_hash($password, PASSWORD_DEFAULT);
 $verifmdp = $_POST['verifmdp'] ?? '';
 
 
@@ -50,38 +49,33 @@ if(isset($_SESSION['num_utilisateur'])) {
 
 $error=array();
 
-$dateDeCreation = new DateTime();
+$dateDeCreation = new DateTime();   // Date de création du compte de l'utilisateur
 $dateMinimale = new DateTime();   // date d'aujourd'hui
 $interval = new DateInterval('P18Y');   // intervalle de temps à changer : 18 ans
 $dateMinimale->sub($interval);    // date minimale : aujourd'hui - 18 ans
-if ($birthsday > $dateMinimale->format('d/m/y')) {
+var_dump($birthsday > $dateMinimale);
+if ($birthsday > $dateMinimale) {
   $error[] = new Exception("L'utilisateur doit avoir au moins 18 ans");
 }
 if ($verifmdp != $password) {
   $error[] = new Exception("Le mot de passe n'est pas confirmé 2 fois");
 }
 
-// Vérification s'il n'existe pas déja un utilisateur avec ce pseudo :
-if (count($error) == 0) {
-  try {
-    $utilisateur = Utilisateur::read($pseudo, $password);
-  }
-  catch (Exception $e) {
-    array_push($error,$e->getMessage());
-  }
-}
-  
-  
+// On hash le mot de passe :
+$password = password_hash($password, PASSWORD_DEFAULT);
+
+// Vérification s'il n'existe pas déja un utilisateur avec ce pseudo 
+// Si non, on crée l'utilisateur :
   if (count($error) == 0) {
-  // Création d'un nouvel utilisateur :
-  $utilisateur = new Utilisateur($adresseMail,$pseudo,$password,$nom,$prenom,$ville,$rue,$code_postale,$dateDeCreation);
-  try {
-    $utilisateur->create();
+    try {
+      $utilisateur = Utilisateur::read($pseudo, $password);
+      array_push($error,"Il y a déjà un utilisateur avec ce pseudo ou email");
+    }
+    catch (Exception $e) {
+      $utilisateur = new Utilisateur($adresseMail,$pseudo,$password,$nom,$prenom,$ville,$rue,$code_postale,$birthsday,$dateDeCreation);
+      $utilisateur->create();
+    }
   }
-  catch (Exception $e) {
-    array_push($error,$e->getMessage());
-  }
-}
 
 
 
@@ -99,6 +93,9 @@ if (count($error) == 0) {
 } else {
   $message = '';
 }
+
+
+var_dump($error);
 
 
 

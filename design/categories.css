@@ -122,7 +122,10 @@ aside svg {
 }
 
 #validerOuEffacer {
-	display: none;
+	display: flex;
+	transition: visibility 0s, opacity 0.5s ease-out;
+	visibility: hidden;
+	opacity: 0;
 }
 
 aside>div {
@@ -180,6 +183,7 @@ aside #validerOuEffacer button:last-child {
 
 aside .buttonDropFilter {
 
+	transition: border-radius 0.1s linear 0s;
 	border-radius: 15px;
 	border: none;
 	background-color: white;
@@ -207,15 +211,20 @@ aside .filterdown {
 	gap: 20px;
 	
 	max-height: 0px;
-  	transition: max-height 2s ease-out;
+	padding: 0px;
+  	transition: max-height 0.7s ease-out, padding 0.1s ease-out;
+	transition-delay: 0s, 0s;
 	overflow: hidden;
-
-	padding-top: 15px;
-	padding-bottom: 30px;
 
 	border-radius: 0px 0px 15px 15px;
 	
 	background-color: var(--main-font-color);
+}
+
+aside .filterdown.open {
+	max-height: 1000px; /* ou toute autre valeur appropriée */
+
+	padding-bottom: 20px;
 }
 
 aside .filterdown>div {
