@@ -11,22 +11,11 @@
             <input value="" type="submit" id="loupe" href="recherche.ctrl.php"><img src="../design/image/search.svg" alt="loupe">
         </form>
                     
-  <a id="creationArticle" href="créerEnchère.php">Vends tes articles</a>
-        
-      <?php
-      if(!isset($_SESSION)) { 
-        session_start(); 
-      } 
-    
-      if(isset($_SESSION['num_utilisateur'])) { ?>
-        <a id="creationArticle" href="../view/creerEnchere.view.php">Vends tes articles</a>
-        <?php
-      }
-      else { ?>
-        <a id="creationArticle" href="../view/accueil.php">Vends tes articles</a>
-        <?php
-      }
-      ?>
+  <?php if(isset($_SESSION['num_utilisateur']) ) : ?>
+    <a id="creationArticle" href="../controler/creerEnchere.ctrl.php">Vends tes articles</a>
+  <?php else : ?>
+    <a id="creationArticle" disable href="../controler/login.ctrl.php">Vends avec crescendo</a>
+  <?php endif; ?>
     
         
 

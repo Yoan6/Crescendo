@@ -12,17 +12,19 @@
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
+    <?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
+
     <main>
 
 
 
-        <form method="post" action="creerEnchere.ctrl.php">
+        <form method="post" enctype="multipart/form-data" action="creerEnchere.ctrl.php">
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input required="" type="file" name="image[]" id="btnImage" accept="image/png, image/jpeg" size="3">
-                        <input required="" type="file" name="image[]" id="btnImage2" accept="image/png, image/jpeg" size="3">
-                        <input required="" type="file" name="image[]" id="btnImage3" accept="image/png, image/jpeg" size="3">
+                        <input required="" type="file" name="image1" id="btnImage" accept="image/png, image/jpeg">
+                        <input type="file" name="image2" id="btnImage2" accept="image/png, image/jpeg">
+                        <input type="file" name="image3" id="btnImage3" accept="image/png, image/jpeg">
                         <label id="labelAjout">
                         <svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -215,7 +217,7 @@
             <div id="buttons">
                 <a href="accueil.php">Annuler</a>
                 <input type="hidden" name="confirmer" value="confirmer">
-                <button>Confirmer</button>
+                <button type="submit">Confirmer</button>
             </div>
 
         </form>
