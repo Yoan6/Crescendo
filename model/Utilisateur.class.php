@@ -18,6 +18,7 @@ class Utilisateur
     private string $codePostal;
 
     private string $imgProfil;
+    private DateTime $dateCreation;
     //private array $notes;
 
     public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance)
@@ -30,8 +31,6 @@ class Utilisateur
         $this->setVille($ville);
         $this->setRue($rue);
         $this->setCodePostal($codePostal);
-        $this->setDateDeNaissance($dateDeNaissance);
-
         // Autres initialisations
         //$this->setDate
         $this->setImgProfil("");
@@ -163,6 +162,14 @@ class Utilisateur
         $this->dateDeNaissance = $dateDeNaissance;
     }
 
+    public function getDateCreation() : string {
+        return $this->dateCreation->format('y-m-d');
+    }
+
+    public function setDateCreation(dateTime $dateCreation) {
+        $this->dateCreation = $dateCreation;
+    }
+
 
     /**
      * Récupère toutes les valeurs nécessaires pour un CREATE ou UPDATE
@@ -179,7 +186,8 @@ class Utilisateur
              "ville" => $this->getVille(),
              "rue" => $this->getRue(),
              "code_postal" => $this->getCodepostal(),
-             "img_profil" => $this->getImgProfil()
+             "img_profil" => $this->getImgProfil(),
+             "dateCreation" => $this->getDateCreation()
         ); //Note ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
     }
 
@@ -242,6 +250,20 @@ class Utilisateur
         return Utilisateur::obtenirUtilisateurAPartirTable($table)[0];
     }
 
+    public static function readHash(string $emailOuPseudo): Utilisateur
+    {
+        $query = "SELECT *
+                    FROM Utilisateur
+                    WHERE (email =:emailOuPseudo OR pseudo=:emailOuPseudo);";
+        $data = [
+                ':emailOuPseudo' => $emailOuPseudo
+                ];
+
+        $dao = DAO::get();
+        $table = $dao->query($query,$data);
+        return Utilisateur::obtenirUtilisateurAPartirTable($table)[0];
+    }
+
 
 
     private static function obtenirUtilisateurAPartirTable($table) : array
@@ -252,10 +274,12 @@ class Utilisateur
         foreach($table as $ligne) {
             $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
                                             $ligne['ville'], $ligne['rue'], $ligne['code_postal'],
-                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance']) 
+                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance'], DateTime::createFromFormat('y-m-d',$ligne['dateCreation'])) 
                                         );                                
             // Mettre le bon num d'utilisateur
             $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);
+            $currentDate = new DateTime();
+            $utilisateur->setDateCreation($currentDate->format('y-m-d'));
             array_push($lesUtilisateurs,$utilisateur);
         }
         return $lesUtilisateurs;
