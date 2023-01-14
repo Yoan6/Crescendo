@@ -21,7 +21,21 @@
   </button>
 
   <div class="dropdown" id="dropdown">
-  <a href="parametres.php">
+    <?php
+    if(!isset($_SESSION)) { 
+      session_start(); 
+    } 
+  
+    if(isset($_SESSION['num_utilisateur'])) { ?>
+      <a href="../view/parametres.php"> 
+      <?php
+    }
+    else { ?>
+      <a href="../view/accueil.php"> 
+      <?php
+    }
+    ?>
+    
       Modifier profil
       <i><img src="../design/image/settings.svg" alt="settings"></i>
 
