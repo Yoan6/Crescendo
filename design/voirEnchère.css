@@ -71,13 +71,17 @@ main form #topForm>#divTopLeft {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
 #carousel img {
 
     object-fit: cover;
-    width: 100%;
+
 
 }
 
@@ -90,7 +94,7 @@ main form #topForm>#divTopLeft {
 }
 
 #carousel>svg path {
-    fill: white;
+    fill: black;
 }
 
 #carousel>#buttonPrev {

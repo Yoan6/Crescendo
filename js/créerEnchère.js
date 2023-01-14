@@ -117,3 +117,9 @@ categories.addEventListener("change", function () {
   }
 });
 
+
+
+var dateEnchere = document.getElementById("dateEnchere");
+dateEnchere.addEventListener("click", function () {
+  dateEnchere.showPicker();
+});

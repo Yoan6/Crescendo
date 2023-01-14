@@ -20,9 +20,9 @@
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input required="" type="file" name="image[]" id="btnImage" accept="image/png, image/jpeg" size="3">
-                        <input type="file" name="image[]" id="btnImage2" accept="image/png, image/jpeg" size="3">
-                        <input type="file" name="image[]" id="btnImage3" accept="image/png, image/jpeg" size="3">
+                        <input required="" type="file" name="image" id="btnImage" accept="image/png, image/jpeg" size="3">
+                        <input type="file" name="image2" id="btnImage2" accept="image/png, image/jpeg" size="3">
+                        <input type="file" name="image3" id="btnImage3" accept="image/png, image/jpeg" size="3">
                         <label id="labelAjout">
                         <svg fill="#000000" version="1.1" id="Layer_1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -107,7 +107,7 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
+                            <input id="dateEnchere"min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
                                 type="date" id="date">
 
                         </div>
