@@ -8,3 +8,33 @@ prix.addEventListener("onkeypress", (event) => {
   }, false);
 
   
+//on compte le nombre d'image dans le carousel
+ 
+
+  var carouselImg = document.getElementsByClassName("carouselImg");
+  var currentImage = document.getElementById("premiereImage");
+  var currentImageIndex = 0;
+  var prevBtn = document.getElementById("buttonPrev");
+  var nextBtn = document.getElementById("buttonNext");
+
+  if(carouselImg.length > 1){
+  nextBtn.addEventListener("click", nextImage);
+  prevBtn.addEventListener("click", prevImage);
+
+  function nextImage() {
+    currentImageIndex++;
+    if (currentImageIndex >= carouselImg.length) {
+      currentImageIndex = 0;
+    }
+    currentImage.src = carouselImg[currentImageIndex].src;
+  }
+
+  function prevImage() {
+    currentImageIndex--;
+    if (currentImageIndex < 0) {
+      currentImageIndex = carouselImg.length - 1;
+    }
+    currentImage.src = carouselImg[currentImageIndex].src;
+  }
+
+} 

@@ -51,14 +51,33 @@
             <i><img src="" alt=""></i>
 
           </a>
-          <a href="#profile">
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/monEspaceVendeur.php"> 
+            <?php
+          }
+          else { ?>
+            <a href="../view/accueil.php"> 
+            <?php
+          }
+          ?>
             Mon espace vente
           </a>
           <a href="#notification">
             Notifications
           </a>
-          <a href="../view/logout.php">
-            Se déconnecter
+          <?php
+          if(isset($_SESSION['num_utilisateur'])) { ?>
+            <a href="../view/logout.php"> 
+              Se déconnecter
+            <?php
+          }
+          else { ?>
+            <a href="../view/login.php"> 
+            Se connecter
+            <?php
+          }
+          ?>
           </a>
           <div class="divToggleDarkMode">
             <p>Dark Mode</p>

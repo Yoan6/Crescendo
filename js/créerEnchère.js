@@ -1,4 +1,4 @@
-var currentImageIndex = 0; // counter to keep track of the current image
+ // counter to keep track of the current image
 var carousel = document.getElementById("carousel").style.display = "none";
 // Array to store the uploaded images
 var images = [];
@@ -42,12 +42,15 @@ function uploadImage() {
           images.push(img); // add the new image to the array
           document.getElementById("current-image").src = img.src;
           
-            carousel.style.display = "inline";
-            labelAjout.style.position = "absolute";
-            labelAjout.style.bottom = "30px";
-            labelAjout.style.backgroundColor = "white";
-            labelAjout.style.height = "20%";
-            labelAjout.style.width = "50%";
+            carousel.style.display = "flex";
+            labelAjout.classList.add("active");
+            if(images.length == 1){
+              prevBtn.style.display = "none";
+              nextBtn.style.display = "none";
+            } else {
+              prevBtn.style.display = "block";
+              nextBtn.style.display = "block";
+            }
 
             if(images.length == 3){
               labelAjout.style.display = "none";
@@ -72,7 +75,7 @@ var carousel = document.getElementById("carousel");
 var prevBtn = document.getElementById("buttonPrev");
 var nextBtn = document.getElementById("buttonNext");
 var currentImage = document.getElementById("current-image");
-
+var currentImageIndex = images.length - 1;
 // Functions
 function prevImage() {
   currentImageIndex--;
@@ -92,3 +95,31 @@ function nextImage() {
 
 prevBtn.addEventListener("click", prevImage);
 nextBtn.addEventListener("click", nextImage);
+
+
+
+
+
+var categories = document.getElementById("categorie");
+var taille = document.getElementById("taille");
+
+taille.style.display = "none";
+
+
+categories.addEventListener("change", function () {
+  if (categories.value == "Vêtement") {
+    taille.style.display = "flex";
+    taille.setAttribute("required", "");
+  } else {
+    taille.style.display = "none";
+    taille.removeAttribute("required");
+
+  }
+});
+
+
+
+var dateEnchere = document.getElementById("dateEnchere");
+dateEnchere.addEventListener("click", function () {
+  dateEnchere.showPicker();
+});

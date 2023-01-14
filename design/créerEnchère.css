@@ -60,6 +60,10 @@ main form #topForm > #divTopLeft {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
@@ -72,23 +76,20 @@ main form #topForm > #divTopLeft {
 
 #carousel > svg {
     position: absolute;
-    top: 45%;
+    top: 43%;
     height: 50px;
     width: 50px;
 
 }
 #carousel > svg path {
-    fill: white;
+    fill: black;
 }
 #carousel > #buttonPrev {
-
     left: 0;
     rotate: -90deg;
-
 }
 
 #carousel > #buttonNext {
-
     right: 0;
     rotate: 90deg;
 }
@@ -104,11 +105,37 @@ main form #topForm > #divTopLeft > input {
 
 main form #topForm > #divTopLeft > label {
     cursor: pointer;
-  
+    transition: transform 0.2s ease-in-out;
+
+}
+
+
+
+main form #topForm > #divTopLeft > #labelAjout > span {
+
+    font-size: 1.5em;
+    
+    color: black;
+}
+
+
+main form #topForm > #divTopLeft > #labelAjout.active {
+    position: absolute;
+    transition: width 0.2s, height 0.2s, right 2s, bottom 1s;
+    bottom :30px;
+    right: 30px;
+    background-color: var(--bleu);  
+    height: 70px;
+    width : 70px;
+    
+}
+
+main form #topForm > #divTopLeft > #labelAjout.active > span {
+    display: none;
 }
 
 main form #topForm > #divTopLeft > input + label{
-
+    position: absolute;
     font-size: 1.25em;
     font-weight: 700;
     color: black;
@@ -116,7 +143,9 @@ main form #topForm > #divTopLeft > input + label{
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
+    height: 100%;
     border-radius: 15px;
+    background-color: white;
     
 }
 
@@ -128,6 +157,7 @@ main form #topForm > #divTopLeft > label > svg{
 
 main form #topForm > #divTopLeft > input + label:hover {
     background-color: rgba(255,255,255,0.5);
+    transform: scale(1.01);
 }
 
 main form #topForm > #divTopLeft > img {

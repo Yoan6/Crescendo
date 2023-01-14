@@ -89,10 +89,19 @@ Règles générales ?
 *****************************/
 
 *:required:invalid  {
-    background-color: #FF7F7F;
-	border: #b93636 2px solid;
+    background-color: #F08080;
+	border: white 2px solid;
 	border-radius: 5px;
+	transition: background-color 0.5s ease-in-out;
 	/*text-decoration: underline red;*/
+}
+
+*:required:valid {
+	transition: background-color 0.5s ease-in-out;
+}
+
+*:required:valid {
+	transition: background-color 0.5s ease-in-out;
 }
 
 input[type=submit] , button, a {

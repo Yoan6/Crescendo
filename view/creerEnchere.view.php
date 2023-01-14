@@ -41,7 +41,8 @@
                                         </path>
                                     </g>
                                 </g>
-                            </svg><span>Choisir in fichier...</span> <span class="danger">(obligatoire)</span>
+                            </svg>
+                            <span>Ajouter une image</span> 
                         </label>
 
 
@@ -108,7 +109,7 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
+                            <input id="dateEnchere"min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
                                 type="date" id="date">
 
                         </div>
@@ -122,7 +123,7 @@
                         Description
                     </h3>
 
-                    <textarea required="" name="description" id="" cols="30" rows="10"
+                    <textarea required="" pattern=".*\S+.*" name="description" id="" cols="30" rows="10"
                         placeholder="INSERER DESCRIPTION"><?= $description ?></textarea>
                 </div>
 
@@ -176,7 +177,17 @@
                             Information sur l'article
                         </h4>
                         <div>
-                            <section>
+                            
+                            <section >
+                                <p>
+                                    Catégorie:
+                                </p>
+                                <select required="" name="categorie" value="" id="categorie">
+                                    <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
+                                </select>
+                            </section>
+
+                            <section id="taille">
                                 <p>
                                     Taille:
                                 </p>
@@ -190,14 +201,6 @@
                                 </p>
                                 <select required="" name="etat" value="">
                                     <?php include(__DIR__ . '/section/etatOption.view.php'); ?>
-                                </select>
-                            </section>
-                            <section>
-                                <p>
-                                    Catégorie:
-                                </p>
-                                <select required="" name="categorie" value="">
-                                    <?php include(__DIR__ . '/section/categorieOption.view.php'); ?>
                                 </select>
                             </section>
 
