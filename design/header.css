@@ -38,7 +38,7 @@ header img {
   justify-content: center;
   width: 60px;
   background-color: var(--bleu);
-  border-radius: 0px 50px 50px 0px;
+  border-radius: 0px 10px 10px 0px;
   overflow: hidden;
   cursor: pointer;
 }
@@ -71,7 +71,7 @@ header img {
 
 
 header .searchBar {
-  border-radius: 50px 0px 0px 50px;
+  border-radius: 10px 0px 0px 10px;
   padding-left: 20px;
   height: 100%;
   border: none;
