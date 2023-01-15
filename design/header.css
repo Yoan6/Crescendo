@@ -25,10 +25,9 @@ header img {
 #firstStage>form {
   margin-right: auto;
   margin-left: auto;
-  border-radius: 50px;
-  background-color: white;
+  border-radius: 10px;
   height: 42px;
-
+  width: 63%;
 }
 
 #loupe {
