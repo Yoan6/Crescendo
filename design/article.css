@@ -125,7 +125,7 @@
     white-space: normal;
 }
 
-.article #center a {
+.article #center .divBouton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,8 +136,21 @@
     color: black;
     font-weight: bolder;
     margin-top: 10px;
+    overflow: hidden;
+}
+
+.article #center .divBouton button{
+    height: 100%;
+    width: 100%;
+    background-color: var(--bleu);
+    border: none;
+    color: black;
+    font-weight: bolder;
+    font-size: 1.2em;
+    cursor: pointer;
 
 }
+
 
 .article #divLikes {
     display: flex;
@@ -232,7 +245,7 @@
     }
 
 
-    .article #center a {
+    .article #center .divBouton {
 
         position: absolute;
         right: 0;
