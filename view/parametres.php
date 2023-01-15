@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../design/parametres.css">
 </head>
 
+<?php if(!isset($_SESSION)) { session_start(); } ?>
+
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 

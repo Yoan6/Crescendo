@@ -18,7 +18,7 @@
 
 
   <main id="connexion">
-  <a class="logo" href="../view/accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+  <a class="logo" href="../view/accueil.view.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
     <h1>Connexion</h1>
     <form action="../controller/login.ctrl.php" method="post">
       <div>

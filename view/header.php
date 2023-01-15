@@ -65,7 +65,7 @@
       </svg>
       <div class="dropdown" id="dropdown">
         <?php if (isset($_SESSION['num_utilisateur'])): ?>
-          <a href="../view/parametres.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>
+          <a href="../controller/parametre.ctrl.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>
           </a>
           <a href="#draft">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
           <a href="#move">Enchères remportées<i><img src="" alt=""></i></a>

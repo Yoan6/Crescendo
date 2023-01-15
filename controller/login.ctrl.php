@@ -28,6 +28,10 @@ else {
     // Partie calculs avec le modèle
     ///////////////////////////////////////////////////////////////////////////////
 
+    if (isset($_SESSION['num_utilisateur'])) {
+        var_dump($_SESSION['num_utilisateur']);
+    }
+
     $error = array();
 
     // Si le login ou l'utilisateur ne sont pas fournis :
@@ -43,9 +47,6 @@ else {
                 $view = new View();
         
                 // Charge la vue
-                $messages[] = "Vous êtes maintenant connecté !";
-                $view->assign('messages', $messages);
-
                 $view->display("accueil.view.php");
             }
             else {
