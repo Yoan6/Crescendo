@@ -25,7 +25,7 @@ class Article
     private const LOCALURL = "../data/imgArticle/";
 
     // WhiteList pour éviter une injection SQL
-    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeu" => "num_vendeu","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style"];
+    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style"];
     private const WHITELIST_ORDER_BY = ["Asc" => "ASC", "DESC" => "DESC"];
 
     public function __construct(
@@ -337,16 +337,6 @@ class Article
         return Article::obtenirArticlesAPartirTable($table);
     }
 
-    public static function readCategorie(string $categorieName): array
-    {
-        $query = "SELECT *
-                    FROM ARTICLE
-                    WHERE categorie like '%' ||?||'%';";
-
-        $dao = DAO::get();
-        $table = $dao->query($query, [$categorieName]);
-        return Article::obtenirArticlesAPartirTable($table);
-    }
 
     /////////////////////////// ReadPage /////////////////////////////////////
 
@@ -354,7 +344,7 @@ class Article
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'
                     ORDER BY num_article
@@ -379,7 +369,7 @@ class Article
         
         /*Certaines variables mises directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/        
         $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||:valeurChoix||'%' 
                     ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy] ."                   
                     LIMIT :pageSize OFFSET :articleOffset ;";
@@ -402,7 +392,7 @@ $table = $dao->query($query, $data);
     {
         /*Certaines variables mises directement pour éviter les '', l'utilisateur ne peut normalement pas manipuler ces données*/      
         $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     ORDER BY num_article               
                     LIMIT :pageSize OFFSET :articleOffset ;";
                     
@@ -422,7 +412,7 @@ $table = $dao->query($query, $data);
     public static function nombreArticlesParChoix(string $choix, string $valeurChoix){
         /*L'attribut mis directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/ 
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||?||'%';";
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, [$valeurChoix]);
@@ -431,7 +421,7 @@ $table = $dao->query($query, $data);
 
     public static function nombreArticlesLike(string $titreArtiste){
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'";
         $dao = DAO::get();
@@ -442,7 +432,7 @@ $table = $dao->query($query, $data);
 
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE  natural join CONCERNE";
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
         return $tableContenantLeNombre[0][0];

@@ -8,7 +8,7 @@
     **                         Données
     ***************************************************************************/
     // initialisation
-    $recherche = $_GET["recherche"] ?? "%"; 
+    $recherche = $_GET["recherche"] ?? ""; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
     $controllerName = basename(__FILE__);

@@ -87,7 +87,7 @@
       </div>
     </div>
   </div>
-  <form id="lesCategories" action="../controller/rechercheChoix.ctrl.php" method="POST">
+  <form id="lesCategories" action="../controller/rechercheChoix.ctrl.php" method="GET">
     <ul class="conteneur">
       <li class="liCategories"><button name="valeurChoix" value="AlaUne">A la une</button></li>
       <li class="liCategories"><button name="valeurChoix" value="vetements">Vêtements</button></li>

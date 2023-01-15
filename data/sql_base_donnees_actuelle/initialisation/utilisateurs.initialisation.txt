@@ -2,3 +2,4 @@
 2|johndoe@example.com|johndoe|$2a$10$6.DYV4gJQfN8Zk7j9Kl5S5.SZ5Y5z5e5u5K5.Z5e5u5K5.Z5e5u5K|John|Doe|1980-01-01|New York|123 Main St|10001|
 3|janedoe@example.com|janedoe|$2a$10$6.DYV4gJQfN8Zk7j9Kl5S5.SZ5Y5z5e5u5K5.Z5e5u5K5.Z5e5u5K|Jane|Doe|1982-03-15|Los Angeles|456 Park Ave|90001|
 4|bob@example.com|bob|$2a$10$6.DYV4gJQfN8Zk7j9Kl5S5.SZ5Y5z5e5u5K5.Z5e5u5K5.Z5e5u5K|Bob|Smith|1990-07-01|Chicago|789 State St|60601|
+5|yoan.delannoy@gmail.com|Yang|$2y$10$axIxGXKGBFXKKO81xtTOe.giVrghJA2yfGozu9SU.i1fVQvOiKGRe|Delannoy|Yoan|2003-08-23|Grenoble|13 Rue des Papetteries|38000|

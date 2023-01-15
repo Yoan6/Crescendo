@@ -15,9 +15,9 @@ include_once(__DIR__."/../model/Enchere.class.php");
 **                         Données
 ***************************************************************************/
 // Autres données
-$recherche = $_GET["recherche"] ?? "%"; 
-$choix = $_POST['choix'] ?? "style";
-$valeurChoix = $_POST['valeurChoix'] ?? "pop";
+$recherche = $_GET["recherche"] ?? ""; 
+$choix = $_GET['choix'] ?? "style";
+$valeurChoix = $_GET['valeurChoix'] ?? "pop";
 $controllerName = basename(__FILE__);
 
 $encheres = array(); // S'il y'a une erreur
