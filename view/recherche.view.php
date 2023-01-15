@@ -20,10 +20,10 @@
 
         </div>
         <div id="principale">
-            <aside class="filtre">
+            <form class="filtre">
                 <div>
                     <div>
-                        <button class="buttonDropFilter" tag="0">
+                        <button type="button" class="buttonDropFilter" tag="0">
                             <h3>Style musical </h3>
                             <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@
 
                     <div>
 
-                        <button class="buttonDropFilter" tag="1">
+                        <button type="button" class="buttonDropFilter" tag="1">
                             <h3>Type Objet</h3>
                             <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -138,7 +138,7 @@
 
                     <div>
 
-                        <button class="buttonDropFilter" tag="2">
+                        <button type="button" class="buttonDropFilter" tag="2">
                             <h3>Style musical </h3>
                             <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -202,13 +202,13 @@
                     <button>
                         Valider
                     </button>
-                    <button>
+                    <button id="toutEffacer" type="button">
                         Tout effacer
                     </button>
                 </div>
 
 
-            </aside>
+            </form>
             <div id="divdroite">
 
                 <div class="affichageArticle">

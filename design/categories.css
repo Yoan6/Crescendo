@@ -88,10 +88,10 @@ main {
 }
 
 /*****************************
-Règles pour éléments du aside
+Règles pour éléments du form
 *****************************/
 
-aside {
+form {
 	min-width: 250px;
 	width: 20%;
 	background-color: #272727;
@@ -104,7 +104,7 @@ aside {
 
 }
 
-aside button {
+form button {
 	border-radius: 15px;
 	border: none;
 	display: flex;
@@ -113,7 +113,7 @@ aside button {
 	justify-content: space-around;
 }
 
-aside svg {
+form svg {
 	height: 35%;
 }
 
@@ -128,12 +128,12 @@ aside svg {
 	opacity: 0;
 }
 
-aside>div {
+form>div {
 	width: 80%;
 
 }
 
-aside>div{
+form>div{
 	display: flex;
 	gap: 15px;
 	min-width: 150px;
@@ -144,44 +144,44 @@ aside>div{
 
 }
 
-aside div div {
+form div div {
 
 	height: fit-content;
 
 }
 
-aside>div:last-child {
+form>div:last-child {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 
 }
 
-aside>div:last-child>button {
+form>div:last-child>button {
 	padding: 20px;
 	width: 100%;
 	font-size: larger;
 
 }
-aside #validerOuEffacer {
+form #validerOuEffacer {
     flex-direction: column;
     gap: 15px;
 }
 
 
-aside #validerOuEffacer button:first-child {
+form #validerOuEffacer button:first-child {
 	background-color: var(--bleu);
 	color: black;
 }
 
 
-aside #validerOuEffacer button:last-child {
+form #validerOuEffacer button:last-child {
 	border: solid 1px white;
 	background-color: transparent;
 	color: white;
 }
 
-aside .buttonDropFilter {
+form .buttonDropFilter {
 
 	transition: border-radius 0.1s linear 0s;
 	border-radius: 15px;
@@ -198,12 +198,12 @@ aside .buttonDropFilter {
 
 
 
-aside .buttonDropFilter h3 {
+form .buttonDropFilter h3 {
 	width: 20%;
 	min-width: 140px;
 }
 
-aside .filterdown {
+form .filterdown {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -221,13 +221,13 @@ aside .filterdown {
 	background-color: var(--main-font-color);
 }
 
-aside .filterdown.open {
+form .filterdown.open {
 	max-height: 1000px; /* ou toute autre valeur appropriée */
 
 	padding-bottom: 20px;
 }
 
-aside .filterdown>div {
+form .filterdown>div {
 	display: flex;
 	flex-direction: row;
 	gap: 30px;
@@ -235,12 +235,12 @@ aside .filterdown>div {
 
 }
 
-aside .filterdown>div>label {
+form .filterdown>div>label {
 	font-size: larger;
 	color: black;
 }
 
-aside .filterdown>div>input[type="checkbox"] {
+form .filterdown>div>input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	margin: 0px;
@@ -310,13 +310,13 @@ Règles pour un objet (article)
 
 	}
 
-	aside {
+	form {
 		width: 100%;
 
 	background-color: var(--main-content-font-color);
 	}
 
-	aside>div {
+	form>div {
 		width: 90%;
 		max-width: 700px;
 	}

@@ -132,3 +132,19 @@ if (url.searchParams.get("orderBy")) {
 }
 
 
+
+//////////////////////////
+//Tout décocher//////////
+////////////////////////
+
+toutEffacer = document.getElementById("toutEffacer");
+
+// Sélectionner toutes les checkbox de la page
+var checkboxes = document.querySelectorAll('input[type=checkbox]');
+
+// Boucle sur toutes les checkbox et les décocher
+toutEffacer.addEventListener("click", function () {
+for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+}
+});
