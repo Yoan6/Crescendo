@@ -8,7 +8,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
- 
+
 }
 
 header img {
@@ -119,7 +119,7 @@ header li {
 }
 
 header li button {
-  background-color: black;
+  background-color: var(--navBar-background-color);
   display: block;
   padding: 16px 25px 16px 25px;
   text-align: center;
@@ -428,7 +428,7 @@ input:checked+.slider:before {
     background-color: var(--header-background-color);
   }
 
-  header #lesCategories>ul >li {
+  header #lesCategories>ul>li {
     flex-grow: 0;
     gap: 20%;
     width: 100%;
@@ -452,8 +452,8 @@ input:checked+.slider:before {
     padding: 0px;
     text-align: center;
     border: 0px;
-    border-top:  1px solid white;
-    border-bottom:  1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     color: white;
     font-size: 2em;
     width: 100%;
@@ -532,12 +532,12 @@ input:checked+.slider:before {
 
   header #firstStage #formRecherche.active {
     right: 15vw;
-    
+
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    
+
   }
 
 
@@ -552,7 +552,7 @@ input:checked+.slider:before {
   header #firstStage #formRecherche .searchBar.active {
 
     min-width: 50vw;
-    padding-left : 20px;
+    padding-left: 20px;
     background-color: white;
 
 
@@ -576,7 +576,7 @@ input:checked+.slider:before {
   }
 
 
-  
+
 
 
 
