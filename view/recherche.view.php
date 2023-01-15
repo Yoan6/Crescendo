@@ -16,7 +16,7 @@
 
     <main>
         <div>
-            <p id="titre">Résultat pour <?=$titreArtistePattern?></h1>
+            <p id="titre">Résultat pour <?=$recherche?></h1>
 
         </div>
         <div id="principale">
@@ -216,9 +216,7 @@
                         <div id="contenuOrderBy">
 
                             <select id="orderBy">
-                                <option value="0">Trier par</option>
-                                <option value="1">Plus aimés</option>
-                                <option value="2">Moins aimés</option>
+                                <?php include(__DIR__ . '/article/filtre.view.php'); ?>
                             </select>
 
 
@@ -230,7 +228,7 @@
 
 
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
-
+                    <?php include(__DIR__ . '/article/pages.view.php'); ?>
 
                 </div>
             </div>

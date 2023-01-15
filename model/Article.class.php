@@ -24,7 +24,9 @@ class Article
     private Utilisateur $vendeur;
     private const LOCALURL = "../data/imgArticle/";
 
-
+    // WhiteList pour éviter une injection SQL
+    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeu" => "num_vendeu","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style"];
+    private const WHITELIST_ORDER_BY = ["Asc" => "ASC", "DESC" => "DESC"];
 
     public function __construct(
         Utilisateur $vendeur, string $titre, string $description, array $nomImgages, int $prixMin, string $artiste,
@@ -352,7 +354,7 @@ class Article
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
-                    FROM ARTICLE
+                    FROM ARTICLE natural join CONCERNE
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'
                     ORDER BY num_article
@@ -367,60 +369,80 @@ class Article
         
         $dao = DAO::get();
         $table = $dao->query($query,$data);
-        var_dump($table);
+
         return Article::obtenirArticlesAPartirTable($table);
     }
 
     public static function readPageChoix(int $page,int $pageSize, string $choix, string $valeurChoix, string $orderByChoix ="num_article",string $orderBy="Asc"){
-        /*$choix et $orderBy mis directement pour éviter les '', l'utilisateur ne peut pas manipuler cette donnée*/        
-        $query = "SELECT *
-                    FROM ARTICLE
-                    WHERE $choix like '%' ||:valeurChoix||'%' 
-                    ORDER BY $orderByChoix $orderBy                   
-                    LIMIT :pageSize OFFSET :articleOffset ;";
-        $data = [
-            "articleOffset" => ($page - 1) * $pageSize,
-            "pageSize" => $pageSize,
-            "valeurChoix" => $valeurChoix,
-        ];
-        var_dump($query);
         
+        
+        
+        /*Certaines variables mises directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/        
+        $query = "SELECT *
+                    FROM ARTICLE natural join CONCERNE
+                    WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||:valeurChoix||'%' 
+                    ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy] ."                   
+                    LIMIT :pageSize OFFSET :articleOffset ;";
+
+        $data = [
+            "valeurChoix" => $valeurChoix,
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize
+        ];
+
         $dao = DAO::get();
-        $table = $dao->query($query, $data);
+$table = $dao->query($query, $data);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
 
-    public static function nombreArticles(string $categorie){
-        $query = "SELECT COUNT(*)
-                    FROM ARTICLE
-                    WHERE categorie like '%' ||?||'%';";
-        $dao = DAO::get();
-        $tableContenantLeNombre = $dao->query($query, [$categorie]);
-        return $tableContenantLeNombre[0][0];
-    }
-
-
+    
+    
     public static function readPage(int $page, int $pageSize)
     {
+        /*Certaines variables mises directement pour éviter les '', l'utilisateur ne peut normalement pas manipuler ces données*/      
         $query = "SELECT *
-                    FROM ARTICLE
-                    ORDER BY num_article
-                    LIMIT ? OFFSET ?;";
+                    FROM ARTICLE natural join CONCERNE
+                    ORDER BY num_article               
+                    LIMIT :pageSize OFFSET :articleOffset ;";
+                    
+                    $data = [
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize
+        ];
         $dao = DAO::get();
         try {
-            $table = $dao->query($query, [($page - 1) * $pageSize, $pageSize]);
+            $table = $dao->query($query, $data);
             return Article::obtenirArticlesAPartirTable($table);
         } catch (Exception $e) {
             throw new Exception("Erreur lors de la récupération des articles");
         }
     }
+    
+    public static function nombreArticlesParChoix(string $choix, string $valeurChoix){
+        /*L'attribut mis directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/ 
+        $query = "SELECT COUNT(*)
+                    FROM ARTICLE natural join CONCERNE
+                    WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||?||'%';";
+        $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, [$valeurChoix]);
+        return $tableContenantLeNombre[0][0];
+    }
 
+    public static function nombreArticlesLike(string $titreArtiste){
+        $query = "SELECT COUNT(*)
+                    FROM ARTICLE natural join CONCERNE
+                    WHERE titre like '%' ||:titreArtiste ||'%'
+                        OR artiste like '%' ||:titreArtiste ||'%'";
+        $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, ["titreArtiste" =>$titreArtiste]);
+        return $tableContenantLeNombre[0][0];
+    }
 
 
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE";
+                    FROM ARTICLE  natural join CONCERNE";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
         return $tableContenantLeNombre[0][0];

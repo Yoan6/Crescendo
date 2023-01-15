@@ -232,11 +232,6 @@ class Enchere
     }
 
 
-    public static function nombreArticles(string $categorie): int
-    {
-        $nbArticles = Article::nombreArticles($categorie);
-        return $nbArticles;
-    }
 
 
     

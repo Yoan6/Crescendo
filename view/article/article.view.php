@@ -1,4 +1,5 @@
 <?php // var_dump($encheres)?>
+<?php if(isset($encheres) && count($encheres) >= 1):?>
 <?php foreach($encheres as $enchere) : $article = Article::getTypeArticleFromArray($enchere->getArticles(),0);?> 
     <div class="article" >
 
@@ -27,7 +28,7 @@
                     <p><?=$article->getDescription()?>
                     </p>
                 </section>
-                <a href="../controler/afficherArticle.ctrl.php?numEnchere=<?=$enchere->getNumEnchere()?>">Voir l'enchère</a>
+                <a href="../controller/afficherArticle.ctrl.php?numEnchere=<?=$enchere->getNumEnchere()?>">Voir l'enchère</a>
             </div>
         </div>
 
@@ -69,4 +70,4 @@
 
     </div>
     <?php endforeach;?>
-    
+<?php endif;?>

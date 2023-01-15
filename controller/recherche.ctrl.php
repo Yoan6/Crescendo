@@ -8,20 +8,23 @@
     **                         Données
     ***************************************************************************/
     // initialisation
-    $titreArtistePattern = $_GET["recherche"] ?? "old"; 
+    $recherche = $_GET["recherche"] ?? "%"; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
+    $controllerName = basename(__FILE__);
+    $pageMax = 0;
 
     // Gérer les pages
     $page = $_GET['page'] ?? 1;
-    $pageSize = 5; 
-    $pageMax = article::nombreArticlesTotal() / $pageSize;
+    $pageSize = 5; //Nombre d'article
+    $nbBoutonPage = 5;
     $pagePrec = ($page == 1 ? 1 : $page - 1); 
     $pageSuiv = ($page == $pageMax ? $pageMax : $page + 1);
-
+    
     // Récupérer les enchères
     try {
-        $encheres = Enchere::readPageLike($page, $pageSize, $titreArtistePattern);
+        $pageMax = article::nombreArticlesLike($recherche) / $pageSize; // Une erreur est générée si 0 article trouvé
+        $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
@@ -32,8 +35,18 @@
     ***************************************************************************/
 
     $view = new view();
+    $view->assign("controllerName",$controllerName);
+
     $view->assign("encheres",$encheres);
-    $view->assign("titreArtistePattern",$titreArtistePattern);
-    $view->display("recherche.php");
+
+    $view->assign('recherche', $recherche);
+    $view->assign('nbBoutonPage', $nbBoutonPage);
+    $view->assign('pagePrec', $pagePrec);
+    $view->assign('page', $page);
+    $view->assign('pageSuiv', $pageSuiv);
+    $view->assign('pageSize', $pageSize);
+    $view->assign('pageMax', $pageMax);
+    $view->assign("recherche",$recherche);
+    $view->display("recherche.view.php");
 
 ?>
