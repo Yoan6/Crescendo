@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <form>
+                <form action="../controler/parametre.ctrl.php" method="POST">
                     <button id="modifImageProfil">
                         Modifier l'image de profil
                     </button>
@@ -38,25 +38,38 @@
                     Pseudo
                 </h2>
                 <div class="afficherAttribut">
-                    <p>monPseudo392</p>
+                    <p><?=$_SESSION['pseudo']?></p>
                     <button id="modifPseudo">
                         Modifier le pseudo
                     </button>
                 </div>
-                <form class="formModif" method="post" action="">
+                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
                     <div class="champsAremplir">
-                        <input type="text" name="pseudo" value="">
+                        <input type="text" name="pseudo" placeholder="Votre pseudo" required>
 
                     </div>
                     <div class="annulerOuValider">
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider">
+                        <button class="valider" type="submit">
                             Valider
                         </button>
                     </div>
                 </form>
+            </div>
+
+            <div>
+                <?php 
+
+                if (isset($error) && count($error) != 0) {
+                    foreach($error as $e) { ?>
+                        <p class="error"><?php echo($e);?></p>
+                        <?php
+                    }
+                } 
+                ?>
+    
             </div>
 
             <div class="modif">
@@ -64,15 +77,15 @@
                     Addresse email
                 </h2>
                 <div class="afficherAttribut">
-                    <p>monMail@gmail.com</p>
+                    <p><?=$_SESSION['mail']?></p>
                     <button id="modifMail">
                         Modifier l'adresse mail
                     </button>
                 </div>
-                <form class="formModif" method="post" action="">
+                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
                     <div class="champsAremplir">
-                        <input placeholder="Votre nouveau mail" type="text" name="mail" value="">
-                        <input placeholder="Mot de passe" type="text" name="password" value="">
+                        <input placeholder="Votre nouveau mail" type="email" name="mail" value="" required>
+                        <input placeholder="Mot de passe" type="text" name="password" value="" required>
 
                     </div>
 
@@ -81,7 +94,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider">
+                        <button class="valider" type="submit">
                             Valider
                         </button>
                     </div>
@@ -93,14 +106,13 @@
                     Adresse de livraison
                 </h2>
                 <div class="afficherAttribut">
-                    <p> 13 rue des papeteries, 78000 Paris </p>
+                    <p><?=$_SESSION['adresse']?>, <?=$_SESSION['postal']?> <?=$_SESSION['ville']?></p>
                     <button id="modifAdresse">
-                        Modifier l'adresse mail
-                    </button>
+                        Modifier l'adresse de livraison
                 </div>
 
 
-                <form class="formModif" method="post" action="">
+                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
 
                     <div class="champsAremplir">
                         <div id="postalEtVille">
@@ -108,7 +120,7 @@
                             <input placeholder="Ville" type="text" name="ville" value="">
                         </div>
 
-                        <input placeholder="Adresse" type="text" name="password" value="">
+                        <input placeholder="Adresse" type="text" name="adresse" value="">
                     </div>
 
 
@@ -117,7 +129,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider">
+                        <button class="valider" type="submit">
                             Valider
                         </button>
                     </div>
@@ -131,16 +143,16 @@
                 </h2>
 
                 <div class="afficherAttribut">
-                    <p> ****** </p>
+                    <p><?=$_SESSION['nouveauPassword']?></p>
                     <button id="modifMdp">
                         Modifier le mot de passe
                     </button>
                 </div>
-                <form class="formModif" method="post" action="">
+                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
                     <div class="champsAremplir">
-                        <input placeholder="Ancien mot de passe" type="text" name="password" value="">
-                        <input placeholder="Nouveau mot de passe" type="text" name="password" value="">
-                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="password" value="">
+                        <input placeholder="Ancien mot de passe" type="text" name="ancienPassword" value="">
+                        <input placeholder="Nouveau mot de passe" type="text" name="nouveauPassword" value="">
+                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="checkPassword" value="">
 
                     </div>
 
@@ -149,7 +161,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider">
+                        <button class="valider" type="submit">
                             Valider
                         </button>
                     </div>
@@ -168,7 +180,7 @@
         </div>
 
 
-        <form class="divPopUp">
+        <form class="divPopUp" method="POST" action="../controler/parametre.ctrl.php">
 
             <div id="popUpSupprimerCompte">
                 <section>
@@ -181,10 +193,10 @@
                         Cette action est irréversible, toutes les données relatives à votre profil seront effacées
                     </p>
                     <div>
-                        <button id="annulerSupprimer"type="button">
+                        <button id="annulerSupprimer" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimer">
+                        <button id="confirmerSupprimer" type="submit">
                             Supprimer
                         </button>
                     </div>
