@@ -23,6 +23,7 @@ const toggleDropFilter = function (numero) {
         dropdownFilter[numero].classList.toggle("open");
         plus[numero].style.display = "none";
         minus[numero].style.display = "inline";
+        validerOuEffacer.style.maxHeight = "1000px";
         validerOuEffacer.style.visibility = "visible";
         validerOuEffacer.style.opacity = "1";
 
@@ -47,6 +48,7 @@ const toggleDropFilter = function (numero) {
       }
 
       if (toutReduit === true) {
+        validerOuEffacer.style.maxHeight = "0px";
         validerOuEffacer.style.visibility = "hidden";
         validerOuEffacer.style.opacity = "0";
       }
@@ -58,10 +60,11 @@ const toggleDropFilter = function (numero) {
 
 
 for (let i = 0; i < dropdownButton.length; i++) {
-
+  validerOuEffacer.style.maxHeight = "0px";
   dropdownButton[i].style.display = "flex";
   minus[i].style.display = "none";
   plus[i].style.display = "inline";
+
   //dropdownFilter[i].setAttribute("myParametre", i);
 
 
