@@ -23,7 +23,7 @@ main>div {
 }
 
 
-main>div>div {
+main>#firstContent>div {
 
     width: 100%;
     max-width: 900px;
@@ -105,7 +105,7 @@ main>div #topForm>#divTopLeft {
     rotate: 90deg;
 }
 
-main div #topForm>#divTopLeft>input {
+main #firstContent #topForm>#divTopLeft>input {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -114,12 +114,12 @@ main div #topForm>#divTopLeft>input {
     z-index: -1;
 }
 
-main div #topForm>#divTopLeft>label {
+main #firstContent #topForm>#divTopLeft>label {
     cursor: pointer;
 
 }
 
-main div #topForm>#divTopLeft>input+label {
+main #firstContent #topForm>#divTopLeft>input+label {
 
     font-size: 1.25em;
     font-weight: 700;
@@ -132,23 +132,23 @@ main div #topForm>#divTopLeft>input+label {
 
 }
 
-main div #topForm>#divTopLeft>label>svg {
+main #firstContent #topForm>#divTopLeft>label>svg {
 
     width: 60px;
 
 }
 
-main div #topForm>#divTopLeft>input+label:hover {
+main #firstContent #topForm>#divTopLeft>input+label:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-main div #topForm>#divTopLeft>img {
+main #firstContent #topForm>#divTopLeft>img {
     object-fit: cover;
 }
 
 
 
-main div #topForm>#divTopRight {
+main #firstContent #topForm>#divTopRight {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,14 +161,14 @@ main div #topForm>#divTopRight {
 
 
 
-main div #topForm>#divTopRight>div {
+main #firstContent #topForm>#divTopRight>div {
     width: 100%;
     height: 25%;
     max-height: 75px;
 }
 
 
-main div #topForm>#divTopRight>h4 {
+main #firstContent #topForm>#divTopRight>h4 {
 
     width: 100%;
     display: flex;
@@ -191,7 +191,7 @@ main div #topForm>#divTopRight>h4 {
 
 
 
-main div #topForm>#divTopRight>#divPrixActuel {
+main #firstContent #topForm>#divTopRight>#divPrixActuel {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -200,7 +200,7 @@ main div #topForm>#divTopRight>#divPrixActuel {
 }
 
 
-main div #topForm>#divTopRight>#divPrixActuel>h3 {
+main #firstContent #topForm>#divTopRight>#divPrixActuel>h3 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,7 +215,7 @@ main div #topForm>#divTopRight>#divPrixActuel>h3 {
 }
 
 
-main div #topForm>#divTopRight>#divPrixActuel>h4 {
+main #firstContent #topForm>#divTopRight>#divPrixActuel>h4 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,7 +234,7 @@ main div #topForm>#divTopRight>#divPrixActuel>h4 {
 
 }
 
-main div #topForm>#divTopRight>#divNouveauPrix {
+main #firstContent #topForm>#divTopRight>#divNouveauPrix {
 
     display: flex;
     flex-direction: row;
@@ -244,10 +244,10 @@ main div #topForm>#divTopRight>#divNouveauPrix {
 }
 
 
-main div #topForm>#divTopRight>#divNouveauPrix>input {}
+main #firstContent #topForm>#divTopRight>#divNouveauPrix>input {}
 
 
-main div #topForm>#divTopRight>#divNouveauPrix>button {
+main #firstContent #topForm>#divTopRight>#divNouveauPrix>button {
 
     display: flex;
     flex-direction: row;
@@ -262,13 +262,13 @@ main div #topForm>#divTopRight>#divNouveauPrix>button {
 
 }
 
-main div #topForm>#divTopRight>#divNouveauPrix>button>img {
+main #firstContent #topForm>#divTopRight>#divNouveauPrix>button>img {
     width: 30px;
     height: 30px;
 }
 
 
-main div #topForm>#divTopRight>#divNouveauPrix>input {
+main #firstContent #topForm>#divTopRight>#divNouveauPrix>input {
 
     border-radius: 15px;
     margin: 0px;
@@ -290,7 +290,7 @@ main div #topForm>#divTopRight>#divNouveauPrix>input {
 
 
 
-main div #features {
+main #firstContent #features {
 
     margin-top: 10px;
     margin-bottom: 25px;
@@ -303,7 +303,7 @@ main div #features {
 
 
 
-main div #features #featuresLeft #heart {
+main #firstContent #features #featuresLeft #heart {
     height: 50px;
     width: 50px;
     display: flex;
@@ -320,7 +320,7 @@ main div #features #featuresLeft #heart {
 
 
 
-main div #features #featuresLeft {
+main #firstContent #features #featuresLeft {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -330,7 +330,7 @@ main div #features #featuresLeft {
 
 
 
-main div #features #featuresLeft>div {
+main #firstContent #features #featuresLeft>div {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -342,29 +342,29 @@ main div #features #featuresLeft>div {
 
 }
 
-main div #features #featuresLeft>div>svg {
+main #firstContent #features #featuresLeft>div>svg {
     height: 30px;
     width: 30px;
 }
 
-main div #features #featuresLeft>div>p {
+main #firstContent #features #featuresLeft>div>p {
     font-size: 1.2em;
 
 }
 
-main div #features #featuresLeft>a svg {
+main #firstContent #features #featuresLeft>a svg {
     height: 30px;
     width: 30px;
 
 }
 
-main div #features #featuresLeft>a svg :where(path, polygon) {
+main #firstContent #features #featuresLeft>a svg :where(path, polygon) {
     fill: black;
 
 }
 
 
-main div #features #featuresLeft>a {
+main #firstContent #features #featuresLeft>a {
     display: flex;
     flex-direction: row;
     width: 40%;
@@ -377,7 +377,7 @@ main div #features #featuresLeft>a {
 }
 
 
-main div #features #featuresRight {
+main #firstContent #features #featuresRight {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -389,7 +389,7 @@ main div #features #featuresRight {
 
 }
 
-main div #features #featuresRight>div {
+main #firstContent #features #featuresRight>div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -398,7 +398,7 @@ main div #features #featuresRight>div {
 
 }
 
-main div #features #featuresRight img {
+main #firstContent #features #featuresRight img {
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -406,7 +406,7 @@ main div #features #featuresRight img {
 }
 
 
-main div #middleForm {
+main #firstContent #middleForm {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -422,7 +422,7 @@ main div #middleForm {
 
 
 
-main div #middleForm>h3 {
+main #firstContent #middleForm>h3 {
     color: black;
     width: 90%;
     margin: 0;
@@ -431,7 +431,7 @@ main div #middleForm>h3 {
     flex-direction: row;
 }
 
-main div #middleForm>p {
+main #firstContent #middleForm>p {
     width: 90%;
     color: black;
 }
@@ -450,17 +450,6 @@ main div #middleForm>p {
     padding-top: 0px;
 }
 
-#bottomForm>div {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    border-radius: 15px;
-
-    gap: 20px;
-    height: 100%;
-}
 
 #bottomForm>h2 {
 
@@ -482,13 +471,13 @@ main div #middleForm>p {
 
 @media (min-width: 481px) and (max-width: 1000px) {
 
-    main div>div {
+    main #firstContent>div {
 
         align-items: center;
 
     }
 
-    main div #topForm {
+    main #firstContent #topForm {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -502,7 +491,7 @@ main div #middleForm>p {
 
 
 
-    main div #topForm>#divTopLeft {
+    main #firstContent #topForm>#divTopLeft {
         position: relative;
         background-color: white;
         border-radius: 15px;
@@ -515,19 +504,19 @@ main div #middleForm>p {
     }
 
 
-    main div #topForm>#divTopRight {
+    main #firstContent #topForm>#divTopRight {
         width: 100%;
         height: 300px;
     }
 
-    main div #topForm>#divTopRight>input,
-    main div #topForm>#divTopRight>input:first-child {
+    main #firstContent #topForm>#divTopRight>input,
+    main #firstContent #topForm>#divTopRight>input:first-child {
         height: 33%;
     }
 
 
 
-    main div #features {
+    main #firstContent #features {
 
         flex-direction: column-reverse;
         gap: 20px;
@@ -539,16 +528,16 @@ main div #middleForm>p {
 
 
 
-    main div #features #featuresRight {
+    main #firstContent #features #featuresRight {
         width: 100%;
         height: 50px;
     }
 
-    main div #features #featuresLeft {
+    main #firstContent #features #featuresLeft {
         width: 100%;
     }
 
-    main div #features #featuresLeft>a {
+    main #firstContent #features #featuresLeft>a {
         height: 52px;
     }
 
@@ -556,7 +545,7 @@ main div #middleForm>p {
 
 
 
-    main div #bottomForm {
+    main #firstContent #bottomForm {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -567,7 +556,7 @@ main div #middleForm>p {
 
     }
 
-    main div #bottomForm>div {
+    main #firstContent #bottomForm>div {
         width: 100%;
         padding-bottom: 10px;
     }

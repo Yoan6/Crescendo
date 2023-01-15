@@ -1,4 +1,6 @@
 
 
-var pageActuelle = document.getElementById("pageActuelle");
-pageActuelle.style.backgroundColor = "var(--bleu)";
+const pageActuelle = document.getElementById("pageActuelle");
+if(pageActuelle != null){
+    pageActuelle.style.backgroundColor = "var(--bleu)";
+}
