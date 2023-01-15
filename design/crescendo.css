@@ -265,11 +265,50 @@ Les messages
 
 
 
+/*****************************/
+/* Règles pour le bas de page */
+/*****************************/
+
+
+#navPages {
+	display:flex;
+	flex-flow:row;
+	justify-content: center;
+	gap:5px;
+	width: 100%;
+	height: 70px;
+
+}
+
+#navPages a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 100%;
+	text-decoration: none;
+	background-color: var(--navBar-background-color);
+	width: 60px;
+	height: 60px;
+	transition: background-color 0.5s ease-in-out;
+}
+
+
+#navPages a svg{
+
+	width: 30px;
+	height: 30px;
+
+}
+
+#navPages a svg path{
+	fill: var(--navBar-font-color);
+}
 
 
 
-
-
+#navPages a:hover {
+	background-color: var(--bleu);
+}
 
 
 

@@ -178,7 +178,7 @@
                         </h4>
                         <div>
                             
-                            <section >
+                            <section>
                                 <p>
                                     Catégorie:
                                 </p>
@@ -191,7 +191,7 @@
                                 <p>
                                     Taille:
                                 </p>
-                                <select required="" name="taille" value="">
+                                <select name="taille" value="">
                                     <?php include(__DIR__ . '/section/tailleOption.view.php'); ?>
                                 </select>
                             </section>
@@ -218,7 +218,7 @@
 
 
             <div id="buttons">
-                <a href="accueil.php">Annuler</a>
+                <a href="javascript:history.back()">Annuler</a>
                 <input type="hidden" name="confirmer" value="confirmer">
                 <button type="submit">Confirmer</button>
             </div>

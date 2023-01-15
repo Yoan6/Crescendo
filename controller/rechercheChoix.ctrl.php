@@ -14,23 +14,25 @@ include_once(__DIR__."/../model/Enchere.class.php");
 /***************************************************************************
 **                         Données
 ***************************************************************************/
+// Autres données
+$recherche = $_GET["recherche"] ?? "%"; 
+$choix = $_POST['choix'] ?? "style";
+$valeurChoix = $_POST['valeurChoix'] ?? "pop";
+$controllerName = basename(__FILE__);
 
 $encheres = array(); // S'il y'a une erreur
 $errors = array();
-$categorie = $_GET['categorie'] ??  "";
+$pageMax = 0;
 
 // Gérer les pages
 $page = $_GET['page'] ?? 1;
-$pageSize = 5; 
-$pageMax = article::nombreArticlesTotal() / $pageSize;
+$pageSize = 5; //Nombre d'article
+$nbBoutonPage = 5;
 $pagePrec = ($page == 1 ? 1 : $page - 1); 
 $pageSuiv = ($page == $pageMax ? $pageMax : $page + 1);
 
-// Autres données
-$choix = "style";
-$valeurChoix = "pop";
-
 try {
+    $pageMax = article::nombreArticlesParChoix($choix,$valeurChoix) / $pageSize;  // Une erreur est générée si 0 article trouvé
     $encheres = Enchere::readPageChoix($page, $pageSize, $choix, $valeurChoix);
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
@@ -40,22 +42,25 @@ try {
 
 $view = new View();
 
-// Si aucune enchère n'est trouvée, on affiche une page d'erreur
 if (empty($encheres)) {
-    $view->display("categories.view.php");
-} else {
-    // Sinon on affiche la page des enchères
-    $view->assign('pagePrec', $pagePrec);
-    $view->assign('page', $page);
-    $view->assign('pageSuiv', $pageSuiv);
-    $view->assign('pageSize', $pageSize);
-    $view->assign('nombrePages', $pageMax);
-    $view->assign('categorie', $categorie);
-    $view->assign('encheres', $encheres);
-    $view->display("categories.view.php");
+    $errors[] = "Pas d'enchère trouvée";
 }
+// Sinon on affiche la page des enchères
+$view->assign("controllerName",$controllerName);
 
-$view = new View();
-$view->display("accueil.php");
+$view->assign('recherche', $recherche);
+$view->assign('nbBoutonPage', $nbBoutonPage);
+$view->assign('pagePrec', $pagePrec);
+$view->assign('page', $page);
+$view->assign('pageSuiv', $pageSuiv);
+$view->assign('pageSize', $pageSize);
+$view->assign('pageMax', $pageMax);
+$view->assign('choix', $choix);
+$view->assign('valeurChoix', $valeurChoix);
+
+$view->assign('encheres', $encheres);
+$view->display("rechercheChoix.view.php");
+
+
 
 ?>

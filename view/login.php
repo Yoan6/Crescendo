@@ -19,24 +19,8 @@
 
   <main id="connexion">
   <a class="logo" href="../view/accueil.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
-
-    <?php 
-
-    if(!isset($_SESSION)) { 
-      session_start(); 
-    } 
-
-    // Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
-    if(isset($_SESSION['num_utilisateur'])) {
-        $view = new View();
-
-        // Charge la vue
-        $view->display("accueil.php");
-    } 
-    ?>
-
     <h1>Connexion</h1>
-    <form action="../controler/login.ctrl.php" method="post">
+    <form action="../controller/login.ctrl.php" method="post">
       <div>
         <label for="login">Adresse email / Pseudo : </label>
         <input class="input" id="login" type="text" name="login" value="" placeholder="Exemple : Bernard" required>

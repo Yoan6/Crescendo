@@ -312,7 +312,7 @@ Règles pour un objet (article)
 
 	aside {
 		width: 100%;
-	padding-bottom: 20px;
+
 	background-color: var(--main-content-font-color);
 	}
 
@@ -323,10 +323,12 @@ Règles pour un objet (article)
 
 
 
+
 	
 
 	#divdroite {
 		width: 100%;
+		padding-top: 0px;
 	}
 
 	#contenuOrderBy{
