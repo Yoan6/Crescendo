@@ -88,10 +88,10 @@ main {
 }
 
 /*****************************
-Règles pour éléments du form
+Règles pour éléments du #principale form
 *****************************/
 
-form {
+#principale form {
 	min-width: 250px;
 	width: 20%;
 	background-color: #272727;
@@ -104,7 +104,7 @@ form {
 
 }
 
-form button {
+#principale form button {
 	border-radius: 15px;
 	border: none;
 	display: flex;
@@ -113,7 +113,7 @@ form button {
 	justify-content: space-around;
 }
 
-form svg {
+#principale form svg {
 	height: 35%;
 }
 
@@ -128,12 +128,12 @@ form svg {
 	opacity: 0;
 }
 
-form>div {
+#principale form>div {
 	width: 80%;
 
 }
 
-form>div{
+#principale form>div{
 	display: flex;
 	gap: 15px;
 	min-width: 150px;
@@ -144,44 +144,44 @@ form>div{
 
 }
 
-form div div {
+#principale form div div {
 
 	height: fit-content;
 
 }
 
-form>div:last-child {
+#principale form>div:last-child {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 
 }
 
-form>div:last-child>button {
+#principale form>div:last-child>button {
 	padding: 20px;
 	width: 100%;
 	font-size: larger;
 
 }
-form #validerOuEffacer {
+#principale form #validerOuEffacer {
     flex-direction: column;
     gap: 15px;
 }
 
 
-form #validerOuEffacer button:first-child {
+#principale form #validerOuEffacer button:first-child {
 	background-color: var(--bleu);
 	color: black;
 }
 
 
-form #validerOuEffacer button:last-child {
+#principale form #validerOuEffacer button:last-child {
 	border: solid 1px white;
 	background-color: transparent;
 	color: white;
 }
 
-form .buttonDropFilter {
+#principale form .buttonDropFilter {
 
 	transition: border-radius 0.1s linear 0s;
 	border-radius: 15px;
@@ -198,12 +198,12 @@ form .buttonDropFilter {
 
 
 
-form .buttonDropFilter h3 {
+#principale form .buttonDropFilter h3 {
 	width: 20%;
 	min-width: 140px;
 }
 
-form .filterdown {
+#principale form .filterdown {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -221,13 +221,13 @@ form .filterdown {
 	background-color: var(--main-font-color);
 }
 
-form .filterdown.open {
+#principale form .filterdown.open {
 	max-height: 1000px; /* ou toute autre valeur appropriée */
 
 	padding-bottom: 20px;
 }
 
-form .filterdown>div {
+#principale form .filterdown>div {
 	display: flex;
 	flex-direction: row;
 	gap: 30px;
@@ -235,12 +235,12 @@ form .filterdown>div {
 
 }
 
-form .filterdown>div>label {
+#principale form .filterdown>div>label {
 	font-size: larger;
 	color: black;
 }
 
-form .filterdown>div>input[type="checkbox"] {
+#principale form .filterdown>div>input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	margin: 0px;
@@ -310,13 +310,13 @@ Règles pour un objet (article)
 
 	}
 
-	form {
+	#principale form {
 		width: 100%;
 
 	background-color: var(--main-content-font-color);
 	}
 
-	form>div {
+	#principale form>div {
 		width: 90%;
 		max-width: 700px;
 	}
