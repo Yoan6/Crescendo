@@ -1,20 +1,18 @@
 <header>
     <div id="firstStage"> 
-        <a class="logo" href="accueil.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
-        <form action="recherche.ctrl.php" method="GET" class="conteneur">
+        <a class="logo" href="../controller/accueil.ctrl.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
+        <form action="../controller/recherche.ctrl.php" method="GET" class="conteneur">
             <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
             <datalist id="searchList">
-                    <option value="concert"></option>
-                    <option value="Elvis Presley"></option>
                     <option value="The quick brown fox jumps over a lazy dog."></option>
             </datalist>
-            <input value="" type="submit" id="loupe" href="recherche.ctrl.php"><img src="../design/image/search.svg" alt="loupe">
+            <input value="" type="submit" id="loupe"><img src="../design/image/search.svg" alt="loupe">
         </form>
                     
   <?php if(isset($_SESSION['num_utilisateur']) ) : ?>
-    <a id="creationArticle" href="../controler/creerEnchere.ctrl.php">Vends tes articles</a>
+    <a id="creationArticle" href="../controller/creerEnchere.ctrl.php">Vends tes articles</a>
   <?php else : ?>
-    <a id="creationArticle" disable href="../controler/login.ctrl.php">Vends avec crescendo</a>
+    <a id="creationArticle" href="../controller/login.ctrl.php">Vends avec crescendo</a>
   <?php endif; ?>
     
         
@@ -26,59 +24,16 @@
         </button>
 
         <div class="dropdown" id="dropdown">
-          <?php
-          if(isset($_SESSION['num_utilisateur'])) { ?>
-            <a href="../view/parametres.php"> 
-            <?php
-          }
-          else { ?>
-            <a href="../view/accueil.php"> 
-            <?php
-          }
-          ?>
-          
-            Modifier profil
-            <i><img src="../design/image/settings.svg" alt="settings"></i>
-
-          </a>
-          <a href="#draft">
-            Favoris
-            <i><img src="../design/image/heart.svg" alt=""></i>
-
-          </a>
-          <a href="#move">
-            Enchères remportées
-            <i><img src="" alt=""></i>
-
-          </a>
-          <?php
-          if(isset($_SESSION['num_utilisateur'])) { ?>
-            <a href="../view/monEspaceVendeur.php"> 
-            <?php
-          }
-          else { ?>
-            <a href="../view/accueil.php"> 
-            <?php
-          }
-          ?>
-            Mon espace vente
-          </a>
-          <a href="#notification">
-            Notifications
-          </a>
-          <?php
-          if(isset($_SESSION['num_utilisateur'])) { ?>
-            <a href="../view/logout.php"> 
-              Se déconnecter
-            <?php
-          }
-          else { ?>
-            <a href="../view/login.php"> 
-            Se connecter
-            <?php
-          }
-          ?>
-          </a>
+        <?php if(isset($_SESSION['num_utilisateur']) ) : ?>
+          <a href="../view/parametres.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>  </a>
+          <a href="#draft">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
+          <a href="#move">Enchères remportées<i><img src="" alt=""></i></a>
+          <a href="../view/monEspaceVendeur.php">Mon espace vendeur</a>
+          <a href="#notification">Notifications</a>
+          <a href="../controller/logout.ctrl.php">Se déconnecter</a>
+        <?php else : ?>
+          <a href="../controller/login.ctrl.php">Se connecter</a>
+        <?php endif; ?>
           <div class="divToggleDarkMode">
             <p>Dark Mode</p>
           <label class="switch">
@@ -92,12 +47,13 @@
       </div>
         
     </div>
-    <form action="../controler/categorie.ctrl.php" method="GET">
+    <form action="../controller/rechercheChoix.ctrl.php" method="POST">
         <ul class="conteneur"> 
-            <li><button name="categorie" value="AlaUne">A la une</button></li>
-            <li><button name="categorie" value="vetements">Vêtements</button></li>
-            <li><button name="categorie" value="instruments">Instruments</button></li>
-            <li><button name="categorie" value="accessoires">Accessoires</button></li>
+            <li><button name="valeurChoix" value="AlaUne">A la une</button></li>
+            <li><button name="valeurChoix" value="vetements">Vêtements</button></li>
+            <li><button name="valeurChoix" value="instruments">Instruments</button></li>
+            <li><button name="valeurChoix" value="accessoires">Accessoires</button></li>
+            <input type="hidden" name="choix" value="categorie">
         </ul>
     </form>
 </header>

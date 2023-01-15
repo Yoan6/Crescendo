@@ -269,7 +269,11 @@ Les messages
 
 
 
-
+#navPages {
+	display:flex;
+	flex-flow:row;
+	gap:5px;
+}
 
 
 

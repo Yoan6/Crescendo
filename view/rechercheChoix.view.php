@@ -16,7 +16,7 @@
 
     <main>
         <div>
-            <h1 id="titre"><?php $categorie ?></h1>
+            <h1 id="titre"><?=$valeurChoix?></h1>
 
         </div>
         <div id="principale">
@@ -122,7 +122,7 @@
                         <div id="contenuOrderBy">
 
                             <select name="orderBy" id="orderBy">
-                                <option value="0">Trier par</option>
+                                <option value="">Trier par</option>
                                 <option value="1">Plus aimés</option>
                                 <option value="2">Moins aimés</option>
                             </select>
@@ -132,6 +132,7 @@
 
                     
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
+                    <?php include(__DIR__ . '/article/pages.view.php'); ?>
 
 
                     <form id="pagination">
