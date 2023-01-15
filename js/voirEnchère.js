@@ -8,9 +8,6 @@ prix.addEventListener("onkeypress", (event) => {
   }, false);
 
   
-//on compte le nombre d'image dans le carousel
- 
-
   var carouselImg = document.getElementsByClassName("carouselImg");
   var currentImage = document.getElementById("premiereImage");
   var currentImageIndex = 0;
@@ -37,4 +34,7 @@ prix.addEventListener("onkeypress", (event) => {
     currentImage.src = carouselImg[currentImageIndex].src;
   }
 
-} 
+} else {
+  prevBtn.style.display = "none";
+  nextBtn.style.display = "none";
+}

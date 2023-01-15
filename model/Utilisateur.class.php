@@ -311,11 +311,9 @@ class Utilisateur
     }
 
     function egalUtilisateur(Utilisateur $autreUtilisateur) : bool
-    
     {
         return $this->getEmail() == $autreUtilisateur->getEmail() && $this->getMotDePasse() == $autreUtilisateur->getMotDePasse() && $this->getPseudo() == $autreUtilisateur->getPseudo();
     }
-
 
     /******************** 
      * Autres méthodes
