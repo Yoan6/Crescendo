@@ -87,11 +87,13 @@ main form #topForm > #divTopLeft {
 #carousel > #buttonPrev {
     left: 0;
     rotate: -90deg;
+    cursor: pointer;
 }
 
 #carousel > #buttonNext {
     right: 0;
     rotate: 90deg;
+    cursor: pointer;
 }
 
 main form #topForm > #divTopLeft > input {
