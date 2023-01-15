@@ -8,6 +8,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+ 
 }
 
 header img {
@@ -31,18 +32,25 @@ header img {
 }
 
 #loupe {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 60px;
   background-color: var(--bleu);
   border-radius: 0px 50px 50px 0px;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 #loupe img {
   height: 25px;
   width: 25px;
+  position: absolute;
 }
+
+
+
 
 #burgerButton {
   display: none;
@@ -554,16 +562,20 @@ input:checked+.slider:before {
 
 
   header #firstStage #formRecherche #loupe {
-    pointer-events: none;
     height: 100%;
     border-radius: 10px;
     transition: all 0.2s ease-in-out;
+    pointer-events: none;
+
   }
 
   header #firstStage #formRecherche #loupe.possible {
-    pointer-events: all;
     border-radius: 0px 10px 10px 0px;
+    pointer-events: all;
+
   }
+
+
   
 
 
