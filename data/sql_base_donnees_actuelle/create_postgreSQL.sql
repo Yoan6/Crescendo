@@ -144,6 +144,12 @@ WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN N
 
 create VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
 
+CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select *, max(prix_offre) as prix_max
+                                    FROM encherit
+                                    group by num_enchere;
+
+create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
+    WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
 /*======================================================
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
