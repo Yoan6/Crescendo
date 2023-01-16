@@ -148,6 +148,11 @@ SELECT *, max(prix_offre) as prix_max
 FROM encherit
 GROUP BY num_enchere, num_utilisateur;
 
+CREATE OR REPLACE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
+SELECT *
+FROM ENCHERE_TOUT_VIEW
+WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
+
 CREATE OR REPLACE VIEW ENCHERE_TOUT_VIEW AS
 SELECT *, max(prix_offre, prix_min) as prix_actuel
 FROM ARTICLE
@@ -156,10 +161,6 @@ JOIN ENCHERE ON CONCERNE.num_enchere = ENCHERE.num_enchere
 LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VIEW.num_enchere
 GROUP BY num_enchere;
 
-CREATE OR REPLACE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
-SELECT *
-FROM ENCHERE_TOUT_VIEW
-WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 
 /*======================================================
