@@ -59,7 +59,7 @@
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="2023-05-01"
+                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="<?=date('y-m-d')?>"
                                 required>
                         </article>
 
