@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../design/parametres.css">
 </head>
 
+<?php if(!isset($_SESSION)) { session_start(); } ?>
+
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
@@ -24,10 +26,11 @@
                 </div>
 
                 <form action="../controler/parametre.ctrl.php" method="POST">
-                    <button id="modifImageProfil">
+                    <button type="button" id="modifImageProfil">
                         Modifier l'image de profil
                     </button>
-                    <button id="effacerImageProfil">
+
+                    <button type="button" id="effacerImageProfil">
                         Effacer l'image
                     </button>
                 </form>
@@ -38,7 +41,9 @@
                     Pseudo
                 </h2>
                 <div class="afficherAttribut">
-                    <p><?=$_SESSION['pseudo']?></p>
+                    <p>
+                        <?= $_SESSION['pseudo'] ?>
+                    </p>
                     <button id="modifPseudo">
                         Modifier le pseudo
                     </button>
@@ -60,16 +65,18 @@
             </div>
 
             <div>
-                <?php 
+                <?php
 
                 if (isset($error) && count($error) != 0) {
-                    foreach($error as $e) { ?>
-                        <p class="error"><?php echo($e);?></p>
+                    foreach ($error as $e) { ?>
+                        <p class="error">
+                            <?php echo ($e); ?>
+                        </p>
                         <?php
                     }
-                } 
+                }
                 ?>
-    
+
             </div>
 
             <div class="modif">
@@ -77,7 +84,9 @@
                     Addresse email
                 </h2>
                 <div class="afficherAttribut">
-                    <p><?=$_SESSION['mail']?></p>
+                    <p>
+                        <?= $_SESSION['mail'] ?>
+                    </p>
                     <button id="modifMail">
                         Modifier l'adresse mail
                     </button>
@@ -106,7 +115,10 @@
                     Adresse de livraison
                 </h2>
                 <div class="afficherAttribut">
-                    <p><?=$_SESSION['adresse']?>, <?=$_SESSION['postal']?> <?=$_SESSION['ville']?></p>
+                    <p>
+                        <?= $_SESSION['adresse'] ?>, <?= $_SESSION['postal'] ?>
+                        <?= $_SESSION['ville'] ?>
+                    </p>
                     <button id="modifAdresse">
                         Modifier l'adresse de livraison
                 </div>
@@ -143,7 +155,9 @@
                 </h2>
 
                 <div class="afficherAttribut">
-                    <p><?=$_SESSION['nouveauPassword']?></p>
+                    <p>
+                        <?= $_SESSION['nouveauPassword'] ?>
+                    </p>
                     <button id="modifMdp">
                         Modifier le mot de passe
                     </button>
@@ -152,7 +166,8 @@
                     <div class="champsAremplir">
                         <input placeholder="Ancien mot de passe" type="text" name="ancienPassword" value="">
                         <input placeholder="Nouveau mot de passe" type="text" name="nouveauPassword" value="">
-                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="checkPassword" value="">
+                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="checkPassword"
+                            value="">
 
                     </div>
 
@@ -181,8 +196,8 @@
 
 
         <form class="divPopUp" method="POST" action="../controler/parametre.ctrl.php">
-
-            <div id="popUpSupprimerCompte">
+            <input type="hidden" name="supprimerCompte" value="idDuCompte">
+            <div class="popUp">
                 <section>
                     <p>
                         Supprimer définitivement votre compte ?
@@ -192,7 +207,7 @@
                     <p>
                         Cette action est irréversible, toutes les données relatives à votre profil seront effacées
                     </p>
-                    <div>
+                    <div class="conteneurBouton">
                         <button id="annulerSupprimer" type="button">
                             Annuler
                         </button>
@@ -208,6 +223,81 @@
         </form>
 
 
+        <form class="divPopUp" method="post" enctype="multipart/form-data" action="../controler/parametre.ctrl.php">
+
+            <div class="popUp">
+                <section>
+                    <p>
+                        Changement de photo de profil
+                    </p>
+                </section>
+                <div id="conteneurLabelInputImage">
+                    <input type="file" name="changementImage" value="true" id="nouvelImage" required=""
+                        accept="image/png, image/jpeg, image/jpg">
+                    <label id="labelNouvelImage">
+                        <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+                            enable-background="new 0 0 512 512" xml:space="preserve">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g>
+                                    <polygon
+                                        points="272,128 240,128 240,240 128,240 128,272 240,272 240,384 272,384 272,272 384,272 384,240 272,240 ">
+                                    </polygon>
+                                    <path
+                                        d="M256,0C114.609,0,0,114.609,0,256s114.609,256,256,256s256-114.609,256-256S397.391,0,256,0z M256,472 c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                        <span>Ajouter une image</span>
+                    </label>
+                    <div id="carousel">
+                        <img id="previsualisationImage" src="" alt="">
+                    </div>
+
+                </div>
+
+                <div>
+                    <div class="conteneurBouton">
+                        <button id="annulerChangerImage" type="button">
+                            Annuler
+                        </button>
+                        <button id="confirmerChangerImage" type="submit">
+                            Valider
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <form class="divPopUp" method="POST" action="../controler/parametre.ctrl.php">
+            <input type="hidden" name="supprimerPhotoProfil" value="idDuCompte">
+            <div class="popUp">
+                <section>
+                    <p>
+                        Supprimer votre photo de profil ?
+                    </p>
+                </section>
+                <div>
+                    <div class="conteneurBoutonEffacerPhotoProfil">
+                        <button id="annulerSupprimerPhoto" type="button">
+                            Annuler
+                        </button>
+                        <button id="confirmerSupprimerPhoto" type="submit">
+                            Supprimer
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
 
 
     </main>

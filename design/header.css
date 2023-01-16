@@ -8,7 +8,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
- 
+
 }
 
 header img {
@@ -25,10 +25,9 @@ header img {
 #firstStage>form {
   margin-right: auto;
   margin-left: auto;
-  border-radius: 50px;
-  background-color: white;
+  border-radius: 10px;
   height: 42px;
-
+  width: 63%;
 }
 
 #loupe {
@@ -38,7 +37,7 @@ header img {
   justify-content: center;
   width: 60px;
   background-color: var(--bleu);
-  border-radius: 0px 50px 50px 0px;
+  border-radius: 0px 10px 10px 0px;
   overflow: hidden;
   cursor: pointer;
 }
@@ -71,7 +70,7 @@ header img {
 
 
 header .searchBar {
-  border-radius: 50px 0px 0px 50px;
+  border-radius: 10px 0px 0px 10px;
   padding-left: 20px;
   height: 100%;
   border: none;
@@ -119,7 +118,7 @@ header li {
 }
 
 header li button {
-  background-color: black;
+  background-color: var(--navBar-background-color);
   display: block;
   padding: 16px 25px 16px 25px;
   text-align: center;
@@ -428,7 +427,7 @@ input:checked+.slider:before {
     background-color: var(--header-background-color);
   }
 
-  header #lesCategories>ul >li {
+  header #lesCategories>ul>li {
     flex-grow: 0;
     gap: 20%;
     width: 100%;
@@ -452,8 +451,8 @@ input:checked+.slider:before {
     padding: 0px;
     text-align: center;
     border: 0px;
-    border-top:  1px solid white;
-    border-bottom:  1px solid white;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     color: white;
     font-size: 2em;
     width: 100%;
@@ -532,12 +531,12 @@ input:checked+.slider:before {
 
   header #firstStage #formRecherche.active {
     right: 15vw;
-    
+
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
-    
+
   }
 
 
@@ -552,7 +551,7 @@ input:checked+.slider:before {
   header #firstStage #formRecherche .searchBar.active {
 
     min-width: 50vw;
-    padding-left : 20px;
+    padding-left: 20px;
     background-color: white;
 
 
@@ -576,7 +575,7 @@ input:checked+.slider:before {
   }
 
 
-  
+
 
 
 

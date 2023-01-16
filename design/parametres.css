@@ -186,45 +186,36 @@ form>.champsAremplir #postalEtVille>input {
 
 
 form>.annulerOuValider {
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     gap: 10px;
-
-
 }
 
 form>.annulerOuValider>button {
-
     height: 40px;
     max-width: 400px;
     width: 100%;
     font-weight: 700;
     text-align: center;
     border-radius: 10px;
-
 }
 
 form>.annulerOuValider>.annuler {
-
     background-color: white;
     color: black;
     border: none;
-
 }
 
 form>.annulerOuValider>.valider {
     background-color: var(--bleu);
     color: black;
     border: none;
-
 }
 
 .modif>div {
-
     height: auto;
     width: 60%;
     display: flex;
@@ -248,7 +239,6 @@ form>.annulerOuValider>.valider {
 
 
 .modif>div>button {
-
     height: 40px;
     width: 90%;
     display: flex;
@@ -261,7 +251,6 @@ form>.annulerOuValider>.valider {
     border-radius: 10px;
     font-weight: 700;
     font-size: 15px;
-
 }
 
 #divSupprimerCompte {
@@ -273,7 +262,6 @@ form>.annulerOuValider>.valider {
 }
 
 #btnSupprimerCompte {
-
     background-color: var(--rouge);
     color: var(--main-font-color);
     border: 2px solid black;
@@ -287,7 +275,6 @@ form>.annulerOuValider>.valider {
 
 
 .divPopUp {
-
     position: fixed;
     /* Stay in place */
     z-index: 1;
@@ -304,13 +291,10 @@ form>.annulerOuValider>.valider {
     display: none;
     justify-content: center;
     align-items: center;
-
-
 }
 
-.divPopUp>#popUpSupprimerCompte {
-
-    height: 250px;
+.divPopUp>.popUp {
+    height: fit-content;
     background-color: var(--main-background-color);
     border-radius: 15px;
     display: flex;
@@ -321,8 +305,8 @@ form>.annulerOuValider>.valider {
 }
 
 
-.divPopUp>#popUpSupprimerCompte>section {
-    height: 25%;
+.divPopUp>.popUp>section {
+    height: 75px;
     width: 100%;
     background-color: white;
     border-radius: 15px 15px 0px 0px;
@@ -334,37 +318,105 @@ form>.annulerOuValider>.valider {
     font-weight: bold;
 }
 
-.divPopUp>#popUpSupprimerCompte>div {
-
-    height: 75%;
+.divPopUp>.popUp>div {
+    height: fit-content;
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     gap: 10px;
-
-
 }
 
-.divPopUp>#popUpSupprimerCompte>div>p {
-
+.divPopUp>.popUp>div>p {
+    height: 100px;
     width: 100%;
     text-align: center;
-
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.divPopUp>#popUpSupprimerCompte>div>div {
+.divPopUp>.popUp #conteneurLabelInputImage{
+    margin-top: 20px;
+    margin-bottom: 23px;
+    height: 215px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.divPopUp>.popUp label {
+    height: 100%;
+    width: 215px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bleu);
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.divPopUp>.popUp label:hover {
+    transform: scale(1.01);
+}
+
+.divPopUp>.popUp #carousel {
+    height: 100%;
+    width: 215px;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.divPopUp>.popUp #carousel>img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.divPopUp>.popUp #nouvelImage{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.divPopUp>.popUp label>svg {
+    height: 20%;
+    width: 20%;
+}
+
+.divPopUp>.popUp .conteneurBouton {
     width: 100%;
     display: flex;
     flex-direction: row;
     gap: 15px;
+    margin-bottom: 20px;
+}
+
+.divPopUp>.popUp .conteneurBoutonEffacerPhotoProfil {
+width: 100%;
+display: flex;
+flex-direction: row;
+gap: 15px;
+margin-bottom: 40px;
+margin-top: 40px;
 
 }
 
-.divPopUp>#popUpSupprimerCompte>div>div>button {
-
+.divPopUp button {
     height: 50px;
     width: 100%;
     border-radius: 15px;
@@ -373,19 +425,23 @@ form>.annulerOuValider>.valider {
     border: none;
 }
 
-
-#popUpSupprimerCompte>div>div>#annulerSupprimer {
-
+.popUp>div>div>#annulerSupprimer {
     background-color: var(--bleu);
     color: black;
-
 }
 
-#popUpSupprimerCompte>div>div>#confirmerSupprimer {
-
+.popUp>div>div>#confirmerSupprimer {
     background-color: var(--rouge);
     color: white;
+}
 
+.popUp #annulerChangerImage {
+    background-color: var(--rouge);
+    color: white;
+}
 
+.popUp #confirmerChangerImage {
+    background-color: var(--bleu);
+    color: black;
 }
 
