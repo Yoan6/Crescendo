@@ -391,7 +391,7 @@ class Article
             "pageSize" => $pageSize,
         ];
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        //var_dump($data, $query);
+        var_dump($data, $query);
         /********************* La requête préparée *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
@@ -482,7 +482,7 @@ class Article
         $data = array();
         Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
         
-        //var_dump($data, $query);
+        var_dump($data, $query);
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, $data);
         return $tableContenantLeNombre[0][0];
