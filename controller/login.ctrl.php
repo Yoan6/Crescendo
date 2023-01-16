@@ -15,8 +15,6 @@ if (isset($_SESSION['num_utilisateur'])) {
     $view->display("accueil.view.php");
 }
 
-
-else {
     ///////////////////////////////////////////////////////////////////////////////
     // Partie récupération des données
     ///////////////////////////////////////////////////////////////////////////////
@@ -58,14 +56,12 @@ else {
     } else {
         array_push($errors, "Vous n'avez pas rentré de login ou mot de passe");
     }
-    
 
     $view = new View();
+    $view->assign('login',$login);
     $view->assign('errors',$errors);
         
     // Charge la vue
     $view->display("login.php");
 
-    var_dump(($errors));
-}
 ?>
