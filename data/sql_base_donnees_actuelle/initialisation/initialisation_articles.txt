@@ -1,0 +1,19 @@
+1|1|Cache-oeil de Madonna|1500|Cache-oeil porté par Madonna à loccasion dun énorme concert à Los Angeles|Madonna|Très bon|Accessoire|Unique|2019-07-12|Los Angeles|Pop
+2|1|Lunettes de Damso|350|Lunette noir portée par Damso à lAccor Arena|Damso|Très bon|Accessoire|Unique|2018-06-29|Bercy|Rap
+3|1|Arme gonflable d'Angele|130|Arme gonflable utilisée par Angele lors de sa tournée "Brol Tour"|Angele|Bon|Accessoire|Unique|2022-02-12|Paris|Pop
+4|2|Moto de Johnny Hallyday|50000|Moto utilisée par Johnny Hallyday lors de ses tournées|Johnny Hallyday|Très bon|Accessoire|Unique|2000-05-02|France|Rock
+5|2|Berret d'AC/DC|125|Berret porté par le groupe AC/DC lors de leur tournée "Rock or Bust"|AC/DC|Bon|Accessoire|Unique|2015-11-29|Londres|Rock
+6|2|Guitare de Bob Marley|10000|Guitare utilisée par Bob Marley lors de ses concerts|Bob Marley|Très bon|Instrument|Unique|1978-07-07|Kingston|Reggae
+7|2|Chaussures de Goldman|500|Chaussures portées par Goldman lors de sa tournée "En Passant"|Goldman|Bon|Vêtement|43|2017-11-24|Paris|Chanson française
+8|3|Casquette de Diams|200|Casquette portée par Diams lors de sa tournée "Intime"|Diams|Bon|Accessoire|Unique|2008-06-12|Lyon|Rap
+9|3|Collier de Nicky Minaj|1000|Collier porté par Nicky Minaj lors de son concert aux MTV Video Music Awards|Nicky Minaj|Très bon|Accessoire|Unique|2011-08-28|Los Angeles|Rap
+10|3|Combinaison de Michael Jackson|5000|Combinaison portée par Michael Jackson lors de sa tournée "Bad Tour"|Michael Jackson|Très bon|Vêtement|M|1987-09-12|Tokyo|Pop
+11|3|Combinaison d'Orelsan|150|Combinaison portée par Orelsan lors de la tournée "La fête est finie"|Orelsan|Bon|Vêtement|S|2017-12-31|Paris|Rap
+12|3|Piano de Ramin Djawadi|20000|Piano utilisé par Ramin Djawadi à loccasion de la fête de la musique|Ramin Djawadi|Très bon|Instrument|Unique|2011-04-17|Los Angeles|Musique de film
+13|4|Perruque rose de Elton John|1000|Perruque portée par Elton John lors de sa tournée "Farewell Yellow Brick Road"|Elton John|Très bon|Accessoire|Unique|2018-09-08|New York|Pop
+14|4|Guitare d'Hans Zimmer|15000|Guitare utilisée par Hans Zimmer à loccasion dun concert symphonique célébrant ses musiques de films|Hans Zimmer|Très bon|Instrument|Unique|2010-07-16|Los Angeles|Musique de film
+15|4|Jupe d'Ariana Grande|500|Jupe portée par Ariana Grande lors de la tournée "Sweetener"|Ariana Grande|Bon|Accessoire|XS|2019-03-18|Paris|Pop
+16|1|Saxophone de Danakil|2000|Saxophone utilisé par Danakil lors de ses concerts|Danakil|Très bon|Instrument|Unique|2013-06-29|Marseille|Reggae
+17|4|Veste rose à plume de Polnareff|1000|Veste portée par Polnareff lors de sa tournée "Faut pas rêver"|Polnareff|Très bon|Vêtement|M|1978-03-03|Paris|Chanson française
+18|1|Haut de Mina du groupe Twice|150|Haut porté par Mina lors de la tournée "Fancy You"|Twice|Bon|Vêtement|XS|2019-04-22|Séoul|K-pop
+19|3|Bas de Mina du groupe Twice|150|Bas porté par Mina lors de la tournée "Fancy You"|Twice|Bon|Vêtement|XS|2019-04-22|Séoul|K-pop

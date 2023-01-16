@@ -1,6 +1,0 @@
-1|1|Chaussures Goldman|257|Chaussures portées|Jean Jack Goldman|Bon|Vêtement|M|2003-05-15|Paris|Chanson Francaise
-2|2|Jupe ariana grande Avec Goldman|965|Chaussures d''ariana grande bercy|Ariana Grande|Très Bon|Vêtement|XS|2019-12-12|Etats unis|Pop
-3|3|Kalash gonflable de Angele|341|trouée donc on peut plus la gonfler|Angele|Très mauvais|Accessoire||2021-05-02|Lyon|Pop
-4|5|lunette de damso|3500000|lunette bresom de damso, un peu rayées|damso|Moyen|Accessoire||2018-07-03|saint quentin sur isere|Rap
-5|5|guitare hans zimmer|25336|guitare de sa tournée 2017|hans zimmer|Mauvais|Instrument||2006-01-03|allemand|Musique de Film
-6|5|saxo de danakil|32750|saxophone comme neuf|danakil|Très Bon|Instrument||2004-12-06|paris|Reggae
