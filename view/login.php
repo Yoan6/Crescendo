@@ -13,7 +13,8 @@
   <link rel="stylesheet" type="text/css" href="../design/connexion.css">
   <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
 </head>
-
+<?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
+<?php if(isset($messages) && count($messages) > 0) include(__DIR__ . '/popup/message.view.php'); ?>
 <body class="dark-mode">
 
 
