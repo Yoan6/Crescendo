@@ -13,7 +13,7 @@ function getPrixActuel(numEnchere) {
     }
 
     // Demander le fichier avec la fonction à exécuter
-    xmlhttp.open("GET","/crescendo/ajax/getPrixActuel.php?numEnchere=" + numEnchere);
+    xmlhttp.open("GET","../ajax/getPrixActuel.php?numEnchere=" + numEnchere);
     xmlhttp.send();
 }
    

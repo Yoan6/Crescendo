@@ -391,7 +391,7 @@ class Article
             "pageSize" => $pageSize,
         ];
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        //var_dump($data, $query);
+        var_dump($data, $query);
         /********************* La requête préparée *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
@@ -436,7 +436,7 @@ class Article
      * @param array $choixEtvaleurs
      * @return void
      */
-    private static function generationDynamiqueData(array & $data, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) {
+    private static function generationDynamiqueData(array &$data, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) {
         $liste = [0 => [0 => $choixEtvaleurs], 1 => [ 0 => $choixObligatoiresEtvaleurs]];
         $i = 0; // L'index de valeurChoix
         for ($j = 0; $j < 2; $j++) {

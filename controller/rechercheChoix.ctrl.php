@@ -27,19 +27,19 @@ $controllerName = basename(__FILE__);
 // Initialisation en cas d'erreur
 $encheres = array(); 
 $errors = array();
-$pageMax = 0;
+$pageMax = 1;
 
 // Gérer les pages
 $page = $_GET['page'] ?? 1;
 $pageSize = 5; //Nombre d'article
 $nbBoutonPage = 5;
-$pagePrec = ($page == 1 ? 1 : $page - 1); 
-$pageSuiv = ($page == $pageMax ? $pageMax : $page + 1);
+$pagePrec = ($page <= 1 ? 1 : $page - 1); 
+$pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs);
-    $pageMax = article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize;  // Une erreur est générée si aucun article n'est trouvé
+    $pageMax =  ((int) article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
     var_dump($errors);

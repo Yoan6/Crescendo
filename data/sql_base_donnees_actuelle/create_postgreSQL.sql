@@ -175,6 +175,7 @@ LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VI
 \copy ENCHERE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
 \copy CONCERNE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/concerne.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
 \copy image_article from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/image_article.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ENCHERIT from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
 
 SELECT setval('utilisateur_num_utilisateur_seq',101,true);
 SELECT setval('article_num_article_seq',101,true);
