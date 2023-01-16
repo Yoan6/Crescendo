@@ -50,16 +50,16 @@
             <div>
 
                 <h3 id="dateFinEnchère">
-                    L'enchère se termine le 5 janvier à 17h43
+                    L'enchère se termine le <?=$dateFin?>
                 </h3>
 
 
                 <div id="topForm">
                     <div id="divTopLeft">
                         <div id="carousel">
-                            <img class="carouselImg" id="premierImage">
-                            <img class="carouselImg" id="deuxiemeImage">
-                            <img class="carouselImg" id="troisiemeImage">
+                            <img src=" <?=$imgUrl?> " class="carouselImg" id="premierImage">
+                            <img src=" <?=$imgUrl?> " class="carouselImg" id="deuxiemeImage">
+                            <img src=" <?=$imgUrl?> " class="carouselImg" id="troisiemeImage">
                             <svg id="buttonPrev" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
                                 fill="#ffffff">
@@ -102,11 +102,12 @@
 
                     <div id="divTopRight">
                         <h4>
-                            Nom de l'enchère
+                            <?=$titre ?>
                         </h4>
-                        <div id="divPrixActuel">
+                        <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
                             <h3>Prix actuel</h3>
-                            <h4>20 000$</h4>
+                            
+                            <h4><?=$prixActuel ?></h4>
 
                         </div>
 
@@ -201,7 +202,7 @@
                         <div>
                             <img src="../design/image/accueil/coeur_concert.jpeg" alt="user">
                         </div>
-                        <p>NomDuVendeur</p>
+                        <p><?=$pseudo ?></p>
                     </a>
                 </div>
 
@@ -211,14 +212,14 @@
                         Description
                     </h3>
 
-                    <p>La description</p>
+                    <p><?=$description ?></p>
                 </div>
 
                 <div id="bottomForm">
 
                     <div id="divBottomLeft">
                         <h4>
-                            Information sur l'événement
+                            Informations sur l'événement
                         </h4>
                         <div>
 
@@ -227,22 +228,23 @@
                                     Artiste:
                                 </h4>
                                 <p>
-                                    Nom de l'artiste
+                                    <?=$artiste ?>
                                 </p>
                             </section>
                             <section>
                                 <h4>
                                     Date du concert:
                                 </h4>
-
-                                <input type="date" disabled>
+                                <p>
+                                    <?=$dateEvenement ?>
+                                </p>
                             </section>
                             <section>
                                 <h4>
                                     Lieu:
                                 </h4>
                                 <p>
-                                    le lieu
+                                    <?=$lieu ?>
                                 </p>
                             </section>
                             <section>
@@ -251,7 +253,7 @@
 
                                 </h4>
                                 <p>
-                                    le style
+                                    <?=$style ?>
                                 </p>
                             </section>
 
@@ -272,7 +274,7 @@
 
                                 </h4>
                                 <p>
-                                    la taille
+                                    <?=$taille ?>
                                 </p>
 
                             </section>
@@ -282,7 +284,7 @@
 
                                 </h4>
                                 <p>
-                                    l'état de l'objet
+                                <?=$etat ?>
                                 </p>
 
                             </section>
@@ -292,7 +294,7 @@
 
                                 </h4>
                                 <p>
-                                    la Catégorie
+                                    <?=$categorie ?>
                                 </p>
 
                             </section>
@@ -323,5 +325,6 @@
 <script src="../js/crescendo.js"></script>
 <script src="../js/header.js"></script>
 <script src="../js/voirEnchère.js"></script>
+<script src="../ajax/getPrixActuel.js" defer></script>
 
 </html>

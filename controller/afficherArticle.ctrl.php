@@ -58,6 +58,7 @@
     // données de l'article
     $view->assign('imgUrl', $imgUrl);
     $view->assign('nomEnchere', $nomEnchere);
+    $view->assign('numEnchere', $num_enchere);
     $view->assign('pseudo', $pseudo);
     $view->assign('description', $description);
 
@@ -75,7 +76,7 @@
     $view->assign('style', $style);
     $view->assign('vendeur', $vendeur);
 
-$view->display("z.test.afficherArticler.view.php");
+$view->display("voirEnchère.php");
 
     /***************************************************************************
     **                         Gestion des erreurs
