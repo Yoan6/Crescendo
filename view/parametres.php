@@ -127,11 +127,11 @@
 
                     <div class="champsAremplir">
                         <div id="postalEtVille">
-                            <input placeholder="Code postal" type="text" name="postal" value="">
-                            <input placeholder="Ville" type="text" name="ville" value="">
+                            <input placeholder="Code postal" type="text" name="postal" value="" required>
+                            <input placeholder="Ville" type="text" name="ville" value="" required>
                         </div>
 
-                        <input placeholder="Adresse" type="text" name="adresse" value="">
+                        <input placeholder="Adresse" type="text" name="adresse" value="" required>
                     </div>
 
 
@@ -209,7 +209,7 @@
                         <button id="annulerSupprimer" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimer" type="submit">
+                        <button id="confirmerSupprimer" type="submit" name="effacer" value="effacer">
                             Supprimer
                         </button>
                     </div>

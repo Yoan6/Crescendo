@@ -292,8 +292,8 @@ class Utilisateur
     public function update()
     {
         $query = "UPDATE Utilisateur
-            set (email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil, date_creation) 
-                = (:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil, :date_creation)
+            set (email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil) 
+                = (:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)
             WHERE email = :email";
 
         $dao = DAO::get();
