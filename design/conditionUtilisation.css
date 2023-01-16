@@ -1,0 +1,21 @@
+#conditionUtilisation {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#conditionUtilisation h1, h2 {
+    font-weight: bold;
+}
+
+#conditionUtilisation p {
+    margin-bottom: 15px;
+}
+
+#conditionUtilisation div {
+    margin-top: 80px;
+}
+
+#conditionUtilisation ul li {
+    margin-top: 15px;
+}

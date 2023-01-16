@@ -30,15 +30,6 @@
         if(!isset($_SESSION)) { 
             session_start(); 
         } 
-
-        // Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
-        if(isset($_SESSION['num_utilisateur'])) {
-            $view = new View();
-
-            // Charge la vue
-            $view->display("../view/accueil.php");
-            echo ("Vous êtes déja connecté !");
-        } 
         ?>
 
             <div>
@@ -68,7 +59,7 @@
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="2023-05-01"
+                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="<?=date('y-m-d')?>"
                                 required>
                         </article>
 
@@ -116,7 +107,7 @@
                         <article class="article-condition-generale">
                             <input id="checkConditionGenerale" type="checkbox" name="conditions" required>
                             <p class="condition-generale"> En cochant la case, vous acceptez les <a class="condition"
-                                    href="conditionGenerale.php">CONDITIONS
+                                    href="conditionsUtilisation.view.php" target="_blank">CONDITIONS
                                     GÉNÉRALES D'UTILISATION</a> et la <a class="condition"
                                     href="protectionDonnee.php">POLITIQUE DE PROTECTION DES DONNÉES</a></p>
                         </article>

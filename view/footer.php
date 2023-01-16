@@ -7,7 +7,7 @@
                     <ul class="tiret">
                         <li><a href="https://www.google.com/">Mentions légales</a></li>
                         <li><a href="https://www.google.com/">Affiliation</a></li>
-                        <li><a href="https://www.google.com/">Conditions générales</a></li>
+                        <li><a href="../view/conditionsUtilisation.view.php" target="_blank">Conditions générales</a></li>
                     </ul>
                 </div>
 

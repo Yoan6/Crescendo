@@ -3,26 +3,29 @@
  /**
   * Fourni par paypal à https://developer.paypal.com/docs/checkout/standard/integrate/
   */
+
+  
+
+
 class PaypalPaiement {
     private const CLIENT_ID = 'F32YUGK92QA5G';
 
-
-
+   //Enchere $uneEnchère
 
     public function ui(int $prix): string 
     {
         $clientId = self::CLIENT_ID; 
+        //$uneEnchère
         return <<<HTML
 
         <!-- l'ID du client est à envoyer client-id-->
-        <script src="https://www.paypal.com/sdk/js?
-        client-id={$clientId}&currency=EUR&intent='authorize"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id={$clientId}&currency=EUR"></script>
 
         
         <!-- Le conteneur du bouton-->
         <div id="paypal-button-container"> Enchérir</div>
 
-        <script>
+         <script>
 
         paypal.Buttons({
 
@@ -35,9 +38,9 @@ class PaypalPaiement {
                 purchase_units: [{
 
                 amount: {
-
+                    
                     value: {$prix} // Le prix de l'offre de l'enchère
-
+                    
                 }
 
                 }]
@@ -51,7 +54,7 @@ class PaypalPaiement {
             onApprove: (data, actions) => {
 
                 actions.order.authorize().then(function(authorization) {
-                    consts authorizationId = authorization.purchase_units[0].payments.authorizaation[0].id
+                    const authorizationId = authorization.purchase_units[0].payments.authorization[0].id
                 })
 
 
@@ -61,8 +64,10 @@ class PaypalPaiement {
                 // element.innerHTML = '<h3>Thank you for your payment!</h3>';
 
                 // Or go to another URL:  actions.redirect('thank_you.html');
+           
 
-            };
+
+            }
 
         
 
@@ -73,3 +78,5 @@ class PaypalPaiement {
     }
 }
 ?>
+
+
