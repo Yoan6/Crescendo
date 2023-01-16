@@ -27,11 +27,7 @@
 
     $imgUrl = $article->getImagesURL()[0];
     $nomEnchere = $article->getTitre();
-    $vendeur = $article->getVendeur();
-    $pseudo = $article->getVendeur()->getPseudo();
     $description = $article->getDescription();
-
-    // modifs Pablo
     $numArticle = $article->getNumArticle();
     $titre = $article->getTitre();
     $nomImages = $article->getImages();
@@ -43,6 +39,15 @@
     $dateEvenement = $article->getDateEvenement();
     $lieu = $article->getLieu();
     $style = $article->getStyle();
+
+
+    /***************************************************************************
+    **                         Données du vendeur
+    ***************************************************************************/
+    $vendeur = $article->getVendeur();
+    $imgProfil = $vendeur->getVendeur()->getImgProfil();
+    $numUtilisateur = $article->getVendeur()->getNumUtilisateur();
+    $pseudo = $article->getVendeur()->getPseudo();
 
 
 
@@ -59,10 +64,7 @@
     $view->assign('imgUrl', $imgUrl);
     $view->assign('nomEnchere', $nomEnchere);
     $view->assign('numEnchere', $num_enchere);
-    $view->assign('pseudo', $pseudo);
     $view->assign('description', $description);
-
-    // modifs Pablo
     $view->assign('numArticle', $numArticle);
     $view->assign('titre', $titre);
     $view->assign('nomImages', $nomImages);
@@ -74,7 +76,12 @@
     $view->assign('dateEvenement', $dateEvenement);
     $view->assign('lieu', $lieu);
     $view->assign('style', $style);
+
+    // données du vendeur
     $view->assign('vendeur', $vendeur);
+    $view->assign('imgProfil', $imgProfil);
+    $view->assign('numUtilisateur', $numUtilisateur);
+    $view->assign('pseudo', $pseudo);
 
 $view->display("voirEnchère.php");
 
@@ -82,7 +89,6 @@ $view->display("voirEnchère.php");
     **                         Gestion des erreurs
     ***************************************************************************/
 
-    // modifs Pablo
 
     // test encherir
     try {

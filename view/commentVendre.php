@@ -26,11 +26,11 @@
                     à d'autres acheteurs. Vous arriverez alors sur une page qui vous indique 
                     les informations à renseigner : des images, un titre, un prix de départ de 
                     l'enchère, une description de l'article ainsi que des informations sur l'évènement 
-                    et l'article. Une fois les informations renseignées sur l’article, vous pourrez 
+                    et l'article. Une fois les informations renseignées sur l'article, vous pourrez 
                     alors cliquer sur le bouton « Valider » et votre article sera mis en vente. 
-                    Si vous vous rendez sur votre profil, vous pourrez alors voir l’article que 
+                    Si vous vous rendez sur votre profil, vous pourrez alors voir l'article que 
                     vous avez mis en vente. Une enchère dure sept jours au maximum, il ne vous reste 
-                    donc plus qu’à patienter et espérer qu’une offre à la hauteur de vos attentes arrive.
+                    donc plus qu'à patienter et espérer qu'une offre à la hauteur de vos attentes arrive.
                 </p>
             </div>
         </main>
