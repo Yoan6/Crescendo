@@ -136,19 +136,19 @@ EXECUTE FUNCTION delete_enchere_on_article_delete();
 /*======================================================
 *                      view
 ========================================================*/
-CREATE VIEW upcoming_auctions AS
+CREATE OR REPLACE VIEW upcoming_auctions AS
 SELECT num_article, num_enchere
 FROM CONCERNE
 WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
-create VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
+create OR REPLACE VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
 
-CREATE VIEW ENCHERISSEMENT_MAX_VIEW AS
+CREATE OR REPLACE VIEW ENCHERISSEMENT_MAX_VIEW AS
 SELECT *, max(prix_offre) as prix_max
 FROM encherit
-GROUP BY num_enchere;
+GROUP BY num_enchere, num_utilisateur;
 
-CREATE VIEW ENCHERE_TOUT_VIEW AS
+CREATE OR REPLACE VIEW ENCHERE_TOUT_VIEW AS
 SELECT *, max(prix_offre, prix_min) as prix_actuel
 FROM ARTICLE
 JOIN CONCERNE ON ARTICLE.num_article = CONCERNE.num_article
@@ -156,7 +156,7 @@ JOIN ENCHERE ON CONCERNE.num_enchere = ENCHERE.num_enchere
 LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VIEW.num_enchere
 GROUP BY num_enchere;
 
-CREATE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
+CREATE OR REPLACE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
 SELECT *
 FROM ENCHERE_TOUT_VIEW
 WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
