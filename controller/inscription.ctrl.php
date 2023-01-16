@@ -43,7 +43,7 @@ if(isset($_SESSION['num_utilisateur'])) {
     $view = new View();
 
     // Charge la vue
-    $view->display("accueil.php");
+    $view->display("accueil.view.php");
 } 
 
 $error=array();
@@ -84,7 +84,7 @@ if (count($error) == 0) {
   $view = new View();
 
     // Charge la vue
-    $view->display("../view/accueil.php");
+    $view->display("../view/accueil.view.php");
 }
 
 
