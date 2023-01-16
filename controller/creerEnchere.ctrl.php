@@ -14,6 +14,7 @@
     // Pour relancer le controller
     $controllerName = basename(__FILE__);
     $confirmer = $_POST['confirmer'] ?? "";
+    $chemin_image  =__DIR__."/../data/imgArticle/";
     
     /***************************************************************************
     **                         Données de l'enchère
@@ -138,7 +139,7 @@
         // Prévisualiser l'enchère et prévenir de la réussite
 
         $view->assign('messages',$messages);
-        $view->display("z.test.afficherArticler.view.php");
+        include(__DIR__."/../controller/afficherArticle.ctrl.php");
 
     } else {
         // Aller vers la création d'une enchère
