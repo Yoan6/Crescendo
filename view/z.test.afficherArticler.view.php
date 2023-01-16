@@ -11,8 +11,6 @@
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
-    <?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
-    <?php if(isset($messages) && count($messages) > 0) include(__DIR__ . '/popup/message.view.php'); ?>
 
     <main>
 
@@ -73,7 +71,7 @@
 
                     <div id="divTopRight">
                         <h4>
-                            titre : <?=$nomEnchere?>
+                            titre : <?=$titre?>
                         </h4>
                         <div id="divPrixActuel">
                             <h3>Prix actuel</h3>

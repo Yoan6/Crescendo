@@ -63,7 +63,7 @@ $view->assign('pageSuiv', $pageSuiv);
 $view->assign('pageSize', $pageSize);
 $view->assign('pageMax', $pageMax);
 $view->assign('choix', $choixEtvaleurs);
-$view->assign('valeurChoix', $choixEtvaleurs[0]);
+$view->assign('valeurChoix', "");
 
 $view->assign('encheres', $encheres);
 
