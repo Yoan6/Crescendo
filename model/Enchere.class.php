@@ -199,12 +199,6 @@ class Enchere
     }
 
 
-    public static function readCategorie(string $categorie): array
-    {
-        // Chercher les articles ayants ces noms
-        $articles = Article::readCategorie($categorie);
-        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
-    }
 
 
 
@@ -223,9 +217,11 @@ class Enchere
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
     }
 
-    public static function readPageChoix(int $page, int $pageSize, string $choix="", string $valeurChoix="", string $orderByChoix ="num_article",string $orderBy="Asc"): array
+
+    public static function readPagePlusieursChoix(int $page, int $pageSize, array $choixEtvaleurs , 
+                            array $choixObligatoiresEtValeurs, string $orderByChoix ="date_debut",string $orderBy="DESC"): array
     {
-        $articles = Article::readPageChoix($page, $pageSize, $choix, $valeurChoix, $orderByChoix, $orderBy);
+        $articles = Article::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs, $choixObligatoiresEtValeurs, $orderByChoix, $orderBy);
 
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
 

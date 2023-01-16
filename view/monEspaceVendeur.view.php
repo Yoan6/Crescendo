@@ -327,57 +327,7 @@
                         </div>
                     </div>
 
-                    <?php for ($i = 0; $i < 5; $i++) { ?>
-                        <div class="article">
-
-                            
-                        
-                            <div id="responsive">
-                                <div id="photo">
-                                    <img src="../design/image/articles/veste-elton-john.png">
-                                </div>
-                                <div class="center">
-                                    <div>
-                                        <h3>Veste d'Elton John</h3>
-                                        <h3>10 000 $</h3>
-                                    </div>
-                                    <section>
-                                        <p>Concert à New York d’Elton John, le 22 février 2022. Veste queue de pie à
-                                            imprimé
-                                            floral, sur la
-                                            blablablabaalblabalbalablalbalbalbbalbalabablalblbaablabablablblbablalabblabalalbababll
-                                        </p>
-                                    </section>
-                                    <form action="modifierArticle.ctrl.php" class="divBouton" >
-                                    <input class="numArticle" type="text" name="idArticleAModifier" value="<?= $i ?>">
-                                        <button class="buttonModifier">Modifier l'enchère</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <div class="divSupprimer">
-
-                                <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000"
-                                    stroke-width="1.1760000000000002">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <g fill="none" fill-rule="evenodd" stroke="#000000" stroke-linecap="round"
-                                            stroke-linejoin="round" transform="translate(2 2)">
-                                            <circle cx="8.5" cy="8.5" r="8"></circle>
-                                            <g transform="matrix(0 1 -1 0 17 0)">
-                                                <path d="m5.5 11.5 6-6"></path>
-                                                <path d="m5.5 5.5 6 6"></path>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </svg>
-
-                            </div>
-
-                        </div>
-
-                    <?php } ?>
+                   <?php include(__DIR__ . '/article/articleVendeur.view.php')?>
 
 
 
@@ -387,7 +337,7 @@
 
         </div>
 
-        <form action="modifierArticle.ctrl.php"class="divPopUp">
+        <form action="deleteArticle.ctrl.php"class="divPopUp">
 
             <div id="popUpSupprimerArticle">
                 <input  id="idArticleAsupprimer" name="idArticleAsupprimer" value="">

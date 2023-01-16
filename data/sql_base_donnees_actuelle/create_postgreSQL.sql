@@ -142,6 +142,8 @@ FROM CONCERNE
 WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 
+create VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
+
 /*======================================================
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
@@ -155,3 +157,5 @@ WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN N
 SELECT setval('utilisateur_num_utilisateur_seq',101,true);
 SELECT setval('article_num_article_seq',101,true);
 SELECT setval('enchere_num_enchere_seq',101,true);
+
+UPDATE ENCHERE set date_debut = curren_date();

@@ -18,7 +18,7 @@
 
 
 
-        <form method="post" enctype="multipart/form-data" action="creerEnchere.ctrl.php">
+        <form method="post" enctype="multipart/form-data" action="../controller/<?=$controllerName?>">
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">

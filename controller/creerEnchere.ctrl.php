@@ -11,7 +11,8 @@
     $article = null;
     $enchere = null;
     $todayDate = new DateTime();
-    $chemin_image = __DIR__.'/../imgArticle/'; // Nom du répertoire ou stocker les images téléchargées
+    // Pour relancer le controller
+    $controllerName = basename(__FILE__);
     $confirmer = $_POST['confirmer'] ?? "";
     
     /***************************************************************************
@@ -130,7 +131,7 @@
     $view->assign('taille',$taille);
     $view->assign('etat',$etat);
     $view->assign('lieu',$lieu);
-
+    $view->assign('controller',$controller);
 
     if ($confirmer == "confirmer" && count($errors) == 0)
     {

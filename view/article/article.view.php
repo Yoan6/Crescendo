@@ -24,8 +24,7 @@
                         <h3><?= $enchere->obtenirPrixActuel() ?>€</h3>
                     </div>
                     <section>
-                        <p><?= $article->getDescription() ?>
-                        </p>
+                        <p><?= $article->getDescription() ?></p>
                     </section>
                     <form action="../controller/afficherArticle.ctrl.php" class="divBouton" method="get">
                         <input class="numArticle" type="text" name="numEnchere" value="<?=$enchere->getNumEnchere()?>">

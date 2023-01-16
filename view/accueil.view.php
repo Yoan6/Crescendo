@@ -21,7 +21,7 @@
         <div class="conteneur" id="divVIA">
             <ul class="conteneur" id="via">
                 <li>
-                    <a href="../controller/rechercheChoix.ctrl.php?choix=categorie&valeurChoixr=Vêtement">
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Vêtement">
                         <div>
                             <img src="../design/image/accueil/vete.jpeg">
                         </div>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../controller/rechercheChoix.ctrl.php?choix=categorie&valeurChoix=instrument">
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Instrument">
                         <div>
                             <img src="../design/image/accueil/instr.jpg">
                         </div>
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../controller/rechercheChoix.ctrl.php?choix=categorie&valeurChoix=accessoire">
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Accessoire">
                         <div>
                             <img src="../design/image/accueil/acc.jpg">
                         </div>
