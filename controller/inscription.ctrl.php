@@ -86,11 +86,7 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 // Si finalement aucune erreur, on envois un message de connexion et l'utilisateur est connecté
 if (count($errors) == 0) {
   $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
-  $view = new View();
-
-    // Charge la vue
-    $view->assign('errors', $errors);
-    $view->display("../view/accueil.view.php");
+  header('Location: accueil.ctrl.php');
 }
 
 // On traite le moment où l'utilisateur veut s'inscrire en venant d'ailleurs

@@ -32,6 +32,9 @@
                     vous avez mis en vente. Une enchère dure sept jours au maximum, il ne vous reste 
                     donc plus qu'à patienter et espérer qu'une offre à la hauteur de vos attentes arrive.
                 </p>
+
+                <p>Le schéma suivant vous explique comment cela se passe :</p>
+                <img src="../design/img/commentVendre.png" alt="Schéma comment vendre">                    
             </div>
         </main>
     <?php include(__DIR__.'/footer.php'); ?>	
