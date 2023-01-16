@@ -431,22 +431,26 @@ footer #logosCommunaute {
 Règles pour éléments du footer (comment vendre)
 **********************************************/
 
-#cmtVendre {
+.cmt {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 
-#cmtVendre div {
+.cmt div {
 	margin-right: auto;
 	margin-left: auto;
 	width: 50%;
 }
 
-#cmtVendre p,
-h1 {
+.cmt h1 {
 	text-align: center;
 }
+
+.cmt p{
+	text-align: justify;
+}
+
 
 
 /*********************************************

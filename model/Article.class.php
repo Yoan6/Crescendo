@@ -25,7 +25,7 @@ class Article
     private const LOCALURL = "../data/imgArticle/";
 
     // WhiteList pour éviter une injection SQL
-    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut"];
+    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut","est_lot" => "est_lot","prix_actuel" => "prix_actuel"];
     private const WHITELIST_ORDER_BY = ["ASC" => "ASC", "DESC" => "DESC"];
 
     public function __construct(
