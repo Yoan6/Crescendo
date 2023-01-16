@@ -11,7 +11,7 @@ $pageSize = 5;
 $encheres = array();
 try {
     $encheres = Enchere::readPage($page, $pageSize);
-} catch (Exception | Error) {
+} catch (Exception | Error $e) {
     // Ne rien faire
 }
 

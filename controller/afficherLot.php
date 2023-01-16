@@ -16,9 +16,11 @@ error_reporting(E_ALL);
     **                         Données de l'enchère
     ***************************************************************************/
     $utilisateur = Utilisateur::readNum(1);
-    $num_enchere = $_GET['numEnchere'] ?? 1;
-    $enchere = Enchere::read($num_enchere);
-if ($enchere->getEstLot()) {
+    $num_enchere = $_GET['numEnchere'] ?? 11;
+    
+        $enchere = Enchere::read($num_enchere);
+
+
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
 
     /***************************************************************************
@@ -42,7 +44,7 @@ if ($enchere->getEstLot()) {
         $imgUrl = $article->getImagesURL()[0];
         $titre = $article->getTitre();
         $nomEnchere .= strtolower($titre) . ' ';
-        $description .= 'Description pour ' . $titre . "\n" . $article->$article->getDescription() . "\n" . "\n";
+        $description .= 'Description pour ' . $titre . "\n" . $article->getDescription() . "\n" . "\n";
         $prixMin = $prixMin + $article->getPrixMin();
     }
 
@@ -82,11 +84,6 @@ if ($enchere->getEstLot()) {
 
 
 
-}
 
-else {
-    $view = new View();
-    $view->include("accueil.ctrl.php");
-}
 
 ?>
