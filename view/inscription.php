@@ -59,7 +59,7 @@
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthsday" value="<?=$birthsday?>" id="birthsday" min="1930-01-01" max="<?=date('y-m-d')?>"
+                            <input type="date" name="birthsday" value="<?=$birthsday?>" id="birthsday" min="1930-01-01" max="<?=$dateMinimale?>"
                                 required>
                         </article>
 
@@ -119,8 +119,8 @@
             <div>
                 <?php 
 
-                if (isset($error) && count($error) != 0) {
-                    foreach($error as $e) { ?>
+                if (isset($errors) && count($errors) != 0) {
+                    foreach($errors as $e) { ?>
                         <p class="error"><?php echo($e);?></p>
                         <?php
                     }

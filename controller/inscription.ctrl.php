@@ -102,6 +102,8 @@ $errors = array();
 // Construction de la vue
 ////////////////////////////////////////////////////////////////////////////
 $view = new View();
+
+$view->assign('dateMinimale',$dateMinimale->format('Y-m-d'));
 $view->assign('prenom',$prenom);
 $view->assign('nom',$nom);
 $view->assign('pseudo',$pseudo);
