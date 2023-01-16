@@ -81,7 +81,7 @@ main form #topForm>#divTopLeft {
 #carousel img {
 
     object-fit: cover;
-
+    height: 100%;
 
 }
 

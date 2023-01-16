@@ -30,9 +30,10 @@
                     <div id="divTopLeft">
                         <div id="carousel">
                             <img src="" id="preview">
-                            <img src=" <?=$imgUrl?> " class="carouselImg" >
-                            <img src="../data/imgArticle/Z_chaussures_JJ_goldman.jpg" class="carouselImg">
-                            <img src=" <?=$imgUrl?> " class="carouselImg">
+                            <?php foreach ($imgUrl as $img) { ?>
+                                <img src="<?= $img ?>" class="carouselImg">
+                            <?php } ?>
+                            
                             <svg id="buttonPrev" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
                                 fill="#ffffff">
@@ -80,7 +81,7 @@
                         <div id="divPrixActuel">
                         <input type="hidden" id="numEnchere" value="<?=$numEnchere?>">
                         <h3>Prix actuel</h3>
-                            <h4><span id="prixActuelText"></span></h4>
+                            <h4><span id="prixActuelText">€</span></h4>
 
                         </div>
 
