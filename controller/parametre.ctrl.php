@@ -20,6 +20,7 @@ $password = $_POST['password'] ?? $utilisateur->getMotDePasse();
 $postal = $_POST['postal'] ?? $utilisateur->getCodePostal();
 $ville = $_POST['ville'] ?? $utilisateur->getVille();
 $adresse = $_POST['adresse'] ?? $utilisateur->getRue();
+$effacer = $_POST['effacer'] ?? '';
 $confirmer = $_POST['confirmer'] ?? '';
 
 $ancienPassword = $_POST['ancienPassword'] ?? '';
@@ -34,6 +35,7 @@ if ($confirmer == 'pseudo') {
     // On vérifie si le pseudo est différent de celui déjà enregistré :
     if ($pseudo != $utilisateur->getPseudo()) {
         $utilisateur->setPseudo($pseudo);
+
     }
     else {
         array_push($error,"Le pseudo est le même que celui déjà enregistré");
@@ -100,6 +102,17 @@ if ($confirmer == 'password') {
     }
 }
 
+// Cas où l'utilisateur veut supprimer son compte :
+if ($effacer == 'effacer') {
+    $utilisateur->delete();
+    session_destroy();
+    $view = new View();
+    $view->display("accueil.view.php");
+}
+
+if (count($error) == 0) {
+    $utilisateur->update();
+}
 
 // On assigne les variables à la vue :
 $view = new View();
@@ -116,3 +129,4 @@ $view->display("parametres.php");
 
 
 var_dump($error);
+var_dump($_SESSION['num_utilisateur']);

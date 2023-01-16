@@ -9,10 +9,17 @@ prix.addEventListener("onkeypress", (event) => {
 
   
   var carouselImg = document.getElementsByClassName("carouselImg");
-  var currentImage = document.getElementById("premiereImage");
   var currentImageIndex = 0;
+  var currentImage = carouselImg[currentImageIndex];
   var prevBtn = document.getElementById("buttonPrev");
   var nextBtn = document.getElementById("buttonNext");
+
+for(let i = 1; i < carouselImg.length; i++){
+  carouselImg[i].style.display = "none";
+}
+
+currentImage.src = carouselImg[1].src;
+
 
   if(carouselImg.length > 1){
   nextBtn.addEventListener("click", nextImage);
@@ -21,7 +28,7 @@ prix.addEventListener("onkeypress", (event) => {
   function nextImage() {
     currentImageIndex++;
     if (currentImageIndex >= carouselImg.length) {
-      currentImageIndex = 0;
+      currentImageIndex = 1;
     }
     currentImage.src = carouselImg[currentImageIndex].src;
   }
@@ -29,7 +36,7 @@ prix.addEventListener("onkeypress", (event) => {
   function prevImage() {
     currentImageIndex--;
     if (currentImageIndex < 0) {
-      currentImageIndex = carouselImg.length - 1;
+      currentImageIndex = carouselImg.length;
     }
     currentImage.src = carouselImg[currentImageIndex].src;
   }
