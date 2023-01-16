@@ -141,8 +141,6 @@ SELECT num_article, num_enchere
 FROM CONCERNE
 WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
-create OR REPLACE VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
-
 CREATE OR REPLACE VIEW ENCHERISSEMENT_MAX_VIEW AS
 SELECT *, max(prix_offre) as prix_max
 FROM encherit
@@ -154,12 +152,11 @@ FROM ENCHERE_TOUT_VIEW
 WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 CREATE OR REPLACE VIEW ENCHERE_TOUT_VIEW AS
-SELECT *, max(prix_offre, prix_min) as prix_actuel
+SELECT *, (CASE WHEN prix_offre > prix_min THEN prix_offre ELSE prix_min END) as prix_actuel
 FROM ARTICLE
 JOIN CONCERNE ON ARTICLE.num_article = CONCERNE.num_article
 JOIN ENCHERE ON CONCERNE.num_enchere = ENCHERE.num_enchere
-LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VIEW.num_enchere
-GROUP BY num_enchere;
+LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VIEW.num_enchere;
 
 
 
