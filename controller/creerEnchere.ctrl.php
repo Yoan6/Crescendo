@@ -131,7 +131,7 @@
     $view->assign('taille',$taille);
     $view->assign('etat',$etat);
     $view->assign('lieu',$lieu);
-    $view->assign('controller',$controller);
+    $view->assign('controllerName',$controllerName);
 
     if ($confirmer == "confirmer" && count($errors) == 0)
     {
