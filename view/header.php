@@ -74,7 +74,7 @@
           <a href="../controller/logout.ctrl.php">Se déconnecter</a>
         <?php else: ?>
           <a href="../controller/login.ctrl.php">Se connecter</a>
-          <a href="../view/inscription.php">S'inscrire</a>
+          <a href="../controller/inscription.ctrl.php">S'inscrire</a>
         <?php endif; ?>
         <div class="divToggleDarkMode">
           <p>Dark Mode</p>

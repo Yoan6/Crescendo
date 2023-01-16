@@ -5,7 +5,7 @@ function getLikeActuel(numEnchere) {
     // Créer l'objet XMLHttpRequest
     var xmlhttp = new XMLHttpRequest();
 
-    // Quand le serveur est prêt, changer le texte du prix de la vue
+    // Quand le serveur est prêt, changer le texte du nombre de likes de la vue
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             boxAChanger.innerHTML = this.responseText;

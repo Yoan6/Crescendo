@@ -41,25 +41,25 @@
                         <article class="petit-article">
                             <label for="prenom">Prénom *</label>
 
-                            <input type="text" name="prenom" id="prenom" placeholder="Entrez votre prénom" required>
+                            <input type="text" name="prenom" value="<?=$prenom?>" id="prenom" placeholder="Entrez votre prénom" required>
                         </article>
 
                         <article class="petit-article">
                             <label for="nom">Nom *</label>
 
-                            <input value="" type="text" name="nom" id="nom" placeholder="Entrez votre nom" required>
+                            <input type="text" name="nom" value="<?=$nom?>" id="nom" placeholder="Entrez votre nom" required>
                         </article>
 
                         <article class="petit-article">
                             <label for="pseudo">Pseudo *</label>
 
-                            <input type="text" name="pseudo" id="pseudo" placeholder="Entrez votre pseudo" required>
+                            <input type="text" name="pseudo" value="<?=$pseudo?>" id="pseudo" placeholder="Entrez votre pseudo" required>
                         </article>
 
                         <article class="petit-article">
                             <label for="birthday">Date de naissance *</label>
 
-                            <input type="date" name="birthsday" id="birthsday" min="1930-01-01" max="2023-05-01"
+                            <input type="date" name="birthsday" value="<?=$birthsday?>" id="birthsday" min="1930-01-01" max="<?=$dateMinimale?>"
                                 required>
                         </article>
 
@@ -67,20 +67,19 @@
                             <div>
                                 <label for="code-postale">Code postale *</label>
 
-                                <input type="text" name="code_postale" id="code-postale" placeholder="Ex : 70123"
-                                    required>
+                                <input type="text" name="code_postale" value="<?=$code_postale?>" id="code-postale" placeholder="Ex : 70123" minlength="5" maxlength="5" required>
                             </div>
                             <div>
                                 <label for="ville">Ville *</label>
 
-                                <input type="text" name="ville" id="ville" placeholder="Ex : Paris" required>
+                                <input type="text" name="ville" value="<?=$ville?>" id="ville" placeholder="Ex : Paris" required>
                             </div>
                         </article>
 
                         <article class="petit-article">
                             <label for="rue">Nom de la rue *</label>
 
-                            <input type="text" name="rue" id="rue" placeholder="Ex : 13 Rue des papeteries" required>
+                            <input type="text" name="rue" value="<?=$rue?>" id="rue" placeholder="Ex : 13 Rue des papeteries" required>
                         </article>
                     </div>
 
@@ -88,7 +87,7 @@
                         <article class="petit-article">
                             <label for="adresseMail">Adresse mail *</label>
 
-                            <input type="email" name="adresseMail" id="adresseMail"
+                            <input type="email" name="adresseMail" value="<?=$adresseMail?>" id="adresseMail"
                                 placeholder="Entrez votre adresse mail" required>
                         </article>
 
@@ -107,21 +106,21 @@
                         <article class="article-condition-generale">
                             <input id="checkConditionGenerale" type="checkbox" name="conditions" required>
                             <p class="condition-generale"> En cochant la case, vous acceptez les <a class="condition"
-                                    href="conditionsUtilisation.view.php" target="_blank">CONDITIONS
+                                    href="../view/conditionsUtilisation.view.php" target="_blank">CONDITIONS
                                     GÉNÉRALES D'UTILISATION</a> et la <a class="condition"
-                                    href="protectionDonnee.php">POLITIQUE DE PROTECTION DES DONNÉES</a></p>
+                                    href="" target="_blank">POLITIQUE DE PROTECTION DES DONNÉES</a></p>
                         </article>
                     </div>
 
                 </div>
-                <button type="submit" name="inscription">S'INSCRIRE</button>
+                <button type="submit" name="inscription" value="confirmer">S'INSCRIRE</button>
             </form>
 
             <div>
                 <?php 
 
-                if (isset($error) && count($error) != 0) {
-                    foreach($error as $e) { ?>
+                if (isset($errors) && count($errors) != 0) {
+                    foreach($errors as $e) { ?>
                         <p class="error"><?php echo($e);?></p>
                         <?php
                     }
@@ -130,7 +129,7 @@
             
             </div>
             <p>Tu as déja un compte ?</p>
-            <a href="../view/login.php" class="connexion">Connecte-toi</a>
+            <a href="../controller/login.ctrl.php" class="connexion">Connecte-toi</a>
         </main>
     </div>
 

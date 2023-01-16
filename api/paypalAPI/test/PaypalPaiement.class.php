@@ -8,7 +8,7 @@
 
 
 class PaypalPaiement {
-    private const CLIENT_ID = 'F32YUGK92QA5G';
+    private const CLIENT_ID = 'A61y8Qjy85Ypd3AIKOFb5wmzfZxiAGlX1Ug0PxOxRs0Gdnx1WWEEJppr';
 
    //Enchere $uneEnchère
 

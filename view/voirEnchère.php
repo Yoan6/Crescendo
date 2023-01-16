@@ -79,7 +79,6 @@
                         </h4>
                         <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
                             <h3>Prix actuel</h3>
-                            
                             <h4><span id="prixActuelText"></span></h4>
 
                         </div>
@@ -127,7 +126,9 @@
                             </svg>
 
 
-                            <p>  </p>
+                            <p onload="reactualiserLikeActuel(<?=$numEnchere?>)">
+                                <span id="likeActuelText"></span>
+                            </p>
 
                             <svg id="dislike" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"
                                 transform="rotate(180)">

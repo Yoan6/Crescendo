@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     ville VARCHAR,
     rue VARCHAR NULL,
     code_postal VARCHAR, 
+    date_creation DATE,
     img_profil VARCHAR
 );
 
@@ -146,32 +147,33 @@ SELECT *, max(prix_offre) as prix_max
 FROM encherit
 GROUP BY num_enchere, num_utilisateur;
 
-CREATE OR REPLACE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
-SELECT *
-FROM ENCHERE_TOUT_VIEW
-WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 CREATE VIEW ENCHERE_TOUT_VIEW AS 
 SELECT *, 
 (CASE WHEN prix_offre > prix_min THEN prix_offre ELSE prix_min END) as prix_actuel
 FROM ARTICLE 
-JOIN CONCERNE ON ARTICLE.num_article = CONCERNE.num_article 
-JOIN ENCHERE ON CONCERNE.num_enchere = ENCHERE.num_enchere 
-LEFT JOIN ENCHERISSEMENT_MAX_VIEW ON ENCHERE.num_enchere = ENCHERISSEMENT_MAX_VIEW.num_enchere;
+natural join CONCERNE 
+natural join ENCHERE  
+NATURAL LEFT JOIN ENCHERISSEMENT_MAX_VIEW;
 
-
+CREATE OR REPLACE VIEW ENCHERE_TOUT_EN_COURS_VIEW AS
+SELECT *
+FROM ENCHERE_TOUT_VIEW
+WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN NOW() AND NOW() + INTERVAL '7 DAYS');
 
 
 /*======================================================
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
 -- Chemin à changer en fonction de celui qui lance le fichier
-\copy utilisateur from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/utilisateurs.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy utilisateur from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/utilisateur.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
 \copy ARTICLE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/articles.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy ENCHERE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/encheres.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy ENCHERE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/enchere.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
 \copy CONCERNE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/concerne.initialisation.txt' (DELIMITER '|', ENCODING 'UTF8',NULL '');
-\copy image_article from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/image_article.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy image_article from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/image.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
 \copy ENCHERIT from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy LIKE_DISLIKE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/like_dislike.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
+\copy FAVORISE from '/var/www/html/crescendo/data/sql_base_donnees_actuelle/initialisation/favorise.initialisation.txt'(DELIMITER '|', ENCODING 'UTF8',NULL '');
 
 SELECT setval('utilisateur_num_utilisateur_seq',101,true);
 SELECT setval('article_num_article_seq',101,true);

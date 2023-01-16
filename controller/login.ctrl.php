@@ -8,15 +8,13 @@ if(!isset($_SESSION)) {
     session_start(); 
 } 
 
-// Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
-if(isset($_SESSION['num_utilisateur'])) {
-    $view = new View();
+// Si l'utilisateur est déjà connecté, on le redirige vers la page d'accueil :
 
-    // Charge la vue
+if (isset($_SESSION['num_utilisateur'])) {
+    $view = new View();
     $view->display("accueil.view.php");
-    echo ("Vous êtes déja connecté !");
-} 
-else {
+}
+
     ///////////////////////////////////////////////////////////////////////////////
     // Partie récupération des données
     ///////////////////////////////////////////////////////////////////////////////
@@ -28,11 +26,8 @@ else {
     // Partie calculs avec le modèle
     ///////////////////////////////////////////////////////////////////////////////
 
-    if (isset($_SESSION['num_utilisateur'])) {
-        var_dump($_SESSION['num_utilisateur']);
-    }
 
-    $error = array();
+    $errors = array();
 
     // Si le login ou l'utilisateur ne sont pas fournis :
     if ($login != '' && $password != '') {
@@ -50,23 +45,23 @@ else {
                 $view->display("accueil.view.php");
             }
             else {
-                array_push($error, "L'identifiant ou le mot de passe n'est pas bon");
+                array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
             }
 
             
         } catch (Exception $e) {
-            array_push($error,$e->getMessage());
+            array_push($errors,$e->getMessage());
         }
 
     } else {
-        array_push($error, "Vous n'avez pas rentré de login ou mot de passe");
+        array_push($errors, "Vous n'avez pas rentré de login ou mot de passe");
     }
-    
 
     $view = new View();
-    $view->assign('error',$error);
+    $view->assign('login',$login);
+    $view->assign('errors',$errors);
         
     // Charge la vue
     $view->display("login.php");
-}
+
 ?>
