@@ -82,23 +82,7 @@ for (let i = 0; i < dropdownButton.length; i++) {
 
 }
 
-orderBy = document.getElementById("orderBy");
-orderBy.style.borderRadius = "15px";
 
-orderBy.addEventListener("click", function (event) {
-  event.stopPropagation();
-  if (orderBy.style.borderRadius === "15px" || orderBy.style.borderRadius === "15px 15px 15px 15px") {
-    orderBy.style.borderRadius = "15px 15px 0px 0px";
-  } else {
-    orderBy.style.borderRadius = "15px 15px 15px 15px";
-  }
-});
-
-document.documentElement.addEventListener("click", function (event) {
-  if (orderBy.style.borderRadius = "15px 15px 0px 0px") {
-    orderBy.style.borderRadius = "15px 15px 15px 15px";
-  }
-});
 
 /*
 document.getElementsByClassName("buttonDropFilter").onclick = function() {
@@ -114,20 +98,41 @@ document.getElementsByClassName("buttonDropFilter").onclick = function() {
 var inputOrderBy = document.getElementsByClassName("inputOrderBy");
 var optionOrderByChoix = document.getElementsByClassName("optionOrderByChoix");
 var orderBy = document.getElementById("orderBy");
+var defaultOption = document.getElementById("defaultOption");
 
+
+//on récupère les paramètres GET
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+
+//on vérifie si il y a des paramètres GET et on change la valeur du select
+if (params.orderBy === "ASC") {
+  orderBy.value = params.orderByChoix;
+} else if (params.orderBy === "DESC") {
+  orderBy.value = params.orderByChoix;
+  orderBy.selectedIndex = orderBy.selectedIndex + 1;
+}
 
 
 
 orderBy.addEventListener("change", function () {
+
+
   var url = new URL(window.location.href);
+  if(orderBy.selectedIndex === 0) {
+    url.searchParams.delete("orderByChoix");
+    url.searchParams.delete("orderBy");
+  }else {
   url.searchParams.set("orderByChoix", optionOrderByChoix[orderBy.selectedIndex - 1].value);
   url.searchParams.set("orderBy", inputOrderBy[orderBy.selectedIndex - 1].value);
+  }
   window.location.href = url.href;
+
 });
 
 
-//il n'est pas possible de mettre des eventhandler sur les options d'un select, donc on utilise un input caché
-
+ 
 
 
 

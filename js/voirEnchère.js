@@ -45,3 +45,32 @@ var currentImageIndex = 0;
   prevBtn.style.display = "none";
   nextBtn.style.display = "none";
 }
+
+
+
+
+var boutonValiderPrix = document.getElementById("boutonValiderPrix");
+var popUpBackground = document.getElementsByClassName("popUpBackground")[0];
+var prixEnchereProposee = document.getElementById("prixEnchereProposee");//span qui prend la valeur du prix actuel pour l'afficher dans le pop up
+
+var spanPrixActuelText = document.getElementById("prixActuelText");
+
+var reportNouveauPrix = document.getElementById("reportNouveauPrix");//input qui prend la valeur du prix actuel
+
+
+boutonValiderPrix.addEventListener("click", function(){
+  popUpBackground.style.display = "flex";
+  reportNouveauPrix.value = spanPrixActuelText.innerHTML;
+  prixEnchereProposee.innerHTML = spanPrixActuelText.innerHTML;
+});
+
+
+var annulerEnchere = document.getElementById("annulerEnchere");
+
+annulerEnchere.addEventListener("click", function(){
+  popUpBackground.style.display = "none";
+});
+
+
+
+/////////////////////

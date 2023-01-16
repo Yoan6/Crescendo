@@ -16,7 +16,7 @@ $lesFiltres = [
 
 <select id="orderBy">
     <!--Informer l'utilisateur-->
-    <option value="">Trier par</option>
+    <option id="defaultOption" value="">Trier par</option>
     <!--Traverser la liste pour créer des balises <option></option>-->
     <?php foreach ($lesFiltres as $num => $filtre): ?>
         <option class="optionOrderByChoix" value="<?= $filtre['key']?>">
