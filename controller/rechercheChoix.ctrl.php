@@ -14,13 +14,18 @@ include_once(__DIR__."/../model/Enchere.class.php");
 /***************************************************************************
 **                         Données
 ***************************************************************************/
+var_dump($_GET);
 
 // Données pour la recherche
 $recherche = $_GET["recherche"] ?? "";
 
 $choixEtvaleurs = $_GET['choix'] ?? array(); 
 $choixObligatoireEtValeurs = $_GET['choixObligatoire'] ?? array();
+$orderByChoix =  $_GET['orderByChoix'] ?? "date_debut";
+$orderBy =  $_GET['orderBy'] ?? "DESC";
 
+var_dump($orderBy);
+var_dump($choixObligatoireEtValeurs);
 // Pour relancer le controller
 $controllerName = basename(__FILE__);
 
@@ -38,7 +43,7 @@ $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 
 try {
-    $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs);
+    $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
     $pageMax =  ((int) article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
@@ -67,7 +72,6 @@ $view->assign('valeurChoix', "");
 
 $view->assign('encheres', $encheres);
 
-var_dump($choixObligatoireEtValeurs);
 if (isset($choixObligatoireEtValeurs["num_vendeur"])) {
     $view->display("monEspaceVendeur.view.php");
 } else {

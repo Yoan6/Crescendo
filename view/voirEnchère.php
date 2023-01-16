@@ -10,35 +10,7 @@
 </head>
 
 <body class="dark-mode">
-    <?php include(__DIR__ . '/header.php'); ?>
-
-
-    <div id="bandeau1">
-        <div class="div1">
-
-        </div>
-        <div class="div2">
-            <h3> Enchère validée </h3>
-        </div>
-        <div class="div3">
-            <button class="btnFermer"> Fermer </button>
-        </div>
-    </div>  
-
-
-    <div id="bandeau2">
-        <div class="div1">
-
-        </div>
-        <div class="div2">
-            <h3> Problème lors de la mise en place du moyen de paiement</h3>
-        </div>
-        <div class="div3">
-            <button class="btnFermer"> Fermer </button>
-        </div>
-    </div>  
-        
-    
+    <?php include(__DIR__ . '/header.php'); ?>    
 
     <main>
 
@@ -105,9 +77,9 @@
                         <h4>
                             <?=$titre ?>
                         </h4>
-                        <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
-                            <h3>Prix actuel</h3>
-                            
+                        <div id="divPrixActuel">
+                        <input type="hidden" id="numEnchere" value="<?=$numEnchere?>">
+                        <h3>Prix actuel</h3>
                             <h4><span id="prixActuelText"></span></h4>
 
                         </div>
@@ -155,7 +127,9 @@
                             </svg>
 
 
-                            <p>  </p>
+                            <p onload="reactualiserLikeActuel(<?=$numEnchere?>)">
+                                <span id="likeActuelText"></span>
+                            </p>
 
                             <svg id="dislike" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"
                                 transform="rotate(180)">
@@ -201,7 +175,7 @@
 
                     <a id="featuresRight" href="vendeur">
                         <div>
-                            <img src="../design/image/accueil/coeur_concert.jpeg" alt="user">
+                            <img src="<?= $imgProfil ?>" alt="user">
                         </div>
                         <p><?=$pseudo ?></p>
                     </a>

@@ -21,6 +21,8 @@ class Utilisateur
     //private DateTime $dateCreation;
     //private array $notes;
 
+    private const LOCALURL = "../data/imgArticle/";
+
     public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance)
     {
         $this->setEmail($email);
@@ -53,6 +55,17 @@ class Utilisateur
     /******************** 
      * Getter and Setter
      *********************/
+
+     public function getImageURL(): string
+     {
+         
+         return self::LOCALURL . $this->imgProfil;
+     }
+
+     public function setImageURL($imgProfil)
+     {
+        $this->imgProfil = $imgProfil;
+     }
 
     public function getMotDePasse()
     {

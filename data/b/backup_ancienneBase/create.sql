@@ -125,11 +125,11 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .separator '|'
 .nullvalue Null
 
-.import ../../sql_base_donnees_actuelle/initialisation/encheres.initialisation.txt ENCHERE
-.import ../../sql_base_donnees_actuelle/initialisation/utilisateurs.initialisation.txt UTILISATEUR
+.import ../../sql_base_donnees_actuelle/initialisation/enchere.initialisation.txt ENCHERE
+.import ../../sql_base_donnees_actuelle/initialisation/utilisateur.initialisation.txt UTILISATEUR
 .import ../../sql_base_donnees_actuelle/initialisation/articles.initialisation.txt ARTICLE
 .import ../../sql_base_donnees_actuelle/initialisation/concerne.initialisation.txt CONCERNE
-.import ../../sql_base_donnees_actuelle/initialisation/image_article.initialisation.txt IMAGE_ARTICLE
+.import ../../sql_base_donnees_actuelle/initialisation/image.initialisation.txt IMAGE_ARTICLE
 .import ../../sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt ENCHERIT
 
 .print '===========================  TESTS  ==========================='
