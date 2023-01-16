@@ -18,8 +18,8 @@ header img {
 
 #firstStage {
   position: relative;
-  padding-left: 180px;
-  padding-right: 180px;
+  padding-left: 285px;
+  padding-right: 285px;
 }
 
 #firstStage>form {
@@ -27,7 +27,8 @@ header img {
   margin-left: auto;
   border-radius: 10px;
   height: 42px;
-  width: 63%;
+  width: 80%;
+  margin-bottom: 0px;
 }
 
 #loupe {
@@ -46,6 +47,14 @@ header img {
   height: 25px;
   width: 25px;
   position: absolute;
+  transition: transform 0.3s ease-in-out;
+}
+
+#loupe:hover img {
+
+  transform: rotate(10deg) scale(1.05);
+  
+
 }
 
 
@@ -64,6 +73,12 @@ header img {
   position: absolute;
   left: 10px;
   height: 40px;
+  transition: transform 0.3s ease-in-out;
+}
+
+
+.logo:hover {
+  transform: scale(1.01);
 }
 
 
@@ -74,9 +89,18 @@ header .searchBar {
   padding-left: 20px;
   height: 100%;
   border: none;
-  width: 20vw;
-
+  width: 35%;
+  transition: all 0.8s ease-in-out 0s;
 }
+
+
+
+header .searchBar.active {
+  
+  width: 100%;
+}
+
+
 
 
 #creationArticle {

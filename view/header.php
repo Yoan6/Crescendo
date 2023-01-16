@@ -32,7 +32,7 @@
 
     <a class="logo" href="../controller/accueil.ctrl.php"><img src="../design/image/logo_em.jpg" alt="logo"></a>
     <form id="formRecherche" action="../controller/recherche.ctrl.php" method="GET" class="conteneur">
-      <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher...">
+      <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher..." pattern=".{1,}">
       <datalist id="searchList">
         <option value="The quick brown fox jumps over a lazy dog."></option>
       </datalist>
