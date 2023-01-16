@@ -19,7 +19,7 @@
                     de vos artistes favoris ? Vous avez toqué à la bonne porte. Crescendo vous propose 
                     un service fiable et simple d'utilisation..
                 </p>
-                <br>
+                
                 <p>
                     Une fois arrivée sur notre page d'accueil, vous avez la possibilité de naviguer à travers 
                     notre site et de mener autant de recherches que vous le voulez. Une fois qu'un article vous 
@@ -30,7 +30,7 @@
                     alors la possibilité de soumettre une enchère pour les articles qui vous ont plu, noter des 
                     articles ou encore proposer vos propres articles à la vente.
                 </p>
-                <br>
+                
                 <p>
                     Admettons que vous soyez fan d'Elton John et que l'un des articles qu'il a porté vous a particulièrement 
                     plu. Cette veste par exemple est mise en vente par un autre utilisateur et vous souhaitez l'acquérir. 
@@ -38,7 +38,7 @@
                     prix de départ, le montant actuel qu'atteint l'enchère, le nom du vendeur, une description de l'article 
                     ainsi que d'avantages d'images.
                 </p>
-                <br>
+                
                 <p>
                     En indiquant un montant dans la rubrique « Votre nouveau prix » vous pourrez alors soumettre une 
                     nouvelle enchère, puis cliquez sur le bouton « Valider » afin de renseigner vos coordonnées PayPal, 

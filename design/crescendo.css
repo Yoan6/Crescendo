@@ -449,6 +449,12 @@ Règles pour éléments du footer (comment vendre)
 
 .cmt p{
 	text-align: justify;
+	margin-bottom: 3%;
+}
+
+.cmt img{
+	padding-top: 10%;
+	padding-bottom: 15%;
 }
 
 
