@@ -193,6 +193,8 @@ label img {
 Les messages 
 *****************************/
 
+/* commenté car pas utile
+
 :where(#bandeau1,#bandeau2) {
 	display: flex;
     align-items: center;
@@ -259,6 +261,22 @@ Les messages
 
 
 
+.div3 .btnFermer{
+    display: flex;
+    width : 50%;
+    border: 0;
+    line-height: 2.5;
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+    background-color: #020202;
+    opacity: 0.7;
+}
+
+
+*/
 
 
 
