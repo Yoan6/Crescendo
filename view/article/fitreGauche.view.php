@@ -5,7 +5,7 @@ $checkboxListe =
 "style" => ["Blues", "Chanson Francaise", "Classique", "Disco", "Electro", "Funk", "Hip-hop", "Jazz", "Metal", "Musique de Film", "Pop", "Reggae", "Rap", "Rock", "Techno", "Autres"],
 "taille" => ["XS", "S", "M", "X", "XL"],
 "categorie" => ["Vêtement","Instrument","Accessoire","Autres"],
-"etat" => ["Très mauvais","Mauvais","Moyen","Bon","Très Bon"]
+"état" => ["Très mauvais","Mauvais","Moyen","Bon","Très Bon"]
 ];
 ?>
 <form class="filtre" action = "rechercheChoix.ctrl.php?<?=(isset($recherche) ? $recherche : "")?>">

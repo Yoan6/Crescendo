@@ -27,7 +27,7 @@ const toggleDropFilter = function (numero) {
         validerOuEffacer.style.visibility = "visible";
         validerOuEffacer.style.opacity = "1";
 
-        
+
       }, 100);
 
 
@@ -42,7 +42,7 @@ const toggleDropFilter = function (numero) {
       //on vérifie si toute les fenetres sont fermé et si c'est le cas on ferme le "ValiderOuEffacer"
       let toutReduit = true;
       for (let i = 0; i < dropdownButton.length; i++) {
-        if (dropdownFilter[i].style.display === "flex" && toutReduit) {
+        if (dropdownFilter[i].classList.contains("open")) {
           toutReduit = false;
         }
       }
@@ -146,7 +146,7 @@ var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
 // Boucle sur toutes les checkbox et les décocher
 toutEffacer.addEventListener("click", function () {
-for (var i = 0; i < checkboxes.length; i++) {
+  for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = false;
-}
+  }
 });
