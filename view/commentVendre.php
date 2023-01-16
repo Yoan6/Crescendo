@@ -32,8 +32,7 @@
                 <p>
                 Il ne vous restera plus qu'à envoyer votre colis !
                 </p>
-                <img src="../design/image/schemas/creen_schema_vendre.png">
-                <img src="../design/image/music.png">
+                <img src="../design/image/schemas/screen_schema_vendre.png">
             </div>
         </main>
     <?php include(__DIR__.'/footer.php'); ?>	
