@@ -3,14 +3,14 @@
 
 
 <!--Liste d'initialisation-->
-<?php $styles = ["Blues","Classique","Disco","Electro","Funk","Hip-hop","Jazz","Metal","Musique de film","Pop","Reggae","Rock","Techno","Autres"];?>
+<?php $styles = ["Blues","Chanson Francaise","Classique","Disco","Electro","Funk","Hip-hop","Jazz","Metal","Musique de Film","Pop","Reggae","Rap","Rock","Techno","Autres"];?>
 
 <!--Traverser la liste pour créer des balises <option></option>-->
-<?php foreach($styles as $style) : ;?> 
-    <option value="<?= $style ?>" 
-        <?php if (isset($_POST['style']) && $_POST['style'] == $style)
+<?php foreach($styles as $styleListe) : ;?> 
+    <option value="<?= $styleListe ?>" 
+        <?php if ($style == $styleListe)
                 echo 'selected'; //Si le style est choisie alors garder l'option lors d'un refresh de page?> 
     >
-    <?=$style?>
+    <?=$styleListe?>
     </option>
 <?php endforeach;?>

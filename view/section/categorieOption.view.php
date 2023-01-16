@@ -6,11 +6,11 @@
 <?php $categories = ["Vêtement","Instrument","Accessoire","Autres"];?>
 
 <!--Traverser la liste pour créer des balises <option></option>-->
-<?php foreach($categories as $categorie) : ;?> 
-    <option value="<?= $categorie ?>" 
-        <?php if (isset($_POST['categorie']) && $_POST['categorie'] == $categorie)
+<?php foreach($categories as $categorieListe) : ;?> 
+    <option value="<?= $categorieListe ?>" 
+        <?php if ($categorie == $categorieListe)
                 echo 'selected'; //Si la catégorie est choisie alors garder l'option lors d'un refresh de page?> 
     >
-    <?=$categorie?>
+    <?=$categorieListe?>
     </option>
 <?php endforeach;?>

@@ -25,7 +25,7 @@
                     </div>
                 </div>
 
-                <form action="../controler/parametre.ctrl.php" method="POST">
+                <form action="../controller/parametre.ctrl.php" method="POST">
                     <button type="button" id="modifImageProfil">
                         Modifier l'image de profil
                     </button>
@@ -42,13 +42,13 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $_SESSION['pseudo'] ?>
+                        <?= $pseudo ?>
                     </p>
                     <button id="modifPseudo">
                         Modifier le pseudo
                     </button>
                 </div>
-                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
+                <form class="formModif" method="POST" action="../controller/parametre.ctrl.php">
                     <div class="champsAremplir">
                         <input type="text" name="pseudo" placeholder="Votre pseudo" required>
 
@@ -57,7 +57,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider" type="submit">
+                        <button class="valider" type="submit" name="confirmer" value="pseudo">
                             Valider
                         </button>
                     </div>
@@ -85,16 +85,16 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $_SESSION['mail'] ?>
+                        <?= $mail ?>
                     </p>
                     <button id="modifMail">
                         Modifier l'adresse mail
                     </button>
                 </div>
-                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
+                <form class="formModif" method="POST" action="../controller/parametre.ctrl.php">
                     <div class="champsAremplir">
                         <input placeholder="Votre nouveau mail" type="email" name="mail" value="" required>
-                        <input placeholder="Mot de passe" type="text" name="password" value="" required>
+                        <input placeholder="Mot de passe" type="text" name="password" value="" minlength="12" required>
 
                     </div>
 
@@ -103,7 +103,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider" type="submit">
+                        <button class="valider" type="submit" name="confirmer" value="adresseMail">
                             Valider
                         </button>
                     </div>
@@ -116,23 +116,22 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $_SESSION['adresse'] ?>, <?= $_SESSION['postal'] ?>
-                        <?= $_SESSION['ville'] ?>
+                        <?= $adresse ?>, <?= $postal ?> <?= $ville ?>
                     </p>
                     <button id="modifAdresse">
                         Modifier l'adresse de livraison
                 </div>
 
 
-                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
+                <form class="formModif" method="POST" action="../controller/parametre.ctrl.php">
 
                     <div class="champsAremplir">
                         <div id="postalEtVille">
-                            <input placeholder="Code postal" type="text" name="postal" value="">
-                            <input placeholder="Ville" type="text" name="ville" value="">
+                            <input placeholder="Code postal" type="text" name="postal" value="" required>
+                            <input placeholder="Ville" type="text" name="ville" value="" required>
                         </div>
 
-                        <input placeholder="Adresse" type="text" name="adresse" value="">
+                        <input placeholder="Adresse" type="text" name="adresse" value="" required>
                     </div>
 
 
@@ -141,7 +140,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider" type="submit">
+                        <button class="valider" type="submit" name="confirmer" value="adresseLivraison">
                             Valider
                         </button>
                     </div>
@@ -156,18 +155,17 @@
 
                 <div class="afficherAttribut">
                     <p>
-                        <?= $_SESSION['nouveauPassword'] ?>
+                        **********
                     </p>
                     <button id="modifMdp">
                         Modifier le mot de passe
                     </button>
                 </div>
-                <form class="formModif" method="POST" action="../controler/parametre.ctrl.php">
+                <form class="formModif" method="POST" action="../controller/parametre.ctrl.php">
                     <div class="champsAremplir">
-                        <input placeholder="Ancien mot de passe" type="text" name="ancienPassword" value="">
-                        <input placeholder="Nouveau mot de passe" type="text" name="nouveauPassword" value="">
-                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="checkPassword"
-                            value="">
+                        <input placeholder="Ancien mot de passe" type="text" name="ancienPassword" value="" minlength="12" required>
+                        <input placeholder="Nouveau mot de passe" type="text" name="nouveauPassword" value="" minlength="12" required>
+                        <input placeholder="Confirmer le nouveau mot de passe" type="text" name="checkPassword" minlength="12" value="" required>
 
                     </div>
 
@@ -176,7 +174,7 @@
                         <button class="annuler" type="button">
                             Annuler
                         </button>
-                        <button class="valider" type="submit">
+                        <button class="valider" type="submit" name="confirmer" value="password">
                             Valider
                         </button>
                     </div>
@@ -195,7 +193,7 @@
         </div>
 
 
-        <form class="divPopUp" method="POST" action="../controler/parametre.ctrl.php">
+        <form class="divPopUp" method="POST" action="../controller/parametre.ctrl.php">
             <input type="hidden" name="supprimerCompte" value="idDuCompte">
             <div class="popUp">
                 <section>
@@ -211,7 +209,7 @@
                         <button id="annulerSupprimer" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimer" type="submit">
+                        <button id="confirmerSupprimer" type="submit" name="effacer" value="effacer">
                             Supprimer
                         </button>
                     </div>
@@ -223,7 +221,7 @@
         </form>
 
 
-        <form class="divPopUp" method="post" enctype="multipart/form-data" action="../controler/parametre.ctrl.php">
+        <form class="divPopUp" method="post" enctype="multipart/form-data" action="../controller/parametre.ctrl.php">
 
             <div class="popUp">
                 <section>
@@ -275,7 +273,7 @@
         </form>
 
 
-        <form class="divPopUp" method="POST" action="../controler/parametre.ctrl.php">
+        <form class="divPopUp" method="POST" action="../controller/parametre.ctrl.php">
             <input type="hidden" name="supprimerPhotoProfil" value="idDuCompte">
             <div class="popUp">
                 <section>

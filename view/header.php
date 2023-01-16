@@ -69,7 +69,7 @@
           </a>
           <a href="#draft">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
           <a href="#move">Enchères remportées<i><img src="" alt=""></i></a>
-          <a href="../view/monEspaceVendeur.php">Mon espace vendeur</a>
+          <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$_SESSION['num_utilisateur']?>">Mon espace vendeur</a>
           <a href="#notification">Notifications</a>
           <a href="../controller/logout.ctrl.php">Se déconnecter</a>
         <?php else: ?>
@@ -87,13 +87,14 @@
       </div>
     </div>
   </div>
-  <form id="lesCategories" action="../controller/rechercheChoix.ctrl.php" method="POST">
+  <form id="lesCategories" action="../controller/rechercheChoix.ctrl.php" method="GET">
     <ul class="conteneur">
-      <li class="liCategories"><button name="valeurChoix" value="AlaUne">A la une</button></li>
-      <li class="liCategories"><button name="valeurChoix" value="vetements">Vêtements</button></li>
-      <li class="liCategories"><button name="valeurChoix" value="instruments">Instruments</button></li>
-      <li class="liCategories"><button name="valeurChoix" value="accessoires">Accessoires</button></li>
-      <input type="hidden" name="choix" value="categorie">
+      <li class="liCategories"><button name="orderBy[]" value="AlaUne">A la une</button></li>
+      <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Vêtement">Vêtements</button></li>
+      <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Instrument">Instruments</button></li>
+      <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Accessoire">Accessoires</button></li>
     </ul>
   </form>
 </header>
+<?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
+<?php if(isset($messages) && count($messages) > 0) include(__DIR__ . '/popup/message.view.php'); ?>

@@ -25,8 +25,8 @@ class Article
     private const LOCALURL = "../data/imgArticle/";
 
     // WhiteList pour éviter une injection SQL
-    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeu" => "num_vendeu","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style"];
-    private const WHITELIST_ORDER_BY = ["Asc" => "ASC", "DESC" => "DESC"];
+    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut"];
+    private const WHITELIST_ORDER_BY = ["ASC" => "ASC", "DESC" => "DESC"];
 
     public function __construct(
         Utilisateur $vendeur, string $titre, string $description, array $nomImgages, int $prixMin, string $artiste,
@@ -200,7 +200,7 @@ class Article
         return $this->dateEvenement->format('Y-m-d'); // Format ISO pour la base de données
     }
 
-    private function setDateEvenement(dateTime $dateEvenement)
+    public function setDateEvenement(dateTime $dateEvenement)
     {
         $this->dateEvenement = $dateEvenement;
     }
@@ -337,16 +337,6 @@ class Article
         return Article::obtenirArticlesAPartirTable($table);
     }
 
-    public static function readCategorie(string $categorieName): array
-    {
-        $query = "SELECT *
-                    FROM ARTICLE
-                    WHERE categorie like '%' ||?||'%';";
-
-        $dao = DAO::get();
-        $table = $dao->query($query, [$categorieName]);
-        return Article::obtenirArticlesAPartirTable($table);
-    }
 
     /////////////////////////// ReadPage /////////////////////////////////////
 
@@ -354,7 +344,7 @@ class Article
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'
                     ORDER BY num_article
@@ -373,28 +363,92 @@ class Article
         return Article::obtenirArticlesAPartirTable($table);
     }
 
-    public static function readPageChoix(int $page,int $pageSize, string $choix, string $valeurChoix, string $orderByChoix ="num_article",string $orderBy="Asc"){
-        
-        
-        
-        /*Certaines variables mises directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/        
-        $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
-                    WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||:valeurChoix||'%' 
-                    ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy] ."                   
-                    LIMIT :pageSize OFFSET :articleOffset ;";
 
+
+
+    /**
+     * Permet la recherche avec plusieurs paramètres en une seule fonction
+     * @param int $page
+     * @param int $pageSize
+     * @param array $choixEtvaleurs
+     * @param mixed $choixObligatoire
+     * @param mixed $choixObligatoireValeur
+     * @param string $orderByChoix
+     * @param string $orderBy
+     * @return array
+     */
+    public static function readPagePlusieursChoix(int $page,int $pageSize, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs, string $orderByChoix ="date_debut",string $orderBy="ASC"){
+        
+        /********************* La requête *********************/
+        $query = "SELECT * FROM ENCHERE_TOUT_EN_COURS_VIEW "
+             . Article::generationDynamiqueQuery($choixEtvaleurs,$choixObligatoiresEtvaleurs)  // Génération dynamique de la requête, vulnérabilité d'injection potentielle
+            . " ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy]
+            ." LIMIT :pageSize OFFSET :articleOffset ;";
+
+        /********************* Les données *********************/
         $data = [
-            "valeurChoix" => $valeurChoix,
             "articleOffset" => ($page - 1) * $pageSize,
-            "pageSize" => $pageSize
+            "pageSize" => $pageSize,
         ];
-
+        Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
+        var_dump($data, $query);
+        /********************* La requête préparée *********************/
         $dao = DAO::get();
-$table = $dao->query($query, $data);
+        $table = $dao->query($query, $data);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
+
+
+
+
+    /**
+     *  Génére dynamiquement la requête
+     * @param string $query la requête sql
+     * @param array $choixEtvaleurs
+     * @return string
+     */
+    private static function generationDynamiqueQuery(array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) {
+        $query = "";
+        $liste = [0 => [0 => $choixEtvaleurs, 1 => "OR"], 1 => [ 0 => $choixObligatoiresEtvaleurs, 1 => "AND"]];
+        $i = 0; // L'index de valeurChoix
+        for ($j = 0; $j < 2; $j++) {
+            foreach($liste[$j][0] as $choix => $choixValeurs) {
+                foreach($choixValeurs as $choixValeur) { // Juste pour la lisibilité de la boucle
+                    /*Certaines variables mises directement pour éviter les '', 
+                    j'utilise une whiteListe pour éviter l'injection SQL, cependant la vulnérabillité existe toujours*/        
+                    $query .= ($i == 0 ? "WHERE " : $liste[$j][1]) . " " .self::WHITELIST_NOM_ATTRIBUT[$choix] . 
+                    ( $j==0 ? " like '%' ||:valeurChoix$i||'%' " : "=:valeurChoix$i "); 
+                    $i++;
+                }
+            }
+
+        }
+        return $query;
+    }
+
+
+
+
+    /**
+     *  Génére dynamiquement les données à utiliser avec generationDynamiqueQuery
+     * @param array $data Les valeurs des choix
+     * @param array $choixEtvaleurs
+     * @return void
+     */
+    private static function generationDynamiqueData(array &$data, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) {
+        $liste = [0 => [0 => $choixEtvaleurs], 1 => [ 0 => $choixObligatoiresEtvaleurs]];
+        $i = 0; // L'index de valeurChoix
+        for ($j = 0; $j < 2; $j++) {
+            foreach($liste[$j][0] as $choix => $choixValeurs) {  // Juste pour la lisibilité de la boucle
+                foreach($choixValeurs as $choixValeur) {
+                    $data["valeurChoix$i"] = $choixValeur;
+                    $i++;
+                }
+            }
+
+        }
+    }
 
     
     
@@ -402,7 +456,7 @@ $table = $dao->query($query, $data);
     {
         /*Certaines variables mises directement pour éviter les '', l'utilisateur ne peut normalement pas manipuler ces données*/      
         $query = "SELECT *
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     ORDER BY num_article               
                     LIMIT :pageSize OFFSET :articleOffset ;";
                     
@@ -419,19 +473,28 @@ $table = $dao->query($query, $data);
         }
     }
     
-    public static function nombreArticlesParChoix(string $choix, string $valeurChoix){
-        /*L'attribut mis directement pour éviter les '', j'utilise une whiteListe donc normalement il n y a pas d'injection sql possible*/ 
+    public static function nombreArticlesPlusieursChoix( array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) { 
+
+        /*génération dynamique, j'utilise une whiteListe cependant il y'a potentiellement une vulnérabilité*/
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE natural join CONCERNE
-                    WHERE ". self::WHITELIST_NOM_ATTRIBUT[$choix] ." like '%' ||?||'%';";
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW " 
+                    . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
+        $data = array();
+        Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
+        
+        var_dump($data, $query);
         $dao = DAO::get();
-        $tableContenantLeNombre = $dao->query($query, [$valeurChoix]);
+        $tableContenantLeNombre = $dao->query($query, $data);
         return $tableContenantLeNombre[0][0];
     }
 
+
+
+
+
     public static function nombreArticlesLike(string $titreArtiste){
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE natural join CONCERNE
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'";
         $dao = DAO::get();
@@ -442,7 +505,7 @@ $table = $dao->query($query, $data);
 
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
-                    FROM ARTICLE  natural join CONCERNE";
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
         return $tableContenantLeNombre[0][0];

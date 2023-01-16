@@ -5,13 +5,12 @@
     include_once(__DIR__."/../model/Enchere.class.php");
     try {
         // Récupérer les données
-
         $numEnchere = $_GET['numEnchere'] ?? -1;
         $enchere = Enchere::read($numEnchere);
-        $prixActuel = $enchere->obtenirPrixActuel();
+        $likeActuel = $enchere->obtenirLikeActuel();
 
         // Envoyer le prix
-        echo $prixActuel;
+        echo $likeActuel;
     } catch (Exception| Error $e) {
         // Ne rien faire
         echo $e->getMessage();

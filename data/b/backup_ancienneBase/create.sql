@@ -9,6 +9,11 @@
 
 
 /*SQLITE n'autorise le drop d'une table qu'une par une*/
+DROP VIEW IF EXISTS ENCHERE_TOUT_VIEW;
+DROP VIEW IF EXISTS ENCHERE_TOUT_EN_COURS_VIEW;
+DROP VIEW IF EXISTS PRIX_ACTUEL_VIEW;
+DROP VIEW IF EXISTS ENCHERISSEMENT_MAX_VIEW;
+
 DROP TABLE IF EXISTS IMAGE_ARTICLE;
 DROP TABLE IF EXISTS LIKE_DISLIKE;
 DROP TABLE IF EXISTS CONCERNE;
@@ -125,6 +130,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .import ../../sql_base_donnees_actuelle/initialisation/articles.initialisation.txt ARTICLE
 .import ../../sql_base_donnees_actuelle/initialisation/concerne.initialisation.txt CONCERNE
 .import ../../sql_base_donnees_actuelle/initialisation/image_article.initialisation.txt IMAGE_ARTICLE
+.import ../../sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt ENCHERIT
 
 .print '===========================  TESTS  ==========================='
 
@@ -145,8 +151,21 @@ SELECT * from ENCHERE;
 .print '===========================  TRIGGER  ==========================='
 
 
+.print '===========================  AUTRES ==========================='
+CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select *, max(prix_offre) as prix_max
+                                    FROM encherit
+                                    group by num_enchere;
 
 
+CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max(prix_offre,prix_min) as prix_actuel
+            from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
+            group by num_enchere;
+            
+
+UPDATE ENCHERE set date_debut = DATE();
+
+create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
+    WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
 
 
 

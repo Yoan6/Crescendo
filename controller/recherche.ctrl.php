@@ -8,7 +8,7 @@
     **                         Données
     ***************************************************************************/
     // initialisation
-    $recherche = $_GET["recherche"] ?? "%"; 
+    $recherche = $_GET["recherche"] ?? ""; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
     $controllerName = basename(__FILE__);
@@ -18,12 +18,12 @@
     $page = $_GET['page'] ?? 1;
     $pageSize = 5; //Nombre d'article
     $nbBoutonPage = 5;
-    $pagePrec = ($page == 1 ? 1 : $page - 1); 
-    $pageSuiv = ($page == $pageMax ? $pageMax : $page + 1);
+    $pagePrec = ($page <= 1 ? 1 : $page - 1); 
+    $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
     
     // Récupérer les enchères
     try {
-        $pageMax = article::nombreArticlesLike($recherche) / $pageSize; // Une erreur est générée si 0 article trouvé
+        $pageMax = ((int)article::nombreArticlesLike($recherche) / $pageSize)+1; // Une erreur est générée si 0 article trouvé
         $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();

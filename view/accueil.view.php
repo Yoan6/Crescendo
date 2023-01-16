@@ -23,7 +23,7 @@
         <div class="conteneur" id="divVIA">
             <ul class="conteneur" id="via">
                 <li>
-                    <a>
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Vêtement">
                         <div>
                             <img src="../design/image/accueil/vete.jpeg">
                         </div>
@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Instrument">
                         <div>
                             <img src="../design/image/accueil/instr.jpg">
                         </div>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a>
+                    <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[categorie][]=Accessoire">
                         <div>
                             <img src="../design/image/accueil/acc.jpg">
                         </div>
