@@ -19,27 +19,27 @@
 
 
   <main id="connexion">
-  <a class="logo" href="../view/accueil.view.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+  <a class="logo" href="../controller/accueil.ctrl.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
     <h1>Connexion</h1>
     <form action="../controller/login.ctrl.php" method="post">
       <div>
         <label for="login">Adresse email / Pseudo : </label>
-        <input class="input" id="login" type="text" name="login" value="" placeholder="Exemple : Bernard" required>
+        <input class="input" id="login" type="text" name="login" value="<?=$login?>" placeholder="Exemple : Bernard" required>
       </div>
       <div>
         <label for="password">Mot de passe (au moins 12 caractères) : </label>
         <input class="input" id="password" type="password" name="password" value="" placeholder="Votre mot de passe"
           minlength="12" required>
       </div>
-      <a class="MDPForgotten" href="">Mot de passe oublié ?</a>
+      <a class="MDPForgotten" href="" target="_blank">Mot de passe oublié ?</a>
       <button class="connexion" type="submit" name="connexion">SE CONNECTER</button>
-      <a href="../view/inscription.php" id="inscription" >S'INSCRIRE</a>
+      <a href="../controller/inscription.ctrl.php" id="inscription" >S'INSCRIRE</a>
 
       <div>
         <?php 
 
-        if (isset($error) && count($error) != 0) {
-          foreach($error as $e) { ?>
+        if (isset($errors) && count($errors) != 0) {
+          foreach($errors as $e) { ?>
             <p class="error"><?php echo($e);?></p>
             <?php
           }

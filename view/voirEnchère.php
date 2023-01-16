@@ -10,35 +10,7 @@
 </head>
 
 <body class="dark-mode">
-    <?php include(__DIR__ . '/header.php'); ?>
-
-
-    <div id="bandeau1">
-        <div class="div1">
-
-        </div>
-        <div class="div2">
-            <h3> Enchère validée </h3>
-        </div>
-        <div class="div3">
-            <button class="btnFermer"> Fermer </button>
-        </div>
-    </div>  
-
-
-    <div id="bandeau2">
-        <div class="div1">
-
-        </div>
-        <div class="div2">
-            <h3> Problème lors de la mise en place du moyen de paiement</h3>
-        </div>
-        <div class="div3">
-            <button class="btnFermer"> Fermer </button>
-        </div>
-    </div>  
-        
-    
+    <?php include(__DIR__ . '/header.php'); ?>    
 
     <main>
 

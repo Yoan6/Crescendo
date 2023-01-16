@@ -11,12 +11,9 @@ if(!isset($_SESSION)) {
 // Si l'utilisateur est déjà connecté, on le redirige vers la page d'accueil :
 
 if (isset($_SESSION['num_utilisateur'])) {
-    $view = new View();
-    $view->display("accueil.view.php");
+    header("Location: ../controller/accueil.ctrl.php");
 }
 
-
-else {
     ///////////////////////////////////////////////////////////////////////////////
     // Partie récupération des données
     ///////////////////////////////////////////////////////////////////////////////
@@ -41,10 +38,7 @@ else {
             $passwordHash = $utilisateur->getMotDePasse();
             if (password_verify($password, $passwordHash)) {
                 $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
-                $view = new View();
-        
-                // Charge la vue
-                $view->display("accueil.view.php");
+                header("Location: ../controller/accueil.ctrl.php");
             }
             else {
                 array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
@@ -58,14 +52,12 @@ else {
     } else {
         array_push($errors, "Vous n'avez pas rentré de login ou mot de passe");
     }
-    
 
     $view = new View();
+    $view->assign('login',$login);
     $view->assign('errors',$errors);
         
     // Charge la vue
     $view->display("login.php");
 
-    var_dump(($errors));
-}
 ?>

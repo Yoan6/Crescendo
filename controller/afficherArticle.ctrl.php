@@ -45,7 +45,7 @@
     **                         Données du vendeur
     ***************************************************************************/
     $vendeur = $article->getVendeur();
-    $imgProfil = $vendeur->getVendeur()->getImgProfil();
+    $imgProfil = $article->getVendeur()->getImgProfil();
     $numUtilisateur = $article->getVendeur()->getNumUtilisateur();
     $pseudo = $article->getVendeur()->getPseudo();
 
