@@ -605,3 +605,82 @@ main form #bottomForm>div>div>section>h4 {
         padding-bottom: 10px;
     }
 }
+
+#bandeau1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 115px;
+    width : 100%;
+    height: 80px;
+    background:#79D2BC;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 700;
+    color :#000000;
+    z-index: 1;
+}
+
+#bandeau2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 115px;
+    width: 100%;
+    height: 80px;
+    background:#F85656;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.btnFermer{
+    display: flex;
+    width : 100%;
+    border: 0;
+    line-height: 2.5;
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+    background-color: #020202;
+    opacity: 0.7;
+}
+
+.div1, .div3{
+    width:25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div2 h3{
+    width: 100%;
+}
+
+.div2 {
+    width: 50%;
+    text-align: center;
+}
+
+.div3>button{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1000px){
+    #bandeau1, #bandeau2, .btnFermer{
+        position: relative;
+    }
+    #bandeau1, #bandeau2{
+        top: 0px;
+    }
+}
