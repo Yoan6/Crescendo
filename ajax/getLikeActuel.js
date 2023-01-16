@@ -1,6 +1,6 @@
-function getPrixActuel(numEnchere) {
+function getLikeActuel(numEnchere) {
     // récupérer la box à changer
-    boxAChanger = document.getElementById("prixActuelText");
+    boxAChanger = document.getElementById("likeActuelText");
 
     // Créer l'objet XMLHttpRequest
     var xmlhttp = new XMLHttpRequest();
@@ -13,13 +13,12 @@ function getPrixActuel(numEnchere) {
     }
 
     // Demander le fichier avec la fonction à exécuter
-    xmlhttp.open("GET","../ajax/getPrixActuel.php?numEnchere=" + numEnchere);
+    xmlhttp.open("GET","/crescendo/ajax/getLikeActuel.php?numEnchere=" + numEnchere);
     xmlhttp.send();
 }
    
 
-function reactualiserPrixActuel(numEnchere) {
-    setInterval(getPrixActuel,1000,numEnchere);  // 1000 ms = 1s
+function reactualiserLikeActuel(numEnchere) {
+    setInterval(getLikeActuel,1000,numEnchere);  // 1000 ms = 1s
     // Note : ne pas mettre les parenthèse à la fonction, sinon c'est considéré comme une valeur et non la fonction 
 }
-

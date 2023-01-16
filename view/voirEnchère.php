@@ -57,8 +57,9 @@
                 <div id="topForm">
                     <div id="divTopLeft">
                         <div id="carousel">
+                            <img src="" class="carouselImg">
                             <img src=" <?=$imgUrl?> " class="carouselImg" id="premierImage">
-                            <img src=" <?=$imgUrl?> " class="carouselImg" id="deuxiemeImage">
+                            <img src="../data/imgArticle/Z_chaussures_JJ_goldman.jpg" class="carouselImg" id="deuxiemeImage">
                             <img src=" <?=$imgUrl?> " class="carouselImg" id="troisiemeImage">
                             <svg id="buttonPrev" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
@@ -107,7 +108,7 @@
                         <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
                             <h3>Prix actuel</h3>
                             
-                            <h4><?=$prixActuel ?></h4>
+                            <h4><span id="prixActuelText"></span></h4>
 
                         </div>
 
@@ -154,7 +155,7 @@
                             </svg>
 
 
-                            <p>654</p>
+                            <p>  </p>
 
                             <svg id="dislike" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"
                                 transform="rotate(180)">
@@ -326,5 +327,6 @@
 <script src="../js/header.js"></script>
 <script src="../js/voirEnchère.js"></script>
 <script src="../ajax/getPrixActuel.js" defer></script>
+<script src="../ajax/getLikeActuel.js" defer></script>
 
 </html>

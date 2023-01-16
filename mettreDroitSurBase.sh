@@ -1,0 +1,1 @@
+chmod o+xw -R data
