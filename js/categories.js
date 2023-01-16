@@ -118,18 +118,20 @@ orderBy.addEventListener("change", function () {
   if (orderBy.value) {
     //On retire les espaces
     orderBy.value = orderBy.value.replace(/\s/g, '');
-    url.searchParams.set("orderBy", orderBy.value);
+    url.searchParams.set("orderByChoix", orderBy.value);
     window.location.href = url.href;
   }
 });
 
 
+/*
 //Lors du chargement de la page, on vérifie si il y a des paramètres GET et on change la valeur du select
 var url = new URL(window.location.href);
 var orderBy = document.getElementById("orderBy");
 if (url.searchParams.get("orderBy")) {
   orderBy.value = url.searchParams.get("orderBy");
 }
+*/
 
 
 
