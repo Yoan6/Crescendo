@@ -390,8 +390,7 @@ class Article
             "articleOffset" => ($page - 1) * $pageSize,
             "pageSize" => $pageSize,
         ];
-        Article::generationDynamiqueData($data, $choixEtvaleurs);
-        Article::generationDynamiqueData($data, $choixObligatoiresEtvaleurs);
+        Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
         var_dump($data, $query);
         /********************* La requête préparée *********************/
         $dao = DAO::get();
@@ -437,16 +436,19 @@ class Article
      * @param array $choixEtvaleurs
      * @return void
      */
-    private static function generationDynamiqueData(array & $data, array $choixEtvaleurs) {
+    private static function generationDynamiqueData(array & $data, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) {
+        $liste = [0 => [0 => $choixEtvaleurs], 1 => [ 0 => $choixObligatoiresEtvaleurs]];
         $i = 0; // L'index de valeurChoix
-        foreach($choixEtvaleurs as $choix => $choixValeurs) {
-            foreach($choixValeurs as $choixValeur) { // Juste pour la lisibilité de la boucle
-                $data["valeurChoix$i"] = $choixValeur;
-                $i++;
+        for ($j = 0; $j < 2; $j++) {
+            foreach($liste[$j][0] as $choix => $choixValeurs) {  // Juste pour la lisibilité de la boucle
+                foreach($choixValeurs as $choixValeur) {
+                    $data["valeurChoix$i"] = $choixValeur;
+                    $i++;
+                }
             }
-        }
-    } 
 
+        }
+    }
 
     
     
@@ -478,7 +480,7 @@ class Article
                     FROM ENCHERE_TOUT_EN_COURS_VIEW " 
                     . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
         $data = array();
-        Article::generationDynamiqueData($data, array_merge($choixEtvaleurs,$choixObligatoiresEtvaleurs));
+        Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
         
         var_dump($data, $query);
         $dao = DAO::get();
