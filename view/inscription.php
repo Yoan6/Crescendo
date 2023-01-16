@@ -116,7 +116,7 @@
                         <article class="article-condition-generale">
                             <input id="checkConditionGenerale" type="checkbox" name="conditions" required>
                             <p class="condition-generale"> En cochant la case, vous acceptez les <a class="condition"
-                                    href="conditionGenerale.php">CONDITIONS
+                                    href="conditionsUtilisation.view.php" target="_blank">CONDITIONS
                                     GÉNÉRALES D'UTILISATION</a> et la <a class="condition"
                                     href="protectionDonnee.php">POLITIQUE DE PROTECTION DES DONNÉES</a></p>
                         </article>
