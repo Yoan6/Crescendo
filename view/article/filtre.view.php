@@ -1,13 +1,24 @@
-<!--Informer l'utilisateur-->
-<option value="">Trier par</option>
 
-<!--Liste d'initialisation-->
-<?php $lesFiltres = [["value" => "artiste", "name" =>"artiste A-Z", "orderBy" => "ASC"]];?>
+    
+    <?php 
+    // Liste d'initialisation
+    $lesFiltres = [
+                        "artiste" =>"artiste A-Z", 
+                        "artiste" => "artiste Z-A",
+                        "prix_actuel" =>"prix ↗", 
+                        "prix_actuel" => "prix ↘"
+                        ];
+    ?>
 
-<!--Traverser la liste pour créer des balises <option></option>-->
-<?php foreach($lesFiltres as $filtre) : ;?> 
+
+
+<select id="orderBy">
+    <!--Informer l'utilisateur-->
     <option value="">Trier par</option>
-        <option value="<?=$filtre['value']?>"><?=$filtre['name']?> <input type="hidden" name="orderBy" value="<?=$filtre['orderBy']?>"> </option>
-        <option value="2">artiste Z-A</option>
-    </option>
-<?php endforeach;?>
+
+
+    <!--Traverser la liste pour créer des balises <option></option>-->
+    <?php foreach($lesFiltres as $filtre => $label) : ;?> 
+        <option value="<?=$filtre?>"><?=$label?></option>
+    <?php endforeach;?>
+</select>

@@ -32,7 +32,6 @@
                 <p>
                 Il ne vous restera plus qu'à envoyer votre colis !
                 </p>
-                
                 <img src="../design/image/schemas/screen_schema_vendre.png">
             </div>
         </main>
