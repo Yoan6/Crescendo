@@ -94,7 +94,7 @@ main form #topForm>#divTopLeft {
 }
 
 #carousel>svg path {
-    fill: black;
+    fill: var(--bleu);
 }
 
 #carousel>#buttonPrev {

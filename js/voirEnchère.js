@@ -7,18 +7,18 @@ prix.addEventListener("onkeypress", (event) => {
     // Alert the key name and key code on keydown
   }, false);
 
-  
+  var preview = document.getElementById('preview');
   var carouselImg = document.getElementsByClassName("carouselImg");
   var currentImageIndex = 0;
   var currentImage = carouselImg[currentImageIndex];
   var prevBtn = document.getElementById("buttonPrev");
   var nextBtn = document.getElementById("buttonNext");
 
-for(let i = 1; i < carouselImg.length; i++){
+for(let i = 0; i < carouselImg.length; i++){
   carouselImg[i].style.display = "none";
 }
 
-currentImage.src = carouselImg[1].src;
+preview.src = carouselImg[0].src;
 
 
   if(carouselImg.length > 1){
@@ -30,7 +30,7 @@ currentImage.src = carouselImg[1].src;
     if (currentImageIndex >= carouselImg.length) {
       currentImageIndex = 1;
     }
-    currentImage.src = carouselImg[currentImageIndex].src;
+    preview.src = carouselImg[currentImageIndex].src;
   }
 
   function prevImage() {
@@ -38,7 +38,7 @@ currentImage.src = carouselImg[1].src;
     if (currentImageIndex < 0) {
       currentImageIndex = carouselImg.length;
     }
-    currentImage.src = carouselImg[currentImageIndex].src;
+    preview.src = carouselImg[currentImageIndex].src;
   }
 
 } else {
