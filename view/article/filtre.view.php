@@ -8,6 +8,8 @@
                         "prix_actuel" =>"prix ↗", 
                         "prix_actuel" => "prix ↘"
                         ];
+    //orderByChoix=prix_actuel&orderBy=DESC
+    //orderByChoix=filtre&orderBy= 
     ?>
 
 
@@ -21,4 +23,4 @@
     <?php foreach($lesFiltres as $filtre => $label) : ;?> 
         <option value="<?=$filtre?>"><?=$label?></option>
     <?php endforeach;?>
-</select>
+</select> 

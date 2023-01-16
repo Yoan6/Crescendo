@@ -77,8 +77,9 @@
                         <h4>
                             <?=$titre ?>
                         </h4>
-                        <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
-                            <h3>Prix actuel</h3>
+                        <div id="divPrixActuel">
+                        <input type="hidden" id="numEnchere" value="<?=$numEnchere?>">
+                        <h3>Prix actuel</h3>
                             <h4><span id="prixActuelText"></span></h4>
 
                         </div>
@@ -174,7 +175,7 @@
 
                     <a id="featuresRight" href="vendeur">
                         <div>
-                            <img src="../design/image/accueil/coeur_concert.jpeg" alt="user">
+                            <img src="<?= $imgProfil ?>" alt="user">
                         </div>
                         <p><?=$pseudo ?></p>
                     </a>
