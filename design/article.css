@@ -147,11 +147,19 @@
     background-color: var(--bleu);
     border: none;
     color: black;
-    font-weight: bolder;
+    font-weight: 700;
     font-size: 1.2em;
     cursor: pointer;
-
+    transition: all 0.2s ease-in-out;
 }
+
+.article #center .divBouton button:hover {
+    background-color: #efefef;
+    color: black;
+    transform: scale(1.03);
+}
+
+
 
 
 .article #divLikes {

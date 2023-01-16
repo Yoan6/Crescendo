@@ -111,17 +111,24 @@ document.getElementsByClassName("buttonDropFilter").onclick = function() {
 
 
 //whene the select is changed, we reload the page with GET parameters
-
+var inputOrderBy = document.getElementsByClassName("inputOrderBy");
+var optionOrderByChoix = document.getElementsByClassName("optionOrderByChoix");
 var orderBy = document.getElementById("orderBy");
+
+
+
+
 orderBy.addEventListener("change", function () {
   var url = new URL(window.location.href);
-  if (orderBy.value) {
-    //On retire les espaces
-    orderBy.value = orderBy.value.replace(/\s/g, '');
-    url.searchParams.set("orderByChoix", orderBy.value);
-    window.location.href = url.href;
-  }
+  url.searchParams.set("orderByChoix", optionOrderByChoix[orderBy.selectedIndex - 1].value);
+  url.searchParams.set("orderBy", inputOrderBy[orderBy.selectedIndex - 1].value);
+  window.location.href = url.href;
 });
+
+
+//il n'est pas possible de mettre des eventhandler sur les options d'un select, donc on utilise un input caché
+
+
 
 
 /*
