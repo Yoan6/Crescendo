@@ -144,12 +144,17 @@ WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN N
 
 create VIEW ENCHERE_TOUT as select * from enchere natural left join encherit natural join concerne natural join article; 
 
-CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select *, max(prix_offre) as prix_max
+CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select * max(prix_offre) as prix_max
                                     FROM encherit
                                     group by num_enchere;
 
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
+
+CREATE VIEW ENCHERE_TOUT_VIEW as SELECT * max(prix_offre,prix_min) as prix_actuel
+    from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
+    group by num_enchere;
+            
 /*======================================================
 *                      IMPORTAGE DES DONNEES
 ========================================================*/
@@ -164,4 +169,4 @@ SELECT setval('utilisateur_num_utilisateur_seq',101,true);
 SELECT setval('article_num_article_seq',101,true);
 SELECT setval('enchere_num_enchere_seq',101,true);
 
-UPDATE ENCHERE set date_debut = curren_date();
+UPDATE ENCHERE set date_debut = current_date();
