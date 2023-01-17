@@ -27,9 +27,7 @@ $nouveauPassword = $_POST['nouveauPassword'] ?? '';
 $checkPassword = $_POST['checkPassword'] ?? '';
 
 // Lien relatif vers le dossier des images :
-$chemin_image  =__DIR__."/../design/image/user/";
-
-$image;
+$chemin_image  =__DIR__."/../data/imgProfil/";
 
 // On modifie l'image de profil de l'utilisateur :
 if(isset($_FILES['fichier'])) {
@@ -58,12 +56,6 @@ if(isset($_FILES['fichier'])) {
     } else {
         echo "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.";
     }
-}
-else {
-    // Si l'utilisateur n'a pas encore d'image de profil, on lui en donne une par défaut :
-    $utilisateur->setImgProfil($chemin_image."/img_profile_default.png");
-    $utilisateur->update();
-    $image = $chemin_image."/img_profile_default.png";
 }
 
 //Cas oùl'utilisateur veut effacer son image de profil :
@@ -166,7 +158,6 @@ $view->assign('password', $password);
 $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
-$view->assign('imgProfil', $image);
 
 $view->assign('errors',$errors);
 $view->display("parametres.php");

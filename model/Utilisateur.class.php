@@ -37,7 +37,7 @@ class Utilisateur
         //$this->setDateCreation($dateCreation);
 
         // Autres initialisations
-        $this->setImgProfil("");
+        $this->setImgProfil("../data/imgProfil/img_profile_default.png");
         $this->setNumUtilisateur(-1);
     }
 
