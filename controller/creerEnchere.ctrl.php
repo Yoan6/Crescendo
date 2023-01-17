@@ -4,8 +4,9 @@
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
+    session_start();
 
-    $utilisateur = Utilisateur::readNum(1);
+    $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
     $errors = array();
     $messages = array();
     $article = null;

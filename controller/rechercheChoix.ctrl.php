@@ -14,7 +14,6 @@ include_once(__DIR__."/../model/Enchere.class.php");
 /***************************************************************************
 **                         Données
 ***************************************************************************/
-var_dump($_GET);
 
 // Données pour la recherche
 $recherche = $_GET["recherche"] ?? "";
@@ -24,8 +23,6 @@ $choixObligatoireEtValeurs = $_GET['choixObligatoire'] ?? array();
 $orderByChoix =  $_GET['orderByChoix'] ?? "date_debut";
 $orderBy =  $_GET['orderBy'] ?? "DESC";
 
-var_dump($orderBy);
-var_dump($choixObligatoireEtValeurs);
 // Pour relancer le controller
 $controllerName = basename(__FILE__);
 
