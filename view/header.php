@@ -1,4 +1,7 @@
 <header>
+
+  <?php if(!isset($_SESSION)) { session_start(); } ?>
+
   <div id="firstStage">
     <svg id="burgerButton" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -51,18 +54,17 @@
 
 
     <div class="divDropUser">
+      <?php if (isset($_SESSION['num_utilisateur'])) {
+        $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
+        $image = $utilisateur->getImageURL();
+      }
+      else {
+        $image = "http://www.w3.org/2000/svg";
+      }
+      ?>
 
-      <svg class="btn" id="btn" width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#ebebeb"
-          stroke-width="0.576"></g>
-        <g id="SVGRepo_iconCarrier">
-          <path
-            d="M18 18.7083C17.4832 16.375 15.5357 15 12.0001 15C8.46459 15 6.51676 16.375 6 18.7083M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 12C13.3333 12 14 11.2857 14 9.5C14 7.71429 13.3333 7 12 7C10.6667 7 10 7.71429 10 9.5C10 11.2857 10.6667 12 12 12Z"
-            stroke="#ffffff" stroke-width="0.8160000000000001" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-      </svg>
+      <img class="btn" id="btn" width="256px" height="256px" viewBox="0 0 24.00 24.00" fill="none" src="<?=$image?>">
+      
       <div class="dropdown" id="dropdown">
         <?php if (isset($_SESSION['num_utilisateur'])): ?>
           <a href="../controller/parametre.ctrl.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>
