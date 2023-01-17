@@ -10,20 +10,27 @@
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
-<?php var_dump($choixObligatoire) ?>
+
+<?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
+
+<?php 
+    $monProfil = false;
+    if($choixObligatoire['num_vendeur'][] = $_SESSION['num_utilisateur']){
+        $monProfil = true;
+    }
+?>
+
+
+<?php var_dump($choixObligatoire['num_vendeur'],$_SESSION['num_utilisateur'], $monProfil) ?>
+
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
     <?php if (isset($errors) && count($errors) > 0)
         include(__DIR__ . '/popup/erreur.view.php'); ?>
 
-    <?php 
-    $monProfil = false;
-    if($choixObligatoire['num_vendeur'][]=$_SESSION['num_utilisateur']){
-        $monProfil = true;
-    }
-    ?>
+    
 
     <main>
         <div id="topPage">
@@ -114,15 +121,11 @@
 
 
                 <div id="buttonUnderProfil">
-                    <?php 
-                        if($monProfil){
-                            ?>
-                            <a id="modifierProfil">
+                    <?php if($monProfil) :?>
+                        <a id="modifierProfil">
                             Modifier le profil
-                            </a>
-                            <?php 
-                        }
-                    ?>
+                        </a>
+                    <?php endif;?>
                     
                     <a id="voirLesAvis">
                         Voir les avis
@@ -133,14 +136,15 @@
             </div>
 
             <div id="topPageRight">
-                <a id="nouvelArticle">
-                    Nouvel article
-                </a>
-                <a id="nouveauLot">
-                    Nouveau lot
-                </a>
+                <?php if($monProfil) :?>
+                    <a id="nouvelArticle">
+                        Nouvel article
+                    </a>
+                    <a id="nouveauLot">
+                        Nouveau lot
+                    </a>
+                <?php endif;?>
             </div>
-
         </div>
 
         <div id="principale">
