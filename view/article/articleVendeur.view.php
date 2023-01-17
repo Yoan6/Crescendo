@@ -1,6 +1,6 @@
 <?php if(isset($encheres) && count($encheres) >= 1):?>
 <?php foreach($encheres as $enchere) : $article = Article::getTypeArticleFromArray($enchere->getArticles(),0);?> 
-    <div class="article">
+    <div class="articleVendeur">
 
         
     

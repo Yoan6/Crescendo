@@ -6,6 +6,7 @@
     <title>Crescendo</title>
     <link rel="stylesheet" type="text/css" href="../design/header.css">
     <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
+    <link rel="stylesheet" type="text/css" href="../design/article.css">
     <link rel="stylesheet" type="text/css" href="../design/articleDansEspaceVendeur.css">
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
@@ -164,10 +165,11 @@
                     
                     <?php 
                     if($estMonProfil){
+                        include(__DIR__ . '/article/articleVendeur.view.php');
+                    } else {
                         include(__DIR__ . '/article/article.view.php');
-                    } else{
-                        include(__DIR__ . '/article/pages.view.php');
                     }
+                    include(__DIR__ . '/article/pages.view.php');
                     ?>
 
 
