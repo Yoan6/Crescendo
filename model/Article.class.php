@@ -482,7 +482,6 @@ class Article
         $data = array();
         Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
         
-        var_dump($data, $query);
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, $data);
         return $tableContenantLeNombre[0][0];
