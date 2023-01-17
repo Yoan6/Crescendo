@@ -132,7 +132,27 @@ orderBy.addEventListener("change", function () {
 });
 
 
- 
+
+
+//on récupère les paramètres GET
+const parameters = new URLSearchParams(window.location.search);
+const categories = parameters.getAll("choixObligatoire[categorie][]");
+const styles = parameters.getAll("choix[style][]");
+const taille = parameters.getAll("choix[taille][]");
+const etat = parameters.getAll("choix[etat][]");
+
+function remettrelesparameters(unParametre){
+  for (let i = 0; i < unParametre.length; i++) {
+    var checkbox = document.getElementById(unParametre[i]);
+    checkbox.checked = true;
+  }
+}
+
+
+remettrelesparameters(categories);
+remettrelesparameters(styles);
+remettrelesparameters(taille);
+remettrelesparameters(etat);
 
 
 

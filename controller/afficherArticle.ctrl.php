@@ -4,8 +4,11 @@
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
-    $prix = $_POST['prix'] ?? 0; 
 
+    //si une nouvelle enchère est proposé
+    if(isset($_POST['nouvelleEnchere'])){
+        $nouvelleEnchere = $_POST['nouvelleEnchere'];
+    }
 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -93,12 +96,13 @@
     
     
     // test encherir
+    /*
     try {
         $enchere->encherir($utilisateur, $prix);
     } catch (exception $e) {
         // Une erreur peut être générée si l'offre n'est pas la plus haute
         print('\n Erreur ' . $e->getMessage() . "\n");
     }
-    
+    */
     $view->display("voirEnchère.php");
 ?>

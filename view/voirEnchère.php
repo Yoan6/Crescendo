@@ -27,7 +27,7 @@
         </div>
 
         <form id="formPrincipale" method="get" action="../controller/afficherArticle.ctrl.php">
-
+        <input type="hidden" name="numEnchere" value="<?= $numEnchere ?>">
 
             <div>
 
@@ -96,7 +96,7 @@
                         </div>
 
                         <div id="divNouveauPrix">
-                            <input id="inputPrix" type="number" name="prix" min="" placeholder="Votre nouveau prix">
+                            <input id="inputPrix" type="number" name="nouvelleEnchere" min="" placeholder="Votre nouveau prix">
                             <button type="button" id="boutonValiderPrix">
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">

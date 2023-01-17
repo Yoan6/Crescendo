@@ -208,6 +208,10 @@
 
                         </div>
                     </div>
+
+
+                    
+
                 </div>
 
 
@@ -216,8 +220,11 @@
 
             </div>
 
+            
+                
+            <div id="caseACocherCreationEnchere">
+                <input required type="checkbox"> <p>En cochant cette case, vous acceptez les </p> <a href="../view/conditionsUtilisation.view.php"> conditions d'utilisations</a>
             </div>
-
 
             <div id="buttons">
                 <a href="javascript:history.back()">Annuler</a>
