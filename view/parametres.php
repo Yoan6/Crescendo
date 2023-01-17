@@ -21,12 +21,14 @@
             <div id="divModifImage">
                 <div id="divImage">
                     <div>
-                        <img id="nouvelleImageTopLeft" src="<?=$imgProfil?>" alt="image profil">
+                        <img id="nouvelleImageTopLeft" src="<?= $imgProfil ?>" alt="image profil">
+                        <img id="imageRetenue" src="">
+
                     </div>
                 </div>
 
                 <form action="../controller/parametre.ctrl.php" method="POST">
-                    <button type="button" id="modifImageProfil" name="fichier">
+                    <button type="button" id="modifImageProfil">
                         Modifier l'image de profil
                     </button>
 

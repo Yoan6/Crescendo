@@ -27,15 +27,17 @@ $nouveauPassword = $_POST['nouveauPassword'] ?? '';
 $checkPassword = $_POST['checkPassword'] ?? '';
 
 // Lien relatif vers le dossier des images :
-$chemin_image  =__DIR__."/../data/imgProfil/";
+$chemin_image  ="../data/imgProfil/";
 
 // On modifie l'image de profil de l'utilisateur :
-if(isset($_FILES['fichier'])) {
-    $file = $_FILES['fichier'];
+if(isset($_FILES['changementImage'])) {
+    echo "il y a un fichier";
+    $file = $_FILES['changementImage'];
     $file_name = $file['name'];
     $file_tmp = $file['tmp_name'];
+
     $file_size = $file['size'];
-    $file_error = $file['error'];
+    $file_error = $file['error'];   
     $file_ext = explode('.', $file_name);
     $file_ext = strtolower(end($file_ext));
 
@@ -44,25 +46,32 @@ if(isset($_FILES['fichier'])) {
     if(in_array($file_ext, $allowed)) {
         if($file_error === 0) {
             if($file_size <= 2097152) {
-                // L'utilisateur veut changer son image de profil :
-                $utilisateur->setImgProfil($chemin_image.$file_name);
-                $utilisateur->update();
+                try {
+                    var_dump($file_name);
+                    if (move_uploaded_file($file_tmp,$chemin_image.$file_name)) {
+                        // L'utilisateur veut changer son image de profil :
+                        $utilisateur->setImageURL($chemin_image.$file_name);
+                    }
+                }
+                catch(Exception $e) {
+                    array_push($errors, "Le fichier n'a pas pu être téléchargé.");
+                } 
             } else {
-                echo "La taille du fichier ne doit pas dépasser 2 Mo.";
+                array_push($errors, "La taille du fichier ne doit pas dépasser 2 Mo."); 
             }
         } else {
-            echo "Il y a eu un problème lors du téléchargement du fichier.";
+            array_push($errors, "Il y a eu un problème lors du téléchargement du fichier.");
         }
     } else {
-        echo "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.";
+        array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
+
+    var_dump($errors);
 }
 
-//Cas oùl'utilisateur veut effacer son image de profil :
-
+// On suppriem l'image de profil de l'utilisateur :
 if ($confirmer == 'effacer') {
-    $utilisateur->setImgProfil($chemin_image."/img_profile_default.png");
-    $utilisateur->update();
+    $utilisateur->setImgProfil("../data/imgProfil/img_profile_default.png");
 }
 
 
@@ -149,15 +158,23 @@ if (count($errors) == 0) {
     $utilisateur->update();
 }
 
+
+
+$imgProfil = $utilisateur->getImageURL();
+
+
 // On assigne les variables à la vue :
 $view = new View();
 
+$view->assign('imgProfil', $imgProfil);
 $view->assign('pseudo', $pseudo);
 $view->assign('mail', $mail);
 $view->assign('password', $password);
 $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
+// Pour le javascript :
+$view->assign('imgDefault', "../data/imgProfil/img_profile_default.png");
 
 $view->assign('errors',$errors);
 $view->display("parametres.php");
