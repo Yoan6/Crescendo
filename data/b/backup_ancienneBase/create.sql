@@ -156,10 +156,15 @@ CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select *, max(prix_offre) as prix_max
                                     FROM encherit
                                     group by num_enchere;
 
+/* Il faut la version 3.32 de sqlite pour le IIF
 CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max(IIF(prix_offre is Null,0,prix_offre),prix_min) as prix_actuel
             from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
             group by num_enchere;
-            
+*/
+
+CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max((SELECT case WHEN prix_offre is Null THEN 0 ELSE prix_offre END),prix_min) as prix_actuel
+            from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
+            ;       
 
 UPDATE ENCHERE set date_debut = DATE();
 
