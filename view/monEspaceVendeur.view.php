@@ -15,14 +15,16 @@
 <?php if(!isset($_SESSION)) { session_start(); } ?>
 
 <?php 
-    $monProfil = false;
-    if($choixObligatoire['num_vendeur'][] = $_SESSION['num_utilisateur']){
-        $monProfil = true;
+    $estMonProfil = false;
+    $num_vendeur = $choixObligatoire["num_vendeur"][0];
+    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+    if(strcmp($num_utilisateur, $num_vendeur) == 0){
+        $estMonProfil = true;
     }
 ?>
 
 
-<?php var_dump($choixObligatoire['num_vendeur'],$_SESSION['num_utilisateur'], $monProfil) ?>
+<?php var_dump($num_vendeur, $num_utilisateur, $estMonProfil)?>
 
 
 <body class="dark-mode">
@@ -121,7 +123,7 @@
 
 
                 <div id="buttonUnderProfil">
-                    <?php if($monProfil) :?>
+                    <?php if($estMonProfil) :?>
                         <a id="modifierProfil">
                             Modifier le profil
                         </a>
@@ -136,7 +138,7 @@
             </div>
 
             <div id="topPageRight">
-                <?php if($monProfil) :?>
+                <?php if($estMonProfil) :?>
                     <a id="nouvelArticle">
                         Nouvel article
                     </a>
@@ -159,9 +161,14 @@
 
                         </div>
                     </div>
-
-                    <?php include(__DIR__ . '/article/article.view.php'); ?>
-                    <?php include(__DIR__ . '/article/pages.view.php'); ?>
+                    
+                    <?php 
+                    if($estMonProfil){
+                        include(__DIR__ . '/article/article.view.php');
+                    } else{
+                        include(__DIR__ . '/article/pages.view.php');
+                    }
+                    ?>
 
 
                     <form id="pagination">
