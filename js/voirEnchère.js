@@ -74,7 +74,7 @@ erreurBandeau.style.display = "none";
 boutonValiderPrix.addEventListener("click", function(){
     //retire les 2 derniers caractères du span contenant le prix  " $" et place la valeur dans le input qui passe au controleur
   
-  if(parseInt(inputPrix.value) >= parseInt(spanPrixActuelText.innerHTML)){
+  if(parseInt(inputPrix.value) > parseInt(spanPrixActuelText.innerHTML)){
     formPrincipale.submit();
   } else { 
     erreurBandeau.style.display = "flex";
