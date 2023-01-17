@@ -1,17 +1,25 @@
 <?php
+    if(isset($_SESSION)) {session_start(); }
+
     include_once(__DIR__."/../framework/view.class.php");
     include_once(__DIR__."/../model/Utilisateur.class.php");
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
-    $prix = $_POST['prix'] ?? 0; 
+    $prix = $_POST['prix'] ?? 0;
 
 
-
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
-    $utilisateur = Utilisateur::readNum(1);
+    if (isset($_SESSION['numUtilisateur'])) {
+        $utilisateur = Utilisateur::readNum($_SESSION['numUtilisateur']);
+    } else {
+        $utilisateur = null;
+    }
     $num_enchere = $_GET['numEnchere'] ?? 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
@@ -41,17 +49,18 @@
     $dateEvenement = $article->getDateEvenement();
     $lieu = $article->getLieu();
     $style = $article->getStyle();
-
-
+    
+    
     /***************************************************************************
-    **                         Données du vendeur
-    ***************************************************************************/
+     **                         Données du vendeur
+     ***************************************************************************/
     $vendeur = $article->getVendeur();
-    $imgProfil = $article->getVendeur()->getImgProfil();
-    $numUtilisateur = $article->getVendeur()->getNumUtilisateur();
-    $pseudo = $article->getVendeur()->getPseudo();
+    $imgProfil = $vendeur ->getImgProfil();
+    $numUtilisateur = $vendeur ->getNumUtilisateur();
+    $pseudo = $vendeur ->getPseudo();
+    $numVendeur = $vendeur->getNumUtilisateur();
 
-
+var_dump($numVendeur);
 
     /***************************************************************************
     **                         Construction de la vue
@@ -85,19 +94,19 @@
     $view->assign('imgProfil', $imgProfil);
     $view->assign('numUtilisateur', $numUtilisateur);
     $view->assign('pseudo', $pseudo);
-
+    $view->assign('numVendeur', $numVendeur);
     
     /***************************************************************************
-     **                         Gestion des erreurs
+     **                         Gestion d'une offre d'achat
      ***************************************************************************/
-    
-    
-    // test encherir
-    try {
-        $enchere->encherir($utilisateur, $prix);
-    } catch (exception $e) {
-        // Une erreur peut être générée si l'offre n'est pas la plus haute
-        print('\n Erreur ' . $e->getMessage() . "\n");
+
+    if (isset($_GET['encherir'])) {
+        try {
+            $enchere->encherir($utilisateur, $prix);
+        } catch (exception $e) {
+            // Une erreur peut être générée si l'offre n'est pas la plus haute
+            print('\n Erreur ' . $e->getMessage() . "\n");
+        }
     }
     
     $view->display("voirEnchère.php");

@@ -19,9 +19,19 @@
 
     <main>
 
+        <div class="erreurBandeau" id="bandeau2">
+            <div class="bandeauDiv1">
 
+            </div>
+            <div class="bandeauDiv2">
+                <h3>Prix incorrect</h3>
+            </div>
+            <div class="bandeauDiv3">
+                <button class="btnFermer"> Fermer </button>
+            </div>
+        </div>
 
-        <form id="formPrincipale" method="post" action="">
+        <form id="formPrincipale" method="get" action="../controller/afficherArticle.ctrl.php">
 
 
             <div>
@@ -86,12 +96,12 @@
                         <div id="divPrixActuel">
                             <input type="hidden" id="numEnchere" value="<?= $numEnchere ?>">
                             <h3>Prix actuel</h3>
-                            <h4><span id="prixActuelText">€</span></h4>
+                            <h4><span id="prixActuelText"></span><span>€</span></h4>
 
                         </div>
 
                         <div id="divNouveauPrix">
-                            <input type="number" name="prix" id="prix" min="0" placeholder="Votre nouveau prix">
+                            <input id="inputPrix" type="number" name="prix" min="" placeholder="Votre nouveau prix">
                             <button type="button" id="boutonValiderPrix">
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
@@ -182,7 +192,7 @@
                         <?php endif;?>
                     </div>
 
-                    <a id="featuresRight" href="vendeur">
+                    <a id="featuresRight" href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$numVendeur?>">
                         <div>
                             <img src="<?= $imgProfil ?>" alt="user">
                         </div>
@@ -304,10 +314,11 @@
 
 
 
+
         <div class="popUpBackground">
 
             <form class="popUpForm" method="POST" action="../controller/afficherArticle.ctrl.php">
-                <input id="reportNouveauPrix"type="hidden" name="newOrder" value="">
+                <input id="reportNouveauPrix" type="hidden" name="newOrder" value="">
 
                 <section>
                     <p>
@@ -331,9 +342,10 @@
                         <button id="annulerEnchere" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerEnchere" type="submit">
-                            Confirmer par paypal
-                        </button>
+                        <?php require_once('../api/paypalAPI/test/PaypalPaiement.class.php');
+                        $paiementPaypal = new PaypalPaiement();
+                        echo $paiementPaypal->ui($prixActuel);
+                        ?>
                     </div>
 
                 </div>
@@ -341,8 +353,12 @@
             </form>
 
 
-
         </div>
+
+
+
+
+
 
 
 

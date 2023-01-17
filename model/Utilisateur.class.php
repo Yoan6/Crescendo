@@ -24,7 +24,7 @@ class Utilisateur
     private const LOCALURL = "../data/imgArticle/";
 
 
-    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance, string $imgProfil="../data/imgProfil/img_profile_default.png")
+    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance, string $imgProfil="../data/imgProfil/user.png")
     {
         $this->setEmail($email);
         $this->setPseudo($pseudo);

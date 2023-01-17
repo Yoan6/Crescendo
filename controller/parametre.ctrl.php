@@ -71,7 +71,7 @@ if(isset($_FILES['changementImage'])) {
 
 // On suppriem l'image de profil de l'utilisateur :
 if ($confirmer == 'effacer') {
-    $utilisateur->setImgProfil("../data/imgProfil/img_profile_default.png");
+    $utilisateur->setImgProfil("../data/imgProfil/user.png");
 }
 
 
@@ -174,7 +174,7 @@ $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
 // Pour le javascript :
-$view->assign('imgDefault', "../data/imgProfil/img_profile_default.png");
+$view->assign('imgDefault', "../data/imgProfil/user.png");
 
 $view->assign('errors',$errors);
 $view->display("parametres.php");
