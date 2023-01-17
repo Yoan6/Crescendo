@@ -88,6 +88,8 @@ var carousel = document.getElementById("carousel");
 var annulerChangerImage = document.getElementById("annulerChangerImage");
 var popUpChangementImage = document.getElementsByClassName("divPopUp")[1];
 var previsualisationImage = document.getElementById("previsualisationImage");
+var nouvelleImageTopLeft = document.getElementById("nouvelleImageTopLeft");
+
 
 modifImageProfil.addEventListener("click", function (event) {
   event.stopPropagation();
@@ -98,6 +100,7 @@ modifImageProfil.addEventListener("click", function (event) {
 
 annulerChangerImage.addEventListener("click", function (event) {
   event.stopPropagation();
+  nouvelleImageTopLeft.src = "";
   popUpChangementImage.style.display = "none";
   document.documentElement.style.overflow = 'auto';
   labelNouvelImage.style.display = "flex";
@@ -122,6 +125,7 @@ nouvelImage.addEventListener("change", function (event) {
           var img = new Image();
           img.src = reader.result;
           previsualisationImage.src = img.src;
+          nouvelleImageTopLeft.src = img.src;
           labelNouvelImage.style.display = "none";
             carousel.style.display = "flex";
               
