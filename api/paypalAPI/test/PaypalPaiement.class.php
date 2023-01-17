@@ -8,7 +8,7 @@
 
 
 class PaypalPaiement {
-    private const CLIENT_ID = 'A61y8Qjy85Ypd3AIKOFb5wmzfZxiAGlX1Ug0PxOxRs0Gdnx1WWEEJppr';
+    private const CLIENT_ID = 'AaTHiLLksQ4TPTNz-IPaU7e3HxHpHDP9cHhpnQiRDUGeGShsHw68W5DxDaOUpCJDc8w2QpHf9hYEzSBi';
 
    //Enchere $uneEnchère
 
@@ -19,17 +19,29 @@ class PaypalPaiement {
         return <<<HTML
 
         <!-- l'ID du client est à envoyer client-id-->
-        <script src="https://www.paypal.com/sdk/js?client-id={$clientId}&currency=EUR"></script>
+        <script src="https://www.paypal.com/sdk/js?client-id={$clientId}&currency=EUR&intent=authorize"></script>
+
+      <!--<script src="https://www.paypal.com/sdk/js?client-id=&currency=EUR"></script> -->
 
         
         <!-- Le conteneur du bouton-->
-        <div id="paypal-button-container"> Enchérir</div>
+        <div id="paypal-button-container"> </div>
 
          <script>
 
         paypal.Buttons({
 
             // Sets up the transaction when a payment button is clicked
+
+
+             style: {
+        layout: "horizontal",
+        color: "blue",
+        shape: "pill",
+        label: "paypal",
+        tagline: "false"
+    },
+
 
             createOrder: (data, actions) => {
 
