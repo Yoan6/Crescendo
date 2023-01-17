@@ -156,8 +156,7 @@ CREATE VIEW ENCHERISSEMENT_MAX_VIEW as select *, max(prix_offre) as prix_max
                                     FROM encherit
                                     group by num_enchere;
 
-
-CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max(prix_offre,prix_min) as prix_actuel
+CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max(IIF(prix_offre is Null,0,prix_offre),prix_min) as prix_actuel
             from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
             group by num_enchere;
             
