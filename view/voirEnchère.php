@@ -174,7 +174,7 @@
                         </a>
                     </div>
 
-                    <a id="featuresRight" href="vendeur">
+                    <a id="featuresRight" href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$numVendeur?>">
                         <div>
                             <img src="<?= $imgProfil ?>" alt="user">
                         </div>
@@ -323,7 +323,7 @@
                         <button id="annulerEnchere" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerEnchere" type="submit">
+                        <button name="encherir" value="encherir" id="confirmerEnchere" type="submit">
                             Confirmer par paypal
                         </button>
                     </div>
