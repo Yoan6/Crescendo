@@ -178,6 +178,11 @@ main>#topPage>#topPageRight> #nouveauLot{
   
 }
 
+#conteneurEtoile > svg > g > g > path{
+    stroke: var(--svg-background-color);
+    fill: var(--svg-background-color);
+}
+
 
 @media (min-width: 481px) and (max-width: 1000px) {
 
