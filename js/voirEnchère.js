@@ -7,18 +7,18 @@ prix.addEventListener("onkeypress", (event) => {
     // Alert the key name and key code on keydown
   }, false);
 
-  
+  var preview = document.getElementById('preview');
   var carouselImg = document.getElementsByClassName("carouselImg");
-  var currentImageIndex = 0;
-  var currentImage = carouselImg[currentImageIndex];
   var prevBtn = document.getElementById("buttonPrev");
   var nextBtn = document.getElementById("buttonNext");
 
-for(let i = 1; i < carouselImg.length; i++){
+for(let i = 0; i < carouselImg.length; i++){
   carouselImg[i].style.display = "none";
 }
 
-currentImage.src = carouselImg[1].src;
+//On passe à la preview la première image du carousel
+preview.src = carouselImg[0].src;
+var currentImageIndex = 0;
 
 
   if(carouselImg.length > 1){
@@ -28,9 +28,9 @@ currentImage.src = carouselImg[1].src;
   function nextImage() {
     currentImageIndex++;
     if (currentImageIndex >= carouselImg.length) {
-      currentImageIndex = 1;
+      currentImageIndex = 0;
     }
-    currentImage.src = carouselImg[currentImageIndex].src;
+    preview.src = carouselImg[currentImageIndex].src;
   }
 
   function prevImage() {
@@ -38,10 +38,39 @@ currentImage.src = carouselImg[1].src;
     if (currentImageIndex < 0) {
       currentImageIndex = carouselImg.length;
     }
-    currentImage.src = carouselImg[currentImageIndex].src;
+    preview.src = carouselImg[currentImageIndex].src;
   }
 
 } else {
   prevBtn.style.display = "none";
   nextBtn.style.display = "none";
 }
+
+
+
+
+var boutonValiderPrix = document.getElementById("boutonValiderPrix");
+var popUpBackground = document.getElementsByClassName("popUpBackground")[0];
+var prixEnchereProposee = document.getElementById("prixEnchereProposee");//span qui prend la valeur du prix actuel pour l'afficher dans le pop up
+
+var spanPrixActuelText = document.getElementById("prixActuelText");
+
+var reportNouveauPrix = document.getElementById("reportNouveauPrix");//input qui prend la valeur du prix actuel
+
+
+boutonValiderPrix.addEventListener("click", function(){
+  popUpBackground.style.display = "flex";
+  reportNouveauPrix.value = spanPrixActuelText.innerHTML;
+  prixEnchereProposee.innerHTML = spanPrixActuelText.innerHTML;
+});
+
+
+var annulerEnchere = document.getElementById("annulerEnchere");
+
+annulerEnchere.addEventListener("click", function(){
+  popUpBackground.style.display = "none";
+});
+
+
+
+/////////////////////

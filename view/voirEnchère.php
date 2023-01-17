@@ -10,29 +10,30 @@
 </head>
 
 <body class="dark-mode">
-    <?php include(__DIR__ . '/header.php'); ?>    
+    <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
 
-        
 
-        <form method="post" action="">
-            
+
+        <form id="formPrincipale" method="post" action="">
+
 
             <div>
 
                 <h3 id="dateFinEnchère">
-                    L'enchère se termine le <?=$dateFin?>
+                    L'enchère se termine le <?= $dateFin ?>
                 </h3>
 
 
                 <div id="topForm">
                     <div id="divTopLeft">
                         <div id="carousel">
-                            <img src="" class="carouselImg">
-                            <img src=" <?=$imgUrl?> " class="carouselImg" id="premierImage">
-                            <img src="../data/imgArticle/Z_chaussures_JJ_goldman.jpg" class="carouselImg" id="deuxiemeImage">
-                            <img src=" <?=$imgUrl?> " class="carouselImg" id="troisiemeImage">
+                            <img src="" id="preview">
+                            <?php foreach ($imgUrl as $img) { ?>
+                                <img src="<?= $img ?>" class="carouselImg">
+                            <?php } ?>
+
                             <svg id="buttonPrev" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
                                 fill="#ffffff">
@@ -75,17 +76,18 @@
 
                     <div id="divTopRight">
                         <h4>
-                            <?=$titre ?>
+                            <?= $titre ?>
                         </h4>
-                        <div id="divPrixActuel" onload="reactualiserPrixActuel(<?=$numEnchere?>)">
+                        <div id="divPrixActuel">
+                            <input type="hidden" id="numEnchere" value="<?= $numEnchere ?>">
                             <h3>Prix actuel</h3>
-                            <h4><span id="prixActuelText"></span></h4>
+                            <h4><span id="prixActuelText">€</span></h4>
 
                         </div>
 
                         <div id="divNouveauPrix">
                             <input type="number" name="prix" id="prix" min="0" placeholder="Votre nouveau prix">
-                            <button>
+                            <button type="button" id="boutonValiderPrix">
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
                             </button>
@@ -126,7 +128,7 @@
                             </svg>
 
 
-                            <p onload="reactualiserLikeActuel(<?=$numEnchere?>)">
+                            <p onload="reactualiserLikeActuel(<?= $numEnchere ?>)">
                                 <span id="likeActuelText"></span>
                             </p>
 
@@ -174,9 +176,11 @@
 
                     <a id="featuresRight" href="vendeur">
                         <div>
-                            <img src="../design/image/accueil/coeur_concert.jpeg" alt="user">
+                            <img src="<?= $imgProfil ?>" alt="user">
                         </div>
-                        <p><?=$pseudo ?></p>
+                        <p>
+                            <?= $pseudo ?>
+                        </p>
                     </a>
                 </div>
 
@@ -186,7 +190,9 @@
                         Description
                     </h3>
 
-                    <p><?=$description ?></p>
+                    <p>
+                        <?= $description ?>
+                    </p>
                 </div>
 
                 <div id="bottomForm">
@@ -202,7 +208,7 @@
                                     Artiste:
                                 </h4>
                                 <p>
-                                    <?=$artiste ?>
+                                    <?= $artiste ?>
                                 </p>
                             </section>
                             <section>
@@ -210,7 +216,7 @@
                                     Date du concert:
                                 </h4>
                                 <p>
-                                    <?=$dateEvenement ?>
+                                    <?= $dateEvenement ?>
                                 </p>
                             </section>
                             <section>
@@ -218,7 +224,7 @@
                                     Lieu:
                                 </h4>
                                 <p>
-                                    <?=$lieu ?>
+                                    <?= $lieu ?>
                                 </p>
                             </section>
                             <section>
@@ -227,7 +233,7 @@
 
                                 </h4>
                                 <p>
-                                    <?=$style ?>
+                                    <?= $style ?>
                                 </p>
                             </section>
 
@@ -248,7 +254,7 @@
 
                                 </h4>
                                 <p>
-                                    <?=$taille ?>
+                                    <?= $taille ?>
                                 </p>
 
                             </section>
@@ -258,7 +264,7 @@
 
                                 </h4>
                                 <p>
-                                <?=$etat ?>
+                                    <?= $etat ?>
                                 </p>
 
                             </section>
@@ -268,7 +274,7 @@
 
                                 </h4>
                                 <p>
-                                    <?=$categorie ?>
+                                    <?= $categorie ?>
                                 </p>
 
                             </section>
@@ -288,7 +294,50 @@
 
         </form>
 
-        
+
+
+        <div class="popUpBackground">
+
+            <form class="popUpForm" method="POST" action="../controller/afficherArticle.ctrl.php">
+                <input id="reportNouveauPrix"type="hidden" name="newOrder" value="">
+
+                <section>
+                    <p>
+                        Soumettre une nouvelle enchère
+                    </p>
+
+                </section>
+                <div>
+
+                    <div id="conteneurh3">
+                        <h3>Votre nouveau prix : </h3>
+                        <h3 id="prixEnchereProposee">5$</h3>
+                    </div>
+
+                    <div id="divCheckBoxConfirmation">
+                        <input required type="checkbox" name="caseValidation" id="caseValidation">
+                        <p>Je confirme vouloir enchérir à ce prix</p>
+                    </div>
+
+                    <div class="conteneurBouton">
+                        <button id="annulerEnchere" type="button">
+                            Annuler
+                        </button>
+                        <button id="confirmerEnchere" type="submit">
+                            Confirmer par paypal
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+
+
+
 
     </main>
 

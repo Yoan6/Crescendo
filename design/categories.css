@@ -191,7 +191,7 @@ Règles pour éléments du #principale .filtre
 	font-weight: bold;
 	height: 70px;
 	width: 100%;
-
+	
 	
 
 }
@@ -232,20 +232,23 @@ Règles pour éléments du #principale .filtre
 	flex-direction: row;
 	gap: 30px;
 	height: fit-content;
+	align-items: center;
 
 }
 
 #principale .filtre .filterdown>div>label {
 	font-size: larger;
 	color: black;
+	width: 80%;
 }
 
 #principale .filtre .filterdown>div>input[type="checkbox"] {
 	display: grid;
 	place-content: center;
 	margin: 0px;
-	height: auto;
-	width: 30px;
+	min-height: 23px;
+	height: 23px;
+    width: 20%;
 	cursor: pointer;
 	accent-color: var(--bleu);
 	margin-left: 15%;
