@@ -23,7 +23,8 @@ class Utilisateur
 
     private const LOCALURL = "../data/imgArticle/";
 
-    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance)
+
+    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance, string $imgProfil="../data/imgProfil/img_profile_default.png")
     {
         $this->setEmail($email);
         $this->setPseudo($pseudo);
@@ -37,7 +38,7 @@ class Utilisateur
         //$this->setDateCreation($dateCreation);
 
         // Autres initialisations
-        $this->setImgProfil("../data/imgProfil/img_profile_default.png");
+        $this->setImgProfil($imgProfil);
         $this->setNumUtilisateur(-1);
     }
 
@@ -59,12 +60,13 @@ class Utilisateur
      public function getImageURL(): string
      {
          
-         return self::LOCALURL . $this->imgProfil;
+         return $this->imgProfil;
      }
 
      public function setImageURL($imgProfil)
      {
         $this->imgProfil = $imgProfil;
+
      }
 
     public function getMotDePasse()
@@ -152,9 +154,10 @@ class Utilisateur
         return $this->imgProfil;
     }
 
-    public function setImgProfil(string $imgProfil)
+    public function setImgProfil(string $nouvelleImage)
     {
-        $this->imgProfil = $imgProfil;
+        $this->imgProfil = $nouvelleImage;
+        
     }
 
     public function getNumUtilisateur() : int
@@ -292,7 +295,7 @@ class Utilisateur
         foreach($table as $ligne) {
             $utilisateur = new Utilisateur($ligne['email'], $ligne['pseudo'], $ligne['mot_de_passe'], $ligne['nom'], $ligne['prenom'], 
                                             $ligne['ville'], $ligne['rue'], $ligne['code_postal'],
-                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance']) 
+                                            DateTime::createFromFormat('Y-m-d',$ligne['date_naissance']), $ligne['img_profil']
                                         );                                
             // Mettre le bon num d'utilisateur
             $utilisateur->setNumUtilisateur($ligne['num_utilisateur']);
