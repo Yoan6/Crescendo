@@ -1,4 +1,6 @@
 <?php
+    if(isset($_SESSION)) {session_start(); }
+
     include_once(__DIR__."/../framework/view.class.php");
     include_once(__DIR__."/../model/Utilisateur.class.php");
     include_once(__DIR__."/../model/Article.class.php");
@@ -16,11 +18,16 @@
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
-    $utilisateur = Utilisateur::readNum(1);
+    if (isset($_SESSION['numUtilisateur'])) {
+        $utilisateur = Utilisateur::readNum($_SESSION['numUtilisateur']);
+    } else {
+        $utilisateur = null;
+    }
     $num_enchere = $_GET['numEnchere'] ?? 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
+    $estLot = $enchere->getEstLot();
 
     /***************************************************************************
     **                         Données de l'article
@@ -45,17 +52,18 @@
     $dateEvenement = $article->getDateEvenement();
     $lieu = $article->getLieu();
     $style = $article->getStyle();
-
-
+    
+    
     /***************************************************************************
-    **                         Données du vendeur
-    ***************************************************************************/
+     **                         Données du vendeur
+     ***************************************************************************/
     $vendeur = $article->getVendeur();
-    $imgProfil = $article->getVendeur()->getImgProfil();
-    $numUtilisateur = $article->getVendeur()->getNumUtilisateur();
-    $pseudo = $article->getVendeur()->getPseudo();
+    $imgProfil = $vendeur ->getImgProfil();
+    $numUtilisateur = $vendeur ->getNumUtilisateur();
+    $pseudo = $vendeur ->getPseudo();
+    $numVendeur = $vendeur->getNumUtilisateur();
 
-
+var_dump($numVendeur);
 
     /***************************************************************************
     **                         Construction de la vue
@@ -65,6 +73,7 @@
     // données de l'enchère
     $view->assign('prixActuel', $prixActuel);
     $view->assign('dateFin', $dateFin);
+    $view->assign('estLot', $estLot);
 
     // données de l'article
     $view->assign('imgUrl', $imgUrl);
@@ -88,10 +97,10 @@
     $view->assign('imgProfil', $imgProfil);
     $view->assign('numUtilisateur', $numUtilisateur);
     $view->assign('pseudo', $pseudo);
-
+    $view->assign('numVendeur', $numVendeur);
     
     /***************************************************************************
-     **                         Gestion des erreurs
+     **                         Gestion d'une offre d'achat
      ***************************************************************************/
     
     

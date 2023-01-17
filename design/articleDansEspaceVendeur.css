@@ -1,4 +1,4 @@
-.article {
+.articleVendeur {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -14,7 +14,7 @@
 
 
 
-.article #photo {
+.articleVendeur #photo {
     width: 30%;
     height: 150px;
     border-radius: 15px;
@@ -22,14 +22,14 @@
     margin-left: 30px;
 }
 
-.article #photo img {
+.articleVendeur #photo img {
     object-fit: cover;
     border-radius: 15px;
     width: 100%;
     height: 100%;
 }
 
-.article #responsive {
+.articleVendeur #responsive {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -40,7 +40,7 @@
 
 
 
-.article .center {
+.articleVendeur .center {
     width: 70%;
     height: 150px;
     margin-left: 15px;
@@ -48,7 +48,7 @@
 
 }
 
-.article .center div {
+.articleVendeur .center div {
     margin-top: 10px;
     margin-bottom: 5px;
     width: 100%;
@@ -57,7 +57,7 @@
     align-items: center;
 }
 
-.article .center div h3:first-child {
+.articleVendeur .center div h3:first-child {
     margin: 0px;
     font-weight: normal;
     font-size: 23px;
@@ -69,7 +69,7 @@
     
 }
 
-.article .center div h3:last-child {
+.articleVendeur .center div h3:last-child {
     margin: 0px;
     margin-bottom: 0px;
     font-weight: bolder;
@@ -78,7 +78,7 @@
 }
 
 
-.article .center section {
+.articleVendeur .center section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,7 +90,7 @@
 
 }
 
-.article .center section p {
+.articleVendeur .center section p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -102,7 +102,7 @@
     white-space: normal;
 }
 
-.article .center .divBouton {
+.articleVendeur .center .divBouton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,7 +117,7 @@
 
 }
 
-.article .center .divBouton > button {
+.articleVendeur .center .divBouton > button {
     width: 100%;
     height: 100%;
     background-color: var(--bleu);
@@ -125,7 +125,7 @@
     font-weight: 700;
 }
 
-.article .divSupprimer {
+.articleVendeur .divSupprimer {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -138,7 +138,7 @@
     cursor: pointer;
 }
 
-.article .divSupprimer svg {
+.articleVendeur .divSupprimer svg {
     width: 50px;
     height: 50px;
     background-color: transparent;
@@ -194,7 +194,7 @@
 
 }
 
-.divPopUp>#popUpSupprimerArticle {
+.divPopUp>#popUpSupprimerarticleVendeur {
 
     height: 250px;
     background-color: var(--main-background-color);
@@ -207,7 +207,7 @@
 }
 
 
-.divPopUp>#popUpSupprimerArticle>section {
+.divPopUp>#popUpSupprimerarticleVendeur>section {
     height: 25%;
     width: 100%;
     background-color: white;
@@ -220,7 +220,7 @@
     font-weight: bold;
 }
 
-.divPopUp>#popUpSupprimerArticle>div {
+.divPopUp>#popUpSupprimerarticleVendeur>div {
 
     height: 75%;
     width: 80%;
@@ -233,7 +233,7 @@
 
 }
 
-.divPopUp>#popUpSupprimerArticle>div>p {
+.divPopUp>#popUpSupprimerarticleVendeur>div>p {
 
     width: 100%;
     text-align: center;
@@ -241,7 +241,7 @@
 
 }
 
-.divPopUp>#popUpSupprimerArticle>div>div {
+.divPopUp>#popUpSupprimerarticleVendeur>div>div {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -249,7 +249,7 @@
 
 }
 
-.divPopUp>#popUpSupprimerArticle>div>div>button {
+.divPopUp>#popUpSupprimerarticleVendeur>div>div>button {
 
     height: 50px;
     width: 100%;
@@ -260,14 +260,14 @@
 }
 
 
-#popUpSupprimerArticle>div>div>#annulerSupprimer {
+#popUpSupprimerarticleVendeur>div>div>#annulerSupprimer {
 
     background-color: var(--bleu);
     color: black;
 
 }
 
-#popUpSupprimerArticle>div>div>#confirmerSupprimer {
+#popUpSupprimerarticleVendeur>div>div>#confirmerSupprimer {
 
     background-color: var(--rouge);
     color: white;
@@ -281,12 +281,12 @@
 
 
 @media (min-width: 481px) and (max-width: 1000px) {   
-     .article {
+     .articleVendeur {
         height: 200px;
         position: relative;
     }
 
-    #responsive > div:first-child {
+    .articleVendeur #responsive > div:first-child {
         width: 250px;
         min-width: 250px;
         height: 180px;
@@ -296,7 +296,7 @@
     
 
 
-    .article .center {
+    .articleVendeur .center {
         width: 65%;
         height: 200px;
         display: flex;
@@ -304,19 +304,19 @@
         justify-content: space-between;
     }
 
-    .article .center .divBouton {
+    .articleVendeur .center .divBouton {
         height: 60px;
         margin-top: 0px;
         margin-bottom: 18px;
     }
 
-    .article .center section {
+    .articleVendeur .center section {
         display: none;
     }
 
 
 
-    .article .center div {
+    .articleVendeur .center div {
         flex-direction: column;
         align-items: baseline;
         height: 45%;
@@ -324,11 +324,11 @@
     }
 
 
-    .article .center >div> h3:first-child {
+    .articleVendeur .center >div> h3:first-child {
         font-size: 1.6em;
     }
 
-    .article .center >div> h3:last-child {
+    .articleVendeur .center >div> h3:last-child {
         font-size: 1.7em;
     }
 
@@ -336,14 +336,14 @@
     
 
 
-    .article .divSupprimer p {
+    .articleVendeur .divSupprimer p {
         font-size: x-large;
     }
 
 
 
 
-    #via {
+    .articleVendeur #via {
         flex-direction: column;
         gap: 20px;
         width: 100%;
@@ -351,7 +351,7 @@
         margin-bottom: 30px;
     }
 
-    #divVIA #via li{
+    .articleVendeur #divVIA #via li{
 
         height: 120px;
         border-radius: 0px;
@@ -361,7 +361,7 @@
         border-top: solid 1px white;
     }
 
-    #divVIA #via li a {
+    .articleVendeur #divVIA #via li a {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -374,7 +374,7 @@
     }
 
 
-    #via li h2 {
+    .articleVendeur  #via li h2 {
          padding-top: 0px;
          height: 100%;
          width: 50%;
@@ -383,13 +383,13 @@
             justify-content: center;
     }
 
-    #divVIA #via li a div {
+    .articleVendeur #divVIA #via li a div {
         width: 50%;
         height: 100px;
 
     }
 
-    #divVIA #via li a img {
+    .articleVendeur #divVIA #via li a img {
         width: 100px;
         height: 100px;
         object-fit: cover;
@@ -405,26 +405,26 @@
 
 
     
-    #responsive > div:first-child {
+    .articleVendeur #responsive > div:first-child {
         min-width: 180px;
         width: 180px;
         height: 180px;
     }
 
-    .article .center {
+    .articleVendeur .center {
         width: 55%;
         height: 200px;
     }
 
-    .article .divSupprimer {
+    .articleVendeur .divSupprimer {
         left: 200px;
     }
 
-    .article #divHeart {
+    .articleVendeur #divHeart {
         display: none;
     }
 
-    #banner {
+    .articleVendeur #banner {
         width: 100%;
         height: 250px;
 
@@ -436,6 +436,6 @@
 }
 
 
-.article input {
+.articleVendeur input {
     display: none;
 }
