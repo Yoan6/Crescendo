@@ -30,11 +30,13 @@
 .article #divHeart svg path {
     fill: transparent;
     cursor: pointer;
+    transition: all 0.4s ease-in-out;
 
 }
 
 .article #divHeart svg path:hover {
     stroke: var(--rouge);
+    transform: scale(1.07) translateX(-1px);
 }
 
 
@@ -145,11 +147,19 @@
     background-color: var(--bleu);
     border: none;
     color: black;
-    font-weight: bolder;
+    font-weight: 700;
     font-size: 1.2em;
     cursor: pointer;
-
+    transition: all 0.2s ease-in-out;
 }
+
+.article #center .divBouton button:hover {
+    background-color: #efefef;
+    color: black;
+    transform: scale(1.03);
+}
+
+
 
 
 .article #divLikes {
@@ -182,20 +192,20 @@
     stroke-width: 1px;
     fill: transparent;
     cursor: pointer;
+    transition: all 0.4s ease-in-out;
 }
 
 .article #divLikes #dislike path:hover {
     stroke: var(--rouge);
+    transform: scale(1.01);
 }
 
 .article #divLikes #like path:hover {
     stroke: var(--bleu);
+    transform: scale(1.03);
 }
 
 
-#like{
-    fill: var(--bleu);
-}
 
 
 

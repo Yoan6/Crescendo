@@ -25,7 +25,8 @@
     $articleArray = $enchere->getArticles(); // Recupère un type Array
     $article = Article::getTypeArticleFromArray($articleArray,0); // Conversion en type Article
 
-    $imgUrl = $article->getImagesURL()[0];
+    
+    $imgUrl = $article->getImagesURL();
     $nomEnchere = $article->getTitre();
     $description = $article->getDescription();
     $numArticle = $article->getNumArticle();

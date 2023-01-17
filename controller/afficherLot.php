@@ -16,12 +16,22 @@ error_reporting(E_ALL);
     **                         Données de l'enchère
     ***************************************************************************/
     $utilisateur = Utilisateur::readNum(1);
-    $num_enchere = $_GET['numEnchere'] ?? 11;
+    if(!isset($_GET['numEnchere'])){
+        header('Location: accueil.ctrl.php');
+    } else {
+        $num_enchere = $_GET['numEnchere'];
+    }
     
-        $enchere = Enchere::read($num_enchere);
+    
+    $enchere = Enchere::read($num_enchere);
+    if($enchere->getEstLot() == false){
 
+        $view = new View();
+        $_GET['numEnchere'] = $num_enchere;
+        include("afficherArticle.ctrl.php");
 
-    $dateFin = $enchere->getDateFin()->format('d-m-Y');
+} else {
+    $dateFin = $enchere->getDateFin()->format('d-m-Y'); 
 
     /***************************************************************************
      **                         Données de l'article
@@ -73,7 +83,7 @@ error_reporting(E_ALL);
 
     $view->display("voirLot.php");
 
-
+}
     /***************************************************************************
      **                         Gestion des erreurs
      ***************************************************************************/
