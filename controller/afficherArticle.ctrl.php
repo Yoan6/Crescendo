@@ -86,13 +86,12 @@
     $view->assign('numUtilisateur', $numUtilisateur);
     $view->assign('pseudo', $pseudo);
 
-$view->display("voirEnchère.php");
-
+    
     /***************************************************************************
-    **                         Gestion des erreurs
-    ***************************************************************************/
-
-
+     **                         Gestion des erreurs
+     ***************************************************************************/
+    
+    
     // test encherir
     try {
         $enchere->encherir($utilisateur, $prix);
@@ -100,5 +99,6 @@ $view->display("voirEnchère.php");
         // Une erreur peut être générée si l'offre n'est pas la plus haute
         print('\n Erreur ' . $e->getMessage() . "\n");
     }
-
+    
+    $view->display("voirEnchère.php");
 ?>

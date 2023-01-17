@@ -21,7 +21,9 @@
             <div id="divModifImage">
                 <div id="divImage">
                     <div>
-                        <img src="../design/image/user/lisa.jpeg" alt="">
+                        <img id="nouvelleImageTopLeft" src="<?= $imgProfil ?>" alt="image profil">
+                        <img id="imageRetenue" src="">
+
                     </div>
                 </div>
 
@@ -262,7 +264,7 @@
                         <button id="annulerChangerImage" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerChangerImage" type="submit">
+                        <button id="confirmerChangerImage" type="   ">
                             Valider
                         </button>
                     </div>
@@ -286,7 +288,7 @@
                         <button id="annulerSupprimerPhoto" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimerPhoto" type="submit">
+                        <button id="confirmerSupprimerPhoto" name="confirmer" value="effacer" type="submit">
                             Supprimer
                         </button>
                     </div>

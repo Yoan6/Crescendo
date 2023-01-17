@@ -1,0 +1,26 @@
+#protectionDonnees {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#protectionDonnees h1, h2, h4 {
+    font-weight: bold;
+}
+
+#protectionDonnees p {
+    margin-bottom: 15px;
+}
+
+#protectionDonnees div {
+    margin-top: 80px;
+}
+
+#protectionDonnees ul li {
+    margin-top: 15px;
+}
+
+#protectionDonnees .lien {
+    font-weight: bold;
+    color: var(--blue);
+}

@@ -23,13 +23,14 @@ Variables
 *****************************/
 :root {
 	/* ==== Couleurs arrière-plan ====*/
-	--main-background-color: white;
-	--header-background-color: grey;
-	--footer-background-color: grey;
+	--main-background-color: #f7f7f7;
+	--header-background-color: #DBDBDB;
+	--footer-background-color: #DBDBDB;
 	--div-background-color: rgb(83, 82, 82);
-	--navBar-background-color: black;
+	--navBar-background-color: rgb(112, 112, 112);
 	--bleu: #79d2bc;
 	--rouge: #F85656;
+	--svg-background-color: black;
 
 
 	--main-content-background-color: #161616;
@@ -54,6 +55,7 @@ body.dark-mode {
 	--bleu: #79d2bc;
 	--lightGrey: #212121;
 	--main-content-background-color: white;
+	--svg-background-color: white;
 
 	/* ==== Couleurs police ====*/
 	--main-font-color: white;

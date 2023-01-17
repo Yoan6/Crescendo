@@ -132,3 +132,7 @@ justify-content: center;
     font-weight: 100;
     margin-bottom: 50px;
 }
+
+svg > g > path{
+    stroke: var(--svg-background-color);
+}

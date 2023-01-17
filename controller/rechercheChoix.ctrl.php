@@ -14,7 +14,6 @@ include_once(__DIR__."/../model/Enchere.class.php");
 /***************************************************************************
 **                         Données
 ***************************************************************************/
-var_dump($_GET);
 
 // Données pour la recherche
 $recherche = $_GET["recherche"] ?? "";
@@ -24,8 +23,6 @@ $choixObligatoireEtValeurs = $_GET['choixObligatoire'] ?? array();
 $orderByChoix =  $_GET['orderByChoix'] ?? "date_debut";
 $orderBy =  $_GET['orderBy'] ?? "DESC";
 
-var_dump($orderBy);
-var_dump($choixObligatoireEtValeurs);
 // Pour relancer le controller
 $controllerName = basename(__FILE__);
 
@@ -44,7 +41,7 @@ $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
-    $pageMax =  ((int) article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
+    $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
     var_dump($errors);
@@ -68,6 +65,7 @@ $view->assign('pageSuiv', $pageSuiv);
 $view->assign('pageSize', $pageSize);
 $view->assign('pageMax', $pageMax);
 $view->assign('choix', $choixEtvaleurs);
+$view->assign('choixObligatoire', $choixObligatoireEtValeurs);
 $view->assign('valeurChoix', "");
 
 $view->assign('encheres', $encheres);

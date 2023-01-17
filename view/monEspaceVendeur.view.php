@@ -11,12 +11,28 @@
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
 
+<?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
+
+<?php 
+    $estMonProfil = false;
+    $num_vendeur = $choixObligatoire["num_vendeur"][0];
+    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+    if(strcmp($num_utilisateur, $num_vendeur) == 0){
+        $estMonProfil = true;
+    }
+?>
+
+
+<?php var_dump($num_vendeur, $num_utilisateur, $estMonProfil)?>
+
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
     <?php if (isset($errors) && count($errors) > 0)
         include(__DIR__ . '/popup/erreur.view.php'); ?>
+
+    
 
     <main>
         <div id="topPage">
@@ -106,11 +122,13 @@
                 </div>
 
 
-
                 <div id="buttonUnderProfil">
-                    <a id="modifierProfil">
-                        Modifier le profil
-                    </a>
+                    <?php if($estMonProfil) :?>
+                        <a id="modifierProfil">
+                            Modifier le profil
+                        </a>
+                    <?php endif;?>
+                    
                     <a id="voirLesAvis">
                         Voir les avis
                     </a>
@@ -120,224 +138,59 @@
             </div>
 
             <div id="topPageRight">
-                <a id="nouvelArticle">
-                    Nouvel article
-                </a>
-                <a id="nouveauLot">
-                    Nouveau lot
-                </a>
+                <?php if($estMonProfil) :?>
+                    <a id="nouvelArticle">
+                        Nouvel article
+                    </a>
+                    <a id="nouveauLot">
+                        Nouveau lot
+                    </a>
+                <?php endif;?>
             </div>
-
         </div>
 
         <div id="principale">
-            <aside class="filtre">
-                <div>
-                    <div>
-                        <button class="buttonDropFilter" tag="0">
-                            <h3>Style musical </h3>
-                            <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>plus</title>
-                                    <path
-                                        d="M30 14.75h-12.75v-12.75c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0 12.75h-12.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h12.75v12.75c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-12.75h12.75c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                            <svg class="minus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>minus</title>
-                                    <path
-                                        d="M30 14.75h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                        </button>
-
-                        <div class="filterdown">
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Pop" name="Pop">
-                                <label for="Pop">Pop</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rock" name="Rock">
-                                <label for="Rock">Rock</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Metal" name="Metal">
-                                <label for="Metal">Metal</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rap" name="Rap">
-                                <label for="Rap">Rap</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div>
-
-                        <button class="buttonDropFilter" tag="1">
-                            <h3>Type Objet</h3>
-                            <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>plus</title>
-                                    <path
-                                        d="M30 14.75h-12.75v-12.75c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0 12.75h-12.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h12.75v12.75c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-12.75h12.75c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                            <svg class="minus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>minus</title>
-                                    <path
-                                        d="M30 14.75h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                        </button>
-
-                        <div class="filterdown">
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Pop" name="Pop">
-                                <label for="Pop">Pop</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rock" name="Rock">
-                                <label for="Rock">Rock</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Metal" name="Metal">
-                                <label for="Metal">Metal</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rap" name="Rap">
-                                <label for="Rap">Rap</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div>
-
-                        <button class="buttonDropFilter" tag="2">
-                            <h3>Style musical </h3>
-                            <svg class="plus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>plus</title>
-                                    <path
-                                        d="M30 14.75h-12.75v-12.75c0-0.69-0.56-1.25-1.25-1.25s-1.25 0.56-1.25 1.25v0 12.75h-12.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h12.75v12.75c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-12.75h12.75c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                            <svg class="minus" fill="#000000" viewBox="0 0 32 32" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <title>minus</title>
-                                    <path
-                                        d="M30 14.75h-28c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h28c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0z">
-                                    </path>
-                                </g>
-                            </svg>
-                        </button>
-
-                        <div class="filterdown">
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Pop" name="Pop">
-                                <label for="Pop">Pop</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rock" name="Rock">
-                                <label for="Rock">Rock</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Metal" name="Metal">
-                                <label for="Metal">Metal</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Rap" name="Rap">
-                                <label for="Rap">Rap</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="Regae" name="Regae">
-                                <label for="Regae">Regae</label>
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-                <div id="validerOuEffacer">
-                    <button>
-                        Valider
-                    </button>
-                    <button>
-                        Tout effacer
-                    </button>
-                </div>
-            </aside>
+            <?php include("article/fitreGauche.view.php")?>
             <div id="divdroite">
 
                 <div class="affichageArticle">
                     <div id="topAffichageArticle">
                         <div id="contenuOrderBy">
 
-                            <select id="orderBy">
-                                <option value="0">Trier par</option>
-                                <option value="1">Plus aimés</option>
-                                <option value="2">Moins aimés</option>
-                            </select>
-
-
-
-
+                            <?php include(__DIR__ . '/article/filtre.view.php'); ?>
 
                         </div>
                     </div>
+                    
+                    <?php 
+                    if($estMonProfil){
+                        include(__DIR__ . '/article/article.view.php');
+                    } else{
+                        include(__DIR__ . '/article/pages.view.php');
+                    }
+                    ?>
 
-                   <?php include(__DIR__ . '/article/articleVendeur.view.php')?>
+
+                    <form id="pagination">
+                        <!-- 
+                        <input type=hidden class="pagePrec?" value="<?php echo $pagePrec; ?>">
+                        <input type=hidden class="page?" value="<?php echo $page; ?>">
+                        <input type=hidden class="pageSuiv" value="<?php echo  $pageSuiv; ?>">
+                        <input type=hidden class="pageSize" value="<?php echo  $pageSize; ?>">
+                        --> 
 
 
+                    </form>
 
                 </div>
             </div>
 
 
         </div>
+            
+
+
+        
 
         <form action="deleteArticle.ctrl.php"class="divPopUp">
 

@@ -94,7 +94,7 @@ Règles pour éléments du #principale .filtre
 #principale .filtre {
 	min-width: 250px;
 	width: 20%;
-	background-color: #272727;
+	background-color: var(--navBar-background-color);
 	display: flex;
 	flex-direction: column;
 	align-items: center;

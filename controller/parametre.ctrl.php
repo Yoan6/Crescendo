@@ -8,7 +8,7 @@ if(!isset($_SESSION)) {
     session_start(); 
 } 
 
-$error = array();
+$errors = array();
 
 
 $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
@@ -22,11 +22,57 @@ $ville = $_POST['ville'] ?? $utilisateur->getVille();
 $adresse = $_POST['adresse'] ?? $utilisateur->getRue();
 $effacer = $_POST['effacer'] ?? '';
 $confirmer = $_POST['confirmer'] ?? '';
-
 $ancienPassword = $_POST['ancienPassword'] ?? '';
 $nouveauPassword = $_POST['nouveauPassword'] ?? '';
 $checkPassword = $_POST['checkPassword'] ?? '';
 
+// Lien relatif vers le dossier des images :
+$chemin_image  ="../data/imgProfil/";
+
+// On modifie l'image de profil de l'utilisateur :
+if(isset($_FILES['changementImage'])) {
+    echo "il y a un fichier";
+    $file = $_FILES['changementImage'];
+    $file_name = $file['name'];
+    $file_tmp = $file['tmp_name'];
+
+    $file_size = $file['size'];
+    $file_error = $file['error'];   
+    $file_ext = explode('.', $file_name);
+    $file_ext = strtolower(end($file_ext));
+
+    $allowed = array('jpg', 'jpeg', 'png');
+
+    if(in_array($file_ext, $allowed)) {
+        if($file_error === 0) {
+            if($file_size <= 2097152) {
+                try {
+                    var_dump($file_name);
+                    if (move_uploaded_file($file_tmp,$chemin_image.$file_name)) {
+                        // L'utilisateur veut changer son image de profil :
+                        $utilisateur->setImageURL($chemin_image.$file_name);
+                    }
+                }
+                catch(Exception $e) {
+                    array_push($errors, "Le fichier n'a pas pu être téléchargé.");
+                } 
+            } else {
+                array_push($errors, "La taille du fichier ne doit pas dépasser 2 Mo."); 
+            }
+        } else {
+            array_push($errors, "Il y a eu un problème lors du téléchargement du fichier.");
+        }
+    } else {
+        array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
+    }
+
+    var_dump($errors);
+}
+
+// On suppriem l'image de profil de l'utilisateur :
+if ($confirmer == 'effacer') {
+    $utilisateur->setImgProfil("../data/imgProfil/user.png");
+}
 
 
 // On change le pseudo :
@@ -35,10 +81,9 @@ if ($confirmer == 'pseudo') {
     // On vérifie si le pseudo est différent de celui déjà enregistré :
     if ($pseudo != $utilisateur->getPseudo()) {
         $utilisateur->setPseudo($pseudo);
-
     }
     else {
-        array_push($error,"Le pseudo est le même que celui déjà enregistré");
+        array_push($errors,"Le pseudo est le même que celui déjà enregistré");
     }
 }
 
@@ -53,10 +98,10 @@ if ($confirmer == 'mail') {
             $utilisateur->setEmail($mail);
         }
         else {
-            array_push($error, "L'identifiant ou le mot de passe n'est pas bon");
+            array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
         }
     }
-    array_push($error, "Le mail est le même que celui déjà enregistré");
+    array_push($errors, "Le mail est le même que celui déjà enregistré");
 }
 
 
@@ -70,7 +115,7 @@ if ($confirmer == 'adresseMail') {
         $utilisateur->setRue($adresse);
     }
     else {
-        array_push($error,"L'adresse postale est la même que celle déjà enregistrée");
+        array_push($errors,"L'adresse postale est la même que celle déjà enregistrée");
     }
 }
 
@@ -90,15 +135,15 @@ if ($confirmer == 'password') {
                 $utilisateur->setMotDePasse($nouveauPassword);
             }
             else {
-                array_push($error, "Le nouveau mot de passe doit être différent de l'ancien");
+                array_push($errors, "Le nouveau mot de passe doit être différent de l'ancien");
             }
         }
         else {
-            array_push($error, "Les deux mots de passe ne sont pas identiques");
+            array_push($errors, "Les deux mots de passe ne sont pas identiques");
         }
     }
     else {
-        array_push($error, "L'ancien mot de passe n'est pas bon");
+        array_push($errors, "L'ancien mot de passe n'est pas bon");
     }
 }
 
@@ -106,27 +151,34 @@ if ($confirmer == 'password') {
 if ($effacer == 'effacer') {
     $utilisateur->delete();
     session_destroy();
-    $view = new View();
-    $view->display("accueil.view.php");
+    header("Location: accueil.ctrl.php");
 }
 
-if (count($error) == 0) {
+if (count($errors) == 0) {
     $utilisateur->update();
 }
+
+
+
+$imgProfil = $utilisateur->getImageURL();
+
 
 // On assigne les variables à la vue :
 $view = new View();
 
+$view->assign('imgProfil', $imgProfil);
 $view->assign('pseudo', $pseudo);
 $view->assign('mail', $mail);
 $view->assign('password', $password);
 $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
+// Pour le javascript :
+$view->assign('imgDefault', "../data/imgProfil/user.png");
 
-$view->assign('error',$error);
+$view->assign('errors',$errors);
 $view->display("parametres.php");
 
 
-var_dump($error);
+var_dump($errors);
 var_dump($_SESSION['num_utilisateur']);
