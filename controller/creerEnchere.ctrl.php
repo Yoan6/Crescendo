@@ -48,14 +48,12 @@
     // Gérer les images
 
     foreach($_FILES as $image) {
-        
         $file_name = $image['name'] ?? "";
         
         $file_type = $image['type'] ?? "";
         $file_tmp_name = $image['tmp_name'] ?? "";
         $file_error = $image['error'] ?? "";
         $file_size = $image['size'] ?? 0;
-
         if ($file_size == 0 && count($image) >= 1) {
             goto finImage; // Pas très propre mais je n'ai pas trouvé d'autres moyens
         } 
@@ -70,10 +68,10 @@
         } 
         else {
             // Pas d'erreurs l'ajouter
-            $nomsImages[] = $file_name; // Mettre les noms des fichiers pour la création d'un article
+            $nomsImages[] = time() . $file_name; // Mettre les noms des fichiers pour la création d'un article
         }
     }
-    finImage:
+finImage:
 
     /***************************************************************************
      **                         Création de l'article
@@ -93,9 +91,11 @@
             $enchere->setDateDebut(new DateTime($dateEnchere));
             $enchere->create();
             
+            $i = 0;
             // Télécharger les fichiers sur le serveur
             foreach ($_FILES as $image) {
-                if($image['size'] != 0) move_uploaded_file($image['tmp_name'], $chemin_image . $image['name']);
+                if($image['size'] != 0) move_uploaded_file($image['tmp_name'], $chemin_image . $nomsImages[$i]);
+                $i++;
             }
             $messages[] = "L'enchère " . $titre . " a été  créée";
 
@@ -140,7 +140,8 @@
         // Prévisualiser l'enchère et prévenir de la réussite
 
         $view->assign('messages',$messages);
-        include(__DIR__."/../controller/afficherArticle.ctrl.php");
+        $_GET["numEnchere"] = $enchere->getNumEnchere();
+        require(__DIR__."/../controller/afficherArticle.ctrl.php");
 
     } else {
         // Aller vers la création d'une enchère

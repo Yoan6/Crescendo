@@ -10,20 +10,29 @@
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
-<?php var_dump($choixObligatoire) ?>
+
+<?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
+
+<?php 
+    $estMonProfil = false;
+    $num_vendeur = $choixObligatoire["num_vendeur"][0];
+    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+    if(strcmp($num_utilisateur, $num_vendeur) == 0){
+        $estMonProfil = true;
+    }
+?>
+
+
+<?php var_dump($num_vendeur, $num_utilisateur, $estMonProfil)?>
+
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
     <?php if (isset($errors) && count($errors) > 0)
         include(__DIR__ . '/popup/erreur.view.php'); ?>
 
-    <?php 
-    $monProfil = false;
-    if($choixObligatoire['num_vendeur'][]=$_SESSION['num_utilisateur']){
-        $monProfil = true;
-    }
-    ?>
+    
 
     <main>
         <div id="topPage">
@@ -114,15 +123,11 @@
 
 
                 <div id="buttonUnderProfil">
-                    <?php 
-                        if($monProfil){
-                            ?>
-                            <a id="modifierProfil">
+                    <?php if($estMonProfil) :?>
+                        <a id="modifierProfil">
                             Modifier le profil
-                            </a>
-                            <?php 
-                        }
-                    ?>
+                        </a>
+                    <?php endif;?>
                     
                     <a id="voirLesAvis">
                         Voir les avis
@@ -133,14 +138,15 @@
             </div>
 
             <div id="topPageRight">
-                <a id="nouvelArticle">
-                    Nouvel article
-                </a>
-                <a id="nouveauLot">
-                    Nouveau lot
-                </a>
+                <?php if($estMonProfil) :?>
+                    <a id="nouvelArticle">
+                        Nouvel article
+                    </a>
+                    <a id="nouveauLot">
+                        Nouveau lot
+                    </a>
+                <?php endif;?>
             </div>
-
         </div>
 
         <div id="principale">
@@ -155,9 +161,14 @@
 
                         </div>
                     </div>
-
-                    <?php include(__DIR__ . '/article/article.view.php'); ?>
-                    <?php include(__DIR__ . '/article/pages.view.php'); ?>
+                    
+                    <?php 
+                    if($estMonProfil){
+                        include(__DIR__ . '/article/article.view.php');
+                    } else{
+                        include(__DIR__ . '/article/pages.view.php');
+                    }
+                    ?>
 
 
                     <form id="pagination">

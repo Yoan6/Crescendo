@@ -41,7 +41,7 @@ $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
-    $pageMax =  ((int) article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
+    $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
     var_dump($errors);
