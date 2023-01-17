@@ -8,7 +8,7 @@ main {
 }
 
 
-main form {
+main #formPrincipale {
     padding-top: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -23,7 +23,7 @@ main form {
 }
 
 
-main form>div {
+main #formPrincipale>div {
 
     width: 100%;
     max-width: 900px;
@@ -34,7 +34,7 @@ main form>div {
 
 }
 
-main form>div>h3 {
+main #formPrincipale>div>h3 {
 
     border-radius: 15px;
     width: 100%;
@@ -46,7 +46,7 @@ main form>div>h3 {
 
 }
 
-main form #topForm {
+main #formPrincipale #topForm {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,7 +55,7 @@ main form #topForm {
     height: 300px;
 }
 
-main form #topForm>#divTopLeft {
+main #formPrincipale #topForm>#divTopLeft {
     position: relative;
     background-color: white;
     border-radius: 15px;
@@ -81,7 +81,7 @@ main form #topForm>#divTopLeft {
 #carousel img {
 
     object-fit: cover;
-
+    height: 100%;
 
 }
 
@@ -94,7 +94,7 @@ main form #topForm>#divTopLeft {
 }
 
 #carousel>svg path {
-    fill: black;
+    fill: var(--bleu);
 }
 
 #carousel>#buttonPrev {
@@ -112,7 +112,7 @@ main form #topForm>#divTopLeft {
 
 }
 
-main form #topForm>#divTopLeft>input {
+main #formPrincipale #topForm>#divTopLeft>input {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -121,12 +121,12 @@ main form #topForm>#divTopLeft>input {
     z-index: -1;
 }
 
-main form #topForm>#divTopLeft>label {
+main #formPrincipale #topForm>#divTopLeft>label {
     cursor: pointer;
 
 }
 
-main form #topForm>#divTopLeft>input+label {
+main #formPrincipale #topForm>#divTopLeft>input+label {
 
     font-size: 1.25em;
     font-weight: 700;
@@ -139,23 +139,23 @@ main form #topForm>#divTopLeft>input+label {
 
 }
 
-main form #topForm>#divTopLeft>label>svg {
+main #formPrincipale #topForm>#divTopLeft>label>svg {
 
     width: 60px;
 
 }
 
-main form #topForm>#divTopLeft>input+label:hover {
+main #formPrincipale #topForm>#divTopLeft>input+label:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-main form #topForm>#divTopLeft>img {
+main #formPrincipale #topForm>#divTopLeft>img {
     object-fit: cover;
 }
 
 
 
-main form #topForm>#divTopRight {
+main #formPrincipale #topForm>#divTopRight {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,14 +168,14 @@ main form #topForm>#divTopRight {
 
 
 
-main form #topForm>#divTopRight>div {
+main #formPrincipale #topForm>#divTopRight>div {
     width: 100%;
     height: 25%;
     max-height: 75px;
 }
 
 
-main form #topForm>#divTopRight>h4 {
+main #formPrincipale #topForm>#divTopRight>h4 {
 
     width: 100%;
     display: flex;
@@ -198,7 +198,7 @@ main form #topForm>#divTopRight>h4 {
 
 
 
-main form #topForm>#divTopRight>#divPrixActuel {
+main #formPrincipale #topForm>#divTopRight>#divPrixActuel {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -207,7 +207,7 @@ main form #topForm>#divTopRight>#divPrixActuel {
 }
 
 
-main form #topForm>#divTopRight>#divPrixActuel>h3 {
+main #formPrincipale #topForm>#divTopRight>#divPrixActuel>h3 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -222,7 +222,7 @@ main form #topForm>#divTopRight>#divPrixActuel>h3 {
 }
 
 
-main form #topForm>#divTopRight>#divPrixActuel>h4 {
+main #formPrincipale #topForm>#divTopRight>#divPrixActuel>h4 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -241,7 +241,7 @@ main form #topForm>#divTopRight>#divPrixActuel>h4 {
 
 }
 
-main form #topForm>#divTopRight>#divNouveauPrix {
+main #formPrincipale #topForm>#divTopRight>#divNouveauPrix {
 
     display: flex;
     flex-direction: row;
@@ -251,10 +251,10 @@ main form #topForm>#divTopRight>#divNouveauPrix {
 }
 
 
-/*main form #topForm>#divTopRight>#divNouveauPrix>input {}*/
+/*main #formPrincipale #topForm>#divTopRight>#divNouveauPrix>input {}*/
 
 
-main form #topForm>#divTopRight>#divNouveauPrix>button {
+main #formPrincipale #topForm>#divTopRight>#divNouveauPrix>button {
 
     display: flex;
     flex-direction: row;
@@ -269,13 +269,13 @@ main form #topForm>#divTopRight>#divNouveauPrix>button {
 
 }
 
-main form #topForm>#divTopRight>#divNouveauPrix>button>img {
+main #formPrincipale #topForm>#divTopRight>#divNouveauPrix>button>img {
     width: 30px;
     height: 30px;
 }
 
 
-main form #topForm>#divTopRight>#divNouveauPrix>input {
+main #formPrincipale #topForm>#divTopRight>#divNouveauPrix>input {
 
     border-radius: 15px;
     margin: 0px;
@@ -297,7 +297,7 @@ main form #topForm>#divTopRight>#divNouveauPrix>input {
 
 
 
-main form #features {
+main #formPrincipale #features {
 
     margin-top: 10px;
     margin-bottom: 25px;
@@ -310,7 +310,7 @@ main form #features {
 
 
 
-main form #features #featuresLeft #heart {
+main #formPrincipale #features #featuresLeft #heart {
     height: 50px;
     width: 50px;
     display: flex;
@@ -327,7 +327,7 @@ main form #features #featuresLeft #heart {
 
 
 
-main form #features #featuresLeft {
+main #formPrincipale #features #featuresLeft {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -337,7 +337,7 @@ main form #features #featuresLeft {
 
 
 
-main form #features #featuresLeft>div {
+main #formPrincipale #features #featuresLeft>div {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -349,29 +349,29 @@ main form #features #featuresLeft>div {
 
 }
 
-main form #features #featuresLeft>div>svg {
+main #formPrincipale #features #featuresLeft>div>svg {
     height: 30px;
     width: 30px;
 }
 
-main form #features #featuresLeft>div>p {
+main #formPrincipale #features #featuresLeft>div>p {
     font-size: 1.2em;
 
 }
 
-main form #features #featuresLeft>a svg {
+main #formPrincipale #features #featuresLeft>a svg {
     height: 30px;
     width: 30px;
 
 }
 
-main form #features #featuresLeft>a svg :where(path, polygon) {
+main #formPrincipale #features #featuresLeft>a svg :where(path, polygon) {
     fill: black;
 
 }
 
 
-main form #features #featuresLeft>a {
+main #formPrincipale #features #featuresLeft>a {
     display: flex;
     flex-direction: row;
     width: 40%;
@@ -384,7 +384,7 @@ main form #features #featuresLeft>a {
 }
 
 
-main form #features #featuresRight {
+main #formPrincipale #features #featuresRight {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -396,7 +396,7 @@ main form #features #featuresRight {
 
 }
 
-main form #features #featuresRight>div {
+main #formPrincipale #features #featuresRight>div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -405,7 +405,7 @@ main form #features #featuresRight>div {
 
 }
 
-main form #features #featuresRight img {
+main #formPrincipale #features #featuresRight img {
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -413,7 +413,7 @@ main form #features #featuresRight img {
 }
 
 
-main form #middleForm {
+main #formPrincipale #middleForm {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -428,7 +428,7 @@ main form #middleForm {
 
 
 
-main form #middleForm>h3 {
+main #formPrincipale #middleForm>h3 {
     color: black;
     width: 90%;
     margin: 0;
@@ -437,12 +437,12 @@ main form #middleForm>h3 {
     flex-direction: row;
 }
 
-main form #middleForm>p {
+main #formPrincipale #middleForm>p {
     width: 90%;
     color: black;
 }
 
-main form #bottomForm {
+main #formPrincipale #bottomForm {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -454,7 +454,7 @@ main form #bottomForm {
 
 
 
-main form #bottomForm>div {
+main #formPrincipale #bottomForm>div {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -467,12 +467,12 @@ main form #bottomForm>div {
 }
 
 
-main form #bottomForm>div>h3 {
+main #formPrincipale #bottomForm>div>h3 {
     width: 90%;
     margin: 0;
 }
 
-main form #bottomForm>div>div {
+main #formPrincipale #bottomForm>div>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -483,7 +483,7 @@ main form #bottomForm>div>div {
 
 
 
-main form #bottomForm>div>div>section {
+main #formPrincipale #bottomForm>div>div>section {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -493,35 +493,170 @@ main form #bottomForm>div>div>section {
 }
 
 
-main form #bottomForm>div>div>section> :where(input, p) {
+main #formPrincipale #bottomForm>div>div>section> :where(input, p) {
     width: 60%;
     height: 1.4em;
     padding: 0;
 }
 
-main form #bottomForm>div>div>section>select {
+main #formPrincipale #bottomForm>div>div>section>select {
     height: 80%;
     width: 60%;
 }
 
 
 
-main form #bottomForm>div>div>section>h4 {
+main #formPrincipale #bottomForm>div>div>section>h4 {
     width: 40%;
 }
 
 
 
 
+
+.popUpBackground {
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popUpBackground>.popUpForm {
+    height: fit-content;
+    background-color: var(--main-background-color);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+
+.popUpBackground>.popUpForm>section {
+    height: 75px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px 15px 0px 0px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+
+
+
+.popUpBackground>.popUpForm>div {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.popUpBackground>.popUpForm #conteneurh3 {
+margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+.popUpBackground>.popUpForm #conteneurh3>h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.popUpBackground>.popUpForm #conteneurh3 #prixEnchereProposee {
+    color: var(--bleu);
+    font-size: 1.8em;
+}
+
+
+.popUpBackground>.popUpForm #divCheckBoxConfirmation {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.popUpBackground>.popUpForm #caseValidation {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;   
+}
+
+.popUpBackground>.popUpForm p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 10px;
+    
+}
+
+.popUpBackground>.popUpForm .conteneurBouton {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+}
+
+
+.popUpBackground>.popUpForm .conteneurBouton>button {
+    height: 50px;
+    width: 40%;
+    border-radius: 15px;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    
+    cursor: pointer;
+}
+
+.popUpBackground>.popUpForm .conteneurBouton #annulerEnchere {
+    background-color: white;
+    color: black;
+}
+
+.popUpBackground>.popUpForm .conteneurBouton #confirmerEnchere {
+    background-color: var(--bleu);
+    color: black;
+}
+
+
 @media (min-width: 481px) and (max-width: 1000px) {
 
-    main form>div {
+    main #formPrincipale>div {
 
         align-items: center;
 
     }
 
-    main form #topForm {
+    main #formPrincipale #topForm {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -535,7 +670,7 @@ main form #bottomForm>div>div>section>h4 {
 
 
 
-    main form #topForm>#divTopLeft {
+    main #formPrincipale #topForm>#divTopLeft {
         position: relative;
         background-color: white;
         border-radius: 15px;
@@ -548,19 +683,19 @@ main form #bottomForm>div>div>section>h4 {
     }
 
 
-    main form #topForm>#divTopRight {
+    main #formPrincipale #topForm>#divTopRight {
         width: 100%;
         height: 300px;
     }
 
-    main form #topForm>#divTopRight>input,
-    main form #topForm>#divTopRight>input:first-child {
+    main #formPrincipale #topForm>#divTopRight>input,
+    main #formPrincipale #topForm>#divTopRight>input:first-child {
         height: 33%;
     }
 
 
 
-    main form #features {
+    main #formPrincipale #features {
 
         flex-direction: column-reverse;
         gap: 20px;
@@ -572,16 +707,16 @@ main form #bottomForm>div>div>section>h4 {
 
 
 
-    main form #features #featuresRight {
+    main #formPrincipale #features #featuresRight {
         width: 100%;
         height: 50px;
     }
 
-    main form #features #featuresLeft {
+    main #formPrincipale #features #featuresLeft {
         width: 100%;
     }
 
-    main form #features #featuresLeft>a {
+    main #formPrincipale #features #featuresLeft>a {
         height: 52px;
     }
 
@@ -589,7 +724,7 @@ main form #bottomForm>div>div>section>h4 {
 
 
 
-    main form #bottomForm {
+    main #formPrincipale #bottomForm {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -600,7 +735,7 @@ main form #bottomForm>div>div>section>h4 {
 
     }
 
-    main form #bottomForm>div {
+    main #formPrincipale #bottomForm>div {
         width: 100%;
         padding-bottom: 10px;
     }

@@ -27,7 +27,7 @@ const toggleDropFilter = function (numero) {
         validerOuEffacer.style.visibility = "visible";
         validerOuEffacer.style.opacity = "1";
 
-        
+
       }, 100);
 
 
@@ -42,7 +42,7 @@ const toggleDropFilter = function (numero) {
       //on vérifie si toute les fenetres sont fermé et si c'est le cas on ferme le "ValiderOuEffacer"
       let toutReduit = true;
       for (let i = 0; i < dropdownButton.length; i++) {
-        if (dropdownFilter[i].style.display === "flex" && toutReduit) {
+        if (dropdownFilter[i].classList.contains("open")) {
           toutReduit = false;
         }
       }
@@ -82,23 +82,7 @@ for (let i = 0; i < dropdownButton.length; i++) {
 
 }
 
-orderBy = document.getElementById("orderBy");
-orderBy.style.borderRadius = "15px";
 
-orderBy.addEventListener("click", function (event) {
-  event.stopPropagation();
-  if (orderBy.style.borderRadius === "15px" || orderBy.style.borderRadius === "15px 15px 15px 15px") {
-    orderBy.style.borderRadius = "15px 15px 0px 0px";
-  } else {
-    orderBy.style.borderRadius = "15px 15px 15px 15px";
-  }
-});
-
-document.documentElement.addEventListener("click", function (event) {
-  if (orderBy.style.borderRadius = "15px 15px 0px 0px") {
-    orderBy.style.borderRadius = "15px 15px 15px 15px";
-  }
-});
 
 /*
 document.getElementsByClassName("buttonDropFilter").onclick = function() {
@@ -111,17 +95,45 @@ document.getElementsByClassName("buttonDropFilter").onclick = function() {
 
 
 //whene the select is changed, we reload the page with GET parameters
-
+var inputOrderBy = document.getElementsByClassName("inputOrderBy");
+var optionOrderByChoix = document.getElementsByClassName("optionOrderByChoix");
 var orderBy = document.getElementById("orderBy");
-orderBy.addEventListener("change", function () {
-  var url = new URL(window.location.href);
-  if (orderBy.value) {
-    //On retire les espaces
-    orderBy.value = orderBy.value.replace(/\s/g, '');
-    url.searchParams.set("orderByChoix", orderBy.value);
-    window.location.href = url.href;
-  }
+var defaultOption = document.getElementById("defaultOption");
+
+
+//on récupère les paramètres GET
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
 });
+
+//on vérifie si il y a des paramètres GET et on change la valeur du select
+if (params.orderBy === "ASC") {
+  orderBy.value = params.orderByChoix;
+} else if (params.orderBy === "DESC") {
+  orderBy.value = params.orderByChoix;
+  orderBy.selectedIndex = orderBy.selectedIndex + 1;
+}
+
+
+
+orderBy.addEventListener("change", function () {
+
+
+  var url = new URL(window.location.href);
+  if(orderBy.selectedIndex === 0) {
+    url.searchParams.delete("orderByChoix");
+    url.searchParams.delete("orderBy");
+  }else {
+  url.searchParams.set("orderByChoix", optionOrderByChoix[orderBy.selectedIndex - 1].value);
+  url.searchParams.set("orderBy", inputOrderBy[orderBy.selectedIndex - 1].value);
+  }
+  window.location.href = url.href;
+
+});
+
+
+ 
+
 
 
 /*
@@ -146,7 +158,7 @@ var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
 // Boucle sur toutes les checkbox et les décocher
 toutEffacer.addEventListener("click", function () {
-for (var i = 0; i < checkboxes.length; i++) {
+  for (var i = 0; i < checkboxes.length; i++) {
     checkboxes[i].checked = false;
-}
+  }
 });

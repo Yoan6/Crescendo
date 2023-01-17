@@ -45,6 +45,9 @@
                     ce qui nous permettra de nous assurer que vous disposez bien de la somme que vous avez renseigné, 
                     sans pour autant que cette dernière ne vous soit prélevée tant que vous n'avez pas remporté l'enchère.
                 </p>
+
+                <img src="../design/image/schemas/screen_schema_acheter.png">
+
             </div>
         </main>
     <?php include(__DIR__.'/footer.php'); ?>	
