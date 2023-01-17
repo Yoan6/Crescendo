@@ -56,10 +56,15 @@
     <div class="divDropUser">
       <?php if (isset($_SESSION['num_utilisateur'])) {
         $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
-        $image = $utilisateur->getImageURL();
+        if ($utilisateur->getImageURL() != null) {
+          $image = $utilisateur->getImageURL();
+        }
+        else {
+          $image = "../data/imgProfil/user.png";
+        }
       }
       else {
-        $image = "http://www.w3.org/2000/svg";
+        $image = "../data/imgProfil/user.png";
       }
       ?>
 
