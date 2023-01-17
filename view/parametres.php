@@ -21,12 +21,12 @@
             <div id="divModifImage">
                 <div id="divImage">
                     <div>
-                        <img src="../design/image/user/lisa.jpeg" alt="">
+                        <img id="nouvelleImageTopLeft" src="<?=$imgProfil?>" alt="image profil">
                     </div>
                 </div>
 
                 <form action="../controller/parametre.ctrl.php" method="POST">
-                    <button type="button" id="modifImageProfil">
+                    <button type="button" id="modifImageProfil" name="fichier">
                         Modifier l'image de profil
                     </button>
 
@@ -262,7 +262,7 @@
                         <button id="annulerChangerImage" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerChangerImage" type="submit">
+                        <button id="confirmerChangerImage" type="   ">
                             Valider
                         </button>
                     </div>
@@ -286,7 +286,7 @@
                         <button id="annulerSupprimerPhoto" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimerPhoto" type="submit">
+                        <button id="confirmerSupprimerPhoto" name="confirmer" value="effacer" type="submit">
                             Supprimer
                         </button>
                     </div>

@@ -223,6 +223,7 @@ class Utilisateur
      */
     public function create()
     {
+        
         try {
             $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
                         Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
