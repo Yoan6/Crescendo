@@ -140,7 +140,10 @@ const parameters = new URLSearchParams(window.location.search);
 
 
 
-const categories = parameters.getAll("choixObligatoire[categorie][]");
+var categories = parameters.getAll("choixObligatoire[categorie][]");
+if (categories.length === 0) {
+  categories = parameters.getAll("choix[categorie][]");
+}
 const styles = parameters.getAll("choix[style][]");
 const taille = parameters.getAll("choix[taille][]");
 const etat = parameters.getAll("choix[etat][]");
