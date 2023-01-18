@@ -54,9 +54,8 @@
      **                         Données du vendeur
      ***************************************************************************/
     $vendeur = $article->getVendeur();
-    $imgProfil = $vendeur ->getImgProfil();
     $numUtilisateurVendeur = $vendeur ->getNumUtilisateur();
-    $imgProfil = $vendeur ->getImageURL();
+    $imageVendeur = $vendeur ->getImageURL();
     $numUtilisateur = $vendeur ->getNumUtilisateur();
     $pseudo = $vendeur ->getPseudo();
     $numVendeur = $vendeur->getNumUtilisateur();
@@ -93,7 +92,7 @@
 
     // données du vendeur
     $view->assign('vendeur', $vendeur);
-    $view->assign('imgProfil', $imgProfil);
+    $view->assign('imageVendeur', $imageVendeur);
     $view->assign('numUtilisateurVendeur', $numUtilisateurVendeur);
     $view->assign('pseudo', $pseudo);
     $view->assign('numVendeur', $numVendeur);
