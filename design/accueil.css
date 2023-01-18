@@ -4,6 +4,7 @@
 	height: 450px;
 	margin-top: 5px;
 	margin-bottom: 50px;
+    position: relative;
 }
 
 #banner img {
@@ -16,10 +17,11 @@
     justify-content: center;
     position: absolute;
     border-radius: 10px;
-    top: 300px;
+    bottom: 75px;
     left: 10%;
     width: 20%;
-    height: 20%;
+    min-width: 315px;
+    height: 150px;
     z-index: 1;
     background-color: #272727;
     color: white;
