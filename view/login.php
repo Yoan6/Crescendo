@@ -13,13 +13,14 @@
   <link rel="stylesheet" type="text/css" href="../design/connexion.css">
   <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
 </head>
-<?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
+
+<?php // if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
 <?php if(isset($messages) && count($messages) > 0) include(__DIR__ . '/popup/message.view.php'); ?>
 <body class="dark-mode">
 
 
   <main id="connexion">
-  <a class="logo" href="../controller/accueil.ctrl.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+  <a class="logo" href="../controller/accueil.ctrl.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
     <h1>Connexion</h1>
     <form action="../controller/login.ctrl.php" method="post">
       <div>
