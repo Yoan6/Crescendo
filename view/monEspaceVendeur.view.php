@@ -12,20 +12,18 @@
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
 
-<?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
 
 <?php 
     $estMonProfil = false;
     $num_vendeur = $choixObligatoire["num_vendeur"][0];
-    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+
+    $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0;
     if(strcmp($num_utilisateur, $num_vendeur) == 0){
         $estMonProfil = true;
     }
+    $pseudo = $vendeur->getPseudo();
 ?>
-
-
-<?php var_dump($num_vendeur, $num_utilisateur, $estMonProfil)?>
 
 
 <body class="dark-mode">
@@ -42,12 +40,12 @@
                 <div id="userInformations">
 
                     <div id="conteneurImage">
-                        <img src="../design/image/user/lisa.jpeg" alt="">
+                        <img src="<?=$utilisateur->getImageURL()?>" alt="">
                     </div>
 
                     <div id="conteneurInformation">
                         <h2>
-                            NomDuProfil
+                            <?=$pseudo?>
                         </h2>
 
                         <div>
@@ -115,7 +113,7 @@
 
                             </div>
                             <p>
-                                13 évaluations
+                                <?=$pageMax?> articles en vente
                             </p>
                         </div>
 
@@ -125,14 +123,11 @@
 
                 <div id="buttonUnderProfil">
                     <?php if($estMonProfil) :?>
-                        <a id="modifierProfil">
+                        <a href="../controller/parametre.ctrl.php" id="modifierProfil">
                             Modifier le profil
                         </a>
                     <?php endif;?>
                     
-                    <a id="voirLesAvis">
-                        Voir les avis
-                    </a>
                 </div>
 
 
@@ -140,7 +135,7 @@
 
             <div id="topPageRight">
                 <?php if($estMonProfil) :?>
-                    <a id="nouvelArticle">
+                    <a href="../controller/creerEnchere.ctrl.php" id="nouvelArticle">
                         Nouvel article
                     </a>
                     <a id="nouveauLot">
@@ -194,14 +189,14 @@
 
         
 
-        <form action="deleteArticle.ctrl.php"class="divPopUp">
+        <form action="deleteArticle.ctrl.php" class="divPopUp">
 
             <div id="popUpSupprimerArticle">
                 <input  id="idArticleAsupprimer" name="idArticleAsupprimer" value="">
 
                 <section>
                     <p>
-                        Suprrimer définitivement l'article (nomDeLArticle) ?
+                        Suprrimer définitivement l'article ?
                     </p>
                 </section>
                 <div>

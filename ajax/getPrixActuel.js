@@ -2,7 +2,7 @@ var inputPrix = document.getElementById("inputPrix");
 
 var numEnchere =  document.getElementById("numEnchere").value;
 
-
+// récupérer la box à changer
 var prixActuelText = document.getElementById("prixActuelText");
 
 prixActuelText.addEventListener("load", getPrixActuel(numEnchere));
@@ -11,7 +11,7 @@ setInterval(getPrixActuel,3000,numEnchere);  // 1000 ms = 1s
 
 
 function getPrixActuel(numEnchere) {
-    // récupérer la box à changer
+
    
 
     // Créer l'objet XMLHttpRequest

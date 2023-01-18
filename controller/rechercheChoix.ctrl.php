@@ -36,6 +36,13 @@ $page = $_GET['page'] ?? 1;
 $pageSize = 5; //Nombre d'article
 $nbBoutonPage = 5;
 $pagePrec = ($page <= 1 ? 1 : $page - 1); 
+$pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
+
+// Autres
+$num_vendeur = $choixObligatoireEtValeurs["num_vendeur"][0] ?? "";
+
+
+
 
 
 try {
@@ -70,7 +77,14 @@ $view->assign('valeurChoix', "");
 
 $view->assign('encheres', $encheres);
 
-if (isset($choixObligatoireEtValeurs["num_vendeur"])) {
+
+
+var_dump($num_vendeur);
+if ($num_vendeur != "") {
+    // information du vendeur
+    $vendeur = Utilisateur::readNum($num_vendeur);
+    $view->assign("vendeur", $vendeur);
+
     $view->display("monEspaceVendeur.view.php");
 } else {
     $view->display("rechercheChoix.view.php");

@@ -38,7 +38,7 @@ if (isset($_SESSION['num_utilisateur'])) {
             $passwordHash = $utilisateur->getMotDePasse();
             if (password_verify($password, $passwordHash)) {
                 $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
-                header("Location: ../controller/accueil.ctrl.php");
+                header("Location: ../controller/parametre.ctrl.php");
             }
             else {
                 array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");

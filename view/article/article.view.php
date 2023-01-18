@@ -3,7 +3,7 @@
     <?php foreach ($encheres as $enchere):
         $article = Article::getTypeArticleFromArray($enchere->getArticles(), 0); ?>
         <div class="article">
-
+            
             <div id="divHeart">
                 <svg id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -32,10 +32,10 @@
                     </form>
                 </div>
             </div>
-
+            <input type="hidden" class="numEnchereRecupererValeur" value="<?= $enchere->getNumEnchere()?>">
+        
             <div id="divLikes">
-
-                <svg id="like" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                <svg id="like" class="likeBouton<?=$enchere->getNumEnchere()?>" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>i</title>
@@ -50,9 +50,9 @@
                     </g>
                 </svg>
 
-                <p>654</p>
+                <p><span id="likeActuelText<?=$enchere->getNumEnchere()?>"></span></p>
 
-                <svg id="dislike" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" transform="rotate(180)">
+                <svg id="dislike" class="dislikeBouton<?=$enchere->getNumEnchere()?>" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" transform="rotate(180)">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>i</title>
@@ -71,3 +71,5 @@
         </div>
     <?php endforeach; ?>
 <?php endif; ?>
+<input type="hidden" class="numUtilisateurRecupererValeur" value="<?= ($_SESSION['num_utilisateur'] ?? "")?>">
+<script src="../ajax/like.js"></script>

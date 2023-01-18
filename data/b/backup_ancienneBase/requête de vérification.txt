@@ -1,0 +1,1 @@
+select est_lot, num_article, num_enchere,titre from article natural join concerne natural join enchere natural left join encherit ORDER by num_enchere desc limit 5;

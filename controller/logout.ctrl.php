@@ -7,6 +7,5 @@
   {
     // Redirection vers la page de connexion
     header("Location: accueil.ctrl.php");
-    echo ("Vous êtes maintenant déconnecté");
   }
 ?>
