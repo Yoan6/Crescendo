@@ -142,12 +142,21 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                     </button>
                                 </form>
                             </div>
-                        <?php } else { ?>
+                        <?php } else if ($num_utilisateur == null) { ?>
                             <div id="divNouveauPrix">
 
 
                                 <a href="../controller/login.ctrl.php">
                                     Se connecter pour enchérir
+                                </a>
+
+                            </div>
+                        <?php } else if($estMonProfil) { ?>
+                            <div id="divNouveauPrix">
+
+
+                                <a href="../controller/updateArticle.ctrl.php?idArticleAModifier=<?= $numArticle ?>">
+                                    Modifier l'article
                                 </a>
 
                             </div>
