@@ -18,8 +18,8 @@ if (isset($_SESSION['num_utilisateur'])) {
     // Partie récupération des données
     ///////////////////////////////////////////////////////////////////////////////
 
-    $login = $_POST['login'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $login = htmlspecialchars($_POST['login'] ?? '');
+    $password = htmlspecialchars($_POST['password'] ?? '');
 
     ///////////////////////////////////////////////////////////////////////////////
     // Partie calculs avec le modèle
