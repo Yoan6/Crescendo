@@ -196,7 +196,7 @@
 
                 <section>
                     <p>
-                        Suprrimer définitivement l'article ?
+                        Supprimer définitivement l'article ?
                     </p>
                 </section>
                 <div>
