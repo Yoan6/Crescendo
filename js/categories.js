@@ -156,6 +156,36 @@ remettrelesparameters(etat);
 
 
 
+
+
+var pageDebut = document.getElementById("pageDebut");
+var pagePrecedante = document.getElementById("pagePrecedante");
+var pageFin = document.getElementById("pageFin");
+var pageSuivante = document.getElementById("pageSuivante");
+var numeroDePage = document.getElementsByClassName("numeroDePage");
+
+function rajoutDeParametre(url, parametre, valeur) {
+  url.searchParams.set(parametre, valeur);
+  return url;
+}
+
+for (let i = 0; i < numeroDePage.length; i++) {
+  //On rajoute les paramètres GET déjà présent au lien du bas de page pour conserver les filtres
+  for(let [key, value] of parameters) {
+    numeroDePage[i].href = rajoutDeParametre(new URL(numeroDePage[i].href), key, value);
+  }
+  
+}
+
+for(let [key, value] of parameters) {
+  if(key !== "page") {
+  pageDebut.href = rajoutDeParametre(new URL(pageDebut.href), key, value);
+  pagePrecedante.href = rajoutDeParametre(new URL(pagePrecedante.href), key, value);
+  pageFin.href = rajoutDeParametre(new URL(pageFin.href), key, value);
+  pageSuivante.href = rajoutDeParametre(new URL(pageSuivante.href), key, value);
+  }
+}
+
 /*
 //Lors du chargement de la page, on vérifie si il y a des paramètres GET et on change la valeur du select
 var url = new URL(window.location.href);

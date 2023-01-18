@@ -12,7 +12,9 @@
 <?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
 
+<?php var_dump($numUtilisateur)?>
 <?php var_dump($estLot)?>
+<?php var_dump($nouvelleEnchere)?>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>

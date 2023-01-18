@@ -8,10 +8,7 @@
 
 
     //si une nouvelle enchère est proposé
-    if(isset($_POST['nouvelleEnchere'])){
-        $nouvelleEnchere = $_POST['nouvelleEnchere'];
-    }
-
+   
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -20,6 +17,7 @@
     ***************************************************************************/
     if (isset($_SESSION['numUtilisateur'])) {
         $utilisateur = Utilisateur::readNum($_SESSION['numUtilisateur']);
+        $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
     } else {
         $utilisateur = null;
     }
@@ -69,7 +67,8 @@ var_dump($numVendeur);
     **                         Construction de la vue
     ***************************************************************************/
     $view = new View();
-    
+
+
     // données de l'enchère
     $view->assign('prixActuel', $prixActuel);
     $view->assign('dateFin', $dateFin);
@@ -103,6 +102,15 @@ var_dump($numVendeur);
      **                         Gestion d'une offre d'achat
      ***************************************************************************/
     
+    
+     
+    // données de l'utilisateur
+    if (isset($utilisateur) && isset($nouvelleEnchere)) {
+        $view->assign('numUtilisateur', $utilisateur->getNumUtilisateur());
+        $view->assign('nouvelleEnchere', $nouvelleEnchere);
+
+    }
+   
     
     // test encherir
     /*
