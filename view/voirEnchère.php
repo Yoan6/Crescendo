@@ -102,7 +102,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                     <div id="divTopRight">
                         <h4>
-                            <?= $titre ?>
+                            <?= htmlspecialchars($titre) ?>
                         </h4>
                         <div id="divPrixActuel">
                             <input type="hidden" id="numEnchere" value="<?= $numEnchere ?>">
@@ -212,10 +212,10 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                     <a id="featuresRight"
                         href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?= $numVendeur ?>">
                         <div>
-                            <img src="<?= $imgProfil ?>" alt="user">
+                            <img src="<?= $utilisateur->getImageURL() ?>" alt="user">
                         </div>
                         <p>
-                            <?= $pseudo ?>
+                            <?= htmlspecialchars($pseudo) ?>
                         </p>
                     </a>
                 </div>
@@ -227,7 +227,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                     </h3>
 
                     <p>
-                        <?= $description ?>
+                        <?= htmlspecialchars($description) ?>
                     </p>
                 </div>
 
@@ -260,7 +260,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                     Lieu:
                                 </h4>
                                 <p>
-                                    <?= $lieu ?>
+                                    <?= htmlspecialchars($lieu) ?>
                                 </p>
                             </section>
                             <section>
@@ -349,7 +349,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                         <div id="conteneurh3">
                             <h3>Votre nouveau prix : </h3>
                             <h3 id="prixEnchereProposee">
-                                <?= $nouvelleEnchere ?>€
+                                <?= htmlspecialchars($nouvelleEnchere) ?>€
                             </h3>
                         </div>
 

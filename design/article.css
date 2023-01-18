@@ -2,7 +2,7 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    background-color: var(--header-background-color);
+    background-color: var(--noir-gris-clair);
     height: 170px;
     display: flex;
     align-items: center;
@@ -154,7 +154,7 @@
 }
 
 .article #center .divBouton button:hover {
-    background-color: #efefef;
+    background-color: #DBDBDB;
     color: black;
     transform: scale(1.03);
 }
@@ -171,9 +171,9 @@
     border-top: solid 1px var(--main-content-background-color);
     border-left: solid 1px var(--main-content-background-color);
     border-bottom: solid 1px var(--main-content-background-color);
-
     height: 100%;
     width: 75px;
+    background-color: var(--navBar-background-color);
 }
 
 .article #divLikes p {

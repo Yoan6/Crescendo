@@ -18,7 +18,7 @@
     <div id="inscription">
 
         <main>
-        <a class="logo" href="../view/accueil.view.php"><img src="../design/image/crescendo_logo_black.svg"  alt="logo"></a>
+        <a class="logo" href="../view/accueil.view.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
 
         <?php
         if (isset($error) && count($error) != 0) {
@@ -65,7 +65,7 @@
 
                         <article class="ville">
                             <div>
-                                <label for="code-postale">Code postale *</label>
+                                <label for="code-postale">Code postal *</label>
 
                                 <input type="text" name="code_postale" value="<?=$code_postale?>" id="code-postale" placeholder="Ex : 70123" minlength="5" maxlength="5" required>
                             </div>

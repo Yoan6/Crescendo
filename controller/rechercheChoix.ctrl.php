@@ -16,7 +16,7 @@ include_once(__DIR__."/../model/Enchere.class.php");
 ***************************************************************************/
 
 // Données pour la recherche
-$recherche = $_GET["recherche"] ?? "";
+$recherche = htmlspecialchars($_GET["recherche"] ?? "");
 
 $choixEtvaleurs = $_GET['choix'] ?? array(); 
 $choixObligatoireEtValeurs = $_GET['choixObligatoire'] ?? array();

@@ -16,7 +16,7 @@
     $numUtilisateurActuel = $_SESSION['num_utilisateur']?? null;
 
     $num_enchere = $_GET['numEnchere'] ?? 1;
-    $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
+    $nouvelleEnchere = htmlspecialchars($_POST['nouvelleEnchere'] ?? null);
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');

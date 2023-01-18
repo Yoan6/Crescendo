@@ -26,13 +26,13 @@
      **                         Données de l'article
      ***************************************************************************/
     $nomsImages = array();
-    $titre = $_POST['titre'] ?? "";
-    $prixMin = $_POST['prixMin'] ?? 0;
-    $description = $_POST['description'] ?? "";
+    $titre = htmlspecialchars($_POST['titre'] ?? "");
+    $prixMin = htmlspecialchars($_POST['prixMin'] ?? 0);
+    $description = htmlspecialchars($_POST['description'] ?? "");
 
-    $artiste = $_POST['artiste'] ?? "";
+    $artiste = htmlspecialchars($_POST['artiste'] ?? "");
     $dateEvenement = $_POST['dateEvenement'] ?? "";
-    $lieu = $_POST['lieu'] ?? "";
+    $lieu = htmlspecialchars($_POST['lieu'] ?? "");
     $style = $_POST['style'] ?? "";
 
     $taille = $_POST['taille'] ?? "";
@@ -68,7 +68,7 @@
         } 
         else {
             // Pas d'erreurs l'ajouter
-            $nomsImages[] = time() . $file_name; // Mettre les noms des fichiers pour la création d'un article
+            $nomsImages[] = time() . "." .pathinfo($file_name,PATHINFO_EXTENSION); // Mettre les noms des fichiers pour la création d'un article
         }
     }
 finImage:

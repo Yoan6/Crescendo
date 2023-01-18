@@ -1,7 +1,3 @@
-1|crescendo.uga@gmail.com|Admin|crescendo|crescendo|uga|1990-01-01|Grenoble|2 Place Doyen Gosse|38000|2022-01-01|
-2|pierre.durand@gmail.com|pierre_durand|motdepasse2|Durand|Pierre|1995-01-01|Marseille|2 avenue des Champs Elysées|13000|2022-01-02|
-3|claire.leblanc@gmail.com|claire_leblanc|motdepasse3|Leblanc|Claire|2000-01-01|Lyon|3 rue de la liberté|69000|2022-01-03|
-4|thomas.dupont@gmail.com|thomas_dupont|motdepasse4|Dupont|Thomas|2005-01-01|Toulouse|4 avenue des Arts|31000|2022-01-04|
-5|yoan.delannoy@gmail.com|Yang|$2y$10$j59R1wuKTzV7jw9.UVDJIOM6WFAaJqmflTCRJd4FGm0X/77hneqhC|Delannoy|Yoan|2003-08-23|Grenoble|13 Rue des Papetteries|38000|
-6|aeaeaeaeaaeaaeazeaze@dq|eazeaze|$2y$10$hHgmizm4V46AXZkl.3QC/en/xBr.kA9BlrOM24.cON7eFoo5sz1.C|eazeazea|zeazeaz|2005-01-07|azeazea|aeazeaeaea|azeaz|
-7|pablomontanier@gmail.com|pablo_test|$2y$10$.p.Nh0/qWG2XloNrWXTTsugaN8qhNMdw1P2atCzTu01kNK/6S8B7W|Tourougui|Jallyl|2004-08-15|Paname|1 avenue des Champs-Elysées|75000|../data/imgProfil/img_profile_default.png
+1|crescendo.uga@gmail.com|Admin|crescendo|crescendo|uga|1990-01-01|Grenoble|2 Place Doyen Gosse|38000|2022-01-01|../data/imgProfile.png
+2|yoan.delannoy@gmail.com|Yang|$2y$10$j59R1wuKTzV7jw9.UVDJIOM6WFAaJqmflTCRJd4FGm0X/77hneqhC|Delannoy|Yoan|2003-08-23|Grenoble|13 Rue des Papetteries|38000|../data/imgProfil/profile.png
+3|pablomontanier@gmail.com|pablo_test|$2y$10$.p.Nh0/qWG2XloNrWXTTsugaN8qhNMdw1P2atCzTu01kNK/6S8B7W|Tourougui|Jallyl|2004-08-15|Paname|1 avenue des Champs-Elysées|75000|../data/imgProfil/img_profile_default.png

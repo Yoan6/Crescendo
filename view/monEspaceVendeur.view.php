@@ -45,7 +45,7 @@
 
                     <div id="conteneurInformation">
                         <h2>
-                            <?=$pseudo?>
+                            <?=htmlspecialchars($pseudo)?>
                         </h2>
 
                         <div>
