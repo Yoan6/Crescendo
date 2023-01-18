@@ -211,7 +211,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                     <a id="featuresRight"
                         href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?= $numVendeur ?>">
                         <div>
-                            <img src="<?= $imgProfil ?>" alt="user">
+                            <img src="<?= $utilisateur->getImageURL() ?>" alt="user">
                         </div>
                         <p>
                             <?= htmlspecialchars($pseudo) ?>
