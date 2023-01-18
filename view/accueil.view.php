@@ -19,7 +19,12 @@
     <main id="accueil">
         <div id="banner">
             <img src="../design/image/accueil/concert.jpg">
+            <div id="banner-text">
+                <h3> Au plus proche de vos artistes préférés ! </h3>
+                <a id="explore" href="../controller/rechercheChoix.ctrl.php?orderBy[]=AlaUne"> Explore dès maintenant !</a>
+            </div>
         </div>
+
         <div class="conteneur" id="divVIA">
             <ul class="conteneur" id="via">
                 <li>
