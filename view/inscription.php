@@ -65,7 +65,7 @@
 
                         <article class="ville">
                             <div>
-                                <label for="code-postale">Code postale *</label>
+                                <label for="code-postale">Code postal *</label>
 
                                 <input type="text" name="code_postale" value="<?=$code_postale?>" id="code-postale" placeholder="Ex : 70123" minlength="5" maxlength="5" required>
                             </div>
