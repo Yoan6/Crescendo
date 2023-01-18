@@ -106,12 +106,13 @@ var_dump($numVendeur);
    
     
     // test encherir
-    $encherir = $_GET["encherir"] ?? "";
-    if($encherir == "encherir"){
+    $newOrder = $_POST["newOrder"] ?? null;
+    if($newOrder !== null){
         try {
         $utilisateur = Utilisateur::readNum($numUtilisateurActuel);
-            $prix = $_GET["prix"] ?? 0;
-            $enchere->encherir($utilisateur, $prix);
+        //Ici il devrait y avoir la vérification de la somme via le retour de paypal mais l'api est vraiment difficile à mettre en place sur php (j'ai essayé pendant quelques heures :( )
+            $enchere->encherir($utilisateur, $newOrder);
+            $view->assign('enchereAccepte', "oui");
         } catch (exception $e) {
             // Une erreur peut être générée si l'offre n'est pas la plus haute
             print('\n Erreur ' . $e->getMessage() . "\n");

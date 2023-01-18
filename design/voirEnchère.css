@@ -648,13 +648,14 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    accent-color: var(--bleu);
 }
 
-.popUpBackground>.popUpForm p {
+.popUpBackground>.popUpForm label {
     font-size: 1.2em;
     font-weight: bold;
     margin-left: 10px;
-
+    cursor: pointer;
 }
 
 .popUpBackground>.popUpForm .conteneurBouton {
@@ -686,7 +687,7 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     color: black;
 }
 
-.popUpBackground>.popUpForm .conteneurBouton #confirmerEnchere {
+.popUpBackground>.popUpForm .conteneurBouton #ValiderEnchere {
     background-color: var(--bleu);
     color: black;
 }
@@ -793,7 +794,6 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     top: 115px;
     width: 100%;
     height: 80px;
-    background: #79D2BC;
     border-radius: 15px;
     text-align: center;
     font-size: 1.25em;
@@ -802,12 +802,15 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     z-index: 1;
 }
 
-#bandeau2 {
-    display: flex;
+
+.bandeau {
+
+
+    display: none;
     align-items: center;
     justify-content: center;
     position: sticky;
-    top: 115px;
+    top: 109px;
     width: 100%;
     height: 80px;
     background: #F85656;
@@ -816,7 +819,45 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     font-size: 1.25em;
     font-weight: 700;
     z-index: 1;
+    
+
 }
+
+.bandeau .bandeauDiv1, .bandeau .bandeauDiv3 {
+    width : 20%;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.bandeauDiv3 button{
+
+    width : 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.bandeau .bandeauDiv2 {
+
+    width : 60%;
+
+}
+
+
+#bandeauBleu {
+    background: #79D2BC;
+}
+
+
+#enchereOuiNon{
+    display: none;
+}
+
+
 
 .btnFermer {
     display: flex;

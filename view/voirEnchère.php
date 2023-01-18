@@ -28,7 +28,23 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
     <main>
 
-        <div class="erreurBandeau" id="bandeau2">
+        <p id="enchereOuiNon"><?= $enchereAccepte ?></p>
+
+        <div class="bandeau" id="bandeauBleu">
+            <div class="bandeauDiv1">
+
+            </div>
+            <div class="bandeauDiv2">
+                <h3>Enchere accepté</h3>
+            </div>
+            <div class="bandeauDiv3">
+                <button class="btnFermer"> Fermer </button>
+            </div>
+        </div>
+
+
+
+        <div class="bandeau" id="bandeauRouge">
             <div class="bandeauDiv1">
 
             </div>
@@ -39,6 +55,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                 <button class="btnFermer"> Fermer </button>
             </div>
         </div>
+
 
         <form id="formPrincipale" method="post"
             action="../controller/afficherArticle.ctrl.php?numEnchere=<?= $numEnchere ?>">
@@ -334,8 +351,8 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
             <div class="popUpBackground">
 
-                <form class="popUpForm" method="POST" action="../controller/afficherArticle.ctrl.php">
-                    <input id="reportNouveauPrix" type="hidden" name="newOrder" value="">
+                <form class="popUpForm" method="POST" action="../controller/afficherArticle.ctrl.php?numEnchere=<?= $numEnchere ?>">
+                    <input id="reportNouveauPrix" type="hidden" name="newOrder" value="<?= $nouvelleEnchere ?>">
 
                     <section>
                         <p>
@@ -354,17 +371,20 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                         <div id="divCheckBoxConfirmation">
                             <input required type="checkbox" name="caseValidation" id="caseValidation">
-                            <p>Je confirme vouloir enchérir à ce prix</p>
+                            <label for="caseValidation">Je confirme vouloir enchérir à ce prix</label>
                         </div>
 
                         <div class="conteneurBouton">
                             <button id="annulerEnchere" type="button">
                                 Annuler
                             </button>
-                            <?php require_once('../api/paypalAPI/test/PaypalPaiement.class.php');
+                            <button id="ValiderEnchere" type="submit">
+                                Valider
+                            </button>
+                            <?php /*require_once('../api/paypalAPI/test/PaypalPaiement.class.php');
                             $paiementPaypal = new PaypalPaiement();
                             echo $paiementPaypal->ui($nouvelleEnchere, $numEnchere);
-                            ?>
+                            */?>
                         </div>
 
                     </div>
