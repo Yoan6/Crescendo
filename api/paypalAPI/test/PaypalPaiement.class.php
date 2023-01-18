@@ -5,16 +5,67 @@
   */
 
   
-
+   
 
 class PaypalPaiement {
     private const CLIENT_ID = 'AaTHiLLksQ4TPTNz-IPaU7e3HxHpHDP9cHhpnQiRDUGeGShsHw68W5DxDaOUpCJDc8w2QpHf9hYEzSBi';
 
    //Enchere $uneEnchère
 
-    public function ui(int $prix): string 
+    public function ui(int $prix, int $num_enchere): string 
     {
         $clientId = self::CLIENT_ID; 
+        $enchere = Enchere::read($num_enchere);
+        $lesArticles = $enchere->getArticles();
+
+
+        $commande = json_encode([
+
+            'purchase_units' => [[
+                'description' => 'la description de l\'enchère',
+                'items' => array_map(function ($article) {
+                    return [
+
+                        'name' => $article->getNom(),
+
+                        'quantity' => 1,
+                        
+
+                        
+
+                    ];
+
+                }, $lesArticles->getArticles()),
+                
+            
+                'amount' => [
+
+
+                    'value' => $prix,
+                    
+                    'breakdown' => [
+
+                        'item_total' => [
+
+                            'currency_code' => 'EUR',
+                            'value' => $prix
+
+                        ],
+
+                    ],
+
+
+
+                    ]
+                    
+
+                ]
+
+            ]
+
+
+
+                ]);
         //$uneEnchère
         return <<<HTML
 
@@ -45,19 +96,7 @@ class PaypalPaiement {
 
             createOrder: (data, actions) => {
 
-            return actions.order.create({
-
-                purchase_units: [{
-
-                amount: {
-                    
-                    value: {$prix} // Le prix de l'offre de l'enchère
-                    
-                }
-
-                }]
-
-            });
+            return actions.order.create({$commande});
 
             },
 
