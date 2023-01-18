@@ -44,7 +44,7 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $pseudo ?>
+                        <?= htmlspecialchars($pseudo) ?>
                     </p>
                     <button id="modifPseudo">
                         Modifier le pseudo
@@ -87,7 +87,7 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $mail ?>
+                        <?= htmlspecialchars($mail) ?>
                     </p>
                     <button id="modifMail">
                         Modifier l'adresse mail
@@ -118,7 +118,7 @@
                 </h2>
                 <div class="afficherAttribut">
                     <p>
-                        <?= $adresse ?>, <?= $postal ?> <?= $ville ?>
+                        <?= htmlspecialchars($adresse) ?>, <?= htmlspecialchars($postal) ?> <?= htmlspecialchars($ville) ?>
                     </p>
                     <button id="modifAdresse">
                         Modifier l'adresse de livraison

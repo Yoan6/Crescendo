@@ -14,17 +14,17 @@ $errors = array();
 $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
 
 // Variable de champs du formulaire :
-$pseudo = $_POST['pseudo'] ?? $utilisateur->getPseudo();
-$mail = $_POST['mail'] ?? $utilisateur->getEmail();
-$password = $_POST['password'] ?? $utilisateur->getMotDePasse();
-$postal = $_POST['postal'] ?? $utilisateur->getCodePostal();
-$ville = $_POST['ville'] ?? $utilisateur->getVille();
-$adresse = $_POST['adresse'] ?? $utilisateur->getRue();
+$pseudo = htmlspecialchars($_POST['pseudo'] ?? $utilisateur->getPseudo());
+$mail = htmlspecialchars($_POST['mail'] ?? $utilisateur->getEmail());
+$password = htmlspecialchars($_POST['password'] ?? $utilisateur->getMotDePasse());
+$postal = htmlspecialchars($_POST['postal'] ?? $utilisateur->getCodePostal());
+$ville = htmlspecialchars($_POST['ville'] ?? $utilisateur->getVille());
+$adresse = htmlspecialchars($_POST['adresse'] ?? $utilisateur->getRue());
 $effacer = $_POST['effacer'] ?? '';
 $confirmer = $_POST['confirmer'] ?? '';
-$ancienPassword = $_POST['ancienPassword'] ?? '';
-$nouveauPassword = $_POST['nouveauPassword'] ?? '';
-$checkPassword = $_POST['checkPassword'] ?? '';
+$ancienPassword = htmlspecialchars($_POST['ancienPassword'] ?? '');
+$nouveauPassword = htmlspecialchars($_POST['nouveauPassword'] ?? '');
+$checkPassword = htmlspecialchars($_POST['checkPassword'] ?? '');
 
 // Lien relatif vers le dossier des images :
 $chemin_image  ="../data/imgProfil/";

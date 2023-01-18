@@ -16,7 +16,7 @@
 
     <main>
         <div>
-            <p id="titre">Résultat pour <?=$recherche?></h1>
+            <p id="titre">Résultat pour <?=htmlspecialchars($recherche)?></h1>
 
         </div>
         <div id="principale">
