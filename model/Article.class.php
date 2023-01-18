@@ -342,8 +342,8 @@ class Article
     {
         $query = "SELECT *
                     FROM ENCHERE_TOUT_VIEW
-                    WHERE titre like '%' ||:titreArtiste ||'%'
-                        OR artiste like '%' ||:titreArtiste ||'%'
+                    WHERE titre like '%' ||:titreArtiste ||'%' COLLATE NOCASE
+                        OR artiste like '%' ||:titreArtiste ||'%' COLLATE NOCASE
                     ORDER BY num_article
                     LIMIT :pageSize OFFSET :articleOffset ;";
 
@@ -390,6 +390,8 @@ class Article
             "articleOffset" => ($page - 1) * $pageSize,
             "pageSize" => $pageSize,
         ];
+        var_dump($query);
+
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
         // ($data, $query);
         /********************* La requête préparée pour les données entrées par l'utilisateur *********************/

@@ -19,16 +19,19 @@
     $pageSize = 5; //Nombre d'article
     $nbBoutonPage = 5;
     $pagePrec = ($page <= 1 ? 1 : $page - 1); 
-    $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
+
     
     // Récupérer les enchères
     try {
-        $pageMax = (int) (article::nombreArticlesLike($recherche) / $pageSize)+1; // Une erreur est générée si 0 article trouvé
-        $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
+        $pageMax = (int) (article::nombreArticlesLike($recherche) / $pageSize) ; // Une erreur est générée si 0 article trouvé
+        $encheres = Enchere::readPageLike($page, $pageSize, $recherche) +1;
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
-var_dump($age, $pageSize, $pagePrec, $pageSuiv);
+
+    $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
+
+
 
     //($encheres);
     /***************************************************************************

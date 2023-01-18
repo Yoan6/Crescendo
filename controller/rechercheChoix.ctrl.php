@@ -32,7 +32,8 @@ $errors = array();
 $pageMax = 1;
 
 // Gérer les pages
-$page = (int) $_GET['page'] ?? 1;
+
+$page = $_GET['page'] ?? 1;
 $pageSize = 5; //Nombre d'article
 $nbBoutonPage = 5;
 $pagePrec = ($page <= 1 ? 1 : $page - 1); 
@@ -47,7 +48,6 @@ $num_vendeur = $choixObligatoireEtValeurs["num_vendeur"][0] ?? "";
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
-    var_dump($choixObligatoiresEtvaleurs, $choixEtvaleurs);
 
     $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
@@ -55,9 +55,10 @@ try {
     ($errors);
 }
 
-var_dump($page, $pageSize, $pagePrec, $pageSuiv,$pageMax);
+$pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 $view = new View();
+;
 
 if (empty($encheres)) {
     $errors[] = "Pas d'enchère trouvée";

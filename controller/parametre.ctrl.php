@@ -69,9 +69,9 @@ if(isset($_FILES['changementImage'])) {
     ($errors);
 }
 
-// On suppriem l'image de profil de l'utilisateur :
+// On supprime l'image de profil de l'utilisateur :
 if ($confirmer == 'effacer') {
-    $utilisateur->setImgProfil("../data/imgProfil/user.png");
+    $utilisateur->setImageURL("../data/imgProfil/profile.png");
 }
 
 
@@ -148,7 +148,7 @@ if ($confirmer == 'password') {
 }
 
 // Cas où l'utilisateur veut supprimer son compte :
-if ($effacer == 'effacer') {
+if ($confirmer == 'effacer') {
     $utilisateur->delete();
     session_destroy();
     header("Location: accueil.ctrl.php");
@@ -158,7 +158,7 @@ if (count($errors) == 0) {
     $utilisateur->update();
 }
 
-
+var_dump($errors);
 
 $imgProfil = $utilisateur->getImageURL();
 
@@ -174,7 +174,7 @@ $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
 // Pour le javascript :
-$view->assign('imgDefault', "../data/imgProfil/user.png");
+$view->assign('imgDefault', "../data/imgProfil/profile.png");
 
 $view->assign('errors',$errors);
 $view->display("parametres.php");

@@ -16,6 +16,7 @@
     $numUtilisateurActuel = $_SESSION['num_utilisateur']?? null;
 
     $num_enchere = $_GET['numEnchere'] ?? 1;
+    $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -50,6 +51,8 @@
      **                         Données du vendeur
      ***************************************************************************/
     $vendeur = $article->getVendeur();
+    $imgProfil = $vendeur ->getImgProfil();
+    $numUtilisateurVendeur = $vendeur ->getNumUtilisateur();
     $imgProfil = $vendeur ->getImageURL();
     $numUtilisateur = $vendeur ->getNumUtilisateur();
     $pseudo = $vendeur ->getPseudo();
@@ -61,7 +64,8 @@
     **                         Construction de la vue
     ***************************************************************************/
     $view = new View();
-    
+
+
     // données de l'enchère
     $view->assign('prixActuel', $prixActuel);
     $view->assign('dateFin', $dateFin);
@@ -87,7 +91,7 @@
     // données du vendeur
     $view->assign('vendeur', $vendeur);
     $view->assign('imgProfil', $imgProfil);
-    $view->assign('numUtilisateur', $numUtilisateur);
+    $view->assign('numUtilisateurVendeur', $numUtilisateurVendeur);
     $view->assign('pseudo', $pseudo);
     $view->assign('numVendeur', $numVendeur);
     
@@ -96,6 +100,10 @@
      **                         Gestion d'une offre d'achat
      ***************************************************************************/
     
+     $view->assign('nouvelleEnchere', $nouvelleEnchere);
+     
+    
+   
     
     // test encherir
     $encherir = $_GET["encherir"] ?? "";

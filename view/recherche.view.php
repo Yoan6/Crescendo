@@ -39,7 +39,7 @@
 
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
-
+                    <?php var_dump(" " . $nbBoutonPage, " page " . $page," pageSize " .  $pageSize," pagePrec " .  $pagePrec, " pageSuiv " .  $pageSuiv, " pageMax " . $pageMax);?>
                 </div>
             </div>
 

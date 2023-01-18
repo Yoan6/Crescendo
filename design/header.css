@@ -254,13 +254,12 @@ Drop down bouton utilisateur
 
 .dropdown a {
   position: relative;
-  background: var(--header-background-color);
   display: flex;
   align-items: center;
   height: 45px;
   padding-left: 1rem;
   text-decoration: none;
-  color: white;
+  color: var(--navBar-font-color);
   border-left: solid 1px white;
   border-right: solid 1px white;
 }
@@ -299,7 +298,7 @@ Drop down bouton utilisateur
 }
 
 .dropdown a:hover {
-  background-color: white;
+  background-color: var(--navBar-background-color);
   color: var(--header-background-color);
 }
 

@@ -11,8 +11,6 @@
     <link rel="icon" href="../design/image/icone.png">
 </head>
 
-<?php if(!isset($_SESSION)) { session_start(); } ?>
-
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
@@ -54,6 +52,7 @@
         <div class="conteneur" id="articleSemaine">
             <div>
                 <h1>Les articles de la semaine</h1>
+                <h2><span id="testAEnlever">a</span></h2>
                 <?php include(__DIR__ . '/article/article.view.php'); ?>
             </div>
         </div>

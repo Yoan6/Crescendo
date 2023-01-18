@@ -12,7 +12,7 @@ class PaypalPaiement {
 
    //Enchere $uneEnchère
 
-    public function ui(int $prix): string 
+    public function ui(int $prix, string $num_enchere): string 
     {
         $clientId = self::CLIENT_ID; 
         //$uneEnchère
@@ -49,11 +49,14 @@ class PaypalPaiement {
 
                 purchase_units: [{
 
+                id: "48S239579N1696452",
                 amount: {
-                    
+                    reference_id: "default",
                     value: {$prix} // Le prix de l'offre de l'enchère
                     
                 }
+
+    
 
                 }]
 

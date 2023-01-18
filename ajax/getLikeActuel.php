@@ -8,7 +8,7 @@
         $numEnchere = $_GET['numEnchere'] ?? -1;
 
         $enchere = Enchere::read($numEnchere);
-        $likeActuel = $enchere->obtenirLikeActuel();
+        $likeActuel = $enchere->getCompteurLike();
 
         // Envoyer le prix
         echo $likeActuel;
