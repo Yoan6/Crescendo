@@ -28,6 +28,7 @@
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
+var_dump($age, $pageSize, $pagePrec, $pageSuiv);
 
     //($encheres);
     /***************************************************************************

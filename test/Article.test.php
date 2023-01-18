@@ -15,7 +15,7 @@ try {
     $article2 = Article::read($article->getTitre(),$article->getDescription());
     if(!$article->egalArticle($article2)) 
     {
-        ("\n\nValeurs a1", $article,"\n\nValeurs a2 avec read", $article2); 
+        var_dump("\n\nValeurs a1", $article,"\n\nValeurs a2 avec read", $article2); 
         throw new Exception("pas le bon Article");
     };
     OK();
@@ -27,7 +27,7 @@ try {
     $article2 = Article::read($article->getTitre(),$article->getDescription());
     if(!$article->egalArticle($article2)) 
     {
-        ("\n\nValeurs attendues", $article,"\n\nValeurs obtenues", $article2); 
+        var_dump("\n\nValeurs attendues", $article,"\n\nValeurs obtenues", $article2); 
         throw new Exception("pas le bon Article");
     };
     OK();

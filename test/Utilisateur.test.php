@@ -15,7 +15,7 @@ try {
     $utilisateur2 = Utilisateur::read($utilisateur->getEmail(), $utilisateur->getMotDePasse());
     if(!$utilisateur->egalUtilisateur($utilisateur2)) 
     {
-        ("\n\nValeurs u1", $utilisateur,"\n\nValeurs u2 avec read", $utilisateur2); 
+        var_dump("\n\nValeurs u1", $utilisateur,"\n\nValeurs u2 avec read", $utilisateur2); 
         throw new Exception("pas le bon utilisateur");
     };
     OK();
@@ -27,7 +27,7 @@ try {
     $utilisateur2 = Utilisateur::read($utilisateur->getEmail(), $utilisateur->getMotDePasse()); // Lecture avec la base de données
     if(!$utilisateur->egalUtilisateur($utilisateur2)) 
     {                                         // Pour savoir si les valeurs en base ont bien étés changées
-        ("\n\nValeurs non modifiées", $utilisateur,"\n\nValeurs après modification", $utilisateur2); 
+        var_dump("\n\nValeurs non modifiées", $utilisateur,"\n\nValeurs après modification", $utilisateur2); 
         ;throw new Exception("utilisateur pas modifié");
     };
     OK();
