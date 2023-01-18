@@ -6,11 +6,14 @@
     try {
         // Récupérer les données
         $numEnchere = $_GET['numEnchere'] ?? -1;
+        $numUtilisateur = $_GET['numUtilisateur'] ?? -1;
+        $estLike = $_GET['estLike'] ?? null;
 
         $enchere = Enchere::read($numEnchere);
-        $likeActuel = $enchere->obtenirLikeActuel();
 
-        // Envoyer le prix
+        $enchere->setLike($numutilisateur,$estLike);
+
+        // test
         echo $likeActuel;
      
     } catch (Exception| Error $e) {

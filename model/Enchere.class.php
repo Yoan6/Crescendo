@@ -169,8 +169,8 @@ class Enchere
 
         $dao = DAO::get();
         $table = $dao->query($query, [$numEnchere]);
-        if (count($table) != 1) {
-            throw new Exception("l'enchère n'existe pas");
+        if (count($table) < 1) {
+            throw new Exception("l'enchère $numEnchere n'existe pas");
         }
 
         // Récupérer les articles
@@ -250,8 +250,14 @@ class Enchere
         $encheres = array();
         // Parcourir les articles obtenues pour leur associer les enchères
         foreach ($articles as $article) {
-            $numEnchere = $dao->query($query, [$article->getNumArticle()])[0][0];
-            array_push($encheres, ENCHERE::read($numEnchere));
+            $table = $dao->query($query, [$article->getNumArticle()]);
+            $encheres[] = ENCHERE::read($table[0]["num_enchere"]);;
+            /*
+            foreach ($table as $ligne) {
+                //var_dump($ligne["num_enchere"]);
+                $encheres[] = ENCHERE::read($ligne["num_enchere"]);;
+            }
+            */
         }
         return $encheres;
     }
@@ -332,7 +338,28 @@ class Enchere
         return $prix;
     }
 
+    public function obtenirLikeActuel() : int
+    {
+        $dao = DAO::get();
+        $queryLike = "SELECT sum(est_like) FROM LIKE_DISLIKE where num_enchere = :num_enchere;";
+        $data = [
+            "num_enchere" => $this->getNumEnchere(),
+        ];
+        $table = $dao->query($queryLike, $data);
+        return ($table[0][0] ?? 0);
+    }
 
+    public function setLike(int $numUtilisateur, bool $estlike) : void
+    {
+        $dao = DAO::get();
+        $queryLike = "INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(:num_utilisateur,:num_enchere,:est_like);";
+        $data = [
+            "num_enchere" => $this->getNumEnchere(),
+            "num_utilisateur"=> $numUtilisateur,
+            "est_like"=> $estlike
+        ];
+        $dao->exec($queryLike, $data);
+    }
 
 }
 ?>
