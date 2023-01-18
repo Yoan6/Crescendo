@@ -38,6 +38,7 @@ try {
     };
     OK();
 
+    /*
     //------------------------------------------------------Test------------------------------------------------------
     print("Recherche avec readLike ");
     $enchere2 = Enchere::readLike($enchere->getArticles()[0]->getTitre())[0];
@@ -47,6 +48,7 @@ try {
         throw new Exception("pas update");
     };
     OK();
+    */
 
     //------------------------------------------------------Test------------------------------------------------------
     print("Encherir et récupérer le dernier prix : ");

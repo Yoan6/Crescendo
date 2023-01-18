@@ -60,11 +60,11 @@
           $image = $utilisateur->getImageURL();
         }
         else {
-          $image = "../data/imgProfil/user.png";
+          $image = "../data/imgProfil/profile.png";
         }
       }
       else {
-        $image = "../data/imgProfil/user.png";
+        $image = "../data/imgProfil/profile.png";
       }
       ?>
 

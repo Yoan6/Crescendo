@@ -243,21 +243,22 @@ class Enchere
     public static function obtenirEncheresAPartirDesNumerosArticles(array $articles)
     {
         // Récupérer les enchères associées
-        $query = "SELECT distinct num_enchere
-                        FROM ARTICLE a natural left join CONCERNE c
-                        WHERE num_article = ?;";
+        $query = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='FALSE';";
+        $query2 = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='TRUE';";
         $dao = DAO::get();
         $encheres = array();
         // Parcourir les articles obtenues pour leur associer les enchères
         foreach ($articles as $article) {
             $table = $dao->query($query, [$article->getNumArticle()]);
-            $encheres[] = ENCHERE::read($table[0]["num_enchere"]);;
-            /*
-            foreach ($table as $ligne) {
-                //var_dump($ligne["num_enchere"]);
-                $encheres[] = ENCHERE::read($ligne["num_enchere"]);;
+
+            if (count($table) >= 1) {
+                $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
+            } else {
+            // C'est un lot
+                $table = $dao->query($query2, [$article->getNumArticle()]);
+                $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
             }
-            */
+
         }
         return $encheres;
     }
@@ -324,7 +325,7 @@ class Enchere
     public function obtenirPrixActuel()
     {
         $dao = DAO::get();
-        $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";
+        $queryEnchere = "SELECT prix_actuel from ENCHERE_TOUT_VIEW where num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
         ];
@@ -332,7 +333,8 @@ class Enchere
 
         $prix = $table[0][0];
         if ($prix == null) {
-            $prix = Article::getTypeArticleFromArray($this->getArticles(), 0)->getPrixMin();
+            throw new Exception("prix du lot non renseignée");
+            
         }
 
         return $prix;

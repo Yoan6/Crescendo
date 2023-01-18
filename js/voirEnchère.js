@@ -1,17 +1,17 @@
 
 inputPrix.addEventListener("onkeypress", (event) => {
-    var name = event.key;
-    var code = event.code;
-    return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57));
-    // Alert the key name and key code on keydown
-  }, false);
+  var name = event.key;
+  var code = event.code;
+  return (event.charCode != 8 && event.charCode == 0 || (event.charCode >= 48 && event.charCode <= 57));
+  // Alert the key name and key code on keydown
+}, false);
 
-  var preview = document.getElementById('preview');
-  var carouselImg = document.getElementsByClassName("carouselImg");
-  var prevBtn = document.getElementById("buttonPrev");
-  var nextBtn = document.getElementById("buttonNext");
+var preview = document.getElementById('preview');
+var carouselImg = document.getElementsByClassName("carouselImg");
+var prevBtn = document.getElementById("buttonPrev");
+var nextBtn = document.getElementById("buttonNext");
 
-for(let i = 0; i < carouselImg.length; i++){
+for (let i = 0; i < carouselImg.length; i++) {
   carouselImg[i].style.display = "none";
 }
 
@@ -20,7 +20,7 @@ preview.src = carouselImg[0].src;
 var currentImageIndex = 0;
 
 
-  if(carouselImg.length > 1){
+if (carouselImg.length > 1) {
   nextBtn.addEventListener("click", nextImage);
   prevBtn.addEventListener("click", prevImage);
 
@@ -38,23 +38,23 @@ var currentImageIndex = 0;
     currentImageIndex--;
     prevBtn.classList.add("active");
 
-   
+
     if (currentImageIndex < 0) {
       currentImageIndex = carouselImg.length;
     }
     preview.src = carouselImg[currentImageIndex].src;
   }
-  
+
 } else {
   prevBtn.style.display = "none";
   nextBtn.style.display = "none";
 }
 
-prevBtn.addEventListener("animationend", function() {
+prevBtn.addEventListener("animationend", function () {
   prevBtn.classList.remove("active");
 });
 
-nextBtn.addEventListener("animationend", function() {
+nextBtn.addEventListener("animationend", function () {
   nextBtn.classList.remove("active");
 });
 
@@ -65,20 +65,33 @@ var prixEnchereProposee = document.getElementById("prixEnchereProposee");//span 
 
 var spanPrixActuelText = document.getElementById("prixActuelText");
 
-var reportNouveauPrix = document.getElementById("reportNouveauPrix");//input qui prend la valeur du prix actuel
 
 
 var erreurBandeau = document.getElementsByClassName("erreurBandeau")[0];
 erreurBandeau.style.display = "none";
 
-boutonValiderPrix.addEventListener("click", function(){
-    //retire les 2 derniers caractères du span contenant le prix  " $" et place la valeur dans le input qui passe au controleur
-  
-  if(parseInt(inputPrix.value) > parseInt(spanPrixActuelText.innerHTML)){
+
+
+function verifPrix() {
+  if (parseInt(inputPrix.value) > parseInt(spanPrixActuelText.innerHTML)) {
+   
     formPrincipale.submit();
-  } else { 
+  } else {
     erreurBandeau.style.display = "flex";
   }
+}
+
+
+inputPrix.addEventListener("keyup", function (event) {
+  if (event.key === 'Enter' || event.keyCode === 13) {
+
+    verifPrix();
+  }
+});
+
+boutonValiderPrix.addEventListener("click", function () {
+
+  verifPrix();
 
   //reportNouveauPrix.value = spanPrixActuelText.innerHTML;
   //prixEnchereProposee.innerHTML = spanPrixActuelText.innerHTML;
@@ -87,7 +100,7 @@ boutonValiderPrix.addEventListener("click", function(){
 
 var annulerEnchere = document.getElementById("annulerEnchere");
 
-annulerEnchere.addEventListener("click", function(){
+annulerEnchere.addEventListener("click", function () {
   popUpBackground.style.display = "none";
 });
 
