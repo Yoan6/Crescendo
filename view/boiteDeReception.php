@@ -10,7 +10,6 @@
 </head>
 
 <body class="dark-mode">
-    <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
         <div>

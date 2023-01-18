@@ -31,7 +31,7 @@ $chemin_image  ="../data/imgProfil/";
 
 // On modifie l'image de profil de l'utilisateur :
 if(isset($_FILES['changementImage'])) {
-    echo "il y a un fichier";
+
     $file = $_FILES['changementImage'];
     $file_name = $file['name'];
     $file_tmp = $file['tmp_name'];
@@ -44,11 +44,18 @@ if(isset($_FILES['changementImage'])) {
     $allowed = array('jpg', 'jpeg', 'png');
 
     if(in_array($file_ext, $allowed)) {
+        // Si il y a aucun e erreur :
         if($file_error === 0) {
+            // Si la taille du fichier est inférieure à 2 Mo :
             if($file_size <= 2097152) {
+                // Tentative de déplacement du fichier :
                 try {
-                    ($file_name);
                     if (move_uploaded_file($file_tmp,$chemin_image.$file_name)) {
+                        // Si l'utilisateur n'a pas l'image par défaut on la supprime sinon on la supprime pas :
+                        if ($utilisateur->getImageURL() != '../data/imgProfil/profile.png') {
+                            if (unlink($utilisateur->getImageURL())) {  
+                            }
+                        }
                         // L'utilisateur veut changer son image de profil :
                         $utilisateur->setImageURL($chemin_image.$file_name);
                     }
@@ -71,6 +78,13 @@ if(isset($_FILES['changementImage'])) {
 
 // On supprime l'image de profil de l'utilisateur :
 if ($confirmer == 'effacerImg') {
+    // Si l'image de l'utilisateur n'est pas l'image par défaut on la supprime :
+    if ($utilisateur->getImageURL() != '../data/imgProfil/profile.png') {
+        if (unlink($utilisateur->getImageURL())) {  
+        }
+    }
+    // Si c'est l'image par défaut on ne fait rien :
+    
     $utilisateur->setImageURL("../data/imgProfil/profile.png");
 }
 

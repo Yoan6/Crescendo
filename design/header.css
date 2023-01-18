@@ -173,7 +173,10 @@ header a {
 header form {
   display: flex;
   justify-content: center;
+  margin: 0px;
 }
+
+
 
 header form ul li:first-child button {
   border-radius: 15px 0px 0px 15px;
