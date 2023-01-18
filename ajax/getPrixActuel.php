@@ -10,7 +10,7 @@
         $enchere = Enchere::read($numEnchere);
         $prixActuel = $enchere->obtenirPrixActuel();
 
-        // Envoyer le prix
+        // Envoyer le nombre de like
         echo $prixActuel;
     } catch (Exception| Error $e) {
         // Ne rien faire

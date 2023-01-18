@@ -1,1 +1,0 @@
-select est_lot, num_article, num_enchere from enchere natural join concerne natural join article ORDER by num_enchere desc limit 5;
