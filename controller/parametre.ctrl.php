@@ -65,13 +65,11 @@ if(isset($_FILES['changementImage'])) {
     } else {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
-
-    var_dump($errors);
 }
 
-// On suppriem l'image de profil de l'utilisateur :
+// On supprime l'image de profil de l'utilisateur :
 if ($confirmer == 'effacer') {
-    $utilisateur->setImgProfil("../data/imgProfil/user.png");
+    $utilisateur->setImageURL("../data/imgProfil/profile.png");
 }
 
 
@@ -158,7 +156,7 @@ if (count($errors) == 0) {
     $utilisateur->update();
 }
 
-
+var_dump($errors);
 
 $imgProfil = $utilisateur->getImageURL();
 
@@ -174,11 +172,9 @@ $view->assign('postal', $postal);
 $view->assign('ville', $ville);
 $view->assign('adresse', $adresse);
 // Pour le javascript :
-$view->assign('imgDefault', "../data/imgProfil/user.png");
+$view->assign('imgDefault', "../data/imgProfil/profile.png");
 
 $view->assign('errors',$errors);
 $view->display("parametres.php");
 
 
-var_dump($errors);
-var_dump($_SESSION['num_utilisateur']);
