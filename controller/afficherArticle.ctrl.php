@@ -13,7 +13,7 @@
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
-    $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']) ?? null;
+    $numUtilisateurActuel = $_SESSION['num_utilisateur']?? null;
 
     $num_enchere = $_GET['numEnchere'] ?? 1;
     $enchere = Enchere::read($num_enchere);
@@ -101,6 +101,7 @@ var_dump($numVendeur);
     $encherir = $_GET["encherir"] ?? "";
     if($encherir == "encherir"){
         try {
+        $utilisateur = Utilisateur::readNum($numUtilisateurActuel);
             $prix = $_GET["prix"] ?? 0;
             $enchere->encherir($utilisateur, $prix);
         } catch (exception $e) {

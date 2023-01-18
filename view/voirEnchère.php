@@ -12,7 +12,7 @@
 <?php 
     $estMonProfil = false;
     $num_vendeur = $numVendeur;
-    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+    $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0 ;
 var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur));
     if(strcmp($num_utilisateur, $num_vendeur) == 0){
         $estMonProfil = true;
@@ -96,8 +96,8 @@ var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur))
                             <h4><span id="prixActuelText"></span><span>€</span></h4>
 
                         </div>
-
-                        <?php if(!$estMonProfil) :?>
+                        
+                        <?php if($num_utilisateur != null && !$estMonProfil) :?>
                         <div id="divNouveauPrix">
                             <form action="../controller/afficherArticle.ctrl.php" method="post">
                             <input id="inputPrix" type="number" name="prix" min="" placeholder="Votre nouveau prix">
@@ -105,9 +105,9 @@ var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur))
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
                             </button>
-                            </form>
-                        </div>
-                        <?php endif;?>
+                        </form>
+                    </div>
+                    <?php endif;?>
                     </div>
                 </div>
 
