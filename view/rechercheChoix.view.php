@@ -36,18 +36,8 @@
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
 
-
-                    <form id="pagination">
-                        <!-- 
-                        <input type=hidden class="pagePrec?" value="<?php echo $pagePrec; ?>">
-                        <input type=hidden class="page?" value="<?php echo $page; ?>">
-                        <input type=hidden class="pageSuiv" value="<?php echo  $pageSuiv; ?>">
-                        <input type=hidden class="pageSize" value="<?php echo  $pageSize; ?>">
-                        --> 
-
-
-                    </form>
-
+                    <?php var_dump(" " . $nbBoutonPage, " page " . $page," pageSize " .  $pageSize," pagePrec " .  $pagePrec, " pageSuiv " .  $pageSuiv, " pageMax " . $pageMax);?>
+                </div>
                 </div>
             </div>
 
