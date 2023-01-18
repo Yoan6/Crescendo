@@ -176,8 +176,8 @@ function rajoutDeParametre(url, parametre, valeur) {
 
 
 var numeroDePage = document.getElementsByClassName("numeroDePage");
-if(numeroDePage.length == null ) {
-for (let i = 0; i <= numeroDePage.length; i++) {
+if(numeroDePage !== null ) {
+for (let i = 0; i < numeroDePage.length; i++) {
   //On rajoute les paramètres GET déjà présent au lien du bas de page pour conserver les filtres
   for(let [key, value] of parameters) {
     if(key !== "page") {
@@ -185,9 +185,8 @@ for (let i = 0; i <= numeroDePage.length; i++) {
     numeroDePage[i].href = rajoutDeParametre(new URL(numeroDePage[i].href), key, value);
     }
   }
-  
 }
-}
+} 
 
 
 
@@ -199,6 +198,32 @@ for(let [key, value] of parameters) {
   pageSuivante.href = rajoutDeParametre(new URL(pageSuivante.href), key, value);
   }
 }
+
+
+
+
+const pageActuelle = document.getElementById("pageActuelle");
+if(pageActuelle != null){
+    pageActuelle.style.backgroundColor = "var(--bleu)";
+}
+
+const urlPageFin = new URL(pageFin.href);
+
+const parametreRecherchePageFin = new URLSearchParams(urlPageFin.search);
+const valeurPageFin = parametreRecherchePageFin.get("page");
+// On supprime les pages inutiles en fonction de la page actuelle et des informations de pagination
+
+if(pageActuelle.innerHTML === "1") {
+  pageDebut.style.display = "none";
+  pagePrecedante.style.display = "none";
+}
+ if(pageActuelle.innerHTML === valeurPageFin) {
+  pageFin.style.display = "none";
+  pageSuivante.style.display = "none";
+}
+
+
+
 
 /*
 //Lors du chargement de la page, on vérifie si il y a des paramètres GET et on change la valeur du select

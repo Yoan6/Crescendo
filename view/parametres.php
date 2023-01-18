@@ -22,7 +22,6 @@
                 <div id="divImage">
                     <div>
                         <img id="nouvelleImageTopLeft" src="<?= $imgProfil ?>" alt="image profil">
-                        <img id="imageRetenue" src="">
 
                     </div>
                 </div>

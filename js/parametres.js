@@ -90,17 +90,19 @@ var popUpChangementImage = document.getElementsByClassName("divPopUp")[1];
 var previsualisationImage = document.getElementById("previsualisationImage");
 var nouvelleImageTopLeft = document.getElementById("nouvelleImageTopLeft");
 
-
+var sauvegardImg;
 modifImageProfil.addEventListener("click", function (event) {
   event.stopPropagation();
 
+  sauvegardImg = nouvelleImageTopLeft.src;
   popUpChangementImage.style.display = "flex";
   document.documentElement.style.overflow = 'hidden';
+
 });
 
 annulerChangerImage.addEventListener("click", function (event) {
   event.stopPropagation();
-  nouvelleImageTopLeft.src = "";
+  nouvelleImageTopLeft.src = sauvegardImg;
   popUpChangementImage.style.display = "none";
   document.documentElement.style.overflow = 'auto';
   labelNouvelImage.style.display = "flex";
@@ -167,6 +169,8 @@ annulerSupprimer.addEventListener("click", function (event) {
   annulerSupprimer.parentElement.parentElement.parentElement.parentElement.style.display = "none";
   document.documentElement.style.overflowY = 'auto';
 });
+
+
 
 
 //PopUp suprrimer photo de profil
