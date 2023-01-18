@@ -24,9 +24,6 @@ class Article
     private Utilisateur $vendeur;
     private const LOCALURL = "../data/imgArticle/";
 
-    // WhiteList pour éviter une injection SQL
-    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut","est_lot" => "est_lot","prix_actuel" => "prix_actuel"];
-    private const WHITELIST_ORDER_BY = ["ASC" => "ASC", "DESC" => "DESC"];
 
     public function __construct(
         Utilisateur $vendeur, string $titre, string $description, array $nomImgages, int $prixMin, string $artiste,
@@ -344,7 +341,7 @@ class Article
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
-                    FROM ENCHERE_TOUT_EN_COURS_VIEW
+                    FROM ENCHERE_TOUT_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'
                     ORDER BY num_article
@@ -364,6 +361,9 @@ class Article
     }
 
 
+    // WhiteList pour éviter une injection SQL
+    private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut","est_lot" => "est_lot","prix_actuel" => "prix_actuel"];
+    private const WHITELIST_ORDER_BY = ["ASC" => "ASC", "DESC" => "DESC"];
 
 
     /**
@@ -380,7 +380,7 @@ class Article
     public static function readPagePlusieursChoix(int $page,int $pageSize, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs, string $orderByChoix ="date_debut",string $orderBy="ASC"){
         
         /********************* La requête *********************/
-        $query = "SELECT * FROM ENCHERE_TOUT_EN_COURS_VIEW "
+        $query = "SELECT * FROM ENCHERE_TOUT_VIEW "
              . Article::generationDynamiqueQuery($choixEtvaleurs,$choixObligatoiresEtvaleurs)  // Génération dynamique de la requête, vulnérabilité d'injection potentielle
             . " ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy]
             ." LIMIT :pageSize OFFSET :articleOffset ;";
@@ -392,7 +392,7 @@ class Article
         ];
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
         // var_dump($data, $query);
-        /********************* La requête préparée *********************/
+        /********************* La requête préparée pour les données entrées par l'utilisateur *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
         return Article::obtenirArticlesAPartirTable($table);
@@ -456,7 +456,7 @@ class Article
     {
         /*Certaines variables mises directement pour éviter les '', l'utilisateur ne peut normalement pas manipuler ces données*/      
         $query = "SELECT *
-                    FROM ENCHERE_TOUT_EN_COURS_VIEW
+                    FROM ENCHERE_TOUT_VIEW
                     ORDER BY num_article               
                     LIMIT :pageSize OFFSET :articleOffset ;";
                     
@@ -477,7 +477,7 @@ class Article
 
         /*génération dynamique, j'utilise une whiteListe cependant il y'a potentiellement une vulnérabilité*/
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_EN_COURS_VIEW " 
+                    FROM ENCHERE_TOUT_VIEW " 
                     . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
         $data = array();
         Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
@@ -493,7 +493,7 @@ class Article
 
     public static function nombreArticlesLike(string $titreArtiste){
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_EN_COURS_VIEW
+                    FROM ENCHERE_TOUT_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'";
         $dao = DAO::get();
@@ -504,7 +504,7 @@ class Article
 
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_EN_COURS_VIEW";
+                    FROM ENCHERE_TOUT_VIEW";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
         return $tableContenantLeNombre[0][0];

@@ -9,8 +9,15 @@
     <link rel="stylesheet" href="../design/voirEnchère.css">
 </head>
 
-<?php session_start(); ?>
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php 
+    $estMonProfil = false;
+    $num_vendeur = $numVendeur;
+    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur));
+    if(strcmp($num_utilisateur, $num_vendeur) == 0){
+        $estMonProfil = true;
+    }
+?>
 
 <?php var_dump($estLot)?>
 
@@ -19,17 +26,7 @@
 
     <main>
 
-        <div class="erreurBandeau" id="bandeau2">
-            <div class="bandeauDiv1">
 
-            </div>
-            <div class="bandeauDiv2">
-                <h3>Prix incorrect</h3>
-            </div>
-            <div class="bandeauDiv3">
-                <button class="btnFermer"> Fermer </button>
-            </div>
-        </div>
 
         <form id="formPrincipale" method="get" action="../controller/afficherArticle.ctrl.php">
         <input type="hidden" name="numEnchere" value="<?= $numEnchere ?>">
@@ -100,18 +97,23 @@
 
                         </div>
 
+                        <?php if(!$estMonProfil) :?>
                         <div id="divNouveauPrix">
-                            <input id="inputPrix" type="number" name="nouvelleEnchere" min="" placeholder="Votre nouveau prix">
-                            <button type="button" id="boutonValiderPrix">
+                            <form action="../controller/afficherArticle.ctrl.php" method="post">
+                            <input id="inputPrix" type="number" name="prix" min="" placeholder="Votre nouveau prix">
+                            <button name="encherir" value="encherir" type="submit" id="boutonValiderPrix">
                                 <p>Valider</p>
                                 <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
                             </button>
+                            </form>
                         </div>
+                        <?php endif;?>
                     </div>
                 </div>
 
 
                 <div id="features">
+                    <?php if(!$estMonProfil) :?>
                     <div id="featuresLeft">
                         <svg id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                             stroke="#ffffff">
@@ -125,7 +127,7 @@
                         </svg>
 
 
-
+                        
                         <div>
                             <svg id="like" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -165,7 +167,7 @@
 
                         </div>
                         <?php if($estLot) :?>
-                            <a href="lot">
+                            <a href="afficherLot.php?numEnchere=<?=$numEnchere?>">
                                 <p>Voir le lot associé</p> 
                                 <svg height="200px" width="200px" version="1.1" id="_x32_"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -191,6 +193,7 @@
                             </a>
                         <?php endif;?>
                     </div>
+                    <?php endif;?>
 
                     <a id="featuresRight" href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$numVendeur?>">
                         <div>
@@ -373,6 +376,6 @@
 <script src="../js/header.js"></script>
 <script src="../js/voirEnchère.js"></script>
 <script src="../ajax/getPrixActuel.js" defer></script>
-<script src="../ajax/getLikeActuel.js" defer></script>
+<script src="../ajax/like.js" defer></script>
 
 </html>

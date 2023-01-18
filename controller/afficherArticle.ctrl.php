@@ -1,5 +1,5 @@
 <?php
-    if(isset($_SESSION)) {session_start(); }
+    if(!isset($_SESSION)) {session_start(); }
 
     include_once(__DIR__."/../framework/view.class.php");
     include_once(__DIR__."/../model/Utilisateur.class.php");
@@ -7,22 +7,14 @@
     include_once(__DIR__."/../model/Enchere.class.php");
 
 
-    //si une nouvelle enchère est proposé
-    if(isset($_POST['nouvelleEnchere'])){
-        $nouvelleEnchere = $_POST['nouvelleEnchere'];
-    }
-
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     /***************************************************************************
     **                         Données de l'enchère
     ***************************************************************************/
-    if (isset($_SESSION['numUtilisateur'])) {
-        $utilisateur = Utilisateur::readNum($_SESSION['numUtilisateur']);
-    } else {
-        $utilisateur = null;
-    }
+    $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']) ?? null;
+
     $num_enchere = $_GET['numEnchere'] ?? 1;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
@@ -58,7 +50,7 @@
      **                         Données du vendeur
      ***************************************************************************/
     $vendeur = $article->getVendeur();
-    $imgProfil = $vendeur ->getImgProfil();
+    $imgProfil = $vendeur ->getImageURL();
     $numUtilisateur = $vendeur ->getNumUtilisateur();
     $pseudo = $vendeur ->getPseudo();
     $numVendeur = $vendeur->getNumUtilisateur();
@@ -99,19 +91,22 @@ var_dump($numVendeur);
     $view->assign('pseudo', $pseudo);
     $view->assign('numVendeur', $numVendeur);
     
+    
     /***************************************************************************
      **                         Gestion d'une offre d'achat
      ***************************************************************************/
     
     
     // test encherir
-    /*
-    try {
-        $enchere->encherir($utilisateur, $prix);
-    } catch (exception $e) {
-        // Une erreur peut être générée si l'offre n'est pas la plus haute
-        print('\n Erreur ' . $e->getMessage() . "\n");
+    $encherir = $_GET["encherir"] ?? "";
+    if($encherir == "encherir"){
+        try {
+            $prix = $_GET["prix"] ?? 0;
+            $enchere->encherir($utilisateur, $prix);
+        } catch (exception $e) {
+            // Une erreur peut être générée si l'offre n'est pas la plus haute
+            print('\n Erreur ' . $e->getMessage() . "\n");
+        }
     }
-    */
     $view->display("voirEnchère.php");
 ?>
