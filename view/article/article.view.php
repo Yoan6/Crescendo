@@ -5,7 +5,7 @@
         <div class="article">
             
             <div id="divHeart">
-                <svg id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                <svg class="heartBouton" id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
                         <path
@@ -73,3 +73,4 @@
 <?php endif; ?>
 <input type="hidden" class="numUtilisateurRecupererValeur" value="<?= ($_SESSION['num_utilisateur'] ?? "")?>">
 <script src="../ajax/like.js"></script>
+<script src="../ajax/favoris.js"></script>

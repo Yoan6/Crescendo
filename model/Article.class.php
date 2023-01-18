@@ -455,8 +455,7 @@ class Article
     
     
     public static function readPage(int $page, int $pageSize)
-    {
-        /*Certaines variables mises directement pour éviter les '', l'utilisateur ne peut normalement pas manipuler ces données*/      
+    {     
         $query = "SELECT *
                     FROM ENCHERE_TOUT_VIEW
                     ORDER BY num_article               
