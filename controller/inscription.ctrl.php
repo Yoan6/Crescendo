@@ -91,7 +91,7 @@ if (count($errors) == 0) {
 
 // On traite le moment où l'utilisateur veut s'inscrire en venant d'ailleurs
 if ($inscription != 'confirmer') {
-$errors = array();
+  $errors = array();
 }
 
 ////////////////////////////////////////////////////////////////////////////

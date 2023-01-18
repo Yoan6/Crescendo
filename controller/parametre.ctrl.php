@@ -146,7 +146,7 @@ if ($confirmer == 'password') {
 }
 
 // Cas où l'utilisateur veut supprimer son compte :
-if ($effacer == 'effacer') {
+if ($confirmer == 'effacer') {
     $utilisateur->delete();
     session_destroy();
     header("Location: accueil.ctrl.php");
