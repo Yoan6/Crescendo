@@ -50,16 +50,16 @@ CREATE TABLE IF NOT EXISTS ENCHERE (
 CREATE TABLE IF NOT EXISTS ARTICLE (
     num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
     num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
-    titre VARCHAR,
+    titre VARCHAR COLLATE NOCASE,
     prix_min INTEGER,
-    description_article VARCHAR,
-    artiste VARCHAR,
-    etat VARCHAR,
-    categorie VARCHAR,
-    taille VARCHAR,
-    date_evenement DATE,
-    lieu VARCHAR,
-    style VARCHAR,
+    description_article VARCHAR COLLATE NOCASE,
+    artiste VARCHAR COLLATE NOCASE,
+    etat VARCHAR COLLATE NOCASE,
+    categorie VARCHAR COLLATE NOCASE,
+    taille VARCHAR COLLATE NOCASE,
+    date_evenement DATE COLLATE NOCASE,
+    lieu VARCHAR COLLATE NOCASE,
+    style VARCHAR COLLATE NOCASE,
     UNIQUE(titre,description_article)
 );
 
@@ -170,40 +170,6 @@ UPDATE ENCHERE set date_debut = DATE();
 
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
-
-/*
-DROP VIEW LIKE_DISLIKE_VIEW;
-CREATE VIEW LIKE_DISLIKE_VIEW as SELECT * from LIKE_DISLIKE;
-
-
-DROP VIEW FAVORISE_VIEW;
-CREATE VIEW FAVORISE_VIEW as SELECT * from FAVORISE;
-
-.print '===========================  TRIGGER  ==========================='
-
-DROP TRIGGER IF EXISTS like_insert1;
-CREATE TRIGGER like_insert1 INSTEAD OF INSERT on LIKE_DISLIKE_VIEW FOR EACH ROW
-    WHEN (select est_Like from LIKE_DISLIKE where (num_enchere,num_utilisateur) = (new.num_enchere,new.num_utilisateur))  = new.est_like
-    BEGIN --Sqlite n'a pas de fonction  (ni de IF avant 3.32)
-        -- Si l'utilisateur a déjà like ou dislike le même bouton alors mettre à null
-        UPDATE LIKE_DISLIKE SET est_like = null where (num_enchere,num_utilisateur) = (new.num_enchere,new.num_utilisateur);
-    END;
-
-DROP TRIGGER IF EXISTS like_insert2;
-CREATE TRIGGER like_insert2 INSTEAD OF INSERT on LIKE_DISLIKE_VIEW FOR EACH ROW
-    WHEN (select est_Like from LIKE_DISLIKE where (num_enchere,num_utilisateur) = (new.num_enchere,new.num_utilisateur))  <> new.est_like
-    BEGIN 
-        -- Si l'utilisateur a déjà like ou dislike un bouton différent alors update
-        UPDATE LIKE_DISLIKE SET est_like = new.est_like where (num_enchere,num_utilisateur) = (new.num_enchere,new.num_utilisateur);
-    END;
-
-DROP TRIGGER IF EXISTS like_insert3;
-CREATE TRIGGER like_insert3 INSTEAD OF INSERT on LIKE_DISLIKE_VIEW FOR EACH ROW
-    BEGIN  
-        -- INSERT normal
-         INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(new.num_utilisateur,new.num_enchere,new.est_like);
-    END;
-
 
 INSERT INTO LIKE_DISLIKE_VIEW(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(2,3,1),(2,3,1),(2,4,1),(2,4,0);
 */

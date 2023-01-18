@@ -39,13 +39,15 @@ main #divModifImage>div {
 
 #divModifImage>div>div {
 
-    width: 50%;
-    min-width: 200px;
+    width: 250px;
+    height: 250px;
+    
 }
 
 
 #divModifImage>div>div>img {
     border-radius: 100%;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -430,7 +432,7 @@ margin-top: 40px;
     color: black;
 }
 
-.popUp>div>div>#confirmerSupprimer {
+.popUp>div>div>#confirmerSupprimerPhoto {
     background-color: var(--rouge);
     color: white;
 }

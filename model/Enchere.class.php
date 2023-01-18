@@ -340,10 +340,13 @@ class Enchere
         return $prix;
     }
 
-    public function obtenirLikeActuel() : int
+    /**
+     * Récupérer le nombre de like total
+     */
+    public function getCompteurLike() : int
     {
         $dao = DAO::get();
-        $queryLike = "SELECT sum(est_like) FROM LIKE_DISLIKE where num_enchere = :num_enchere;";
+        $queryLike = "SELECT sum(CASE est_like WHEN TRUE then 1 WHEN false then -1 END) FROM LIKE_DISLIKE where num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
         ];
@@ -351,17 +354,44 @@ class Enchere
         return ($table[0][0] ?? 0);
     }
 
-    public function setLike(int $numUtilisateur, bool $estlike) : void
-    {
+    public function getLike(int $numUtilisateur, int $num_enchere) : int | null {
         $dao = DAO::get();
-        $queryLike = "INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(:num_utilisateur,:num_enchere,:est_like);";
+        $querySelect = "select est_like from LIKE_DISLIKE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
             "num_utilisateur"=> $numUtilisateur,
-            "est_like"=> $estlike
         ];
-        $dao->exec($queryLike, $data);
+
+        return ($dao->query($querySelect,$data)[0]["est_like"] ?? NULL); 
     }
+
+    public function setLike(int $numUtilisateur, int $estlike) : void
+    {
+        $dao = DAO::get();
+        // L'utilisateur ne peut like qu'une fois il faut donc savoir s'il a déjà like
+
+        $queryInsert = "INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(:num_utilisateur,:num_enchere,:est_like);";
+        $queryUpdate = "UPDATE LIKE_DISLIKE set est_like=:est_like where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
+        $queryDelete = "DELETE FROM LIKE_DISLIKE where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
+        $est_like_db = $this->getLike($numUtilisateur,$this->getNumEnchere()); // Note: dans un switch la valeur null est mise à 0
+
+        $data = [
+            "num_enchere" => $this->getNumEnchere(),
+            "num_utilisateur"=> $numUtilisateur,
+        ];
+
+        var_dump($est_like_db, $estlike);
+        // ****** Requête préparée ******* /
+        if ($est_like_db === NULL){ 
+            $dao->exec($queryInsert, array_merge($data, ["est_like" => $estlike])); // Première fois qu'il clique, INSERT
+        } else if ($est_like_db === $estlike) {
+            $dao->exec($queryDelete, $data); // Le delete, il a décoché
+        } else {
+            $dao->exec($queryUpdate, array_merge($data, ["est_like" => $estlike])); // update
+        }
+
+    }
+
 
 }
 ?>

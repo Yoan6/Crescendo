@@ -4,13 +4,54 @@
 	height: 450px;
 	margin-top: 5px;
 	margin-bottom: 50px;
+    position: relative;
 }
 
 #banner img {
-object-fit: cover;
-width: 100%;
+    object-fit: cover;
+    width: 100%;
 }
 
+#banner-text {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 10px;
+    bottom: 75px;
+    left: 10%;
+    width: 20%;
+    min-width: 315px;
+    height: 150px;
+    z-index: 1;
+    background-color: #272727;
+    color: white;
+    padding: 10px;
+    font-size: 120%;
+}
+
+#explore{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position: absolute;
+    margin-top: 100px;
+    width: 80%;
+    height: 20%;
+    background-color: var(--bleu);
+    border-radius: 10px;
+    color: black;
+}
+
+@media only screen and (max-width: 900px){
+    #banner-text{
+        font-size: 100%;
+    }
+    #explore{
+        height: 30%;
+        font-size: 90%;
+        text-align: center;
+    }
+}
 
 main#accueil nav ul {
 	display: flex;

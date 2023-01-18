@@ -242,7 +242,7 @@ Drop down bouton utilisateur
 
 .dropdown {
   z-index: 999;
-  background: var(--formBar-background-color);
+  background: #272727;
   border-radius: 25px;
   position: absolute;
   width: 250px;
@@ -262,7 +262,7 @@ Drop down bouton utilisateur
   height: 45px;
   padding-left: 1rem;
   text-decoration: none;
-  color: var(--navBar-font-color);
+  color: white;
   border-left: solid 1px white;
   border-right: solid 1px white;
 }
@@ -288,7 +288,7 @@ Drop down bouton utilisateur
 }
 
 .divToggleDarkMode {
-  background-color: var(--header-background-color);
+  background-color: #272727;
   color: white;
   border-bottom: solid 1px white;
   border-right: solid 1px white;
@@ -301,8 +301,8 @@ Drop down bouton utilisateur
 }
 
 .dropdown a:hover {
-  background-color: var(--navBar-background-color);
-  color: var(--header-background-color);
+  background-color: var(--bleu);
+  color: black;
 }
 
 .show {

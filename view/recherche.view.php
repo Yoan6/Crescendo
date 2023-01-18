@@ -16,7 +16,7 @@
 
     <main>
         <div>
-            <p id="titre">Résultat pour <?=$recherche?></h1>
+            <p id="titre">Résultat pour <?=htmlspecialchars($recherche)?></h1>
 
         </div>
         <div id="principale">
@@ -39,7 +39,7 @@
 
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
-
+                    <?php var_dump(" " . $nbBoutonPage, " page " . $page," pageSize " .  $pageSize," pagePrec " .  $pagePrec, " pageSuiv " .  $pageSuiv, " pageMax " . $pageMax);?>
                 </div>
             </div>
 

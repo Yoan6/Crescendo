@@ -16,7 +16,7 @@ include_once(__DIR__."/../model/Enchere.class.php");
 ***************************************************************************/
 
 // Données pour la recherche
-$recherche = $_GET["recherche"] ?? "";
+$recherche = htmlspecialchars($_GET["recherche"] ?? "");
 
 $choixEtvaleurs = $_GET['choix'] ?? array(); 
 $choixObligatoireEtValeurs = $_GET['choixObligatoire'] ?? array();
@@ -32,6 +32,7 @@ $errors = array();
 $pageMax = 1;
 
 // Gérer les pages
+
 $page = $_GET['page'] ?? 1;
 $pageSize = 5; //Nombre d'article
 $nbBoutonPage = 5;
@@ -47,10 +48,11 @@ $num_vendeur = $choixObligatoireEtValeurs["num_vendeur"][0] ?? "";
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
-    $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize);  // Une erreur est générée si aucun article n'est trouvé
+
+    $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
-    var_dump($errors);
+    ($errors);
 }
 
 $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
@@ -79,7 +81,7 @@ $view->assign('encheres', $encheres);
 
 
 
-var_dump($num_vendeur);
+($num_vendeur);
 if ($num_vendeur != "") {
     // information du vendeur
     $vendeur = Utilisateur::readNum($num_vendeur);

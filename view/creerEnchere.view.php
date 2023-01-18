@@ -95,14 +95,14 @@
                             <h4>
                                 Nom de l'enchère
                             </h4>
-                            <input required="" name="titre" value="<?= $titre ?>" type="text" placeholder="INSERER TITRE">
+                            <input required="" name="titre" value="<?= htmlspecialchars($titre) ?>" type="text" placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
                                 Prix de départ (min = 10€)
                             </h4>
-                            <input required="" name="prixMin" value="<?= $prixMin ?>" type="number" min="10"
+                            <input required="" name="prixMin" value="<?= htmlspecialchars($prixMin) ?>" type="number" min="10"
                                 placeholder="INSERER PRIX DE DEPART">
 
                         </div>
@@ -111,7 +111,7 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input id="dateEnchere"min="<?= $todayDate ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
+                            <input id="dateEnchere"min="<?= htmlspecialchars($todayDate) ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
                                 type="date" id="date">
 
                         </div>
@@ -126,7 +126,7 @@
                     </h3>
 
                     <textarea required="" pattern=".*\S+.*" name="description" id="" cols="30" rows="10"
-                        placeholder="INSERER DESCRIPTION"><?= $description ?></textarea>
+                        placeholder="INSERER DESCRIPTION"><?= htmlspecialchars($description) ?></textarea>
                 </div>
 
                 <div id="bottomForm">
@@ -141,7 +141,7 @@
                                 <p>
                                     Artiste:
                                 </p>
-                                <input required="" name="artiste" value="<?= $artiste ?>" type="text"
+                                <input required="" name="artiste" value="<?= htmlspecialchars($artiste) ?>" type="text"
                                     placeholder="Insérer artiste">
                             </section>
                             <section>
@@ -149,13 +149,13 @@
                                     Date du concert:
                                 </p>
                                 <input max="<?= $todayDate ?>" required="" name="dateEvenement"
-                                    value="<?= $dateEvenement ?>" type="date">
+                                    value="<?= htmlspecialchars($dateEvenement) ?>" type="date">
                             </section>
                             <section>
                                 <p>
                                     Lieu:
                                 </p>
-                                <input required="" name="lieu" value="<?= $lieu ?>" type="text"
+                                <input required="" name="lieu" value="<?= htmlspecialchars($lieu) ?>" type="text"
                                     placeholder="Insérer lieu">
                             </section>
                             <section>

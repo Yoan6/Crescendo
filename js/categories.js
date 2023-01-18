@@ -136,6 +136,10 @@ orderBy.addEventListener("change", function () {
 
 //on récupère les paramètres GET
 const parameters = new URLSearchParams(window.location.search);
+
+
+
+
 const categories = parameters.getAll("choixObligatoire[categorie][]");
 const styles = parameters.getAll("choix[style][]");
 const taille = parameters.getAll("choix[taille][]");
@@ -162,20 +166,30 @@ var pageDebut = document.getElementById("pageDebut");
 var pagePrecedante = document.getElementById("pagePrecedante");
 var pageFin = document.getElementById("pageFin");
 var pageSuivante = document.getElementById("pageSuivante");
-var numeroDePage = document.getElementsByClassName("numeroDePage");
+
+
 
 function rajoutDeParametre(url, parametre, valeur) {
   url.searchParams.set(parametre, valeur);
   return url;
 }
 
-for (let i = 0; i < numeroDePage.length; i++) {
+
+var numeroDePage = document.getElementsByClassName("numeroDePage");
+if(numeroDePage.length > 0 ) {
+for (let i = 0; i <= numeroDePage.length; i++) {
   //On rajoute les paramètres GET déjà présent au lien du bas de page pour conserver les filtres
   for(let [key, value] of parameters) {
+    if(key !== "page") {
+    console.log(numeroDePage[i]);
     numeroDePage[i].href = rajoutDeParametre(new URL(numeroDePage[i].href), key, value);
+    }
   }
   
 }
+}
+
+
 
 for(let [key, value] of parameters) {
   if(key !== "page") {

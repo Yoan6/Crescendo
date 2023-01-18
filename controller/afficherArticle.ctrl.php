@@ -16,7 +16,10 @@
     $numUtilisateurActuel = $_SESSION['num_utilisateur']?? null;
 
     $num_enchere = $_GET['numEnchere'] ?? 1;
-    $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
+    $nouvelleEnchere = null;
+    if (isset($_POST['nouvelleEnchere'])) {
+        $nouvelleEnchere = htmlspecialchars($_POST['nouvelleEnchere']);
+    }
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -58,7 +61,7 @@
     $pseudo = $vendeur ->getPseudo();
     $numVendeur = $vendeur->getNumUtilisateur();
 
-var_dump($numVendeur);
+($numVendeur);
 
     /***************************************************************************
     **                         Construction de la vue

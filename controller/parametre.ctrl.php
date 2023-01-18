@@ -14,24 +14,24 @@ $errors = array();
 $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
 
 // Variable de champs du formulaire :
-$pseudo = $_POST['pseudo'] ?? $utilisateur->getPseudo();
-$mail = $_POST['mail'] ?? $utilisateur->getEmail();
-$password = $_POST['password'] ?? $utilisateur->getMotDePasse();
-$postal = $_POST['postal'] ?? $utilisateur->getCodePostal();
-$ville = $_POST['ville'] ?? $utilisateur->getVille();
-$adresse = $_POST['adresse'] ?? $utilisateur->getRue();
+$pseudo = htmlspecialchars($_POST['pseudo'] ?? $utilisateur->getPseudo());
+$mail = htmlspecialchars($_POST['mail'] ?? $utilisateur->getEmail());
+$password = htmlspecialchars($_POST['password'] ?? $utilisateur->getMotDePasse());
+$postal = htmlspecialchars($_POST['postal'] ?? $utilisateur->getCodePostal());
+$ville = htmlspecialchars($_POST['ville'] ?? $utilisateur->getVille());
+$adresse = htmlspecialchars($_POST['adresse'] ?? $utilisateur->getRue());
 $effacer = $_POST['effacer'] ?? '';
 $confirmer = $_POST['confirmer'] ?? '';
-$ancienPassword = $_POST['ancienPassword'] ?? '';
-$nouveauPassword = $_POST['nouveauPassword'] ?? '';
-$checkPassword = $_POST['checkPassword'] ?? '';
+$ancienPassword = htmlspecialchars($_POST['ancienPassword'] ?? '');
+$nouveauPassword = htmlspecialchars($_POST['nouveauPassword'] ?? '');
+$checkPassword = htmlspecialchars($_POST['checkPassword'] ?? '');
 
 // Lien relatif vers le dossier des images :
 $chemin_image  ="../data/imgProfil/";
 
 // On modifie l'image de profil de l'utilisateur :
 if(isset($_FILES['changementImage'])) {
-    echo "il y a un fichier";
+
     $file = $_FILES['changementImage'];
     $file_name = $file['name'];
     $file_tmp = $file['tmp_name'];
@@ -44,11 +44,18 @@ if(isset($_FILES['changementImage'])) {
     $allowed = array('jpg', 'jpeg', 'png');
 
     if(in_array($file_ext, $allowed)) {
+        // Si il y a aucun e erreur :
         if($file_error === 0) {
+            // Si la taille du fichier est inférieure à 2 Mo :
             if($file_size <= 2097152) {
+                // Tentative de déplacement du fichier :
                 try {
-                    var_dump($file_name);
                     if (move_uploaded_file($file_tmp,$chemin_image.$file_name)) {
+                        // Si l'utilisateur n'a pas l'image par défaut on la supprime sinon on la supprime pas :
+                        if ($utilisateur->getImageURL() != '../data/imgProfil/profile.png') {
+                            if (unlink($utilisateur->getImageURL())) {  
+                            }
+                        }
                         // L'utilisateur veut changer son image de profil :
                         $utilisateur->setImageURL($chemin_image.$file_name);
                     }
@@ -65,10 +72,19 @@ if(isset($_FILES['changementImage'])) {
     } else {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
+
+    ($errors);
 }
 
 // On supprime l'image de profil de l'utilisateur :
-if ($confirmer == 'effacer') {
+if ($confirmer == 'effacerImg') {
+    // Si l'image de l'utilisateur n'est pas l'image par défaut on la supprime :
+    if ($utilisateur->getImageURL() != '../data/imgProfil/profile.png') {
+        if (unlink($utilisateur->getImageURL())) {  
+        }
+    }
+    // Si c'est l'image par défaut on ne fait rien :
+    
     $utilisateur->setImageURL("../data/imgProfil/profile.png");
 }
 
@@ -178,3 +194,5 @@ $view->assign('errors',$errors);
 $view->display("parametres.php");
 
 
+($errors);
+($_SESSION['num_utilisateur']);

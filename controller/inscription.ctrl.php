@@ -13,18 +13,18 @@ require_once(__DIR__ . '/../model/DAO.class.php');
 // Partie récupération des données
 ///////////////////////////////////////////////////////////////////////////////
 
-$prenom = $_POST['prenom'] ?? '';
-$nom = $_POST['nom'] ?? '';
-$pseudo = $_POST['pseudo'] ?? '';
+$prenom = htmlspecialchars($_POST['prenom'] ?? '');
+$nom = htmlspecialchars($_POST['nom'] ?? '');
+$pseudo = htmlspecialchars($_POST['pseudo'] ?? '');
 $birthsday = $_POST['birthsday'] ?? '';
 $birthsday = new DateTime($birthsday);
-$rue = $_POST['rue'] ?? '';
-$code_postale = $_POST['code_postale'] ?? '';
-$ville = $_POST['ville'] ?? '';
-$adresseMail = $_POST['adresseMail'] ?? '';
-$password = $_POST['mdp'] ?? '';
-$verifmdp = $_POST['verifmdp'] ?? '';
-$inscription = $_POST['inscription'] ?? '';
+$rue = htmlspecialchars($_POST['rue'] ?? '');
+$code_postale = htmlspecialchars($_POST['code_postale'] ?? '');
+$ville = htmlspecialchars($_POST['ville'] ?? '');
+$adresseMail = htmlspecialchars($_POST['adresseMail'] ?? '');
+$password = htmlspecialchars($_POST['mdp'] ?? '');
+$verifmdp = htmlspecialchars($_POST['verifmdp'] ?? '');
+$inscription = htmlspecialchars($_POST['inscription'] ?? '');
 
 
 ///////////////////////////////////////////////////////////////////////////////

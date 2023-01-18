@@ -176,7 +176,7 @@
                 Article du lot
             </h2>
 
-            <?php // var_dump($encheres)?>
+            <?php // ($encheres)?>
             <?php if (isset($lesArticlesTypeArticle) && count($lesArticlesTypeArticle) >= 1): ?>
                 <?php foreach ($lesArticlesTypeArticle as $article): ?>
                     <div class="article">
