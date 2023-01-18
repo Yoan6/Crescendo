@@ -38,6 +38,14 @@
 
 
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
+
+
+                        
+                        <div id="rienAAfficher"><p >Aucun article à afficher :(</p></div>
+                        
+
+
+
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
                     <?php var_dump(" " . $nbBoutonPage, " page " . $page," pageSize " .  $pageSize," pagePrec " .  $pagePrec, " pageSuiv " .  $pageSuiv, " pageMax " . $pageMax);?>
                 </div>

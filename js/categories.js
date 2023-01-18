@@ -216,10 +216,17 @@ const valeurPageFin = parametreRecherchePageFin.get("page");
 if(pageActuelle.innerHTML === "1") {
   pageDebut.style.display = "none";
   pagePrecedante.style.display = "none";
+} else if(pageActuelle.innerHTML === "2") {
+  pageDebut.style.display = "none";
 }
- if(pageActuelle.innerHTML === valeurPageFin) {
+
+ if(pageActuelle.innerHTML === valeurPageFin || valeurPageFin === "0" || valeurPageFin === null) {
   pageFin.style.display = "none";
   pageSuivante.style.display = "none";
+}
+
+if(parseInt(valeurPageFin) == parseInt(pageActuelle.innerHTML) + 1) {
+  pageFin.style.display = "none";
 }
 
 
