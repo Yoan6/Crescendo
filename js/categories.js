@@ -176,7 +176,7 @@ function rajoutDeParametre(url, parametre, valeur) {
 
 
 var numeroDePage = document.getElementsByClassName("numeroDePage");
-if(numeroDePage.length > 0 ) {
+if(numeroDePage.length == null ) {
 for (let i = 0; i <= numeroDePage.length; i++) {
   //On rajoute les paramètres GET déjà présent au lien du bas de page pour conserver les filtres
   for(let [key, value] of parameters) {

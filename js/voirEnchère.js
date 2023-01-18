@@ -1,10 +1,5 @@
 
-inputPrix.addEventListener("onkeypress", (event) => {
-  var name = event.key;
-  var code = event.code;
-  return (event.charCode != 8 && event.charCode == 0 || (event.charCode >= 48 && event.charCode <= 57));
-  // Alert the key name and key code on keydown
-}, false);
+
 
 var preview = document.getElementById('preview');
 var carouselImg = document.getElementsByClassName("carouselImg");
@@ -85,7 +80,7 @@ function verifPrix() {
     bandeau[1].style.display = "flex";
   }
 }
-
+if(inputPrix != null){
 //On vérifie si l'utilisateur appuie sur entrée ou sur le bouton valider
 inputPrix.addEventListener("keyup", function (event) {
   if (event.key === 'Enter' || event.keyCode === 13) {
@@ -105,15 +100,18 @@ annulerEnchere.addEventListener("click", function () {
 });
 
 }
+}
 
 
-
+if(inputPrix != null){
 //Au chargement de la page, on vérifie si l'enchere à été émise par l'utilisateur
 var enchereOuiNon = document.getElementById("enchereOuiNon");
 
 if (enchereOuiNon.innerHTML === "oui") {
 
   bandeau[0].style.display = "flex";
+
+}
 
 }
 
