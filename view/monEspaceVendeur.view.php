@@ -123,7 +123,7 @@
 
                 <div id="buttonUnderProfil">
                     <?php if($estMonProfil) :?>
-                        <a id="modifierProfil" href="parametre.ctrl.php">
+                        <a href="../controller/parametre.ctrl.php" id="modifierProfil">
                             Modifier le profil
                         </a>
                     <?php endif;?>
@@ -135,7 +135,7 @@
 
             <div id="topPageRight">
                 <?php if($estMonProfil) :?>
-                    <a id="nouvelArticle" href="creerEnchere.ctrl.php">
+                    <a href="../controller/creerEnchere.ctrl.php" id="nouvelArticle">
                         Nouvel article
                     </a>
                     <a id="nouveauLot">
