@@ -70,7 +70,7 @@ for (let i = 0; i < bandeau.length; i++) {
 }
 
 
-
+var inputPrix = document.getElementById("inputPrix");
 
 function verifPrix() {
   if (parseInt(inputPrix.value) > parseInt(spanPrixActuelText.innerHTML)) {

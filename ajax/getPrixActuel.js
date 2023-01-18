@@ -1,4 +1,3 @@
-var inputPrix = document.getElementById("inputPrix");
 
 var numEnchere =  document.getElementById("numEnchere").value;
 
@@ -21,7 +20,9 @@ function getPrixActuel(numEnchere) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             prixActuelText.innerHTML = this.responseText;
-            inputPrix.setAttribute("min", (parseInt(this.responseText) + 1));
+            if(inputPrix !== null){
+                inputPrix.setAttribute("min", (parseInt(this.responseText) + 1));
+            }
         }
     }
 
@@ -30,5 +31,6 @@ function getPrixActuel(numEnchere) {
     xmlhttp.send();
 }
    
+
 
 

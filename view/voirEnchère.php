@@ -18,18 +18,21 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
     $estMonProfil = true;
 }
 ?>
+<input type="hidden" class="numUtilisateurRecupererValeur" value="<?= $num_utilisateur ?>">
 
 <?php var_dump($numEnchere) ?>
 <?php var_dump($estLot) ?>
 <?php var_dump($nouvelleEnchere) ?>
-<?php ($estLot)?>
+<?php($estLot) ?>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
 
-        <p id="enchereOuiNon"><?= $enchereAccepte ?></p>
+        <p id="enchereOuiNon">
+            <?= $enchereAccepte ?>
+        </p>
 
         <div class="bandeau" id="bandeauBleu">
             <div class="bandeauDiv1">
@@ -128,17 +131,27 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                         </div>
 
-                        <?php if ($num_utilisateur != null && !$estMonProfil): ?>
+                        <?php if ($num_utilisateur != null && !$estMonProfil) { ?>
                             <div id="divNouveauPrix">
                                 <form action="../controller/afficherArticle.ctrl.php" method="post">
-                                    <input id="inputPrix" type="number" name="nouvelleEnchere" min="" placeholder="Votre nouveau prix">
+                                    <input id="inputPrix" type="number" name="nouvelleEnchere" min=""
+                                        placeholder="Votre nouveau prix">
                                     <button name="encherir" value="encherir" type="button" id="boutonValiderPrix">
                                         <p>Valider</p>
                                         <img src="../design/image/paypal/PayPal_Logo_Icon_2014.svg" alt="LogoPaypal">
                                     </button>
                                 </form>
                             </div>
-                        <?php endif; ?>
+                        <?php } else { ?>
+                            <div id="divNouveauPrix">
+
+
+                                <a href="../controller/login.ctrl.php">
+                                    Se connecter pour enchérir
+                                </a>
+
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
 
@@ -228,6 +241,9 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                     <a id="featuresRight"
                         href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?= $numVendeur ?>">
+                        <p>
+                            Le vendeur :
+                        </p>
                         <div>
                             <img src="<?= $imageVendeur ?>" alt="user">
                         </div>
@@ -352,7 +368,8 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
             <div class="popUpBackground">
 
-                <form class="popUpForm" method="POST" action="../controller/afficherArticle.ctrl.php?numEnchere=<?= $numEnchere ?>">
+                <form class="popUpForm" method="POST"
+                    action="../controller/afficherArticle.ctrl.php?numEnchere=<?= $numEnchere ?>">
                     <input id="reportNouveauPrix" type="hidden" name="newOrder" value="<?= $nouvelleEnchere ?>">
 
                     <section>
@@ -383,9 +400,9 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                 Valider
                             </button>
                             <?php /*require_once('../api/paypalAPI/test/PaypalPaiement.class.php');
-                            $paiementPaypal = new PaypalPaiement();
-                            echo $paiementPaypal->ui($nouvelleEnchere, $numEnchere);
-                            */?>
+                             $paiementPaypal = new PaypalPaiement();
+                             echo $paiementPaypal->ui($nouvelleEnchere, $numEnchere);
+                             */?>
                         </div>
 
                     </div>

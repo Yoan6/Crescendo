@@ -4,9 +4,12 @@
 
 
 var lesEncheres = document.getElementsByClassName("numEnchereRecupererValeur");
-var numUtilisateur =  document.getElementsByClassName("numUtilisateurRecupererValeur")[0].value;
+var listeUsers =  document.getElementsByClassName("numUtilisateurRecupererValeur");
+
+if(listeUsers !== 0) {
 
 
+    numUtilisateur = listeUsers[0].value
 
 /**
  * récupérer toutes les articles pour les actualiser en récupérant les bons numéros
@@ -76,3 +79,6 @@ function setLike(numEnchere,numUtilisateur,estLike) {
     xmlhttp.send();
 }
 
+
+
+}
