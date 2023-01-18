@@ -7,10 +7,50 @@
 }
 
 #banner img {
-object-fit: cover;
-width: 100%;
+    object-fit: cover;
+    width: 100%;
 }
 
+#banner-text {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 10px;
+    top: 300px;
+    left: 10%;
+    width: 20%;
+    height: 20%;
+    z-index: 1;
+    background-color: #272727;
+    color: white;
+    padding: 10px;
+    font-size: 120%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#explore{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    position: absolute;
+    margin-top: 100px;
+    width: 80%;
+    height: 20%;
+    background-color: var(--bleu);
+    border-radius: 10px;
+    color: black;
+}
+
+@media only screen and (max-width: 900px){
+    #banner-text{
+        font-size: 100%;
+    }
+    #explore{
+        height: 30%;
+        font-size: 90%;
+        text-align: center;
+    }
+}
 
 main#accueil nav ul {
 	display: flex;
