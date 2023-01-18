@@ -24,7 +24,7 @@ try {
     print("Lecture avec une query DAO : ");
     $table = $dao->query("SELECT email,mot_de_passe FROM UTILISATEUR WHERE email =?", [$valeurAttendu['email']]);
     if ($table[0] != $valeurAttendu) {
-        var_dump("\n\nAttendue ", $valeurAttendu,"\n\nobtenue", $table[0]); 
+        ("\n\nAttendue ", $valeurAttendu,"\n\nobtenue", $table[0]); 
         throw new Exception("Mauvaise lecture");};
     OK();
 

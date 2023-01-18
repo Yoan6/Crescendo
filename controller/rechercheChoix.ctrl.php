@@ -50,7 +50,7 @@ try {
     $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
-    var_dump($errors);
+    ($errors);
 }
 
 
@@ -78,7 +78,7 @@ $view->assign('encheres', $encheres);
 
 
 
-var_dump($num_vendeur);
+($num_vendeur);
 if ($num_vendeur != "") {
     // information du vendeur
     $vendeur = Utilisateur::readNum($num_vendeur);

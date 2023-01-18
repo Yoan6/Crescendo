@@ -47,7 +47,7 @@ if(isset($_FILES['changementImage'])) {
         if($file_error === 0) {
             if($file_size <= 2097152) {
                 try {
-                    var_dump($file_name);
+                    ($file_name);
                     if (move_uploaded_file($file_tmp,$chemin_image.$file_name)) {
                         // L'utilisateur veut changer son image de profil :
                         $utilisateur->setImageURL($chemin_image.$file_name);
@@ -66,7 +66,7 @@ if(isset($_FILES['changementImage'])) {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
 
-    var_dump($errors);
+    ($errors);
 }
 
 // On suppriem l'image de profil de l'utilisateur :
@@ -180,5 +180,5 @@ $view->assign('errors',$errors);
 $view->display("parametres.php");
 
 
-var_dump($errors);
-var_dump($_SESSION['num_utilisateur']);
+($errors);
+($_SESSION['num_utilisateur']);

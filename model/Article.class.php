@@ -391,7 +391,7 @@ class Article
             "pageSize" => $pageSize,
         ];
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        // var_dump($data, $query);
+        // ($data, $query);
         /********************* La requête préparée pour les données entrées par l'utilisateur *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);

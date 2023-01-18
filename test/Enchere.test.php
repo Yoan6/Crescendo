@@ -20,7 +20,7 @@ try {
     $enchere2 = Enchere::read($enchere->getNumEnchere());
     if(!$enchere->egalEnchere($enchere2)) 
     {
-        var_dump("\n\nValeurs attendues", $enchere,"\n\nValeurs avec read", $enchere2); 
+        ("\n\nValeurs attendues", $enchere,"\n\nValeurs avec read", $enchere2); 
         throw new Exception("pas la bonne enchere");
     };
     OK();
@@ -33,7 +33,7 @@ try {
     $enchere2 = Enchere::read($enchere->getNumEnchere());
     if(!$enchere->egalEnchere($enchere2)) 
     {
-        var_dump("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
+        ("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
         throw new Exception("pas update");
     };
     OK();
@@ -44,7 +44,7 @@ try {
     $enchere2 = Enchere::readLike($enchere->getArticles()[0]->getTitre())[0];
     if(!$enchere->egalEnchere($enchere2)) 
     {
-        var_dump("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
+        ("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
         throw new Exception("pas update");
     };
     OK();
@@ -56,7 +56,7 @@ try {
     $prix_offre_base = $dao->query("select prix_offre from ENCHERIT where num_enchere= ?;", [$enchere->getNumEnchere()])[0]['prix_offre'];
     $prix_offre = $enchere->obtenirPrixActuel();
     if ($prix_offre != $prix_offre_base) {
-        var_dump("\n\nValeurs attendues", $prix_offre_base,"\n\nValeurs obtenues", $prix_offre); 
+        ("\n\nValeurs attendues", $prix_offre_base,"\n\nValeurs obtenues", $prix_offre); 
         throw new Exception("l'enchere n'a pas aboutit");
     }
     OK();

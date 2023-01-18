@@ -55,7 +55,7 @@
     $pseudo = $vendeur ->getPseudo();
     $numVendeur = $vendeur->getNumUtilisateur();
 
-var_dump($numVendeur);
+($numVendeur);
 
     /***************************************************************************
     **                         Construction de la vue

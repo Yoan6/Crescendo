@@ -13,13 +13,13 @@
     $estMonProfil = false;
     $num_vendeur = $numVendeur;
     $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0 ;
-var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur));
+($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur));
     if(strcmp($num_utilisateur, $num_vendeur) == 0){
         $estMonProfil = true;
     }
 ?>
 
-<?php var_dump($estLot)?>
+<?php ($estLot)?>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
