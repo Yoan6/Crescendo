@@ -68,7 +68,7 @@
         } 
         else {
             // Pas d'erreurs l'ajouter
-            $nomsImages[] = time() . $file_name; // Mettre les noms des fichiers pour la création d'un article
+            $nomsImages[] = time() . "." .pathinfo($file_name,PATHINFO_EXTENSION); // Mettre les noms des fichiers pour la création d'un article
         }
     }
 finImage:

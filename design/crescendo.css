@@ -31,6 +31,7 @@ Variables
 	--bleu: #79d2bc;
 	--rouge: #F85656;
 	--svg-background-color: black;
+	--noir-gris-clair: #a3a1a1;
 
 
 	--main-content-background-color: #161616;
@@ -56,6 +57,7 @@ body.dark-mode {
 	--lightGrey: #212121;
 	--main-content-background-color: white;
 	--svg-background-color: white;
+	--noir-gris-clair: #272727;
 
 	/* ==== Couleurs police ====*/
 	--main-font-color: white;

@@ -33,7 +33,7 @@
           minlength="12" required>
       </div>
       <a class="MDPForgotten" href="" target="_blank">Mot de passe oublié ?</a>
-      <button class="connexion" type="submit" name="connexion">SE CONNECTER</button>
+      <button class="connexion" type="submit" name="connexion" value="">SE CONNECTER</button>
       <a href="../controller/inscription.ctrl.php" id="inscription" >S'INSCRIRE</a>
 
       <div>
