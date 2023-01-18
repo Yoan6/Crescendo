@@ -17,11 +17,12 @@
     ***************************************************************************/
     if (isset($_SESSION['numUtilisateur'])) {
         $utilisateur = Utilisateur::readNum($_SESSION['numUtilisateur']);
-        $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
+        
     } else {
         $utilisateur = null;
     }
     $num_enchere = $_GET['numEnchere'] ?? 1;
+    $nouvelleEnchere = $_POST['nouvelleEnchere'] ?? null;
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -57,7 +58,7 @@
      ***************************************************************************/
     $vendeur = $article->getVendeur();
     $imgProfil = $vendeur ->getImgProfil();
-    $numUtilisateur = $vendeur ->getNumUtilisateur();
+    $numUtilisateurVendeur = $vendeur ->getNumUtilisateur();
     $pseudo = $vendeur ->getPseudo();
     $numVendeur = $vendeur->getNumUtilisateur();
 
@@ -94,7 +95,7 @@ var_dump($numVendeur);
     // données du vendeur
     $view->assign('vendeur', $vendeur);
     $view->assign('imgProfil', $imgProfil);
-    $view->assign('numUtilisateur', $numUtilisateur);
+    $view->assign('numUtilisateurVendeur', $numUtilisateurVendeur);
     $view->assign('pseudo', $pseudo);
     $view->assign('numVendeur', $numVendeur);
     
@@ -102,14 +103,9 @@ var_dump($numVendeur);
      **                         Gestion d'une offre d'achat
      ***************************************************************************/
     
-    
+     $view->assign('nouvelleEnchere', $nouvelleEnchere);
      
-    // données de l'utilisateur
-    if (isset($utilisateur) && isset($nouvelleEnchere)) {
-        $view->assign('numUtilisateur', $utilisateur->getNumUtilisateur());
-        $view->assign('nouvelleEnchere', $nouvelleEnchere);
-
-    }
+    
    
     
     // test encherir

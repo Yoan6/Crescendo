@@ -65,7 +65,6 @@ var prixEnchereProposee = document.getElementById("prixEnchereProposee");//span 
 
 var spanPrixActuelText = document.getElementById("prixActuelText");
 
-var reportNouveauPrix = document.getElementById("reportNouveauPrix");//input qui prend la valeur du prix actuel
 
 
 var erreurBandeau = document.getElementsByClassName("erreurBandeau")[0];
@@ -75,6 +74,7 @@ erreurBandeau.style.display = "none";
 
 function verifPrix() {
   if (parseInt(inputPrix.value) > parseInt(spanPrixActuelText.innerHTML)) {
+   
     formPrincipale.submit();
   } else {
     erreurBandeau.style.display = "flex";

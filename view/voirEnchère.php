@@ -12,7 +12,7 @@
 <?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
 
-<?php var_dump($numUtilisateur)?>
+<?php var_dump($numEnchere)?>
 <?php var_dump($estLot)?>
 <?php var_dump($nouvelleEnchere)?>
 
@@ -33,8 +33,8 @@
             </div>
         </div>
 
-        <form id="formPrincipale" method="get" action="../controller/afficherArticle.ctrl.php">
-        <input type="hidden" name="numEnchere" value="<?= $numEnchere ?>">
+        <form id="formPrincipale" method="post" action="../controller/afficherArticle.ctrl.php?numEnchere=<?= $numEnchere ?>">
+        
 
             <div>
 
@@ -315,7 +315,7 @@
         </form>
 
 
-
+        <?php if($nouvelleEnchere != null){ ?>
 
         <div class="popUpBackground">
 
@@ -332,7 +332,7 @@
 
                     <div id="conteneurh3">
                         <h3>Votre nouveau prix : </h3>
-                        <h3 id="prixEnchereProposee">5$</h3>
+                        <h3 id="prixEnchereProposee"><?= $nouvelleEnchere ?>€</h3>
                     </div>
 
                     <div id="divCheckBoxConfirmation">
@@ -346,7 +346,7 @@
                         </button>
                         <?php require_once('../api/paypalAPI/test/PaypalPaiement.class.php');
                         $paiementPaypal = new PaypalPaiement();
-                        echo $paiementPaypal->ui($prixActuel);
+                        echo $paiementPaypal->ui($nouvelleEnchere, $numEnchere);
                         ?>
                     </div>
 
@@ -356,6 +356,8 @@
 
 
         </div>
+
+        <?php } ?>
 
 
 

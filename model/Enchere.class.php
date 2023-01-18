@@ -318,7 +318,7 @@ class Enchere
     public function obtenirPrixActuel()
     {
         $dao = DAO::get();
-        $queryEnchere = "SELECT max(prix_offre) FROM ENCHERIT where num_enchere = :num_enchere;";
+        $queryEnchere = "SELECT prix_actuel from ENCHERE_TOUT_VIEW where num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
         ];
@@ -326,11 +326,15 @@ class Enchere
 
         $prix = $table[0][0];
         if ($prix == null) {
-            $prix = Article::getTypeArticleFromArray($this->getArticles(), 0)->getPrixMin();
+            throw new Exception("prix du lot non renseignée");
+            
         }
 
         return $prix;
     }
+
+
+    
 
 
 

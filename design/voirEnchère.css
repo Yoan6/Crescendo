@@ -571,7 +571,7 @@ main #formPrincipale #bottomForm>div>div>section>h4 {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
