@@ -40,7 +40,7 @@ try {
 } catch (Exception |Error $e) {
     notOK();
     $dao = DAO::get();
-    //var_dump($article);
+    //($article);
     $dao->exec("DELETE FROM Article WHERE (titre,description_article) = (?,?);", [$article->getTitre(), $article->getDescription()]);
     exit('\nErreur ' . $e->getMessage() . "\n");
 }

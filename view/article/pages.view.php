@@ -8,7 +8,7 @@
     <!--Génération des autres boutons pour nbBoutonPage-->
 
 
-    <?php for($i = $page+1; $i < $page + $nbBoutonPage && $i < $pageMax; $i++ ) : ?>
+    <?php for($i = $page+1; $i < $page + $nbBoutonPage && $i <= $pageMax; $i++ ) : ?>
         <a class="numeroDePage" href="../controller/<?=$controllerName?>?page=<?=$i?><?=$recherche?>"><?=$i?></a>
     <?php endFor; ?>
 

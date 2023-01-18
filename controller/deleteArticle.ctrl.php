@@ -20,7 +20,7 @@
         }
 
     $_GET["choixObligatoire"] = ["num_vendeur" => [$_SESSION['num_utilisateur']]];
-    var_dump($_GET);
+    ($_GET);
         //$_GET[["choixObligatoire"] =>["num_vendeur"]] = $_SESSION['num_utilisateur'];
         include("rechercheChoix.ctrl.php");
     }

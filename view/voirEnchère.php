@@ -22,6 +22,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 <?php var_dump($numEnchere) ?>
 <?php var_dump($estLot) ?>
 <?php var_dump($nouvelleEnchere) ?>
+<?php ($estLot)?>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
@@ -211,7 +212,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                     <a id="featuresRight"
                         href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?= $numVendeur ?>">
                         <div>
-                            <img src="<?= $imgProfil ?>" alt="user">
+                            <img src="<?= $utilisateur->getImageURL() ?>" alt="user">
                         </div>
                         <p>
                             <?= htmlspecialchars($pseudo) ?>

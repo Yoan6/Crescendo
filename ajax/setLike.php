@@ -9,12 +9,11 @@
         $numUtilisateur = $_GET['numUtilisateur'] ?? -1;
         $estLike = $_GET['estLike'] ?? null;
 
+        var_dump($numEnchere, $numUtilisateur, $estLike);
+
         $enchere = Enchere::read($numEnchere);
 
-        $enchere->setLike($numutilisateur,$estLike);
-
-        // test
-        echo $likeActuel;
+        $enchere->setLike($numUtilisateur,$estLike);
      
     } catch (Exception| Error $e) {
         // Ne rien faire

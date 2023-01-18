@@ -44,7 +44,7 @@ try {
     $enchere2 = Enchere::readLike($enchere->getArticles()[0]->getTitre())[0];
     if(!$enchere->egalEnchere($enchere2)) 
     {
-        var_dump("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
+        ("\n\nValeurs attendues", $enchere,"\n\nValeurs obtenues", $enchere2); 
         throw new Exception("pas update");
     };
     OK();

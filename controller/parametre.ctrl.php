@@ -72,6 +72,8 @@ if(isset($_FILES['changementImage'])) {
     } else {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
+
+    ($errors);
 }
 
 // On supprime l'image de profil de l'utilisateur :
@@ -192,3 +194,5 @@ $view->assign('errors',$errors);
 $view->display("parametres.php");
 
 
+($errors);
+($_SESSION['num_utilisateur']);
