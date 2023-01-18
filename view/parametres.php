@@ -288,7 +288,7 @@
                         <button id="annulerSupprimerPhoto" type="button">
                             Annuler
                         </button>
-                        <button id="confirmerSupprimerPhoto" name="confirmer" value="effacer" type="submit">
+                        <button id="confirmerSupprimerPhoto" name="confirmer" value="effacerImg" type="submit">
                             Supprimer
                         </button>
                     </div>

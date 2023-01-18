@@ -68,7 +68,7 @@ if(isset($_FILES['changementImage'])) {
 }
 
 // On supprime l'image de profil de l'utilisateur :
-if ($confirmer == 'effacer') {
+if ($confirmer == 'effacerImg') {
     $utilisateur->setImageURL("../data/imgProfil/profile.png");
 }
 
