@@ -12,13 +12,13 @@
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
 </head>
 
-<?php session_start(); ?>
 <?php if(!isset($_SESSION)) { session_start(); } ?>
 
 <?php 
     $estMonProfil = false;
     $num_vendeur = $choixObligatoire["num_vendeur"][0];
-    $num_utilisateur = strval($_SESSION['num_utilisateur']);
+
+    $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0;
     if(strcmp($num_utilisateur, $num_vendeur) == 0){
         $estMonProfil = true;
     }
