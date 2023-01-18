@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS ENCHERIT (
 CREATE TABLE IF NOT EXISTS FAVORISE (
     num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
     num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
+    est_favoris BOOLEAN,
     PRIMARY KEY (num_utilisateur,num_enchere)
 );
 
@@ -131,6 +132,8 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .import ../../sql_base_donnees_actuelle/initialisation/concerne.initialisation.txt CONCERNE
 .import ../../sql_base_donnees_actuelle/initialisation/image.initialisation.txt IMAGE_ARTICLE
 .import ../../sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt ENCHERIT
+.import ../../sql_base_donnees_actuelle/initialisation/favorise.initialisation.txt FAVORISE
+.import ../../sql_base_donnees_actuelle/initialisation/like_dislike.initialisation.txt LIKE_DISLIKE
 
 .print '===========================  TESTS  ==========================='
 
@@ -171,5 +174,4 @@ UPDATE ENCHERE set date_debut = DATE();
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
 
-INSERT INTO LIKE_DISLIKE_VIEW(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(2,3,1),(2,3,1),(2,4,1),(2,4,0);
-*/
+INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0);

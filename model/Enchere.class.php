@@ -340,6 +340,11 @@ class Enchere
         return $prix;
     }
 
+
+
+    /********************************************* Like ****************************************/
+
+
     /**
      * Récupérer le nombre de like total
      */
@@ -354,7 +359,8 @@ class Enchere
         return ($table[0][0] ?? 0);
     }
 
-    public function getLike(int $numUtilisateur, int $num_enchere) : int | null {
+
+    public function getLike(int $numUtilisateur) : int | null {
         $dao = DAO::get();
         $querySelect = "select est_like from LIKE_DISLIKE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
         $data = [
@@ -365,6 +371,12 @@ class Enchere
         return ($dao->query($querySelect,$data)[0]["est_like"] ?? NULL); 
     }
 
+    /**
+     * Si l'article est déjà like et qu'on appuie une 2ème fois, enlever le like
+     * @param int $numUtilisateur
+     * @param int $estlike
+     * @return void
+     */
     public function setLike(int $numUtilisateur, int $estlike) : void
     {
         $dao = DAO::get();
@@ -373,7 +385,7 @@ class Enchere
         $queryInsert = "INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(:num_utilisateur,:num_enchere,:est_like);";
         $queryUpdate = "UPDATE LIKE_DISLIKE set est_like=:est_like where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
         $queryDelete = "DELETE FROM LIKE_DISLIKE where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
-        $est_like_db = $this->getLike($numUtilisateur,$this->getNumEnchere()); // Note: dans un switch la valeur null est mise à 0
+        $est_like_db = $this->getLike($numUtilisateur); // Note: dans un switch la valeur null est mise à 0
 
         $data = [
             "num_enchere" => $this->getNumEnchere(),
@@ -388,6 +400,51 @@ class Enchere
             $dao->exec($queryDelete, $data); // Le delete, il a décoché
         } else {
             $dao->exec($queryUpdate, array_merge($data, ["est_like" => $estlike])); // update
+        }
+
+    }
+
+
+
+
+
+    /********************************************* Favoris ****************************************/
+
+    public function getFavoris(int $numUtilisateur) : int | null {
+        $dao = DAO::get();
+        $querySelect = "select est_favoris from FAVORISE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
+        $data = [
+            "num_enchere" => $this->getNumEnchere(),
+            "num_utilisateur"=> $numUtilisateur,
+        ];
+
+        return ($dao->query($querySelect,$data)[0]["est_favoris"] ?? NULL); 
+    }
+
+
+    public function setFavoris(int $numUtilisateur, int $estFavoris) : void
+    {
+        $dao = DAO::get();
+        // L'utilisateur ne peut favoriser qu'une fois il faut donc savoir s'il a déjà favorisé l'article
+
+        $queryInsert = "INSERT INTO FAVORISE(num_utilisateur,num_enchere,est_favoris) values(:num_utilisateur,:num_enchere,:est_favoris);";
+        $queryUpdate = "UPDATE FAVORISE set est_favoris=:est_favoris where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
+        $queryDelete = "DELETE FROM FAVORISE where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
+        $est_favoris_db = $this->getFavoris($numUtilisateur); // Note: dans un switch la valeur null est mise à 0
+
+        $data = [
+            "num_enchere" => $this->getNumEnchere(),
+            "num_utilisateur"=> $numUtilisateur,
+        ];
+
+        var_dump($est_favoris_db, $estFavoris);
+        // ****** Requête préparée ******* /
+        if ($est_favoris_db === NULL){ 
+            $dao->exec($queryInsert, array_merge($data, ["est_favoris" => $estFavoris])); // Première fois qu'il clique, INSERT
+        } else if ($est_favoris_db === $estFavoris) {
+            $dao->exec($queryDelete, $data); // Le delete, il a décoché
+        } else {
+            $dao->exec($queryUpdate, array_merge($data, ["est_favoris" => $estFavoris])); // update
         }
 
     }

@@ -1,8 +1,5 @@
 
-var tester = document.getElementById("testAEnlever");   
-
-
-
+//var tester = document.getElementById("testAEnlever");
 
 
 
@@ -15,7 +12,7 @@ var numUtilisateur =  document.getElementsByClassName("numUtilisateurRecupererVa
  * récupérer toutes les articles pour les actualiser en récupérant les bons numéros
  * 
  */
-for(let i =0; i< lesEncheres.length; i++) { // Le numéro d'enchère à été mis avec l'id ou la classe de l'objet
+for(let i =0; i< lesEncheres.length; i++) { // Le numéro d'enchère à été mis avec la classe de l'objet
     // Données
     let numEnchere =  lesEncheres[i].value;
     var likeActuelText = document.getElementsByClassName("likeActuelText")[i]; // C'est l'endroit pour le nombre de like 
@@ -70,7 +67,7 @@ function setLike(numEnchere,numUtilisateur,estLike) {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // Faire le changement en css
-            tester.innerHTML = this.responseText;
+            //tester.innerHTML = this.responseText;
         }
     }
 
