@@ -350,7 +350,7 @@ class Article
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
-                    FROM ENCHERE_TOUT_VIEW
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%' COLLATE NOCASE
                         OR artiste like '%' ||:titreArtiste ||'%' COLLATE NOCASE
                     ORDER BY num_article
@@ -389,7 +389,7 @@ class Article
             $table = $dao->query($query, $data);
             return Article::obtenirArticlesAPartirTable($table);
         } catch (Exception $e) {
-
+            var_dump($query);
             throw new Exception("Erreur lors de la récupération des articles");
         }
     }
@@ -435,7 +435,7 @@ class Article
     {
         $query = "select *,sum(CASE est_like when TRUE then 1 WHEN false then -1 WHEN est_like is Null then 0 END) as compteurLike 
         FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join like_dislike 
-        WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'))
+        WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN datetime(DATE(), '-6 DAYS') AND DATE())
         group by num_enchere order by CAST(compteurLike as SIGNED) DESC LIMIT :pageSize OFFSET :articleOffset ;";
         return Article::readUniquementPage($page, $pageSize, $query);
     }
@@ -467,7 +467,7 @@ class Article
     public static function readPageGagne(string $page, int $pageSize,int $numUtilisateur): array
     {
         $query = "select *
-        FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE
+        FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE_VIEW
         WHERE num_utilisateur=:num_utilisateur
         group by num_enchere order by date_debut DESC LIMIT :pageSize OFFSET :articleOffset ;";
         return Article::readUniquementPageEtUtilisateur($page, $pageSize, $query,$numUtilisateur);
@@ -484,10 +484,10 @@ class Article
      */
     public static function readPage(int $page, int $pageSize)
     {     
-        $query = "SELECT *
-                    FROM ENCHERE_TOUT_VIEW_EN_COURS
-                    ORDER BY num_article               
-                    LIMIT :pageSize OFFSET :articleOffset ;";
+        $query = "select *,sum(CASE est_like when TRUE then 1 WHEN false then -1 WHEN est_like is Null then 0 END) as compteurLike 
+                FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join like_dislike 
+                WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN datetime(DATE(),'-6 DAYS') AND datetime(DATE(), '-6 DAYS'))
+                group by num_enchere order by CAST(compteurLike as SIGNED) DESC LIMIT :pageSize OFFSET :articleOffset ;";
         return Article::readUniquementPage($page, $pageSize, $query);
     }
     
@@ -512,7 +512,7 @@ class Article
      */
     public static function readPagePlusieursChoix(int $page,int $pageSize, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs, string $orderByChoix ="date_debut",string $orderBy="ASC"){
         // Je définis moi même la table pour éviter une injection 
-        if (isset($choixObligatoiresEtvaleurs['num_vendeur']) | isset($choixObligatoiresEtvaleurs['num_utilisateur'])) {
+        if (!isset($choixObligatoiresEtvaleurs['num_vendeur'])) {
             $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_EN_COURS_VIEW";  
         } else {
             $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_VIEW";
@@ -645,7 +645,7 @@ class Article
      */
     public static function nombreArticlesGagne(){
         $query = "SELECT COUNT(*)
-            FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE
+            FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE_VIEW
             WHERE num_utilisateur=:num_utilisateur group by num_enchere";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
@@ -655,7 +655,7 @@ class Article
 
     public static function nombreArticlesPlusieursChoix( array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) { 
         // Je définis moi même la table pour éviter une injection 
-        if (isset($choixObligatoiresEtvaleurs['num_vendeur']) | isset($choixObligatoiresEtvaleurs['num_utilisateur'])) {
+        if (!isset($choixObligatoiresEtvaleurs['num_vendeur'])) {
             $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_EN_COURS_VIEW";  
         } else {
             $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_VIEW";
@@ -668,7 +668,6 @@ class Article
                     . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
         $data = array();
         Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
-        
 
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, $data);

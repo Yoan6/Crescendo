@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS CONCERNE;
 DROP TABLE IF EXISTS FAVORISE;
 DROP TABLE IF EXISTS ENCHERIT;
 DROP TABLE IF EXISTS GAGNE;
+DROP VIEW IF EXISTS GAGNE_VIEW;
 
 DROP TABLE IF EXISTS ARTICLE;
 DROP TABLE IF EXISTS ENCHERE;
@@ -70,11 +71,8 @@ CREATE TABLE IF NOT EXISTS ARTICLE (
 
 
 ---------------ENTRE UTILISATEUR ET ENCHERE
-CREATE TABLE IF NOT EXISTS GAGNE (
-    num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
-    num_enchere INTEGER references ENCHERE(num_enchere) ON DELETE CASCADE,
-    PRIMARY KEY (num_utilisateur,num_enchere)
-);
+
+
 
 CREATE TABLE IF NOT EXISTS ENCHERIT (
     num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
@@ -84,6 +82,16 @@ CREATE TABLE IF NOT EXISTS ENCHERIT (
     id_paiement INTEGER,          
     PRIMARY KEY (num_utilisateur,num_enchere,prix_offre)
 );
+
+
+CREATE VIEW GAGNE_VIEW as select max(prix_offre), num_utilisateur, e.num_enchere, date_encherissement, id_paiement, en.date_debut
+                    FROM ENCHERIT e natural join ENCHERE en
+                    WHERE date_debut < datetime(DATE(), '-6 DAYS')
+                    GROUP by num_enchere
+                    limit 1;
+
+
+
 
 CREATE TABLE IF NOT EXISTS FAVORISE (
     num_utilisateur INTEGER references UTILISATEUR(num_utilisateur) ON DELETE CASCADE, 
@@ -167,13 +175,19 @@ CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, max(IIF(prix_offre is Null,0,prix_off
             group by num_enchere;
 */
 
+
 CREATE VIEW ENCHERE_TOUT_VIEW as SELECT *, sum(max((SELECT case WHEN prix_offre is Null THEN 0 ELSE prix_offre END),prix_min)) as prix_actuel
             from ARTICLE natural join CONCERNE natural join ENCHERE natural LEFT join ENCHERISSEMENT_MAX_VIEW  
             group by num_enchere;       
 
 UPDATE ENCHERE set date_debut = DATE();
+UPDATE ENCHERE SET date_debut = datetime(DATE(),'-6 DAYS') where num_enchere=18 OR num_enchere=1;
 
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
-    WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
+    WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN datetime(DATE(), '-6 DAYS') AND DATE());
 
 INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(4,1,0),(4,2,0),(4,3,0);
+
+
+UPDATE ENCHERE SET date_debut = datetime(DATE(),'-7 DAYS') where num_enchere=20;
+UPDATE ENCHERE SET date_debut = datetime(DATE(),'+1 DAYS') where num_enchere=21;
