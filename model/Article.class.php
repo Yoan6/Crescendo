@@ -389,6 +389,7 @@ class Article
             $table = $dao->query($query, $data);
             return Article::obtenirArticlesAPartirTable($table);
         } catch (Exception $e) {
+
             throw new Exception("Erreur lors de la récupération des articles");
         }
     }
@@ -484,7 +485,7 @@ class Article
     public static function readPage(int $page, int $pageSize)
     {     
         $query = "SELECT *
-                    FROM ENCHERE_TOUT_VIEW
+                    FROM ENCHERE_TOUT_VIEW_EN_COURS
                     ORDER BY num_article               
                     LIMIT :pageSize OFFSET :articleOffset ;";
         return Article::readUniquementPage($page, $pageSize, $query);
@@ -510,9 +511,15 @@ class Article
      * @return array
      */
     public static function readPagePlusieursChoix(int $page,int $pageSize, array $choixEtvaleurs, array $choixObligatoiresEtvaleurs, string $orderByChoix ="date_debut",string $orderBy="ASC"){
+        // Je définis moi même la table pour éviter une injection 
+        if (isset($choixObligatoiresEtvaleurs['num_vendeur']) | isset($choixObligatoiresEtvaleurs['num_utilisateur'])) {
+            $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_EN_COURS_VIEW";  
+        } else {
+            $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_VIEW";
+        }
         
         /********************* La requête *********************/
-        $query = "SELECT * FROM ENCHERE_TOUT_VIEW "
+        $query = "SELECT * FROM $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher "
              . Article::generationDynamiqueQuery($choixEtvaleurs,$choixObligatoiresEtvaleurs)  // Génération dynamique de la requête, vulnérabilité d'injection potentielle
             . " ORDER BY ". self::WHITELIST_NOM_ATTRIBUT[$orderByChoix] ." " . self::WHITELIST_ORDER_BY[$orderBy]
             ." LIMIT :pageSize OFFSET :articleOffset ;";
@@ -647,10 +654,17 @@ class Article
 
 
     public static function nombreArticlesPlusieursChoix( array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) { 
+        // Je définis moi même la table pour éviter une injection 
+        if (isset($choixObligatoiresEtvaleurs['num_vendeur']) | isset($choixObligatoiresEtvaleurs['num_utilisateur'])) {
+            $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_EN_COURS_VIEW";  
+        } else {
+            $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher = "ENCHERE_TOUT_VIEW";
+        }
+
 
         /*génération dynamique, j'utilise une whiteListe cependant il y'a potentiellement une vulnérabilité*/
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_VIEW " 
+                    FROM $ma_table_que_je_definis_et_que_l_utilisateur_ne_peut_pas_toucher  " 
                     . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
         $data = array();
         Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
