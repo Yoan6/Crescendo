@@ -14,7 +14,7 @@
     $todayDate = new DateTime();
     // Pour relancer le controller
     $controllerName = basename(__FILE__);
-    $confirmer = $_POST['confirmer'] ?? "";
+    $confirmer = $_POST['confirmer'] ?? "No";
     $chemin_image  =__DIR__."/../data/imgArticle/";
     
     /***************************************************************************
@@ -73,11 +73,10 @@
     }
 finImage:
 
-    /***************************************************************************
-     **                         Création de l'article
-     ***************************************************************************/
-    if ($confirmer=="confirmer" && count($errors) == 0 && count($image) >= 1); 
-    {
+/***************************************************************************
+ **                         Création de l'article
+ ***************************************************************************/
+    if ( (str_contains($confirmer,"confirmer")) && (count($errors) == 0) && (count($image) >= 1)) {
         try {
             $article = new article($utilisateur, $titre, $description, $nomsImages, $prixMin, $artiste, 
                                     $etat, $categorie, $taille, $lieu, $style, new DateTime($dateEvenement)

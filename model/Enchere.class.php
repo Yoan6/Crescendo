@@ -279,7 +279,7 @@ class Enchere
     {
         // Récupérer les enchères associées
         $query = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? 
-                AND est_lot='FALSE' OR est_lot=0;";
+                AND (est_lot='FALSE' OR est_lot=0);";
         //$query2 = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='TRUE';";
         $dao = DAO::get();
         $encheres = array();
@@ -288,6 +288,7 @@ class Enchere
             $table = $dao->query($query, [$article->getNumArticle()]);
 
             if (count($table) >= 1) {
+                var_dump($table[0]["num_enchere"]);
                 $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
             } 
 
@@ -364,10 +365,7 @@ class Enchere
         $table = $dao->query($queryEnchere, $data);
 
         $prix = $table[0][0];
-        if ($prix == null) {
-            throw new Exception("prix du lot non renseignée");
-
-        }
+        
 
         return $prix;
     }

@@ -525,10 +525,11 @@ class Article
         ];
 
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        // ($data, $query);
+        //var_dump($data, $query);
         /********************* La requête préparée pour les données entrées par l'utilisateur *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
+        //*var_dump($table);
         return Article::obtenirArticlesAPartirTable($table);
     }
 
