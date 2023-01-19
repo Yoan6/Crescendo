@@ -5,10 +5,10 @@
         <div class="article">
             
             <div id="divHeart">
-                <svg class="heartBouton" id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                <svg  id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <path
+                        <path class="heartBouton"
                             d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z"
                             stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
                     </g>
@@ -33,17 +33,28 @@
                 </div>
             </div>
             <input type="hidden" class="numEnchereRecupererValeur" value="<?= $enchere->getNumEnchere()?>">
-            <p class="estlike"><?php 
-                if ($_SESSION['num_utilisateur'] !== null){
+            <p class="estlike"><?php
+            if ($_SESSION['num_utilisateur'] !== null) {
+
+                if ($enchere->getLike($_SESSION['num_utilisateur']) == 1) {
+                    echo 1;
+                } else if ($enchere->getLike($_SESSION['num_utilisateur']) == 0) {
+                    echo 0;
+                } else if ($enchere->getLike($_SESSION['num_utilisateur']) == -1) {
+                    echo -1;
+                }
+            ?></p>
+
+                    <p class="estFavoris" ><?php
                     
-                    if($enchere->getLike($_SESSION['num_utilisateur'])== 1) {
-                        echo 1;
-                    } else if ($enchere->getLike($_SESSION['num_utilisateur'])== 0){
+                    if($enchere->getFavoris($_SESSION['num_utilisateur']) == NULL){
                         echo 0;
-                    } else if ($enchere->getLike($_SESSION['num_utilisateur'])== -1){
-                        echo -1;
+                    } else {
+                        echo 1;
                     }
-                }; ?></p>
+                     
+            }        
+                ?></p>
 
             <div id="divLikes">
                 <svg id="like"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">

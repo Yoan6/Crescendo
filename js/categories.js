@@ -106,6 +106,8 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 
+if(orderBy !== null) {
+
 //on vérifie si il y a des paramètres GET et on change la valeur du select
 if (params.orderBy === "ASC") {
   orderBy.value = params.orderByChoix;
@@ -131,7 +133,7 @@ orderBy.addEventListener("change", function () {
 
 });
 
-
+}
 
 
 //on récupère les paramètres GET
@@ -251,6 +253,7 @@ if (url.searchParams.get("orderBy")) {
 ////////////////////////
 
 toutEffacer = document.getElementById("toutEffacer");
+if(toutEffacer !== null) {
 
 // Sélectionner toutes les checkbox de la page
 var checkboxes = document.querySelectorAll('input[type=checkbox]');
@@ -261,6 +264,8 @@ toutEffacer.addEventListener("click", function () {
     checkboxes[i].checked = false;
   }
 });
+
+}
 
 
 //si il n'y a aucun articles 

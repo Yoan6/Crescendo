@@ -163,15 +163,22 @@ justify-content: center;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap : 50px;
-
+    margin-top: 30px;
 }
 
 #articleSemaine div h1{
 
-    color: var(--navBar-font-color);
+    color: var(--main-content-font-color);
     font-weight: 100;
-    margin-bottom: 50px;
+    margin-bottom: 15px;
+    padding: 20px;
+    width: 50%;
+    min-width: 385px;
+    background-color: var(--navBar-font-color);
+    border-radius: 10px;
+
 }
 
 svg > g > path{

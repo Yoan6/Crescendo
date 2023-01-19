@@ -57,7 +57,6 @@
         <div class="conteneur" id="articleSemaine">
             <div>
                 <h1>Les articles de la semaine</h1>
-                <h2><span id="testAEnlever">a</span></h2>
                 <?php include(__DIR__ . '/article/article.view.php'); ?>
             </div>
         </div>
