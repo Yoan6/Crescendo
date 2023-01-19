@@ -223,7 +223,7 @@
             
                 
             <div id="caseACocherCreationEnchere">
-                <input required type="checkbox"> <p>En cochant cette case, vous acceptez les </p> <a href="../view/conditionsUtilisation.view.php"> conditions d'utilisations</a>
+                <input required type="checkbox"> <p>En cochant cette case, vous attestez sur l'honneur que vous ne vendrez que des articles légaux</a>
             </div>
 
             <div id="buttons">
