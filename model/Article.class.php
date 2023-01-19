@@ -609,6 +609,9 @@ class Article
                         OR artiste like '%' ||:titreArtiste ||'%'";
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, ["titreArtiste" =>$titreArtiste]);
+        if (empty($tableContenantLeNombre)) {
+            return 0;
+        }
         return $tableContenantLeNombre[0][0];
     }
 
@@ -622,6 +625,9 @@ class Article
                     FROM ENCHERE_TOUT_VIEW";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
+        if (empty($tableContenantLeNombre)) {
+            return 0;
+        }
         return $tableContenantLeNombre[0][0];
     }
 
@@ -629,13 +635,17 @@ class Article
      * Retourne le nombre d'article en favoris de l'utilisateur
      * @return mixed
      */
-    public static function nombreArticlesFavoris(){
+    public static function nombreArticlesFavoris(int $numUtilisateur){
         $query = "SELECT COUNT(*)
                     FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join favorise
                     WHERE num_utilisateur=:num_utilisateur
                     group by num_enchere";
                     $dao = DAO::get();
-        $tableContenantLeNombre = $dao->query($query, array());
+        $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);
+        if (empty($tableContenantLeNombre)) {
+            return 0;
+        }
+        //var_dump($tableContenantLeNombre);
         return $tableContenantLeNombre[0][0];
     }
 
@@ -643,12 +653,16 @@ class Article
      * Retourne le nombre d'article remportés par l'utilisateur
      * @return mixed
      */
-    public static function nombreArticlesGagne(){
+    public static function nombreArticlesGagne(int $numUtilisateur){
         $query = "SELECT COUNT(*)
             FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE_VIEW
             WHERE num_utilisateur=:num_utilisateur group by num_enchere";
                     $dao = DAO::get();
-        $tableContenantLeNombre = $dao->query($query, array());
+        
+        $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);
+        if (empty($tableContenantLeNombre)) {
+            return 0;
+        }
         return $tableContenantLeNombre[0][0];
     }
 
@@ -671,6 +685,9 @@ class Article
 
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, $data);
+        if (empty($tableContenantLeNombre)) {
+            return 0;
+        }
         return $tableContenantLeNombre[0][0];
     }
 

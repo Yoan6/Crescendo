@@ -6,6 +6,8 @@ include_once(__DIR__."/../model/Utilisateur.class.php");
 include_once(__DIR__."/../model/Article.class.php");
 include_once(__DIR__."/../model/Enchere.class.php");
 
+if (isset($_SESSION)) session_start();
+
 $page = 1;
 $pageSize = 5;
 $encheres = array();
