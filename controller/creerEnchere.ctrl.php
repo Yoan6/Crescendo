@@ -133,6 +133,10 @@ finImage:
     $view->assign('etat',$etat);
     $view->assign('lieu',$lieu);
     $view->assign('controllerName',$controllerName);
+    $modification = false;
+    $view->assign('modification',$modification);
+
+
 
     if ($confirmer == "confirmer" && count($errors) == 0)
     {
