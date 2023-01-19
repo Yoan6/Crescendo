@@ -297,6 +297,7 @@ class Article
                     WHERE titre = ? AND description_article = ? ;";
 
         $dao = DAO::get();
+        // requête préparée
         $table = $dao->query($query, [$titre, $description]);
         return Article::obtenirArticlesAPartirTable($table)[0];
     }
@@ -314,6 +315,7 @@ class Article
                     WHERE num_article = ? ;";
 
         $dao = DAO::get();
+        // requête préparée
         $table = $dao->query($query, [$num_article]);
         return Article::obtenirArticlesAPartirTable($table)[0];
     }
@@ -330,6 +332,7 @@ class Article
                     WHERE titre like '%' ||? ||'%';";
 
         $dao = DAO::get();
+        // requête préparée
         $table = $dao->query($query, [$titrePattern]);
         return Article::obtenirArticlesAPartirTable($table);
     }
@@ -337,7 +340,13 @@ class Article
 
     /////////////////////////// ReadPage /////////////////////////////////////
 
-
+    /**
+     * Barre de recherche, recherche uniquement en fonction de l'artiste et du titre
+     * @param string $page
+     * @param int $pageSize
+     * @param string $titreArtistePattern
+     * @return array
+     */
     public static function readPageLike(string $page,int $pageSize, string $titreArtistePattern): array
     {
         $query = "SELECT *
@@ -353,18 +362,141 @@ class Article
             "pageSize" => $pageSize
         ];
 
-        
         $dao = DAO::get();
+        // Requêté préparée
         $table = $dao->query($query,$data);
 
         return Article::obtenirArticlesAPartirTable($table);
     }
 
+    /**
+     * Pour factoriser du code lorsqu'on veut uniquement chercher sans condition
+     * @param string $page
+     * @param int $pageSize
+     * @param string $query
+     * @return array
+     */
+    public static function readUniquementPage(string $page, int $pageSize, string $query)
+    {
+        $data = [
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize
+        ];
+        $dao = DAO::get();
 
-    // WhiteList pour éviter une injection SQL
+        // Requêté préparée avec le DAO
+        try {
+            $table = $dao->query($query, $data);
+            return Article::obtenirArticlesAPartirTable($table);
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération des articles");
+        }
+    }
+
+    /**
+     * Pour factoriser du code lorsqu'on veut avoir les articles de l'utilisateur
+     * @param string $page
+     * @param int $pageSize
+     * @param string $query
+     * @param int $numUtilisateur
+     * @throws Exception
+     * @return array
+     */
+    public static function readUniquementPageEtUtilisateur(string $page, int $pageSize, string $query, int $numUtilisateur)
+    {
+        $data = [
+            "articleOffset" => ($page - 1) * $pageSize,
+            "pageSize" => $pageSize,
+            "num_utilisateur" => $numUtilisateur
+        ];
+        
+        $dao = DAO::get();
+
+        // Requêté préparée avec le DAO
+        try {
+            $table = $dao->query($query, $data);
+            return Article::obtenirArticlesAPartirTable($table);
+        } catch (Exception $e) {
+            throw new Exception("Erreur lors de la récupération des articles");
+        }
+    }
+
+
+
+    /**
+     * 
+     * Pour lire les articles les plus populaire
+     * @param string $page
+     * @param int $pageSize
+     * @return array
+     */
+    public static function readPageALaUne(string $page, int $pageSize): array
+    {
+        $query = "select *,sum(CASE est_like when TRUE then 1 WHEN false then -1 WHEN est_like is Null then 0 END) as compteurLike 
+        FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join like_dislike 
+        WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'))
+        group by num_enchere order by CAST(compteurLike as SIGNED) DESC LIMIT :pageSize OFFSET :articleOffset ;";
+        return Article::readUniquementPage($page, $pageSize, $query);
+    }
+
+
+    /**
+     * Pour rechercher les favoris de l'utilisateur
+     * @param string $page
+     * @param int $pageSize
+     * @param int $numUtilisateur
+     * @return array
+     */
+    public static function readPageFavoris(string $page, int $pageSize,int $numUtilisateur): array
+    {
+        $query = "select *
+        FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join favorise
+        WHERE num_utilisateur=:num_utilisateur
+        group by num_enchere order by date_debut DESC LIMIT :pageSize OFFSET :articleOffset ;";
+        return Article::readUniquementPageEtUtilisateur($page, $pageSize, $query,$numUtilisateur);
+    }
+
+    /**
+     * Pour obtenir toutes les enchères gagnées par l'utilisateur
+     * @param string $page
+     * @param int $pageSize
+     * @param int $numUtilisateur
+     * @return array
+     */
+    public static function readPageGagne(string $page, int $pageSize,int $numUtilisateur): array
+    {
+        $query = "select *
+        FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE
+        WHERE num_utilisateur=:num_utilisateur
+        group by num_enchere order by date_debut DESC LIMIT :pageSize OFFSET :articleOffset ;";
+        return Article::readUniquementPageEtUtilisateur($page, $pageSize, $query,$numUtilisateur);
+    }
+
+
+
+    /**
+     * 
+     * Pour lire tous les articles pour l'accueil
+     * @param int $page
+     * @param int $pageSize
+     * @return array
+     */
+    public static function readPage(int $page, int $pageSize)
+    {     
+        $query = "SELECT *
+                    FROM ENCHERE_TOUT_VIEW
+                    ORDER BY num_article               
+                    LIMIT :pageSize OFFSET :articleOffset ;";
+        return Article::readUniquementPage($page, $pageSize, $query);
+    }
+    
+
+
+
+
+    // WhiteList pour éviter une injection SQL sur les attributs mais en même temps pouvoir changer les attributs
     private const WHITELIST_NOM_ATTRIBUT = ["num_article"=>"num_article", "num_vendeur" => "num_vendeur","titre"=>"titre","prix_min"=>"prix_min","description_article"=>"description_article","artiste"=>"artiste","etat"=>"etat","categorie"=>"categorie","taille"=>"taille","date_evenement"=>"date_evenement","lieu"=>"lieu","style"=>"style", "1" => "1","date_debut" => "date_debut","est_lot" => "est_lot","prix_actuel" => "prix_actuel"];
     private const WHITELIST_ORDER_BY = ["ASC" => "ASC", "DESC" => "DESC"];
-
 
     /**
      * Permet la recherche avec plusieurs paramètres en une seule fonction
@@ -390,13 +522,13 @@ class Article
             "articleOffset" => ($page - 1) * $pageSize,
             "pageSize" => $pageSize,
         ];
-        var_dump($query);
 
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        // ($data, $query);
+        
         /********************* La requête préparée pour les données entrées par l'utilisateur *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
+        
         return Article::obtenirArticlesAPartirTable($table);
     }
 
@@ -453,47 +585,16 @@ class Article
     }
 
     
-    
-    public static function readPage(int $page, int $pageSize)
-    {     
-        $query = "SELECT *
-                    FROM ENCHERE_TOUT_VIEW
-                    ORDER BY num_article               
-                    LIMIT :pageSize OFFSET :articleOffset ;";
-                    
-                    $data = [
-            "articleOffset" => ($page - 1) * $pageSize,
-            "pageSize" => $pageSize
-        ];
-        $dao = DAO::get();
-        try {
-            $table = $dao->query($query, $data);
-            return Article::obtenirArticlesAPartirTable($table);
-        } catch (Exception $e) {
-            throw new Exception("Erreur lors de la récupération des articles");
-        }
-    }
-    
-    public static function nombreArticlesPlusieursChoix( array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) { 
-
-        /*génération dynamique, j'utilise une whiteListe cependant il y'a potentiellement une vulnérabilité*/
-        $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_VIEW " 
-                    . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        $data = array();
-        Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
-        
-        var_dump($choixObligatoiresEtvaleurs,$choixEtvaleurs,$query,$data);
-
-        $dao = DAO::get();
-        $tableContenantLeNombre = $dao->query($query, $data);
-        return $tableContenantLeNombre[0][0];
-    }
 
 
 
 
 
+    /**
+     * Retourne le nombre d'articles total avec la barre de recherche
+     * @param string $titreArtiste
+     * @return mixed
+     */
     public static function nombreArticlesLike(string $titreArtiste){
         $query = "SELECT COUNT(*)
                     FROM ENCHERE_TOUT_VIEW
@@ -505,6 +606,10 @@ class Article
     }
 
 
+    /**
+     * Retouurne le nombre d'article total
+     * @return mixed
+     */
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
                     FROM ENCHERE_TOUT_VIEW";
@@ -512,6 +617,53 @@ class Article
         $tableContenantLeNombre = $dao->query($query, array());
         return $tableContenantLeNombre[0][0];
     }
+
+    /**
+     * Retourne le nombre d'article en favoris de l'utilisateur
+     * @return mixed
+     */
+    public static function nombreArticlesFavoris(){
+        $query = "SELECT COUNT(*)
+                    FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join favorise
+                    WHERE num_utilisateur=:num_utilisateur
+                    group by num_enchere";
+                    $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, array());
+        return $tableContenantLeNombre[0][0];
+    }
+
+    /**
+     * Retourne le nombre d'article remportés par l'utilisateur
+     * @return mixed
+     */
+    public static function nombreArticlesGagne(){
+        $query = "SELECT COUNT(*)
+            FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE
+            WHERE num_utilisateur=:num_utilisateur group by num_enchere";
+                    $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, array());
+        return $tableContenantLeNombre[0][0];
+    }
+
+
+    public static function nombreArticlesPlusieursChoix( array $choixEtvaleurs, array $choixObligatoiresEtvaleurs) { 
+
+        /*génération dynamique, j'utilise une whiteListe cependant il y'a potentiellement une vulnérabilité*/
+        $query = "SELECT COUNT(*)
+                    FROM ENCHERE_TOUT_VIEW " 
+                    . Article::generationDynamiqueQuery($choixEtvaleurs, $choixObligatoiresEtvaleurs);
+        $data = array();
+        Article::generationDynamiqueData($data, $choixEtvaleurs,$choixObligatoiresEtvaleurs);
+        
+
+        $dao = DAO::get();
+        $tableContenantLeNombre = $dao->query($query, $data);
+        return $tableContenantLeNombre[0][0];
+    }
+
+
+
+
     
     /**
      * Retourne un tableau d'article à partir de la table
@@ -539,6 +691,7 @@ class Article
         }
         return $lesArticles;
     }
+
 
 
     /**

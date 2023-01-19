@@ -13,17 +13,15 @@
 $estMonProfil = false;
 $num_vendeur = $numVendeur;
 $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0;
-var_dump($num_utilisateur, $num_vendeur, strcmp($num_utilisateur, $num_vendeur));
+
 if (strcmp($num_utilisateur, $num_vendeur) == 0) {
     $estMonProfil = true;
 }
 ?>
 <input type="hidden" class="numUtilisateurRecupererValeur" value="<?= $num_utilisateur ?>">
 
-<?php var_dump($numEnchere) ?>
-<?php var_dump($estLot) ?>
-<?php var_dump($nouvelleEnchere) ?>
-<?php($estLot) ?>
+
+
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
@@ -68,9 +66,9 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
             <div>
 
                 <h3 id="dateFinEnchère">
-                    L'enchère se termine le <?= $dateFin ?>
+                    L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span> 
                 </h3>
-
+                <input type="hidden" class="leTimerDeLArticle" value="<?=$dateFinIso->format('Y-m-d')?>">
 
                 <div id="topForm">
                     <div id="divTopLeft">
@@ -442,5 +440,5 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 <script src="../js/voirEnchère.js"></script>
 <script src="../ajax/getPrixActuel.js" defer></script>
 <script src="../ajax/like.js" defer></script>
-
+<script src="../js/time.js" defer></script>
 </html>

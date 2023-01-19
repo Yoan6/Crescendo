@@ -30,6 +30,7 @@ $controllerName = basename(__FILE__);
 $encheres = array(); 
 $errors = array();
 $pageMax = 1;
+$nbArticle = 0;
 
 // Gérer les pages
 
@@ -37,7 +38,6 @@ $page = $_GET['page'] ?? 1;
 $pageSize = 5; //Nombre d'article
 $nbBoutonPage = 5;
 $pagePrec = ($page <= 1 ? 1 : $page - 1); 
-$pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 // Autres
 $num_vendeur = $choixObligatoireEtValeurs["num_vendeur"][0] ?? "";
@@ -48,13 +48,13 @@ $num_vendeur = $choixObligatoireEtValeurs["num_vendeur"][0] ?? "";
 
 try {
     $encheres = Enchere::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs,$choixObligatoireEtValeurs,$orderByChoix,$orderBy);
-
-    $pageMax = (int) ( article::nombreArticlesPlusieursChoix($choixEtvaleurs,$choixObligatoireEtValeurs) / $pageSize) +1;  // Une erreur est générée si aucun article n'est trouvé
+    $nbArticle = article::nombreArticlesPlusieursChoix($choixEtvaleurs, $choixObligatoireEtValeurs);// Une erreur est générée si aucun article n'est trouvé
 } catch (exception | error $e) {
     $errors[] = $e->getMessage();
     ($errors);
 }
 
+$pageMax = (int) (  $nbArticle / $pageSize) +1;  
 $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 $view = new View();
@@ -67,6 +67,7 @@ if (empty($encheres)) {
 $view->assign("controllerName",$controllerName);
 
 $view->assign('recherche', $recherche);
+$view->assign('nbArticle', $nbArticle);
 $view->assign('nbBoutonPage', $nbBoutonPage);
 $view->assign('pagePrec', $pagePrec);
 $view->assign('page', $page);

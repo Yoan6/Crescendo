@@ -29,8 +29,8 @@ DROP TABLE IF EXISTS UTILISATEUR;
 
 CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     num_utilisateur INTEGER PRIMARY KEY AUTOINCREMENT, -- CHANGEMENT
-    email VARCHAR,                                      -- CHANGEMENT
-    pseudo VARCHAR,
+    email VARCHAR NOT NULL,                                      -- CHANGEMENT
+    pseudo VARCHAR NOT NULL,
     mot_de_passe PASSWORD,
     nom VARCHAR,
     prenom VARCHAR,
@@ -38,22 +38,23 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR  (
     ville VARCHAR,
     rue VARCHAR NULL,
     code_postal VARCHAR, 
-    img_profil VARCHAR
+    img_profil VARCHAR,
+    UNIQUE(email)
 );
 
 CREATE TABLE IF NOT EXISTS ENCHERE (
     num_enchere INTEGER PRIMARY KEY AUTOINCREMENT, 
-    date_debut DATE,
+    date_debut DATE NOT NULL,
     est_lot BOOLEAN --Suppresion de prix et id_paiement mis dans ENCHERIT
 ); --Suppression de nombre de like, Une table intermédiaire ENTRE utilisateur et enchere sera créée plus tard
 
 CREATE TABLE IF NOT EXISTS ARTICLE (
     num_article INTEGER PRIMARY KEY AUTOINCREMENT, 
     num_vendeur INTEGER REFERENCES Utilisateur(num_utilisateur) ON DELETE CASCADE, -- ajout 
-    titre VARCHAR COLLATE NOCASE,
-    prix_min INTEGER,
+    titre VARCHAR COLLATE NOCASE NOT NULL,
+    prix_min INTEGER NOT NULL,
     description_article VARCHAR COLLATE NOCASE,
-    artiste VARCHAR COLLATE NOCASE,
+    artiste VARCHAR COLLATE NOCASE NOT NULL,
     etat VARCHAR COLLATE NOCASE,
     categorie VARCHAR COLLATE NOCASE,
     taille VARCHAR COLLATE NOCASE,
@@ -134,6 +135,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .import ../../sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt ENCHERIT
 .import ../../sql_base_donnees_actuelle/initialisation/favorise.initialisation.txt FAVORISE
 .import ../../sql_base_donnees_actuelle/initialisation/like_dislike.initialisation.txt LIKE_DISLIKE
+.import ../../sql_base_donnees_actuelle/initialisation/gagne.initialisation.txt GAGNE
 
 .print '===========================  TESTS  ==========================='
 
@@ -174,4 +176,4 @@ UPDATE ENCHERE set date_debut = DATE();
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
 
-INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0);
+INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(4,1,0),(4,2,0),(4,3,0);

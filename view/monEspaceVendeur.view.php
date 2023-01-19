@@ -113,7 +113,7 @@
 
                             </div>
                             <p>
-                                <?=$pageMax?> articles en vente
+                                <?=$nbArticle?> articles en vente
                             </p>
                         </div>
 
@@ -138,9 +138,11 @@
                     <a href="../controller/creerEnchere.ctrl.php" id="nouvelArticle">
                         Nouvel article
                     </a>
+                    <!--
                     <a id="nouveauLot">
                         Nouveau lot
                     </a>
+                    -->
                 <?php endif;?>
             </div>
         </div>

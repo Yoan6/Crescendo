@@ -33,7 +33,7 @@ $chemin_image  ="../data/imgProfil/";
 if(isset($_FILES['changementImage'])) {
 
     $file = $_FILES['changementImage'];
-    $file_name = $file['name'];
+    $file_name = time() . "." .pathinfo($file['name'],PATHINFO_EXTENSION);
     $file_tmp = $file['tmp_name'];
 
     $file_size = $file['size'];
@@ -172,7 +172,7 @@ if (count($errors) == 0) {
     $utilisateur->update();
 }
 
-var_dump($errors);
+
 
 $imgProfil = $utilisateur->getImageURL();
 

@@ -16,24 +16,13 @@
 
     <main>
         <div>
-            <p id="titre">Résultat pour <?=htmlspecialchars($recherche)?></h1>
-
+            <p id="titre">Les enchères les plus populaires</h1>
         </div>
         <div id="principale">
-            <?php include("article/fitreGauche.view.php")?>
             <div id="divdroite">
 
                 <div class="affichageArticle">
                     <div id="topAffichageArticle">
-                        <div id="contenuOrderBy">
-
-                            <?php include(__DIR__ . '/article/filtre.view.php'); ?>
-
-
-
-
-
-                        </div>
                     </div>
 
 
@@ -47,7 +36,7 @@
 
 
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
-                 
+                   
                 </div>
             </div>
 
