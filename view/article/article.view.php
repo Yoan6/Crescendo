@@ -34,7 +34,7 @@
             </div>
             <input type="hidden" class="numEnchereRecupererValeur" value="<?= $enchere->getNumEnchere()?>">
             <p class="estlike"><?php
-            if ($_SESSION['num_utilisateur'] !== null) {
+            if (isset($SESSION['num_utilisateur']) && $SESSION['num_utilisateur'] !== null) {
 
                 if ($enchere->getLike($_SESSION['num_utilisateur']) == 1) {
                     echo 1;
