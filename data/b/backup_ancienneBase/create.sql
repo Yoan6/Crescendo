@@ -134,6 +134,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 .import ../../sql_base_donnees_actuelle/initialisation/encherit.initialisation.txt ENCHERIT
 .import ../../sql_base_donnees_actuelle/initialisation/favorise.initialisation.txt FAVORISE
 .import ../../sql_base_donnees_actuelle/initialisation/like_dislike.initialisation.txt LIKE_DISLIKE
+.import ../../sql_base_donnees_actuelle/initialisation/gagne.initialisation.txt GAGNE
 
 .print '===========================  TESTS  ==========================='
 
@@ -174,4 +175,4 @@ UPDATE ENCHERE set date_debut = DATE();
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN DATE() AND datetime(DATE(), '+7 DAYS'));
 
-INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0);
+INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(4,1,0),(4,2,0),(4,3,0);

@@ -74,8 +74,8 @@
         <?php if (isset($_SESSION['num_utilisateur'])): ?>
           <a href="../controller/parametre.ctrl.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>
           </a>
-          <a href="#draft">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
-          <a href="#move">Enchères remportées<i><img src="" alt=""></i></a>
+          <a href="../controller/rechercheFavoris.ctrl.php">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
+          <a href="../controller/rechercheGagne.ctrl.php">Enchères remportées<i><img src="" alt=""></i></a>
           <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$_SESSION['num_utilisateur']?>">Mon espace vendeur</a>
           <a href="#notification">Notifications</a>
           <a href="../controller/logout.ctrl.php">Se déconnecter</a>
@@ -97,7 +97,7 @@
   </div>
   <form id="lesCategories" action="../controller/rechercheChoix.ctrl.php" method="GET">
     <ul class="conteneur">
-      <li class="liCategories"><button name="orderBy[]" value="AlaUne">A la une</button></li>
+      <li class="liCategories"><a href="../controller/rechercheALaUne.ctrl.php"><button type="button">À La Une</button></a></li>
       <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Vêtement">Vêtements</button></li>
       <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Instrument">Instruments</button></li>
       <li class="liCategories"><button name="choixObligatoire[categorie][]" value="Accessoire">Accessoires</button></li>

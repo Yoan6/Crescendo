@@ -8,7 +8,6 @@
     **                         Données
     ***************************************************************************/
     // initialisation
-    $recherche = $_GET["recherche"] ?? ""; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
     $controllerName = basename(__FILE__);
@@ -23,8 +22,8 @@
     
     // Récupérer les enchères
     try {
-        $pageMax = (int) (article::nombreArticlesLike($recherche) / $pageSize) +1; // Une erreur est générée si 0 article trouvé
-        $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
+        $pageMax = (int) (article::nombreArticlesTotal() / $pageSize) +1; // Une erreur est générée si 0 article trouvé
+        $encheres = Enchere::readPageALaUne($page, $pageSize);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
@@ -49,7 +48,6 @@
     $view->assign('pageSuiv', $pageSuiv);
     $view->assign('pageSize', $pageSize);
     $view->assign('pageMax', $pageMax);
-    $view->assign("recherche",$recherche);
-    $view->display("recherche.view.php");
+    $view->display("rechercheALaUne.view.php");
 
 ?>

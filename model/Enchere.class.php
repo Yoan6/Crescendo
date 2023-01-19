@@ -218,6 +218,34 @@ class Enchere
     }
 
 
+
+    /**
+     * 
+     * Retourne les articles les plus populaires
+     * @param string $page
+     * @param int $pageSize
+     * @return array
+     */
+    public static function readPageALaUne(string $page, int $pageSize): array
+    {
+        $articles = Article::readPageALaUne($page, $pageSize);
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+    }
+
+
+    public static function readPageFavoris(string $page, int $pageSize, int $numUtilisateur): array
+    {
+        $articles = Article::readPageFavoris($page, $pageSize,$numUtilisateur);
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+    }
+
+    public static function readPageGagne(string $page, int $pageSize, int $numUtilisateur): array
+    {
+        $articles = Article::readPageGagne($page, $pageSize,$numUtilisateur);
+        return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
+    }
+
+
     public static function readPagePlusieursChoix(
         int $page, int $pageSize, array $choixEtvaleurs,
         array $choixObligatoiresEtValeurs, string $orderByChoix = "date_debut", string $orderBy = "DESC"
@@ -240,13 +268,18 @@ class Enchere
         $articles = Article::readPage($page, $pageSize);
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
     }
+    
+
+
+
+
 
 
     public static function obtenirEncheresAPartirDesNumerosArticles(array $articles)
     {
         // Récupérer les enchères associées
         $query = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='FALSE';";
-        $query2 = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='TRUE';";
+        //$query2 = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='TRUE';";
         $dao = DAO::get();
         $encheres = array();
         // Parcourir les articles obtenues pour leur associer les enchères
@@ -255,11 +288,7 @@ class Enchere
 
             if (count($table) >= 1) {
                 $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
-            } else {
-                // C'est un lot
-                $table = $dao->query($query2, [$article->getNumArticle()]);
-                $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
-            }
+            } 
 
         }
         return $encheres;

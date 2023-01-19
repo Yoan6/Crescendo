@@ -4,11 +4,11 @@
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
+    if(!isset($_SESSION)) { session_start(); } 
     /***************************************************************************
     **                         Données
     ***************************************************************************/
     // initialisation
-    $recherche = $_GET["recherche"] ?? ""; 
     $encheres = array(); // S'il y'a une erreur
     $errors = array();
     $controllerName = basename(__FILE__);
@@ -18,17 +18,18 @@
     $page = $_GET['page'] ?? 1;
     $pageSize = 5; //Nombre d'article
     $nbBoutonPage = 5;
-    $pagePrec = ($page <= 1 ? 1 : $page - 1); 
-
+    $pagePrec = ($page <= 1 ? 1 : $page - 1);
+    $nbArticle = 0;
     
     // Récupérer les enchères
     try {
-        $pageMax = (int) (article::nombreArticlesLike($recherche) / $pageSize) +1; // Une erreur est générée si 0 article trouvé
-        $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
+        $nbArticle = article::nombreArticlesFavoris(); // Une erreur est générée si 0 article trouvé
+        $encheres = Enchere::readPageFavoris($page, $pageSize, $_SESSION['num_utilisateur']);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
 
+    $pageMax = (int) (  $nbArticle / $pageSize) +1;  
     $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 
@@ -42,14 +43,14 @@
     $view->assign("controllerName",$controllerName);
 
     $view->assign("encheres",$encheres);
-
+    
+    $view->assign('nbArticle', $nbArticle);
     $view->assign('nbBoutonPage', $nbBoutonPage);
     $view->assign('pagePrec', $pagePrec);
     $view->assign('page', $page);
     $view->assign('pageSuiv', $pageSuiv);
     $view->assign('pageSize', $pageSize);
     $view->assign('pageMax', $pageMax);
-    $view->assign("recherche",$recherche);
-    $view->display("recherche.view.php");
+    $view->display("rechercheFavoris.view.php");
 
 ?>
