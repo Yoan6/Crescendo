@@ -19,14 +19,14 @@
                 </p>
 
                 <p>
-                Une fois arrivée sur notre page d'accueil, vous avez la possibilité de naviguer à travers notre site et de mener autant de recherches que vous le voulez. 
+                Une fois arrivé sur notre page d'accueil, vous avez la possibilité de naviguer à travers notre site et de mener autant de recherches que vous le voulez. 
                 Une fois qu'un article vous a tapé dans l'œil et que vous souhaitez soumettre une enchère, vous devez impérativement vous connecter. 
                 Pour cela, cliquez sur le bouton « Se Connecter » qui se trouve en haut à droite de la page d'accueil. 
                 Deux options s'offrent alors à vous, la possibilité de se connecter si vous disposez déjà d'un compte ou la possibilité de s'inscrire. 
                 </p>
                 
                 <p>
-                Une fois connecté, en cliquant sur le bouton situé en haut à droite « Vends tes articles », vous aurez la possibilité de soumettre vos articles à d'autres acheteurs. Vous arriverez alors sur une page qui vous indique les informations à renseigner : des images, un titre, un prix de départ de l’enchère, une description de l’article ainsi que des informations sur l’évènement et l’article. Une fois les informations renseignées sur l’article, vous pourrez alors cliquer sur le bouton « Valider » et votre article sera mis en vente. Si vous vous rendez sur votre profil, vous pourrez alors voir l’article que vous avez mis en vente. Une enchère dure sept jours au maximum, il ne vous reste donc plus qu’à patienter et attendre qu’une offre à la hauteur de vos attentes arrive.
+                Une fois connecté, en cliquant sur le bouton situé en haut à droite « Vends avec Crescendo », vous aurez la possibilité de soumettre vos articles à d'autres acheteurs. Vous arriverez alors sur une page qui vous indique les informations à renseigner : des images, un titre, un prix de départ de l’enchère, une description de l’article ainsi que des informations sur l’évènement et l’article. Une fois les informations renseignées sur l’article, vous pourrez alors cliquer sur le bouton « Valider » et votre article sera mis en vente. Si vous vous rendez sur votre profil, vous pourrez alors voir l’article que vous avez mis en vente. Une enchère dure sept jours au maximum, il ne vous reste donc plus qu’à patienter et attendre qu’une offre à la hauteur de vos attentes arrive.
                 </p>
                 
                 <p>
