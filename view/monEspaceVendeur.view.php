@@ -40,7 +40,7 @@
                 <div id="userInformations">
 
                     <div id="conteneurImage">
-                        <img src="<?=$utilisateur->getImageURL()?>" alt="">
+                        <img src="<?=$vendeur->getImageURL()?>" alt="">
                     </div>
 
                     <div id="conteneurInformation">
@@ -171,12 +171,6 @@
 
 
                     <form id="pagination">
-                        <!-- 
-                        <input type=hidden class="pagePrec?" value="<?php echo $pagePrec; ?>">
-                        <input type=hidden class="page?" value="<?php echo $page; ?>">
-                        <input type=hidden class="pageSuiv" value="<?php echo  $pageSuiv; ?>">
-                        <input type=hidden class="pageSize" value="<?php echo  $pageSize; ?>">
-                        --> 
 
 
                     </form>
