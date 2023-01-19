@@ -23,7 +23,7 @@
             <p>Les présentes Conditions d’utilisation régissent votre utilisation de 
             Crescendo. En créant un compte Crescendo ou en utilisant Crescendo, vous 
             acceptez les présentes conditions. Crescendo est un site <strong>français</strong> et à 
-            ce titre, il est affiché entièrement en <strong>français</strong>. Crescendo est une 
+            ce titre, il est conçu pour un public <strong>français</strong>. Crescendo est une 
             société de vente aux enchères publique.</p>
         </div>
 

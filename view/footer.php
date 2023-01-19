@@ -5,7 +5,7 @@
                 <div>
                     <h4>A propos</h4>
                     <ul class="tiret">
-                        <li><a href="../view/politiqueProtectionDonnees.view.php">Politique de protection de données</a></li>
+                        <li><a href="../view/politiqueProtectionDonnees.view.php" target="_blank">Politique de protection de données</a></li>
                         <li><a href="https://www.google.com/">Affiliation</a></li>
                         <li><a href="../view/conditionsUtilisation.view.php" target="_blank">Conditions générales</a></li>
                     </ul>
