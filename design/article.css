@@ -90,8 +90,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: normal;
-    text-align:left;
-    
+    text-align: left;
+
 }
 
 .article #center div h3:last-child {
@@ -141,7 +141,7 @@
     overflow: hidden;
 }
 
-.article #center .divBouton button{
+.article #center .divBouton button {
     height: 100%;
     width: 100%;
     background-color: var(--bleu);
@@ -192,12 +192,13 @@
     stroke-width: 1px;
     fill: transparent;
     cursor: pointer;
-    transition: all 0.4s ease-in-out;
+    transition: transform 0.4s ease-in-out, stroke 0.4s ease-in-out;
 }
 
 .article #divLikes #dislike path:hover {
     stroke: var(--rouge);
     transform: scale(1.01);
+    
 }
 
 .article #divLikes #like path:hover {
@@ -207,40 +208,102 @@
 
 .article #divLikes #like .likeBouton.liked {
 
-fill: var(--bleu);
-        
+    fill: var(--bleu);
+    stroke: var(--bleu);
+    
+    animation: like 0.5s ease-in-out;
+    
 }
+
+.article #divLikes #like .likeBouton.liked:hover {   
+    stroke: white;
+    transform: scale(1);
+}
+
 .article #divLikes #dislike .dislikeBouton.disliked {
 
     fill: var(--rouge);
-            
+    stroke: var(--rouge);
+    animation: dislike 0.5s ease-in-out;
+
+
 }
 
-.estlike {
+.article #divLikes #dislike .dislikeBouton.disliked:hover {
+    stroke: white;
+    transform: scale(1);
+}
 
+
+.estlike {
     display: none;
 }
 
+@keyframes like {
+    0% {
+        transform: translateY(0px) scale(1);
+        background-color: var(--bleu);
+        stroke: var(--bleu);
+    }
+
+    25% {
+        
+        transform: scale(0.7) translateX(5px) rotate(10deg);
+        
+    }
+
+    50% {
+        transform: scale(1) rotate(-10deg);
+       
+    }
+
+    100% {
+        transform: translateY(0px);
+        
+    }
+}
+
+@keyframes dislike {
+    0% {
+        transform: translateY(0px) scale(1);
+        background-color: var(--rouge);
+        stroke: var(--rouge);
+    }
+
+    25% {
+        
+        transform: scale(0.7) translateX(5px) rotate(10deg);
+        
+    }
+
+    50% {
+        transform: scale(1) rotate(-10deg);
+       
+    }
+
+    100% {
+        transform: translateY(0px);
+        
+    }
+}
 
 
 
 
-
-
-@media (min-width: 481px) and (max-width: 1000px) {   
-     .article {
+@media (min-width: 481px) and (max-width: 1000px) {
+    .article {
         height: 200px;
         position: relative;
     }
 
-    #responsive > div:first-child {
+    #responsive>div:first-child {
         width: 250px;
         min-width: 250px;
         height: 180px;
     }
 
 
-    
+
 
 
     .article #center {
@@ -261,11 +324,11 @@ fill: var(--bleu);
     }
 
 
-    .article #center >div> h3:first-child {
+    .article #center>div>h3:first-child {
         font-size: 1.6em;
     }
 
-    .article #center >div> h3:last-child {
+    .article #center>div>h3:last-child {
         font-size: 1.7em;
     }
 
@@ -288,7 +351,7 @@ fill: var(--bleu);
         position: absolute;
         bottom: 10px;
         left: 330px;
-        
+
 
         width: 25%;
         max-width: 500px;
@@ -313,7 +376,7 @@ fill: var(--bleu);
         margin-bottom: 30px;
     }
 
-    #divVIA #via li{
+    #divVIA #via li {
 
         height: 120px;
         border-radius: 0px;
@@ -331,18 +394,18 @@ fill: var(--bleu);
         max-width: unset;
         width: 100%;
         height: 100%;
-      
-       
+
+
     }
 
 
     #via li h2 {
-         padding-top: 0px;
-         height: 100%;
-         width: 50%;
-         display: flex;
-            align-items: center;
-            justify-content: center;
+        padding-top: 0px;
+        height: 100%;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     #divVIA #via li a div {
@@ -357,17 +420,17 @@ fill: var(--bleu);
         object-fit: cover;
     }
 
-   
-  
+
+
 }
 
 
-@media (min-width: 481px) and (max-width: 600px) {   
+@media (min-width: 481px) and (max-width: 600px) {
 
 
 
-    
-    #responsive > div:first-child {
+
+    #responsive>div:first-child {
         min-width: 180px;
         width: 180px;
         height: 180px;

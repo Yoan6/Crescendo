@@ -49,7 +49,7 @@
                 <svg id="like"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <title>i</title>
+                    
                         <g id="Complete">
                             <g id="thumbs-up">
                                 <path
@@ -66,7 +66,7 @@
                 <svg id="dislike"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" transform="rotate(180)">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
-                        <title>i</title>
+                       
                         <g id="Complete">
                             <g id="thumbs-up">
                                 <path
