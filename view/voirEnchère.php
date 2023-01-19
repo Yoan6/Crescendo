@@ -11,10 +11,9 @@
 
 <?php
 $estMonProfil = false;
-$num_vendeur = $numVendeur;
 $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0;
 
-if (strcmp($num_utilisateur, $num_vendeur) == 0) {
+if (strcmp($num_utilisateur, $numVendeur) == 0) {
     $estMonProfil = true;
 }
 ?>
