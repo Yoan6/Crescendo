@@ -9,7 +9,8 @@
     $enchere = Enchere::read($num_enchere);
     $article = Article::getTypeArticleFromArray($enchere->getArticles(), 0);
 
-    session_start();
+    if(!isset($_SESSION)) { session_start(); } 
+
 
     if($article->getVendeur()->getNumUtilisateur() == $_SESSION['num_utilisateur']) { 
         if ($enchere->getEstLot()) {
