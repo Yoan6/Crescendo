@@ -24,17 +24,25 @@
         /***************************************************************************
          **                         Données de l'enchère
         ***************************************************************************/
+
+
+
+        //Si la date de début est inférieure à la date du jour, on la met à la date du jour
         $dateEnchere = $_POST['dateEnchere'] ?? $enchere->getDateDebut()->format('Y-m-d');
 
-        $enchere->setDateDebut(new DateTime($dateEnchere));
+        if($enchere->getDateDebut() <= $todayDate &&  $dateEnchere >= $todayDate->format('Y-m-d') ){
+
+            $enchere->setDateDebut(new DateTime($dateEnchere));
+        
+        }
+
 
         /***************************************************************************
          **                         Données de l'article
         ***************************************************************************/
-        $titre = $_POST['titre'] ?? $article->getTitre();
-        $prixMin = $_POST['prixMin'] ??  $article->getPrixMin();
+        $titre = $article->getTitre();
+        $prixMin = $article->getPrixMin();
         $description = $_POST['description'] ??  $article->getDescription();
-
         $artiste = $_POST['artiste'] ??  $article->getArtiste();
         $dateEvenement = $_POST['dateEvenement'] ??  $article->getDateEvenement();
         $lieu = $_POST['lieu'] ??  $article->getLieu();
@@ -50,6 +58,7 @@
         
         $article->setArtiste($artiste);
         $article->setDateEvenement(new DateTime($dateEvenement));
+        
         $article->setLieu($lieu);
         $article->setStyle($style);
         
@@ -80,6 +89,7 @@
         $view->assign('titre', $titre);
         $view->assign('prixMin', $prixMin);
         $view->assign('dateEnchere', $dateEnchere);
+        
         $view->assign('description', $description);
 
         $view->assign('artiste', $artiste);
@@ -101,7 +111,10 @@
 
         } else {
             // Aller vers la création d'une enchère
-
+            
+             
+            $modification = true;
+            $view->assign('modification', $modification);
             $view->assign('todayDate', $todayDate->format('Y-m-d'));
             $view->assign('errors', $errors);
 

@@ -73,7 +73,7 @@
           <a href="../controller/parametre.ctrl.php"> Modifier profil<i><img src="../design/image/settings.svg" alt="settings"></i>
           </a>
           <a href="../controller/rechercheFavoris.ctrl.php">Favoris<i><img src="../design/image/heart.svg" alt=""></i></a>
-          <a href="../controller/rechercheGagne.ctrl.php">Enchères remportées<i><img src="" alt=""></i></a>
+          <a href="../controller/rechercheGagne.ctrl.php">Enchères remportées</a>
           <a href="../controller/rechercheChoix.ctrl.php?choixObligatoire[num_vendeur][]=<?=$_SESSION['num_utilisateur']?>">Mon espace vendeur</a>
           <a href="../controller/logout.ctrl.php">Se déconnecter</a>
         <?php else: ?>

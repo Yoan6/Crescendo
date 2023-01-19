@@ -44,7 +44,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span>Ajouter une image</span> 
+                            <span><?php if ($modification) { echo "Changer les images"; } else { echo "Ajouter une image"; } ?></span> 
                         </label>
 
 
@@ -95,14 +95,20 @@
                             <h4>
                                 Nom de l'enchère
                             </h4>
-                            <input required="" name="titre" value="<?= htmlspecialchars($titre) ?>" type="text" placeholder="INSERER TITRE">
+                            <input <?php if ($modification) {
+                                echo "disabled";
+                            } else {
+                                echo 'required=""';}  ?>   name="titre" value="<?= htmlspecialchars($titre) ?>" type="text" placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
-                                Prix de départ (min = 10€)
+                                Prix<?php if(!$modification) { echo " de départ min = 10€"; } ?>
                             </h4>
-                            <input required="" name="prixMin" value="<?= htmlspecialchars($prixMin) ?>" type="number" min="10"
+                            <input <?php if ($modification) {
+                                echo "disabled";
+                            } else {
+                                echo 'required=""';}  ?>  value="<?= htmlspecialchars($prixMin) ?>"name="prixMin" value="<?= htmlspecialchars($prixMin) ?>" type="number" min="10"
                                 placeholder="INSERER PRIX DE DEPART">
 
                         </div>
@@ -111,7 +117,10 @@
                                 Date de début d'enchère
                             </h4>
 
-                            <input id="dateEnchere"min="<?= htmlspecialchars($todayDate) ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
+                            <input <?php if ($modification && $todayDate >= $dateEnchere) {
+                                echo "disabled";
+                            } else {
+                                echo 'required=""';}  ?>   name="titre" value="<?= htmlspecialchars($dateEnchere) ?>"id="dateEnchere"min="<?= htmlspecialchars($todayDate) ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
                                 type="date" id="date">
 
                         </div>
