@@ -14,27 +14,34 @@
     <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
 </head>
 
+
+<?php if(!isset($_SESSION)) { 
+            session_start(); 
+} ?>
+
 <body class="dark-mode">
     <div id="inscription">
 
         <main>
-        <a class="logo" href="../view/accueil.view.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
-
-        <?php
-        if (isset($error) && count($error) != 0) {
-            foreach($error as $e) {
-                $e->getMessage();
-            }
-        }
-
-        if(!isset($_SESSION)) { 
-            session_start(); 
-        } 
-        ?>
+            <a class="logo" href="../view/accueil.view.php"><img src="../design/image/logo_em.jpg"  alt="logo"></a>
 
             <div>
                 <h1>Inscription</h1>
             </div>
+
+            <div>
+                <?php 
+
+                if (isset($errors) && count($errors) != 0) {
+                    foreach($errors as $e) { ?>
+                        <p class="error"><?php echo($e->getMessage());?></p>
+                        <?php
+                    }
+                } 
+                ?>
+            
+            </div>
+
             <form action="../controller/inscription.ctrl.php" method="post">
                 <div class="contenu">
                     <div class="block">
@@ -72,7 +79,7 @@
                             <div>
                                 <label for="ville">Ville *</label>
 
-                                <input type="text" name="ville" value="<?=$ville?>" id="ville" placeholder="Ex : Paris" required>
+                                <input type="text" name="ville" value="<?=$ville?>" id="ville" placeholder="Ex : Paris" maxlength="30" required>
                             </div>
                         </article>
 
@@ -88,13 +95,13 @@
                             <label for="adresseMail">Adresse mail *</label>
 
                             <input type="email" name="adresseMail" value="<?=$adresseMail?>" id="adresseMail"
-                                placeholder="Entrez votre adresse mail" required>
+                                placeholder="Entrez votre adresse mail" maxlength="40" required>
                         </article>
 
                         <article class="petit-article">
                             <label for="mdp">Mot de passe (au moins 12 caractères 1 majuscule et 1 caractère spécial) *</label>
 
-                            <input type="password" name="mdp" id="mdp" required minlength=12  placeholder="Votre mot de passe">
+                            <input type="password" name="mdp" id="mdp" required minlength=12 placeholder="Votre mot de passe">
                         </article>
 
                         <article class="petit-article">
@@ -116,18 +123,6 @@
                 <button type="submit" name="inscription" value="confirmer">S'INSCRIRE</button>
             </form>
 
-            <div>
-                <?php 
-
-                if (isset($errors) && count($errors) != 0) {
-                    foreach($errors as $e) { ?>
-                        <p class="error"><?php echo($e);?></p>
-                        <?php
-                    }
-                } 
-                ?>
-            
-            </div>
             <p>Tu as déja un compte ?</p>
             <a href="../controller/login.ctrl.php" class="connexion">Connecte-toi</a>
         </main>

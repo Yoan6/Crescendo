@@ -36,22 +36,22 @@ if ($connexion === null) {
     $errors = array();
     // Si le login ou l'utilisateur ne sont pas fournis :
     if ($login != '' && $password != '') {
-    // Tentative de lecture d'un utilisateur en fonction du login/email et du mot de passe
-    try {
-        $utilisateur = Utilisateur::readHash($login);
-        
-        // Teste si le mot de passe encrypté est bon :
-        $passwordHash = $utilisateur->getMotDePasse();
-        if (password_verify($password, $passwordHash)) {
-            $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
-            header("Location: ../controller/parametre.ctrl.php");
+        // Tentative de lecture d'un utilisateur en fonction du login/email et du mot de passe
+        try {
+            $utilisateur = Utilisateur::readHash($login);
+            
+            // Teste si le mot de passe encrypté est bon :
+            $passwordHash = $utilisateur->getMotDePasse();
+            if (password_verify($password, $passwordHash)) {
+                $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
+                header("Location: ../controller/accueil.ctrl.php");
+            }
+            else {
+                array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
+            }
+        } catch (Exception $e) {
+            array_push($errors,$e->getMessage());
         }
-        else {
-            array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
-        }
-    } catch (Exception $e) {
-        array_push($errors,$e->getMessage());
-    }
 
     } else {
     array_push($errors, "Vous n'avez pas rentré de login ou mot de passe");
