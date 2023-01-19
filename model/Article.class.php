@@ -389,7 +389,7 @@ class Article
             $table = $dao->query($query, $data);
             return Article::obtenirArticlesAPartirTable($table);
         } catch (Exception $e) {
-            var_dump($query);
+            // var_dump($query);
             throw new Exception("Erreur lors de la récupération des articles");
         }
     }

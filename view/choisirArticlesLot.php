@@ -11,6 +11,9 @@
 
 </head>
 
+<?php if(!isset($_SESSION)) { session_start(); } ?>
+
+
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
     <?php if (isset($errors) && count($errors) > 0)

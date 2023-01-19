@@ -11,6 +11,8 @@
 
 <body class="dark-mode">
 
+<?php if(!isset($_SESSION)) { session_start(); } ?>
+
     <main>
         <div>
             <h1 id="titre"> Boite de réception </h2>

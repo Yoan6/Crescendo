@@ -11,6 +11,8 @@
     <link rel="icon" href="../design/image/icone.png">
 </head>
 
+<?php if(!isset($_SESSION)) { session_start(); } ?>
+
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
@@ -19,7 +21,7 @@
             <img src="../design/image/accueil/concert.jpg">
             <div id="banner-text">
                 <h3> Au plus proche de vos artistes préférés ! </h3>
-                <a id="explore" href="../controller/rechercheChoix.ctrl.php?orderBy[]=AlaUne"> Explore dès maintenant !</a>
+                <a id="explore" href="../controller/rechercheALaUne.ctrl.php"> Explore dès maintenant !</a>
             </div>
         </div>
 
