@@ -37,7 +37,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
             </div>
             <div class="bandeauDiv2">
-                <h3>Enchere accepté</h3>
+                <h3>Enchere acceptée</h3>
             </div>
             <div class="bandeauDiv3">
                 <button class="btnFermer"> Fermer </button>
@@ -57,6 +57,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                 <button class="btnFermer"> Fermer </button>
             </div>
         </div>
+
 
 
         <form id="formPrincipale" method="post"
@@ -129,7 +130,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                         </div>
 
-                        <?php if ($num_utilisateur != null && !$estMonProfil) { ?>
+                        <?php if ($num_utilisateur != null && !$estMonProfil && strtotime($dateFin) > time()) { ?>
                             <div id="divNouveauPrix">
                                 <form action="../controller/afficherArticle.ctrl.php" method="post">
                                     <input id="inputPrix" type="number" name="nouvelleEnchere" min=""
@@ -157,6 +158,10 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                     Modifier l'article
                                 </a>
 
+                            </div>
+                        <?php } else if(strtotime($dateFin) < time()){ ?>
+                            <div id="divNouveauPrix">
+                                <a id="enchereTerminee"> Cette enchère est terminée </a>
                             </div>
                         <?php } ?>
                     </div>
@@ -386,7 +391,6 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
                     </section>
                     <div>
-
                         <div id="conteneurh3">
                             <h3>Votre nouveau prix : </h3>
                             <h3 id="prixEnchereProposee">
@@ -431,10 +435,9 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 
     </main>
 
-
-
     <?php include(__DIR__ . '/footer.php'); ?>
 </body>
+
 <script src="../js/crescendo.js"></script>
 <script src="../js/header.js"></script>
 <script src="../js/voirEnchère.js"></script>

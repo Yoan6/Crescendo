@@ -308,6 +308,9 @@ justify-content: center;
 
 }
 
+main #formPrincipale #topForm>#divTopRight>#divNouveauPrix #enchereTerminee{
+    background-color: #666;
+}
 
 /*main #formPrincipale #topForm>#divTopRight>#divNouveauPrix>input {}*/
 
