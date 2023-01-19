@@ -29,10 +29,10 @@ $dateFin = $enchere->getDateFin()->format('d-m-Y');
 $dateFinIso = $enchere->getDateFin();
 
 $estLot = $enchere->getEstLot();
-
+if($numUtilisateurActuel != null){
 $estlike = $enchere->getLike($numUtilisateurActuel);
 $estFavoris = $enchere->getFavoris($numUtilisateurActuel);
-
+}
 /***************************************************************************
  **                         Données de l'article
  ***************************************************************************/
