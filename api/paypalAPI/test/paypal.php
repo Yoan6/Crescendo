@@ -18,7 +18,7 @@ $client = new PayPalHttpClient($environnement);
 $requestID = new OrdersGetRequest($_POST['orderID']);
 
 $response = $client->execute($requestID);
-dd($response);
+
 
 
 $requestAuth = new AuthorizationsGetRequest($_POST['authID']); 

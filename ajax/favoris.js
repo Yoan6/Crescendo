@@ -3,15 +3,14 @@ var lesEncheres = document.getElementsByClassName("numEnchereRecupererValeur");
 var numUtilisateur =  document.getElementsByClassName("numUtilisateurRecupererValeur")[0].value;
 var estFavoris = document.getElementsByClassName('estFavoris');
 
-
-    var heartBouton = document.getElementsByClassName("heartBouton"); // Le bouton like 
+var heartBouton = document.getElementsByClassName("heartBouton"); // Le bouton like 
 
 
 /**
  * récupérer toutes les articles pour les actualiser en récupérant les bons numéros
  * 
  */
-if (listeUsers !== 0) {
+if (numUtilisateur !== 0 && estFavoris.length !== 0) {
 
 
 
@@ -54,5 +53,18 @@ function setFavoris(numEnchere,numUtilisateur,estFavoris, i) {
     xmlhttp.open("GET","../ajax/setFavoris.php?numEnchere=" + numEnchere +"&numUtilisateur=" + numUtilisateur+"&estFavoris=" + estFavoris);
     xmlhttp.send();
 }
+
+} else {
+
+// Si l'utilisateur n'est pas connecté
+    for(let i = 0; i < heartBouton.length; i++) {
+        heartBouton[i].addEventListener("click", function() {
+            //On redirige vers la page de connexion
+            alert("Vous devez être connecté pour ajouter un article à vos favoris")
+            window.location.href = "../controller/login.ctrl.php";
+        });
+
+    }
+
 
 }
