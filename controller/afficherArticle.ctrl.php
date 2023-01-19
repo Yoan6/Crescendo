@@ -23,6 +23,8 @@
     $enchere = Enchere::read($num_enchere);
     $prixActuel = $enchere->obtenirPrixActuel();
     $dateFin = $enchere->getDateFin()->format('d-m-Y');
+    $dateFinIso = $enchere->getDateFin();
+
     $estLot = $enchere->getEstLot();
 
     /***************************************************************************
@@ -72,6 +74,7 @@
     $view->assign('prixActuel', $prixActuel);
     $view->assign('dateFin', $dateFin);
     $view->assign('estLot', $estLot);
+    $view->assign('dateFinIso', $dateFinIso);
 
     // données de l'article
     $view->assign('imgUrl', $imgUrl);

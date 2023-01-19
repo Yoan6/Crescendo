@@ -382,7 +382,6 @@ class Article
             "articleOffset" => ($page - 1) * $pageSize,
             "pageSize" => $pageSize
         ];
-        var_dump($query, $data  );
         $dao = DAO::get();
 
         // Requêté préparée avec le DAO
@@ -410,7 +409,7 @@ class Article
             "pageSize" => $pageSize,
             "num_utilisateur" => $numUtilisateur
         ];
-        var_dump($query, $data);
+        
         $dao = DAO::get();
 
         // Requêté préparée avec le DAO
@@ -525,11 +524,11 @@ class Article
         ];
 
         Article::generationDynamiqueData($data, $choixEtvaleurs, $choixObligatoiresEtvaleurs);
-        //var_dump($data, $query);
+        
         /********************* La requête préparée pour les données entrées par l'utilisateur *********************/
         $dao = DAO::get();
         $table = $dao->query($query, $data);
-        //*var_dump($table);
+        
         return Article::obtenirArticlesAPartirTable($table);
     }
 

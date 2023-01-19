@@ -9,7 +9,7 @@
         $numUtilisateur = $_GET['numUtilisateur'] ?? -1;
         $estLike = $_GET['estLike'] ?? null;
 
-        var_dump($numEnchere, $numUtilisateur, $estLike);
+        //var_dump($numEnchere, $numUtilisateur, $estLike);
 
         $enchere = Enchere::read($numEnchere);
 

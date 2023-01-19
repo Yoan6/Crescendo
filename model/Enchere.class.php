@@ -105,7 +105,8 @@ class Enchere
 
     public function getDateFin(): DateTime
     {
-        return ($this->dateDebut->modify('+ 7day'));
+        $copy = new DateTime($this->dateDebut->format('Y-m-d'));
+        return $copy->add(new DateInterval('P7D'));
     }
 
     public function setDateDebut(dateTime $dateDebut)
@@ -288,7 +289,7 @@ class Enchere
             $table = $dao->query($query, [$article->getNumArticle()]);
 
             if (count($table) >= 1) {
-                var_dump($table[0]["num_enchere"]);
+
                 $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
             } 
 
@@ -426,7 +427,7 @@ class Enchere
             "num_utilisateur" => $numUtilisateur,
         ];
 
-        var_dump($est_like_db, $estlike);
+
         // ****** Requête préparée ******* /
         if ($est_like_db === NULL) {
             $dao->exec($queryInsert, array_merge($data, ["est_like" => $estlike])); // Première fois qu'il clique, INSERT
@@ -472,7 +473,7 @@ class Enchere
             "num_utilisateur" => $numUtilisateur,
         ];
 
-        var_dump($est_favoris_db, $estFavoris);
+
         // ****** Requête préparée ******* /
         if ($est_favoris_db === NULL) {
             $dao->exec($queryInsert, array_merge($data, ["est_favoris" => $estFavoris])); // Première fois qu'il clique, INSERT

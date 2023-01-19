@@ -172,7 +172,7 @@ if (count($errors) == 0) {
     $utilisateur->update();
 }
 
-var_dump($errors);
+
 
 $imgProfil = $utilisateur->getImageURL();
 

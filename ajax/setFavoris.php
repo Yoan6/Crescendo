@@ -9,7 +9,7 @@
         $numUtilisateur = $_GET['numUtilisateur'] ?? -1;
         $estFavoris = $_GET['estFavoris'] ?? null;
 
-        var_dump($numEnchere, $numUtilisateur, $estFavoris);
+        //var_dump($numEnchere, $numUtilisateur, $estFavoris);
 
         $enchere = Enchere::read($numEnchere);
 
