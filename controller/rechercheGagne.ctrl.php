@@ -23,7 +23,7 @@
     
     // Récupérer les enchères
     try {
-        $nbArticle = article::nombreArticlesGagne();// Une erreur est générée si 0 article trouvé
+        $nbArticle = article::nombreArticlesGagne($_SESSION['num_utilisateur']);// Une erreur est générée si 0 article trouvé
         $encheres = Enchere::readPageGagne($page, $pageSize, $_SESSION['num_utilisateur']);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();

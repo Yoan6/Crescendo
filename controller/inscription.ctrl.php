@@ -41,10 +41,7 @@ if(!isset($_SESSION)) {
 } 
 // Si l'utilisateur est déja connecté on l'envoie sur la page accueil.php
 if(isset($_SESSION['num_utilisateur'])) {
-    $view = new View();
-
-    // Charge la vue
-    $view->display("accueil.view.php");
+  header('Location: accueil.ctrl.php');
 } 
 
 $dateMinimale = new DateTime();   // date d'aujourd'hui

@@ -23,7 +23,7 @@
     
     // Récupérer les enchères
     try {
-        $nbArticle = article::nombreArticlesFavoris(); // Une erreur est générée si 0 article trouvé
+        $nbArticle = article::nombreArticlesFavoris($_SESSION['num_utilisateur']); // Une erreur est générée si 0 article trouvé
         $encheres = Enchere::readPageFavoris($page, $pageSize, $_SESSION['num_utilisateur']);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();

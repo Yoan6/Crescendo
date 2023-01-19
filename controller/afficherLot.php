@@ -10,6 +10,8 @@ error_reporting(E_ALL);
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
+    if (isset($_SESSION)) session_start();
+
     $prix = $_POST['prix'] ?? 0; 
 
     /***************************************************************************
