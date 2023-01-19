@@ -1,7 +1,5 @@
 <header>
 
-  <?php if(!isset($_SESSION)) { session_start(); } ?>
-
   <div id="firstStage">
     <svg id="burgerButton" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

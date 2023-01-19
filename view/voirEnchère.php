@@ -11,6 +11,9 @@
 
 <?php
 $estMonProfil = false;
+
+if(!isset($_SESSION)) { session_start(); }
+
 $num_utilisateur = $_SESSION['num_utilisateur'] ?? 0;
 
 if (strcmp($num_utilisateur, $numVendeur) == 0) {
