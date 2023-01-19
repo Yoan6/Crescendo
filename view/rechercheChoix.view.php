@@ -16,11 +16,11 @@
 
     <main>
         <div>
-            <h1 id="titre"><?=$valeurChoix?></h1>
+            <h1 id="titre"><?= $valeurChoix ?></h1>
 
         </div>
         <div id="principale">
-            <?php include("article/fitreGauche.view.php")?>
+            <?php include("article/fitreGauche.view.php") ?>
             <div id="divdroite">
 
                 <div class="affichageArticle">
@@ -32,14 +32,20 @@
                         </div>
                     </div>
 
-                    
+
                     <?php include(__DIR__ . '/article/article.view.php'); ?>
+
+                    <div id="rienAAfficher">
+                        <p>Aucun article à afficher :(</p>
+                    </div>
+
+
                     <?php include(__DIR__ . '/article/pages.view.php'); ?>
 
-                    <?php var_dump(" " . $nbBoutonPage, " page " . $page," pageSize " .  $pageSize," pagePrec " .  $pagePrec, " pageSuiv " .  $pageSuiv, " pageMax " . $pageMax);?>
-                </div>
+                    <?php var_dump(" " . $nbBoutonPage, " page " . $page, " pageSize " . $pageSize, " pagePrec " . $pagePrec, " pageSuiv " . $pageSuiv, " pageMax " . $pageMax); ?>
                 </div>
             </div>
+        </div>
 
 
         </div>

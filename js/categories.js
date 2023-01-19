@@ -261,3 +261,11 @@ toutEffacer.addEventListener("click", function () {
     checkboxes[i].checked = false;
   }
 });
+
+
+//si il n'y a aucun articles 
+var rienAAfficher = document.getElementById("rienAAfficher");
+var articles = document.getElementsByClassName("article");
+if(articles.length === 0) {
+  rienAAfficher.style.display = "flex";
+}

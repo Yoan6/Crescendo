@@ -305,6 +305,23 @@ Règles pour un objet (article)
 }
 
 
+#rienAAfficher{
+
+	width: 100%;
+	margin-top: 150px;
+	margin-bottom: 150px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+
+}
+
+#rienAAfficher p{
+	font-size: 2em;
+	color: var(--main-font-color);
+}
+
+
 
 @media screen and (max-width: 1000px) {
 

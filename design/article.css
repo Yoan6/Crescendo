@@ -205,6 +205,21 @@
     transform: scale(1.03);
 }
 
+.article #divLikes #like .likeBouton.liked {
+
+fill: var(--bleu);
+        
+}
+.article #divLikes #dislike .dislikeBouton.disliked {
+
+    fill: var(--rouge);
+            
+}
+
+.estlike {
+
+    display: none;
+}
 
 
 

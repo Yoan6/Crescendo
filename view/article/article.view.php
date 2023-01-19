@@ -33,16 +33,25 @@
                 </div>
             </div>
             <input type="hidden" class="numEnchereRecupererValeur" value="<?= $enchere->getNumEnchere()?>">
-        
+            <p class="estlike"><?php 
+                if ($_SESSION['num_utilisateur'] !== null){
+                    
+                    if($enchere->getLike($_SESSION['num_utilisateur'])== 1) {
+                        echo 1;
+                    } else if ($enchere->getLike($_SESSION['num_utilisateur'])== 0){
+                        echo 0;
+                    } 
+                }; ?></p>
+
             <div id="divLikes">
-                <svg id="like" class="likeBouton" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+                <svg id="like"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>i</title>
                         <g id="Complete">
                             <g id="thumbs-up">
                                 <path
-                                    d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
+                                class="likeBouton" d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
                                     fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"></path>
                             </g>
@@ -52,15 +61,15 @@
 
                 <p><span class="likeActuelText"></span></p>
 
-                <svg id="dislike" class="dislikeBouton" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" transform="rotate(180)">
+                <svg id="dislike"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" transform="rotate(180)">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_iconCarrier">
                         <title>i</title>
                         <g id="Complete">
                             <g id="thumbs-up">
                                 <path
-                                    d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
-                                    fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"
+                                class="dislikeBouton" d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
+                                     stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2"></path>
                             </g>
                         </g>
