@@ -40,7 +40,9 @@
                         echo 1;
                     } else if ($enchere->getLike($_SESSION['num_utilisateur'])== 0){
                         echo 0;
-                    } 
+                    } else if ($enchere->getLike($_SESSION['num_utilisateur'])== -1){
+                        echo -1;
+                    }
                 }; ?></p>
 
             <div id="divLikes">

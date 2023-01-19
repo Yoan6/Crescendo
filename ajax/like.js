@@ -30,7 +30,7 @@ if (listeUsers !== 0) {
 
         if (estlike[i].innerHTML == '1') {
             likeBouton[i].classList.add("liked");
-        } else if (estlike[i].innerHTML == '0') {
+        } else if (estlike[i].innerHTML == '-1') {
             dislikeBouton[i].classList.add("disliked");
         }
         // Events

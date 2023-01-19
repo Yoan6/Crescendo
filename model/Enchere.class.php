@@ -218,8 +218,10 @@ class Enchere
     }
 
 
-    public static function readPagePlusieursChoix(int $page, int $pageSize, array $choixEtvaleurs , 
-                            array $choixObligatoiresEtValeurs, string $orderByChoix ="date_debut",string $orderBy="DESC"): array
+    public static function readPagePlusieursChoix(
+        int $page, int $pageSize, array $choixEtvaleurs,
+        array $choixObligatoiresEtValeurs, string $orderByChoix = "date_debut", string $orderBy = "DESC"
+    ): array
     {
         $articles = Article::readPagePlusieursChoix($page, $pageSize, $choixEtvaleurs, $choixObligatoiresEtValeurs, $orderByChoix, $orderBy);
 
@@ -230,7 +232,7 @@ class Enchere
 
 
 
-    
+
     //retourne les articles sans spécifier la categorie dans l'ordre des likes
 
     public static function readPage(int $page, int $pageSize): array
@@ -254,7 +256,7 @@ class Enchere
             if (count($table) >= 1) {
                 $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
             } else {
-            // C'est un lot
+                // C'est un lot
                 $table = $dao->query($query2, [$article->getNumArticle()]);
                 $encheres[] = ENCHERE::read($table[0]["num_enchere"]);
             }
@@ -334,7 +336,7 @@ class Enchere
         $prix = $table[0][0];
         if ($prix == null) {
             throw new Exception("prix du lot non renseignée");
-            
+
         }
 
         return $prix;
@@ -348,7 +350,7 @@ class Enchere
     /**
      * Récupérer le nombre de like total
      */
-    public function getCompteurLike() : int
+    public function getCompteurLike(): int
     {
         $dao = DAO::get();
         $queryLike = "SELECT sum(CASE est_like WHEN TRUE then 1 WHEN false then -1 END) FROM LIKE_DISLIKE where num_enchere = :num_enchere;";
@@ -360,16 +362,20 @@ class Enchere
     }
 
 
-    public function getLike(int $numUtilisateur) : int | null {
+    public function getLike(int $numUtilisateur): int|null
+    {
         $dao = DAO::get();
-        $querySelect = "select est_like from LIKE_DISLIKE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
+        $querySelect = "SELECT COALESCE(CASE est_like WHEN true THEN 1 ELSE -1 END, 0) as est_like FROM LIKE_DISLIKE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
-            "num_utilisateur"=> $numUtilisateur,
+            "num_utilisateur" => $numUtilisateur,
         ];
 
-        return ($dao->query($querySelect,$data)[0]["est_like"] ?? NULL); 
+        return ($dao->query($querySelect, $data)[0]["est_like"] ?? NULL);
     }
+
+
+
 
     /**
      * Si l'article est déjà like et qu'on appuie une 2ème fois, enlever le like
@@ -377,7 +383,7 @@ class Enchere
      * @param int $estlike
      * @return void
      */
-    public function setLike(int $numUtilisateur, int $estlike) : void
+    public function setLike(int $numUtilisateur, int $estlike): void
     {
         $dao = DAO::get();
         // L'utilisateur ne peut like qu'une fois il faut donc savoir s'il a déjà like
@@ -389,14 +395,14 @@ class Enchere
 
         $data = [
             "num_enchere" => $this->getNumEnchere(),
-            "num_utilisateur"=> $numUtilisateur,
+            "num_utilisateur" => $numUtilisateur,
         ];
 
         var_dump($est_like_db, $estlike);
         // ****** Requête préparée ******* /
-        if ($est_like_db === NULL){ 
+        if ($est_like_db === NULL) {
             $dao->exec($queryInsert, array_merge($data, ["est_like" => $estlike])); // Première fois qu'il clique, INSERT
-        } else if ($est_like_db === $estlike) {
+        } else if ($est_like_db === $estlike - 1 || $est_like_db === $estlike) {
             $dao->exec($queryDelete, $data); // Le delete, il a décoché
         } else {
             $dao->exec($queryUpdate, array_merge($data, ["est_like" => $estlike])); // update
@@ -410,19 +416,20 @@ class Enchere
 
     /********************************************* Favoris ****************************************/
 
-    public function getFavoris(int $numUtilisateur) : int | null {
+    public function getFavoris(int $numUtilisateur): int|null
+    {
         $dao = DAO::get();
         $querySelect = "select est_favoris from FAVORISE WHERE num_utilisateur = :num_utilisateur AND num_enchere = :num_enchere;";
         $data = [
             "num_enchere" => $this->getNumEnchere(),
-            "num_utilisateur"=> $numUtilisateur,
+            "num_utilisateur" => $numUtilisateur,
         ];
 
-        return ($dao->query($querySelect,$data)[0]["est_favoris"] ?? NULL); 
+        return ($dao->query($querySelect, $data)[0]["est_favoris"] ?? NULL);
     }
 
 
-    public function setFavoris(int $numUtilisateur, int $estFavoris) : void
+    public function setFavoris(int $numUtilisateur, int $estFavoris): void
     {
         $dao = DAO::get();
         // L'utilisateur ne peut favoriser qu'une fois il faut donc savoir s'il a déjà favorisé l'article
@@ -434,12 +441,12 @@ class Enchere
 
         $data = [
             "num_enchere" => $this->getNumEnchere(),
-            "num_utilisateur"=> $numUtilisateur,
+            "num_utilisateur" => $numUtilisateur,
         ];
 
         var_dump($est_favoris_db, $estFavoris);
         // ****** Requête préparée ******* /
-        if ($est_favoris_db === NULL){ 
+        if ($est_favoris_db === NULL) {
             $dao->exec($queryInsert, array_merge($data, ["est_favoris" => $estFavoris])); // Première fois qu'il clique, INSERT
         } else if ($est_favoris_db === $estFavoris) {
             $dao->exec($queryDelete, $data); // Le delete, il a décoché
