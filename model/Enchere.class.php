@@ -278,7 +278,8 @@ class Enchere
     public static function obtenirEncheresAPartirDesNumerosArticles(array $articles)
     {
         // Récupérer les enchères associées
-        $query = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='FALSE';";
+        $query = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? 
+                AND est_lot='FALSE' OR est_lot=0;";
         //$query2 = "SELECT distinct num_enchere FROM ENCHERE_TOUT_VIEW WHERE num_article = ? AND est_lot='TRUE';";
         $dao = DAO::get();
         $encheres = array();
