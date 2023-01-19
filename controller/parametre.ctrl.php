@@ -57,7 +57,7 @@ if(isset($_FILES['changementImage'])) {
                             }
                         }
                         // L'utilisateur veut changer son image de profil :
-                        $utilisateur->setImageURL($chemin_image.$file_name);
+                        $utilisateur->setImageURL($file_name);
                     }
                 }
                 catch(Exception $e) {
@@ -73,8 +73,9 @@ if(isset($_FILES['changementImage'])) {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
 
-    ($errors);
+    var_dump($errors);
 }
+
 
 // On supprime l'image de profil de l'utilisateur :
 if ($confirmer == 'effacerImg') {
@@ -83,9 +84,10 @@ if ($confirmer == 'effacerImg') {
         if (unlink($utilisateur->getImageURL())) {  
         }
     }
-    // Si c'est l'image par défaut on ne fait rien :
+    // Si c'est l'image par défaut on ne fait rien 
     
-    $utilisateur->setImageURL("../data/imgProfil/profile.png");
+    
+    $utilisateur->setImageURL("profile.png");
 }
 
 

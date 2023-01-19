@@ -21,10 +21,10 @@ class Utilisateur
     //private DateTime $dateCreation;
     //private array $notes;
 
-    private const LOCALURL = "../data/imgArticle/";
+    private const LOCALURL = "../data/imgProfil/";
 
 
-    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance, string $imgProfil="../data/imgProfil/profile.png")
+    public function __construct(string $email, string $pseudo, string $motDePasse, string $nom, string $prenom, string $ville, string $rue, string $codePostal,DateTime $dateDeNaissance, string $imgProfil="profile.png")
     {
         $this->setEmail($email);
         $this->setPseudo($pseudo);
@@ -59,8 +59,8 @@ class Utilisateur
 
      public function getImageURL(): string
      {
-         
-         return $this->imgProfil;
+
+        return self::LOCALURL . $this->imgProfil;
      }
 
      public function setImageURL($imgProfil)

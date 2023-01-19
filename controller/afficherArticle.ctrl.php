@@ -22,6 +22,7 @@ $nouvelleEnchere = null;
 if (isset($_POST['nouvelleEnchere'])) {
     $nouvelleEnchere = htmlspecialchars($_POST['nouvelleEnchere']);
 }
+
 $enchere = Enchere::read($num_enchere);
 $prixActuel = $enchere->obtenirPrixActuel();
 $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -130,6 +131,8 @@ if ($newOrder !== null) {
         // Une erreur peut être générée si l'offre n'est pas la plus haute
         print('\n Erreur ' . $e->getMessage() . "\n");
     }
+    } else {
+        $view->assign('enchereAccepte', "");
 }
 $view->display("voirEnchère.php");
 ?>
