@@ -1,4 +1,3 @@
-tester = document.getElementById("testAEnlever");
 
 var lesEncheres = document.getElementsByClassName("numEnchereRecupererValeur");
 var numUtilisateur =  document.getElementsByClassName("numUtilisateurRecupererValeur")[0].value;

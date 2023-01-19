@@ -463,6 +463,11 @@ input:checked+.slider:before {
 
   }
 
+  header #lesCategories>ul .liCategories a {
+
+    height: 100%;
+  }
+
   header #lesCategories>ul .liCategories.open {
     visibility: visible;
     opacity: 1;

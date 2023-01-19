@@ -369,12 +369,171 @@ main #formPrincipale #features {
 
 
 main #formPrincipale #features #featuresLeft #heart {
-    height: 50px;
-    width: 50px;
+    height: 47px;
+    width: 47px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+
+
+main #formPrincipale #features #featuresLeft svg path {
+    fill: transparent;
+    cursor: pointer;
+    transition: transform 0.4s ease-in-out, stroke 0.4s ease-in-out;
+
+}
+
+main #formPrincipale #features #featuresLeft .heartBouton:hover {
+    stroke: var(--rouge);
+    transform: scale(1.07) translateX(-1px);
+}
+
+.estFavoris {
+    display: none;
+}
+
+.estlike {
+    display: none;
+}
+
+
+main #formPrincipale #features #featuresLeft .heartBouton.favoris {
+    fill: var(--rouge);
+    stroke: var(--rouge);
+    transform-origin: center;
+    animation: ajoutFavoris 0.4s linear;
+}
+
+main #formPrincipale #features #featuresLeft .heartBouton.favoris:hover {
+    stroke: white;
+    transform: scale(1);
+}
+
+
+@keyframes ajoutFavoris {
+    0% {
+        transform: scale(0.1) rotate(0deg);
+        background-color: var(--rouge);
+        stroke: var(--rouge);
+
+    }
+
+
+    70% {
+
+        transform: scale(1.3) rotate(-1turn);
+
+    }
+
+
+    80% {
+
+        transform: scale(1.05) rotate(-1.07turn);
+
+    }
+
+    100% {
+        transform: scale(1) rotate(-1turn);
+
+    }
+}
+
+
+
+
+
+
+
+main #formPrincipale #features #featuresLeft #dislike path:hover {
+    stroke: var(--rouge);
+    transform: scale(1.01);
+
+}
+
+main #formPrincipale #features #featuresLeft  #like path:hover {
+    stroke: var(--bleu);
+    transform: scale(1.03);
+}
+
+main #formPrincipale #features #featuresLeft #like .likeBouton.liked {
+
+    fill: var(--bleu);
+    stroke: var(--bleu);
+
+    animation: like 0.5s ease-in-out;
+
+}
+
+main #formPrincipale #features #featuresLeft  .likeBouton.liked:hover {
+    stroke: white;
+    transform: scale(1);
+}
+
+main #formPrincipale #features #featuresLeft #dislike .dislikeBouton.disliked {
+
+    fill: var(--rouge);
+    stroke: var(--rouge);
+    animation: dislike 0.5s ease-in-out;
+
+
+}
+
+main #formPrincipale #features #featuresLeft #dislike .dislikeBouton.disliked:hover {
+    stroke: white;
+    transform: scale(1);
+}
+
+
+@keyframes like {
+    0% {
+        transform: translateY(0px) scale(1);
+        background-color: var(--bleu);
+        stroke: var(--bleu);
+    }
+
+    25% {
+
+        transform: scale(0.7) translateX(5px) rotate(10deg);
+
+    }
+
+    50% {
+        transform: scale(1) rotate(-10deg);
+
+    }
+
+    100% {
+        transform: translateY(0px);
+
+    }
+}
+
+@keyframes dislike {
+    0% {
+        transform: translateY(0px) scale(1);
+        background-color: var(--rouge);
+        stroke: var(--rouge);
+    }
+
+    25% {
+
+        transform: scale(0.7) translateX(5px) rotate(10deg);
+
+    }
+
+    50% {
+        transform: scale(1) rotate(-10deg);
+
+    }
+
+    100% {
+        transform: translateY(0px);
+
+    }
+}
+
+
 
 
 #SVGRepo_iconCarrier {

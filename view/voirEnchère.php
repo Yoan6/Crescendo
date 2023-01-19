@@ -19,6 +19,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 }
 ?>
 <input type="hidden" class="numUtilisateurRecupererValeur" value="<?= $num_utilisateur ?>">
+<input type="hidden" class="numEnchereRecupererValeur" value="<?= $numEnchere ?>">
 
 
 
@@ -66,9 +67,9 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
             <div>
 
                 <h3 id="dateFinEnchère">
-                    L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span> 
+                    L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span>
                 </h3>
-                <input type="hidden" class="leTimerDeLArticle" value="<?=$dateFinIso->format('Y-m-d')?>">
+                <input type="hidden" class="leTimerDeLArticle" value="<?= $dateFinIso->format('Y-m-d') ?>">
 
                 <div id="topForm">
                     <div id="divTopLeft">
@@ -141,23 +142,23 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                 </form>
                             </div>
                         <?php } else if ($num_utilisateur == null) { ?>
-                            <div id="divNouveauPrix">
+                                <div id="divNouveauPrix">
 
 
-                                <a href="../controller/login.ctrl.php">
-                                    Se connecter pour enchérir
-                                </a>
+                                    <a href="../controller/login.ctrl.php">
+                                        Se connecter pour enchérir
+                                    </a>
 
-                            </div>
-                        <?php } else if($estMonProfil) { ?>
-                            <div id="divNouveauPrix">
+                                </div>
+                        <?php } else if ($estMonProfil) { ?>
+                                    <div id="divNouveauPrix">
 
 
-                                <a href="../controller/updateArticle.ctrl.php?idArticleAModifier=<?= $numArticle ?>">
-                                    Modifier l'article
-                                </a>
+                                        <a href="../controller/updateArticle.ctrl.php?idArticleAModifier=<?= $numArticle ?>">
+                                            Modifier l'article
+                                        </a>
 
-                            </div>
+                                    </div>
                         <?php } ?>
                     </div>
                 </div>
@@ -169,7 +170,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                             <svg id="heart" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                                 stroke="#ffffff">
                                 <g id="SVGRepo_iconCarrier">
-                                    <path class="heartPath"
+                                    <path class="heartBouton"
                                         d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z"
                                         stroke="#ffffff" stroke-miterlimit="10" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -183,10 +184,10 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                 <svg id="like" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_iconCarrier">
-                                        <title>i</title>
+
                                         <g id="Complete">
                                             <g id="thumbs-up">
-                                                <path class="likePath"
+                                                <path class="likeBouton"
                                                     d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
                                                     fill="none" stroke="#ffffff" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2"></path>
@@ -195,9 +196,30 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                     </g>
                                 </svg>
 
+                                <p class="estlike"><?php
+                                    if ($_SESSION['num_utilisateur'] !== null) {
 
+                                        if ($estlike == 1) {
+                                            echo 1;
+                                        } else if ($estlike == 0) {
+                                            echo 0;
+                                        } else if ($estlike == -1) {
+                                            echo -1;
+                                        }
+                                        ?></p>
+
+                                    <p class="estFavoris"><?php
+
+                                        if ($estFavoris == NULL) {
+                                            echo 0;
+                                        } else {
+                                            echo 1;
+                                        }
+
+                                    }
+                                    ?></p>
                                 <p onload="reactualiserLikeActuel(<?= $numEnchere ?>)">
-                                    <span id="likeActuelText"></span>
+                                    <span class="likeActuelText"></span>
                                 </p>
 
                                 <svg id="dislike" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"
@@ -207,7 +229,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
                                         <title>i</title>
                                         <g id="Complete">
                                             <g id="thumbs-up">
-                                                <path class="dislikePath"
+                                                <path class="dislikeBouton"
                                                     d="M7.3,11.4,10.1,3a.6.6,0,0,1,.8-.3l1,.5a2.6,2.6,0,0,1,1.4,2.3V9.4h6.4a2,2,0,0,1,1.9,2.5l-2,8a2,2,0,0,1-1.9,1.5H4.3a2,2,0,0,1-2-2v-6a2,2,0,0,1,2-2h3v10"
                                                     fill="none" stroke="#ffffff" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2"></path>
@@ -440,5 +462,7 @@ if (strcmp($num_utilisateur, $num_vendeur) == 0) {
 <script src="../js/voirEnchère.js"></script>
 <script src="../ajax/getPrixActuel.js" defer></script>
 <script src="../ajax/like.js" defer></script>
+<script src="../ajax/favoris.js" defer></script>
 <script src="../js/time.js" defer></script>
+
 </html>
