@@ -62,26 +62,26 @@
         transform: scale(0.1) rotate(0deg);
         background-color: var(--rouge);
         stroke: var(--rouge);
-        
+
     }
 
 
     70% {
-        
+
         transform: scale(1.3) rotate(-1turn);
-    
+
     }
-    
-    
+
+
     80% {
-        
+
         transform: scale(1.05) rotate(-1.07turn);
-    
+
     }
 
     100% {
         transform: scale(1) rotate(-1turn);
-        
+
     }
 }
 
@@ -244,7 +244,7 @@
 .article #divLikes #dislike path:hover {
     stroke: var(--rouge);
     transform: scale(1.01);
-    
+
 }
 
 .article #divLikes #like path:hover {
@@ -256,12 +256,12 @@
 
     fill: var(--bleu);
     stroke: var(--bleu);
-    
+
     animation: like 0.5s ease-in-out;
-    
+
 }
 
-.article #divLikes #like .likeBouton.liked:hover {   
+.article #divLikes #like .likeBouton.liked:hover {
     stroke: white;
     transform: scale(1);
 }
@@ -293,19 +293,19 @@
     }
 
     25% {
-        
+
         transform: scale(0.7) translateX(5px) rotate(10deg);
-        
+
     }
 
     50% {
         transform: scale(1) rotate(-10deg);
-       
+
     }
 
     100% {
         transform: translateY(0px);
-        
+
     }
 }
 
@@ -317,19 +317,19 @@
     }
 
     25% {
-        
+
         transform: scale(0.7) translateX(5px) rotate(10deg);
-        
+
     }
 
     50% {
         transform: scale(1) rotate(-10deg);
-       
+
     }
 
     100% {
         transform: translateY(0px);
-        
+
     }
 }
 
