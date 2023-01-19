@@ -9,28 +9,38 @@
     <link rel="stylesheet" href="../design/créerEnchère.css">
 </head>
 
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
-    <?php if(isset($errors) && count($errors) > 0) include(__DIR__ . '/popup/erreur.view.php'); ?>
+    <?php if (isset($errors) && count($errors) > 0)
+        include(__DIR__ . '/popup/erreur.view.php'); ?>
 
     <main>
 
 
 
-        <form method="post" enctype="multipart/form-data" action="../controller/<?=$controllerName?>">
+        <form method="post" enctype="multipart/form-data" action="../controller/<?= $controllerName ?>">
             <div>
                 <div id="topForm">
                     <div id="divTopLeft">
-                        <input required="" type="file" name="image1" id="btnImage" accept="image/png, image/jpeg">
+                        <input <?php if (!$modification) {
+                            echo 'required=""';
+                        } ?> type="file" name="image1"
+                            id="btnImage" accept="image/png, image/jpeg">
                         <input type="file" name="image2" id="btnImage2" accept="image/png, image/jpeg">
                         <input type="file" name="image3" id="btnImage3" accept="image/png, image/jpeg">
-                        <label id="labelAjout">
-                        <svg fill="#000000" version="1.1" id="Layer_1"
-                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                        <label <?php if ($modification) {
+                            echo 'id="labelAjoutModif"';
+                        } else {
+                            echo 'id="labelAjout"';
+                        } ?>>
+                            <svg fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
+                                enable-background="new 0 0 512 512" xml:space="preserve">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                 <g id="SVGRepo_iconCarrier">
@@ -44,7 +54,13 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span><?php if ($modification) { echo "Changer les images"; } else { echo "Ajouter une image"; } ?></span> 
+                            <span>
+                                <?php if ($modification) {
+                                    echo "Si vous souhaitez modifier les images, veuillez supprimer cette enchère et en créer une nouvelle";
+                                } else {
+                                    echo "Ajouter une image";
+                                } ?>
+                            </span>
                         </label>
 
 
@@ -98,17 +114,23 @@
                             <input <?php if ($modification) {
                                 echo "disabled";
                             } else {
-                                echo 'required=""';}  ?>   name="titre" value="<?= htmlspecialchars($titre) ?>" type="text" placeholder="INSERER TITRE">
+                                echo 'required=""';
+                            } ?>   name="titre" value="<?= htmlspecialchars($titre) ?>" type="text"
+                                placeholder="INSERER TITRE">
 
                         </div>
                         <div>
                             <h4>
-                                Prix<?php if(!$modification) { echo " de départ min = 10€"; } ?>
+                                Prix<?php if (!$modification) {
+                                    echo " de départ min = 10€";
+                                } ?>
                             </h4>
                             <input <?php if ($modification) {
                                 echo "disabled";
                             } else {
-                                echo 'required=""';}  ?>  value="<?= htmlspecialchars($prixMin) ?>"name="prixMin" value="<?= htmlspecialchars($prixMin) ?>" type="number" min="10"
+                                echo 'required=""';
+                            } ?>  value="<?= htmlspecialchars($prixMin) ?>" name="prixMin"
+                                value="<?= htmlspecialchars($prixMin) ?>" type="number" min="10"
                                 placeholder="INSERER PRIX DE DEPART">
 
                         </div>
@@ -120,8 +142,11 @@
                             <input <?php if ($modification && $todayDate >= $dateEnchere) {
                                 echo "disabled";
                             } else {
-                                echo 'required=""';}  ?>   name="titre" value="<?= htmlspecialchars($dateEnchere) ?>"id="dateEnchere"min="<?= htmlspecialchars($todayDate) ?>" required="" name="dateEnchere" value="<?= $dateEnchere ?>"
-                                type="date" id="date">
+                                echo 'required=""';
+
+                            } ?><?= htmlspecialchars($dateEnchere) ?>
+                                id="dateEnchere" min="<?= htmlspecialchars($todayDate) ?>" 
+                                name="dateEnchere" value="<?= htmlspecialchars($dateEnchere) ?>" type="date" id="date">
 
                         </div>
                     </div>
@@ -171,7 +196,7 @@
                                 <p>
                                     Style musical:
                                 </p>
-                                <select required="" name="style" value="">
+                                <select required="" name="style" value="<?= htmlspecialchars($style) ?>">
                                     <?php include(__DIR__ . '/section/styleOption.view.php'); ?>
 
                                 </select>
@@ -188,7 +213,7 @@
                             Information sur l'article
                         </h4>
                         <div>
-                            
+
                             <section>
                                 <p>
                                     Catégorie:
@@ -219,7 +244,7 @@
                     </div>
 
 
-                    
+
 
                 </div>
 
@@ -229,10 +254,11 @@
 
             </div>
 
-            
-                
+
+
             <div id="caseACocherCreationEnchere">
-                <input required type="checkbox"> <p>En cochant cette case, vous attestez sur l'honneur que vous ne vendrez que des articles légaux</a>
+                <input required type="checkbox">
+                <p>En cochant cette case, vous attestez sur l'honneur que vous ne vendrez que des articles légaux</a>
             </div>
 
             <div id="buttons">

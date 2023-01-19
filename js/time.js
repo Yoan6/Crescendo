@@ -1,5 +1,10 @@
-var dateFinValeur = document.getElementsByClassName('leTimerDeLArticle')[0].value;
+
+var dateFin = document.getElementsByClassName('leTimerDeLArticle')[0];
+if (typeof dateFin === 'undefined') { 
+var dateFinValeur = dateFin.value;
 var leTimerConteneur = document.getElementsByClassName('affichageTemps')[0];
+
+
 
 
 window.addEventListener("load", avoirTemps());
@@ -18,3 +23,7 @@ function avoirTemps() {
 
     leTimerConteneur.innerHTML = jour + "j " + h + "h " + m + "m " + s + "s";
 }
+
+
+}
+

@@ -25,7 +25,7 @@ for (let i = 0; i < lesEncheres.length; i++) { // Le numéro d'enchère à été
     let numEnchere = lesEncheres[i].value;
 
 
-    if (numUtilisateur !== 0 && numUtilisateur !== "") {
+    if (numUtilisateur !== 0 && numUtilisateur !== "" && estlike.length > 0) {
         if (estlike[i].innerHTML == '1') {
             likeBouton[i].classList.add("liked");
         } else if (estlike[i].innerHTML == '-1') {
@@ -36,12 +36,12 @@ for (let i = 0; i < lesEncheres.length; i++) { // Le numéro d'enchère à été
         dislikeBouton[i].addEventListener("click", function () { setLike(numEnchere, numUtilisateur, 0, i); });
 
 
-    } 
-        // Events
-
+    }
+    // Events
+    if (likeActuelText.length > 0) {
         window.addEventListener("load", getLikeActuel(numEnchere, likeActuelText[i]));
         setInterval(getLikeActuel(numEnchere, likeActuelText[i]), 600);  // 1000 ms = 1s, note ne pas mettre les parenthèses on parle de la fonction
-    
+    }
 }
 
 
@@ -52,6 +52,7 @@ for (let i = 0; i < lesEncheres.length; i++) { // Le numéro d'enchère à été
  * @param {*} numEnchere 
  * @param {*} likeActuelText 
  */
+
 function getLikeActuel(numEnchere, likeActuelText) {
     // Créer l'objet XMLHttpRequest
     var xmlhttp = new XMLHttpRequest();
@@ -66,8 +67,10 @@ function getLikeActuel(numEnchere, likeActuelText) {
     // Demander le fichier avec la fonction à exécuter
     xmlhttp.open("GET", "../ajax/getLikeActuel.php?numEnchere=" + numEnchere);
     xmlhttp.send();
-}
 
+
+
+}
 
 /**
  * Mettre un like ou un dislike
@@ -110,7 +113,7 @@ function setLike(numEnchere, numUtilisateur, estLike, i) {
 
 if (numUtilisateur == 0 || numUtilisateur == "") {
 
-// Si l'utilisateur n'est pas connecté
+    // Si l'utilisateur n'est pas connecté
     for (let i = 0; i < likeBouton.length; i++) {
         likeBouton[i].addEventListener("click", function () {
             //On redirige vers la page de connexion
