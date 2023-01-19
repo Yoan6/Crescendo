@@ -35,7 +35,7 @@
     <form id="formRecherche" action="../controller/recherche.ctrl.php" method="GET" class="conteneur">
       <input name="recherche" class="searchBar" type="search" list="searchList" placeholder="Rechercher..." pattern=".{1,}">
       <datalist id="searchList">
-        <option value="The quick brown fox jumps over a lazy dog."></option>
+        
       </datalist>
       <div id="loupe">
         <input id="inputRecherche" value="" type="submit"><img src="../design/image/search.svg" alt="loupe">
