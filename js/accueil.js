@@ -12,3 +12,14 @@ switchConsentement_oblige[i].style.pointerEvents = "none";
 switchConsentement_oblige[i].checked = true;
 }
 
+var cookiesDejaAccepte = document.getElementById('cookiesDejaAccepte');
+var popUpCookies = document.getElementsByClassName('popUpCookies')[0];
+
+if(cookiesDejaAccepte.innerHTML == "true") {
+popUpCookies.style.display = "none";
+} else {
+    var page = document.getElementsByTagName('body')[0];
+    page.classList.add('noscroll');
+
+
+}

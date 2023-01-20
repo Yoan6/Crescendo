@@ -14,7 +14,7 @@
 <?php if (!isset($_SESSION)) {
     session_start();
 } ?>
-
+<p id="cookiesDejaAccepte"></p>
 <div class="popUpCookie">
     <form class="cookie" action="accueil.ctrl.php" method="get">
         <h2>Cookies</h2>

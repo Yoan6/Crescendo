@@ -1,3 +1,10 @@
+.noscroll {
+    position: fixed!important;
+    width: 100%;
+}
+
+
+
 .popUpCookie{
 
  z-index: 1000;
