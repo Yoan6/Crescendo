@@ -27,28 +27,28 @@
             <p class="pImportant"> Cookies obligatoires : </p>
             <ul>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Dates de consentement des cookies (durée : 12 ans)</li>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Adhésion aux cookies (durée : 2 ans)</li>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Pseudo (durée : 2 ans)</li>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Adresse mail (durée : 2 ans)</li>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Numéro d'utilisateur (durée : 2 ans)</li>
                 <li><label class="switchConsentement oblige">
-                        <input type="checkbox" id="darkModeBouton">
-                        <span class="slider round"></span>
+                        <input type="checkbox" class="obligatoire">
+                        <span class="slider round obligatoire"></span>
                     </label>Mot de passe (durée : 2 ans)</li>
             </ul>
 
@@ -56,21 +56,21 @@
             <div id="cookie-optionnel">
                 <div class="optionnel">
                     <label for="cookie1" class="switchConsentement">
-                        <input type="checkbox" id="cookie1">
+                        <input name="prenomCookie" type="checkbox" id="cookie1">
                         <span class="slider round"></span>
                     </label>
                      <p >Prénom (durée : 2 ans)</p>
                 </div>
                 <div class="optionnel">
                     <label for="cookie2" class="switchConsentement">
-                        <input type="checkbox" id="cookie2">
+                        <input name="nomCookie" type="checkbox" id="cookie2">
                         <span class="slider round"></span>
                     </label>
                      <p >Nom (durée : 2 ans)</p>
                 </div>
                 <div class="optionnel">
                     <label for="cookie3" class="switchConsentement">
-                        <input type="checkbox" id="cookie3">
+                        <input name="adresseCookie" type="checkbox" id="cookie3">
                         <span class="slider round"></span>
                     </label>
                      <p >Adresse de livraison (durée : 2
@@ -78,7 +78,7 @@
                 </div>
                 <div class="optionnel">
                     <label for="cookie4"class="switchConsentement">
-                        <input type="checkbox" id="cookie4">
+                        <input name="ageCookie" type="checkbox" id="cookie4">
                         <span class="slider round"></span>
                     </label>
                    <p >Age (durée : 2 ans)</p>
@@ -92,7 +92,7 @@
 
         <div class="bouttons">
             <button id="savoirPlus" type="submit">En savoir plus</button>
-            <button id="accepter" type="submit">Accepter et continuer</button>
+            <button id="accepterCookies" type="submit">Accepter et continuer</button>
         </div>
     </form>
 </div>

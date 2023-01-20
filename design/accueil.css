@@ -105,14 +105,14 @@ align-items: center;
     background-color: var(--bleu);   
 }
 
-.cookie > .bouttons > #accepter {
+.cookie > .bouttons > #accepterCookies {
     border: 2 px solid var(--bleu);
     width: 200px;
     height: 40px;
     border-radius: 20px;
 }
 
-.cookie > .bouttons > #accepter:hover {
+.cookie > .bouttons > #accepterCookies:hover {
     background-color: var(--bleu);
 }
 
@@ -126,7 +126,6 @@ align-items: center;
   }
 
   .cookie  .switchConsentement.oblige  .slider{
-    cursor: default;
     background-color: rgba(206, 206, 206, 0.5);
   }
 
