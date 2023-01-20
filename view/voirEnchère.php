@@ -69,7 +69,7 @@ if (strcmp($num_utilisateur, $numVendeur) == 0) {
 
             <div>
 
-                <h3 id="dateFinEnchère"> <?php if ( $dateDebut >= $dateActuelle) { ?>
+                <h3 id="dateFinEnchère"> <?php if ( $dateDebut >= new DateTime()) { ?>
                     L'enchere commencera le <?= $dateDebut ?> <?php } else { ?>
                     L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span> 
                     <?php } ?>
