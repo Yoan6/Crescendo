@@ -148,7 +148,7 @@
 
         <div class="conteneur" id="articleSemaine">
             <div>
-                <h1>Articles du jour</h1>
+                <h1>Articles Flash</h1>
                 <?php include(__DIR__ . '/article/article.view.php'); ?>
             </div>
         </div>
