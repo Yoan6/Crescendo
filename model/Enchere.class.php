@@ -16,6 +16,11 @@ class Enchere
     private string $nomLot;
 
 
+    /**
+     * Pour construire un article. Note : pour le construire en base de données utiliser les CRUD manuellement
+     * De plus un lot est une enchère contenant au minimum 2 articles.
+     * @param array $articles
+     */
     public function __construct(array $articles)
     {
         if (count($articles) == 1) {
@@ -168,6 +173,7 @@ class Enchere
                     FROM ENCHERE e natural left join CONCERNE c
                     WHERE num_enchere = ?;";
 
+        // Requête préparée
         $dao = DAO::get();
         $table = $dao->query($query, [$numEnchere]);
         if (count($table) < 1) {
@@ -234,12 +240,26 @@ class Enchere
     }
 
 
+    /**
+     * Retourne les favoris
+     * @param string $page
+     * @param int $pageSize
+     * @param int $numUtilisateur
+     * @return array
+     */
     public static function readPageFavoris(string $page, int $pageSize, int $numUtilisateur): array
     {
         $articles = Article::readPageFavoris($page, $pageSize,$numUtilisateur);
         return ENCHERE::obtenirEncheresAPartirDesNumerosArticles($articles);
     }
 
+    /**
+     * Retourne les articles gagnées 
+     * @param string $page
+     * @param int $pageSize
+     * @param int $numUtilisateur
+     * @return array
+     */
     public static function readPageGagne(string $page, int $pageSize, int $numUtilisateur): array
     {
         $articles = Article::readPageGagne($page, $pageSize,$numUtilisateur);
@@ -247,6 +267,16 @@ class Enchere
     }
 
 
+    /**
+     * Fonction pour retourner les derniers articles
+     * @param int $page
+     * @param int $pageSize
+     * @param array $choixEtvaleurs
+     * @param array $choixObligatoiresEtValeurs
+     * @param string $orderByChoix
+     * @param string $orderBy
+     * @return array
+     */
     public static function readPagePlusieursChoix(
         int $page, int $pageSize, array $choixEtvaleurs,
         array $choixObligatoiresEtValeurs, string $orderByChoix = "date_debut", string $orderBy = "DESC"
@@ -262,8 +292,12 @@ class Enchere
 
 
 
-    //retourne les articles sans spécifier la categorie dans l'ordre des likes
-
+    /**
+     * Retourne tous les articles
+     * @param int $page
+     * @param int $pageSize
+     * @return array
+     */
     public static function readPage(int $page, int $pageSize): array
     {
         $articles = Article::readPage($page, $pageSize);
@@ -275,7 +309,11 @@ class Enchere
 
 
 
-
+    /**
+     * Pour récupérer les enchères avec les articles typés
+     * @param array $articles
+     * @return array<Enchere>
+     */
     public static function obtenirEncheresAPartirDesNumerosArticles(array $articles)
     {
         // Récupérer les enchères associées
@@ -335,6 +373,13 @@ class Enchere
 
 
     /********************************************* AUTRES METHODES ****************************************/
+
+    /**
+     * Fonction pour enchérir, les erreurs doivent être gérées dans les controllers
+     * @param Utilisateur $utilisateur
+     * @param int $prixOffre
+     * @return void
+     */
     public function encherir(Utilisateur $utilisateur, int $prixOffre)
     {
         $dao = DAO::get();
@@ -356,6 +401,10 @@ class Enchere
         }
     }
 
+    /**
+     * Retourner le prix maximum de la base de données
+     * @return mixed
+     */
     public function obtenirPrixActuel()
     {
         $dao = DAO::get();
@@ -363,12 +412,9 @@ class Enchere
         $data = [
             "num_enchere" => $this->getNumEnchere(),
         ];
+        // Requête préparée
         $table = $dao->query($queryEnchere, $data);
-
-        $prix = $table[0][0];
-        
-
-        return $prix;
+        return $table[0][0];
     }
 
 
@@ -377,7 +423,7 @@ class Enchere
 
 
     /**
-     * Récupérer le nombre de like total
+     * Récupérer le compteur de like 
      */
     public function getCompteurLike(): int
     {
@@ -391,6 +437,11 @@ class Enchere
     }
 
 
+    /**
+     * Pour savoir si l'utilisateur a aimé ou non la fonction
+     * @param int $numUtilisateur
+     * @return int|null
+     */
     public function getLike(int $numUtilisateur): int|null
     {
         $dao = DAO::get();
@@ -417,6 +468,7 @@ class Enchere
         $dao = DAO::get();
         // L'utilisateur ne peut like qu'une fois il faut donc savoir s'il a déjà like
 
+        // Les triggers de sqlite sont trop limités donc faire des requêtes différentes manuellement
         $queryInsert = "INSERT INTO LIKE_DISLIKE(num_utilisateur,num_enchere,est_like) values(:num_utilisateur,:num_enchere,:est_like);";
         $queryUpdate = "UPDATE LIKE_DISLIKE set est_like=:est_like where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
         $queryDelete = "DELETE FROM LIKE_DISLIKE where (num_utilisateur,num_enchere)=(:num_utilisateur,:num_enchere);";
@@ -445,6 +497,11 @@ class Enchere
 
     /********************************************* Favoris ****************************************/
 
+    /**
+     * Permet de savoir si l'utilisateur a mis en favoris l'article
+     * @param int $numUtilisateur
+     * @return int|null
+     */
     public function getFavoris(int $numUtilisateur): int|null
     {
         $dao = DAO::get();
@@ -458,6 +515,12 @@ class Enchere
     }
 
 
+    /**
+     * Mettre en favoris l'article
+     * @param int $numUtilisateur
+     * @param int $estFavoris
+     * @return void
+     */
     public function setFavoris(int $numUtilisateur, int $estFavoris): void
     {
         $dao = DAO::get();

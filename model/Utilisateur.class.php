@@ -207,9 +207,13 @@ class Utilisateur
              "rue" => $this->getRue(),
              "code_postal" => $this->getCodepostal(),
              "img_profil" => $this->getImgProfil()
-             //"dateCreation" => $this->getDateCreation()
+             //"dateCreation" => $this->getDateCreation() Pour respecter le RGPD
         ); //Note ajouter + de valeur qu'il en faut résulte en l'erreur : SQLSTATE[HY000]: General error: 25 column index out of range
     }
+
+
+
+
 
     /******************** 
      * CRUD
@@ -231,11 +235,11 @@ class Utilisateur
             $query = "INSERT INTO Utilisateur(email, pseudo, mot_de_passe, nom, prenom, date_naissance, ville, rue, code_postal, img_profil)
                         Values(:email, :pseudo, :mot_de_passe, :nom, :prenom, :date_naissance, :ville, :rue, :code_postal, :img_profil)";
 
-
+            // Requête préparée
             $dao = DAO::get();
             $dao->exec($query, $this->getData());
 
-            // Récupérer le bon num_utilisateur
+            // Récupérer le bon num_utilisateur attribué par la base de données
             $dernierNum = $dao->query("SELECT max(num_utilisateur) FROM UTILISATEUR;", array())[0][0];
             $this->setNumUtilisateur($dernierNum);
         }
@@ -255,17 +259,24 @@ class Utilisateur
                 ':motDePasse'=> $motDePasse
                 ];
 
+        // Requête préparée
         $dao = DAO::get();
         $table = $dao->query($query,$data);
         return Utilisateur::obtenirUtilisateurAPartirTable($table)[0];
     }
 
+    /**
+     * Pour récupérer l'utilisateur lorsqu'il est déjà connecté
+     * @param int $num_utilisateur
+     * @return GlobalUtilisateur
+     */
     public static function readNum(int $num_utilisateur): Utilisateur
     {
         $query = "SELECT *
                     FROM Utilisateur
                     WHERE num_utilisateur = :num_utilisateur";
 
+    // Requête préparée
         $dao = DAO::get();
         $table = $dao->query($query,[$num_utilisateur]);
         return Utilisateur::obtenirUtilisateurAPartirTable($table)[0];
@@ -286,7 +297,12 @@ class Utilisateur
     }
 
 
-
+    /**
+     * Récupérer l'objet utilisateur à partir des informations récupérées en base de données
+     * @param mixed $table Les informations récupérées en base de données
+     * @throws Exception
+     * @return array
+     */
     private static function obtenirUtilisateurAPartirTable($table) : array
     {
         if(count($table) == 0) {throw new Exception("L'utilisateur n'existe pas");}
@@ -327,6 +343,11 @@ class Utilisateur
         $dao->exec($query,$data);
     }
 
+    /**
+     * Utilisé dans les tests pour savoir si on a le même utilisateur
+     * @param GlobalUtilisateur $autreUtilisateur
+     * @return bool
+     */
     function egalUtilisateur(Utilisateur $autreUtilisateur) : bool
     {
         return $this->getEmail() == $autreUtilisateur->getEmail() && $this->getMotDePasse() == $autreUtilisateur->getMotDePasse() && $this->getPseudo() == $autreUtilisateur->getPseudo();

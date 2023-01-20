@@ -362,8 +362,8 @@ class Article
             "pageSize" => $pageSize
         ];
 
-        $dao = DAO::get();
         // Requêté préparée
+        $dao = DAO::get();
         $table = $dao->query($query,$data);
 
         return Article::obtenirArticlesAPartirTable($table);
@@ -607,12 +607,10 @@ class Article
                     FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'";
+        // Requêté préparée
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, ["titreArtiste" =>$titreArtiste]);
-        if (empty($tableContenantLeNombre)) {
-            return 0;
-        }
-        return $tableContenantLeNombre[0][0];
+        return $tableContenantLeNombre[0][0] ?? 0;
     }
 
 
@@ -623,12 +621,10 @@ class Article
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
                     FROM ENCHERE_TOUT_EN_COURS_VIEW";
-                    $dao = DAO::get();
+        // Requêté préparée
+        $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
-        if (empty($tableContenantLeNombre)) {
-            return 0;
-        }
-        return $tableContenantLeNombre[0][0];
+        return $tableContenantLeNombre[0][0] ?? 0;
     }
 
     /**
@@ -640,14 +636,10 @@ class Article
                     FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join favorise
                     WHERE num_utilisateur=:num_utilisateur
                     group by num_utilisateur";
-                    
-                    $dao = DAO::get();
+        // Requêté préparée            
+        $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);
-        if (empty($tableContenantLeNombre)) {
-            return 0;
-        }
-        //var_dump($tableContenantLeNombre);
-        return $tableContenantLeNombre[0][0];
+        return $tableContenantLeNombre[0][0] ?? 0;
     }
 
     /**
@@ -661,10 +653,7 @@ class Article
                     $dao = DAO::get();
         
         $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);
-        if (empty($tableContenantLeNombre)) {
-            return 0;
-        }
-        return $tableContenantLeNombre[0][0];
+        return $tableContenantLeNombre[0][0] ?? 0;
     }
 
 
@@ -686,10 +675,7 @@ class Article
 
         $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, $data);
-        if (empty($tableContenantLeNombre)) {
-            return 0;
-        }
-        return $tableContenantLeNombre[0][0];
+        return $tableContenantLeNombre[0][0] ?? 0;
     }
 
 
@@ -751,6 +737,7 @@ class Article
                     :etat, :categorie, :taille, :date_evenement, :lieu, :style)
             WHERE num_article = :num_article;";
 
+        // Requêté préparée     
         $dao = DAO::get();
         $dao->exec($query, array_merge($this->getData(), ["num_article" => $this->getNumArticle()]));
     }
@@ -760,6 +747,7 @@ class Article
     {
         $query = "DELETE FROM ARTICLE WHERE titre = ? AND description_article = ?;"; // Des triggers feront des DELETE dans les autres tables
 
+        // Requêté préparée
         $dao = DAO::get();
         $dao->exec($query, [$this->getTitre(), $this->getDescription()]);
     }

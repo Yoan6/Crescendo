@@ -31,7 +31,7 @@ class DAO
 
 
   /**
-   * Pour faire des SELECT sur la base de données
+   * Pour faire des requêtes préparées avec des SELECT sur la base de données
    * @param string $query la requête
    * @param array $data les données à remplacer dans la reqûete
    * @throws PDOException
@@ -54,7 +54,7 @@ class DAO
   }
 
   /**
-   * Faire des CREATE, UPDATE, DELETE sur la base de données
+   * Faire des CREATE, UPDATE, DELETE  en requête préparée sur la base de données
    * @param string $query la requête SQL
    * @param array $data les données à remplacer dans la reqûete
    * @return void
