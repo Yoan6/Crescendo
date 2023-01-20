@@ -28,6 +28,11 @@
 
 
     width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
 
 }
 
@@ -53,3 +58,51 @@
 }
 
 
+#titreAlaUne{
+    height: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: solid 1px var(--main-font-color);
+
+}
+
+
+#titreAlaUne p {
+    
+    font-size: 2.5em;
+    font-weight: 700;
+ 
+
+}
+
+@media (min-width: 0px) and (max-width: 1000px) {
+
+    #topPageUser{
+
+        flex-direction: column;
+        height: fit-content;
+       
+    }
+
+    #titreUser{
+        
+        margin-top: 25px;
+        width: 100%;
+        font-size: 1em;
+    }
+
+    #topPageLeftUser{
+        margin-top: 25px;
+        width: 100%;
+    }
+    #titreAlaUne p {
+
+        font-size: 2.3em;
+        font-weight: 700;
+        text-align: center;
+
+    }
+
+}
