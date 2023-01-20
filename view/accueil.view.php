@@ -15,6 +15,7 @@
     session_start();
 } ?>
 
+
 <!--
 <p id="cookiesDejaAccepte">true</p>
 <div class="popUpCookie">
