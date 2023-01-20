@@ -29,7 +29,6 @@
 
         //Si la date de début est inférieure à la date du jour, on la met à la date du jour
         $dateEnchere = $_POST['dateEnchere'] ?? null;
-        var_dump($dateEnchere);
 
         if($dateEnchere === null){
             $dateEnchere = $enchere->getDateDebut()->format('Y-m-d');
@@ -74,6 +73,7 @@
         if ($confirmer == "confirmer") {
             try {
                 $article->update();
+                $enchere->update();
 
             } catch (Exception $e) {
                 $errors[] = "L'enchère n'a pas pu être update" . $e->getMessage();

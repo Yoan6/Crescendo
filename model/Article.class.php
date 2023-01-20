@@ -604,7 +604,7 @@ class Article
      */
     public static function nombreArticlesLike(string $titreArtiste){
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_VIEW
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW
                     WHERE titre like '%' ||:titreArtiste ||'%'
                         OR artiste like '%' ||:titreArtiste ||'%'";
         $dao = DAO::get();
@@ -622,7 +622,7 @@ class Article
      */
     public static function nombreArticlesTotal(){
         $query = "SELECT COUNT(*)
-                    FROM ENCHERE_TOUT_VIEW";
+                    FROM ENCHERE_TOUT_EN_COURS_VIEW";
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, array());
         if (empty($tableContenantLeNombre)) {
@@ -639,7 +639,8 @@ class Article
         $query = "SELECT COUNT(*)
                     FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join favorise
                     WHERE num_utilisateur=:num_utilisateur
-                    group by num_enchere";
+                    group by num_utilisateur";
+                    
                     $dao = DAO::get();
         $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);
         if (empty($tableContenantLeNombre)) {
@@ -656,7 +657,7 @@ class Article
     public static function nombreArticlesGagne(int $numUtilisateur){
         $query = "SELECT COUNT(*)
             FROM ARTICLE natural join CONCERNE natural join ENCHERE natural left join GAGNE_VIEW
-            WHERE num_utilisateur=:num_utilisateur group by num_enchere";
+            WHERE num_utilisateur=:num_utilisateur group by num_utilisateur";
                     $dao = DAO::get();
         
         $tableContenantLeNombre = $dao->query($query, [$numUtilisateur]);

@@ -25,14 +25,13 @@
     
     // Récupérer les enchères
     try {
-        $pageMax = (int) (article::nombreArticlesTotal() / $pageSize) +1; // Une erreur est générée si 0 article trouvé
+        $pageMax = ceil(article::nombreArticlesTotal() / $pageSize); // Une erreur est générée si 0 article trouvé
         $encheres = Enchere::readPageALaUne($page, $pageSize);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
 
     $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
-
 
 
 
