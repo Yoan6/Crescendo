@@ -186,7 +186,7 @@ UPDATE ENCHERE SET date_debut = datetime(DATE(),'-6 DAYS') where num_enchere=18 
 create VIEW ENCHERE_TOUT_EN_COURS_VIEW as select * from ENCHERE_TOUT_VIEW
     WHERE num_enchere IN (SELECT num_enchere FROM ENCHERE WHERE date_debut BETWEEN datetime(DATE(), '-6 DAYS') AND DATE());
 
-INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(4,1,0),(4,2,0),(4,3,0);
+/*INSERT INTO LIKE_DISLIKE(num_enchere,num_utilisateur,est_like) values (1,2,1),(2,1,0),(4,1,0),(4,2,0),(4,3,0);*/
 
 
 UPDATE ENCHERE SET date_debut = datetime(DATE(),'-7 DAYS') where num_enchere=20;
