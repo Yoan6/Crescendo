@@ -18,7 +18,7 @@
                 <h3>Quelle est la durée maximale d’une enchère ?</h3>
                 <p>La durée maximale d’une enchère est de sept jours.</p>
 
-                <h3>Je souhaite modifier les informations que j’ai renseignées sur mon profil, 
+                <h3>Je souhaite modifier les informations que j’ai renseigné sur mon profil, 
                     comment dois-je procéder ?</h3>
                 <p>Cliquez sur l’icône symbolisant votre profil qui est situé en haut à droite. 
                     Un menu déroulant apparaît alors, cliquez sur l’onglet « Paramètres ». 
@@ -32,9 +32,9 @@
                     champ mot de passe, dont au moins une majuscule et un caractère spécial. Nous 
                     vous remercions de votre compréhension. </p>
 
-                <h3>Comment puis-je créer un lot ?<h3>
+                <h3>Comment puis-je créer un lot ?</h3>
 
-                <p>Afin de créer un un lot, vous devez vous rendre dans la page correspondant à 
+                <p>Afin de créer un lot, vous devez vous rendre dans la page correspondant à 
                     votre profil, dans l’onglet « Mon espace vente». Une fois sur cette page, 
                     cliquez sur le bouton « Créer le lot », et vous n’avez plus qu’à sélectionner 
                     les articles dont vous souhaitez qu’il fasse partie du lot. </p>

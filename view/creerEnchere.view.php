@@ -136,7 +136,7 @@
                         </div>
                         <div>
                             <h4>
-                                Date de début d'enchère
+                                Date de début d'enchère <mark>(début dans catalogue)</mark>
                             </h4>
 
                             <input <?php if ($modification && $todayDate >= $dateEnchere) {
@@ -257,7 +257,7 @@
 
 
             <div id="caseACocherCreationEnchere">
-                <input required type="checkbox" id="honneur"> <label for="honneur">En cochant cette case, vous attestez sur l'honneur que vous ne vendrez que des articles légaux et pas de contrefaçon</label>
+                <input required type="checkbox" id="honneur"> <label for="honneur">L'enchère sera visible dans notre catalogue à partir de la <mark>date de début</mark> <?=htmlspecialchars($dateEnchere)?> que vous avez choisi. En cochant cette case, vous attestez sur l'honneur que vous ne vendrez que des articles <mark>légaux</mark> et pas de contrefaçon</label>
             </div>
 
             <div id="buttons">
