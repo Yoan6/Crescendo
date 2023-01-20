@@ -14,7 +14,7 @@
 <?php if (!isset($_SESSION)) {
     session_start();
 } ?>
-<!--
+
 <p id="cookiesDejaAccepte"></p>
 <div class="popUpCookie">
     <form class="cookie" action="accueil.ctrl.php" method="get">
@@ -30,7 +30,7 @@
                 <li><label class="switchConsentement oblige">
                         <input type="checkbox" class="obligatoire">
                         <span class="slider round obligatoire"></span>
-                    </label>Dates de consentement des cookies (durée : 12 ans)</li>
+                    </label>Dates de consentement des cookies (durée : 2 ans)</li>
                 <li><label class="switchConsentement oblige">
                         <input type="checkbox" class="obligatoire">
                         <span class="slider round obligatoire"></span>
@@ -38,53 +38,8 @@
                 <li><label class="switchConsentement oblige">
                         <input type="checkbox" class="obligatoire">
                         <span class="slider round obligatoire"></span>
-                    </label>Pseudo (durée : 2 ans)</li>
-                <li><label class="switchConsentement oblige">
-                        <input type="checkbox" class="obligatoire">
-                        <span class="slider round obligatoire"></span>
-                    </label>Adresse mail (durée : 2 ans)</li>
-                <li><label class="switchConsentement oblige">
-                        <input type="checkbox" class="obligatoire">
-                        <span class="slider round obligatoire"></span>
-                    </label>Numéro d'utilisateur (durée : 2 ans)</li>
-                <li><label class="switchConsentement oblige">
-                        <input type="checkbox" class="obligatoire">
-                        <span class="slider round obligatoire"></span>
-                    </label>Mot de passe (durée : 2 ans)</li>
+                    </label>Cookie de fonctionnement (durée : 2 ans)</li>
             </ul>
-
-            <p class="pImportant">Cookies optionnels : </p>
-            <div id="cookie-optionnel">
-                <div class="optionnel">
-                    <label for="cookie1" class="switchConsentement">
-                        <input name="prenomCookie" type="checkbox" id="cookie1">
-                        <span class="slider round"></span>
-                    </label>
-                     <p >Prénom (durée : 2 ans)</p>
-                </div>
-                <div class="optionnel">
-                    <label for="cookie2" class="switchConsentement">
-                        <input name="nomCookie" type="checkbox" id="cookie2">
-                        <span class="slider round"></span>
-                    </label>
-                     <p >Nom (durée : 2 ans)</p>
-                </div>
-                <div class="optionnel">
-                    <label for="cookie3" class="switchConsentement">
-                        <input name="adresseCookie" type="checkbox" id="cookie3">
-                        <span class="slider round"></span>
-                    </label>
-                     <p >Adresse de livraison (durée : 2
-                        ans)</p>
-                </div>
-                <div class="optionnel">
-                    <label for="cookie4"class="switchConsentement">
-                        <input name="ageCookie" type="checkbox" id="cookie4">
-                        <span class="slider round"></span>
-                    </label>
-                   <p >Age (durée : 2 ans)</p>
-                </div>
-            </div>
 
         </div>
         <p id="pConditionUtilisation">En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies et le respect des <a
@@ -93,11 +48,11 @@
 
         <div class="bouttons">
             <a id="savoirPlus" href="../view/conditionsUtilisation.view.php">En savoir plus</a>
-            <button id="accepterCookies" type="submit">Accepter et continuer</button>
+            <button id="accepterCookies" type="submit" name="accepterCookies">Accepter et continuer</button>
         </div>
     </form>
 </div>
--->
+
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
@@ -109,7 +64,7 @@
             <img src="../design/image/accueil/concert.jpg">
             <div id="banner-text">
                 <h3> Au plus proche de vos artistes préférés ! </h3>
-                <a id="explore" href="../controller/rechercheALaUne.ctrl.php"> Explore dès maintenant !</a>
+                <a id="explore" href="../controller/rechercheALaUne.ctrl.php"> Explorez dès maintenant !</a>
             </div>
         </div>
 
