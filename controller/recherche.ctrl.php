@@ -25,11 +25,13 @@
     
     // Récupérer les enchères
     try {
-        $pageMax = (int) (article::nombreArticlesLike($recherche) / $pageSize) +1; // Une erreur est générée si 0 article trouvé
+        $pageMax = ceil(article::nombreArticlesLike($recherche) / $pageSize); // Une erreur est générée si 0 article trouvé
         $encheres = Enchere::readPageLike($page, $pageSize, $recherche);
     } catch (exception | error $e) {
         $errors[] = $e->getMessage();
     }
+
+
 
     $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 

@@ -29,7 +29,7 @@
         $errors[] = $e->getMessage();
     }
 
-    $pageMax = (int) (  $nbArticle / $pageSize) +1;  
+    $pageMax = ceil($nbArticle / $pageSize);  
     $pageSuiv = ($page >= $pageMax ? $pageMax : $page + 1);
 
 
