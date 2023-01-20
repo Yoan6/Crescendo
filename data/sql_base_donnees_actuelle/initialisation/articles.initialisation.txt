@@ -17,5 +17,3 @@
 17|4|Veste rose à plume de Polnareff|1000|Veste portée par Polnareff lors de sa tournée "Faut pas rêver"|Polnareff|Très bon|Vêtement|M|1978-03-03|Paris|Chanson française
 18|1|Haut de Mina du groupe Twice|150|Haut porté par Mina lors de la tournée "Fancy You"|Twice|Bon|Vêtement|XS|2019-04-22|Séoul|K-pop
 19|3|Bas de Mina du groupe Twice|150|Bas porté par Mina lors de la tournée "Fancy You"|Twice|Bon|Vêtement|XS|2019-04-22|Séoul|K-pop
-20|2|Test Interval temps -7|15000|test|test-7|Très bon|Instrument|Unique|2010-07-16|Los Angeles|Musique de film
-21|2|Test Interval temps +1|15000|test|test+1|Très bon|Instrument|Unique|2010-07-16|Los Angeles|Musique de film

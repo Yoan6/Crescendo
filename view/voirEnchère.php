@@ -206,7 +206,7 @@ if (strcmp($num_utilisateur, $numVendeur) == 0) {
                                 </svg>
 
                                 <p class="estlike"><?php
-                                    if ($_SESSION['num_utilisateur'] !== null) {
+                                    if ($_SESSION['num_utilisateur'] !== 0) {
 
                                         if ($estlike == 1) {
                                             echo 1;

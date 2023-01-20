@@ -23,6 +23,10 @@ if (isset($_POST['nouvelleEnchere'])) {
     $nouvelleEnchere = htmlspecialchars($_POST['nouvelleEnchere']);
 }
 
+$estlike = false;
+$estFavoris = false;
+
+
 $enchere = Enchere::read($num_enchere);
 $prixActuel = $enchere->obtenirPrixActuel();
 $dateFin = $enchere->getDateFin()->format('d-m-Y');
@@ -32,9 +36,9 @@ $dateActuelle = new DateTime();
 $dateActuelle = $dateActuelle->format('d-m-Y');
 
 $estLot = $enchere->getEstLot();
-if($numUtilisateurActuel != null){
-$estlike = $enchere->getLike($numUtilisateurActuel);
-$estFavoris = $enchere->getFavoris($numUtilisateurActuel);
+if($numUtilisateurActuel !== null){
+    $estlike = $enchere->getLike($numUtilisateurActuel);
+    $estFavoris = $enchere->getFavoris($numUtilisateurActuel);
 }
 /***************************************************************************
  **                         Données de l'article
