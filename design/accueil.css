@@ -1,3 +1,83 @@
+.cookie {
+    flex-flow: column;
+    justify-content: center;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: 800px;
+    min-width: 315px;
+    background-color: #5d5b5b;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.cookie > #cookie-optionnel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-top: 16px;
+    margin-bottom: 30px;
+}
+
+.cookie > h2 {
+    font-weight: bold;
+}
+
+.cookie > p, label {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.cookie .pImportant {
+    font-size: 24px;
+}
+
+.cookie > ul > li {
+    list-style-type: circle;
+    font-size: 18px;
+}
+
+.cookie > p > .condition {
+    display: inline;
+    color: var(--bleu);
+}
+
+.cookie > .bouttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.cookie > .bouttons > #savoirPlus {
+    border: 2 px solid var(--bleu);
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.cookie > .bouttons > #savoirPlus:hover {
+    background-color: var(--bleu);   
+}
+
+.cookie > .bouttons > #accepter {
+    border: 2 px solid var(--bleu);
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.cookie > .bouttons > #accepter:hover {
+    background-color: var(--bleu);
+}
+
+
+
 
 #banner {
 	width: 100%;
