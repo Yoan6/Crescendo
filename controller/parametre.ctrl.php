@@ -72,8 +72,6 @@ if(isset($_FILES['changementImage'])) {
     } else {
         array_push($errors, "Seuls les formats de fichier JPG, JPEG, PNG sont autorisés.");
     }
-
-    var_dump($errors);
 }
 
 
