@@ -18,7 +18,7 @@
 
     <main>
     <div id="topPage">
-            <div id="topPageLeft">
+            <div id="topPageLeftUser">
                 <?php include(__DIR__ . '/maPageProfile/imageProfile.php'); ?>
                 <p id="titre">Vos Enchères Remportées</h1>
             </div>

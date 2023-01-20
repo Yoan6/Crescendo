@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../design/article.css">
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
+    <link rel="stylesheet" type="text/css" href="../design/favorisEnchereGagnee.css">
 </head>
 
 <?php if(!isset($_SESSION)) { session_start(); }?>
@@ -17,11 +18,15 @@
     <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
-        <div id="topPage">
-            <div class="topPageLeft User">
+        <div id="topPageUser">
+            <div id="topPageLeftUser">
                 <?php include(__DIR__ . '/maPageProfile/imageProfile.php'); ?>
-                <p id="titreUser">Vos Favoris</p>
             </div>
+            <div  id="titreUser">
+            <p>Vos Favoris</p>
+
+            </div>
+
         </div>
         <div id="principale">
             <div id="divdroite">
