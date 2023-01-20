@@ -16,7 +16,7 @@
 } ?>
 
 <div class="popUpCookie">
-    <form class="cookie" action="accueil.ctrl.php" method="POST">
+    <form class="cookie" action="accueil.ctrl.php" method="get">
         <h2>Cookies</h2>
         <p>Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site et pour que votre
             naviguation soit plus fluide. <br><br>
@@ -86,7 +86,7 @@
             </div>
 
         </div>
-        <p>En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies et le respect des <a
+        <p id="pConditionUtilisation">En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies et le respect des <a
                 class="condition" href="../view/conditionsUtilisation.view.php">Conditions Générales d'Utilisation</a>
         </p>
 

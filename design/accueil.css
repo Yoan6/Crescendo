@@ -31,13 +31,9 @@ align-items: center;
     overflow: auto;
 }
 
-.cookie > #cookie-optionnel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 20px;
-    margin-top: 16px;
-    margin-bottom: 30px;
+.cookie  #cookie-optionnel {
+    
+    padding-left: 40px;
 }
 
 .cookie > h2 {
@@ -67,10 +63,20 @@ align-items: center;
     font-size: 24px;
 }
 
-.cookie > ul > li {
-    list-style-type: circle;
+.cookie ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     font-size: 18px;
 }
+
+.cookie ul li {
+ 
+    display: flex;
+    align-items: center;
+
+}
+
 
 .cookie > p > .condition {
     display: inline;
@@ -81,7 +87,6 @@ align-items: center;
 
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -105,6 +110,13 @@ align-items: center;
     background-color: var(--bleu);   
 }
 
+
+.cookie #pConditionUtilisation{
+
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 .cookie > .bouttons > #accepterCookies {
     border: 2 px solid var(--bleu);
     width: 200px;
@@ -121,12 +133,14 @@ align-items: center;
     position: relative;
     display: inline-block;
     width: 60px;
+    min-width: 60px;
     height: 34px;
     right: 20px;
   }
 
   .cookie  .switchConsentement.oblige  .slider{
-    background-color: rgba(206, 206, 206, 0.5);
+    background-color: transparent;
+    border: solid 1px rgb(255, 255, 255);
   }
 
 
@@ -176,6 +190,11 @@ align-items: center;
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
+  }
+
+
+  .cookie .switchConsentement.oblige input:checked+.slider:before {
+    background-color: grey;
   }
   
   /* Rounded sliders */
