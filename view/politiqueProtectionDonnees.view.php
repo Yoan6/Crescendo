@@ -30,9 +30,7 @@
             <ul>
                 <li>- Nous utilisons le prénom, le nom, le pseudo et l’adresse mail de l’utilisateur afin de pouvoir 
                     le reconnaître et l’identifier et vérifier le caractère univoque du traitement à tout moment. </li>
-                <li>- Nous utilisons l’<strong>adresse mail</strong> afin de pouvoir contacter l’utilisateur et notamment faire une 
-                    double authentification lors de la création de son compte en lui envoyant par mail un code de 
-                    vérification (pas implémenté car manque de temps). </li>
+                <li>- Nous utilisons l’<strong>adresse mail</strong> afin de pouvoir contacter l’utilisateur en cas de problème. </li>
                 <li>- Nous utilisons l'<strong>âge de l’utilisateur</strong> pour être certain de pouvoir faire la collecte de données 
                     avec un simple consentement (âge supérieur à 18 ans).</li>
                 <li>- Nous utilisons l’<strong>adresse postale</strong> afin que nous puissions faire livrer l’objet ou le lot au 
@@ -43,15 +41,18 @@
         </div>
 
         <div>
-            <h2>3 - Durée de conservation des données : (A revoir)</h2>
+            <h2>3 - Durée de conservation des données : </h2>
             <ul>
-                <li>- Prénom : durée de la session </li>
-                <li>- Nom : durée de la session</li>
-                <li>- Adresse mail : durée de la session</li>
-                <li>- Age : durée de la session</li>
-                <li>- Pseudo : durée de la session</li>
-                <li>- Adresse postale : durée de la session</li>
+                <li>- Prénom : 2 ans </li>
+                <li>- Nom : 2 ans</li>
+                <li>- Adresse mail : 2 ans</li>
+                <li>- Age : 2 ans</li>
+                <li>- Pseudo : 2 ans</li>
+                <li>- Mot de passe : 2 ans</li>
+                <li>- Adresse postale : 2 ans</li>
                 <li>- Date de consentement : 2 ans</li>
+                <li>- Adhésion aux cookies : 2 ans</li>
+                <li>- Numéro d'utilisateur : 2 ans</li>
             </ul>
         </div>
 
@@ -79,12 +80,12 @@
                 contacter l’autorité de contrôle via ce <a class="lien" href="https://www.cnil.fr/fr/cnil-direct
                 /question/adresser-une-reclamation-plainte-la-cnil-quelles-conditions-et-comment">lien</a>.</p>
 
-            <h4>Conséquence de la non-fourniture des données par l’utilisateur : </h4>
+            <h4>5.2 - Conséquence de la non-fourniture des données par l’utilisateur : </h4>
             <p>Si l’utilisateur ne fournit pas ses données, alors il ne pourra pas créer de compte et sera donc limité 
                 dans les fonctionnalités du site web. De ce fait, la seule chose qu’il pourra faire est voir les 
                 articles et lots sans pouvoir enchérir.</p>
             
-            <h4>Mesures liées à la sécurité des données </h4>
+            <h4>5.3 - Mesures liées à la sécurité des données </h4>
             <p>Vos données sont conservées dans une base de données sur notre serveur. Si vous avez des questions 
                 concernant la sécurité des données, vous pouvez contacter le développeur Jallyl Tourougui via son 
                 adresse mail : jallyl.tourougui@etu.univ-grenoble-alpes.fr</p>

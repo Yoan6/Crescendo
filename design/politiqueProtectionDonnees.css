@@ -22,5 +22,6 @@
 
 #protectionDonnees .lien {
     font-weight: bold;
-    color: var(--blue);
+    color: #79d2bc;
+    display: inline-block;
 }
