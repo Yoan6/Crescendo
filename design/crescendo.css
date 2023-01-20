@@ -67,7 +67,11 @@ body.dark-mode {
 }
 
 
-
+mark {
+	background-color: transparent;
+	color:white;
+	border-bottom: var(--bleu) 2px solid;
+}
 
 
 /*****************************
