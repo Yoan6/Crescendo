@@ -11,14 +11,98 @@
     <link rel="icon" href="../design/image/icone.png">
 </head>
 
-<?php if(!isset($_SESSION)) { session_start(); } ?>
+<?php if (!isset($_SESSION)) {
+    session_start();
+} ?>
+
+<div class="popUpCookie">
+    <form class="cookie" action="accueil.ctrl.php" method="POST">
+        <h2>Cookies</h2>
+        <p>Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site et pour que votre
+            naviguation soit plus fluide. <br><br>
+            Notes : nous ne récoltons vos données qu'à partir du moment où vous décidez de créer un compte. <br><br>
+            Certains cookies sont obligatoire au bon fonctionnement du site, d'autres sont optionnels et nous permettent
+            d'améliorer votre expérience utilisateur. <br><br></p>
+        <div class="centre">
+            <p class="pImportant"> Cookies obligatoires : </p>
+            <ul>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Dates de consentement des cookies (durée : 12 ans)</li>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Adhésion aux cookies (durée : 2 ans)</li>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Pseudo (durée : 2 ans)</li>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Adresse mail (durée : 2 ans)</li>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Numéro d'utilisateur (durée : 2 ans)</li>
+                <li><label class="switchConsentement oblige">
+                        <input type="checkbox" id="darkModeBouton">
+                        <span class="slider round"></span>
+                    </label>Mot de passe (durée : 2 ans)</li>
+            </ul>
+
+            <p class="pImportant">Cookies optionnels : </p>
+            <div id="cookie-optionnel">
+                <div class="optionnel">
+                    <label for="cookie1" class="switchConsentement">
+                        <input type="checkbox" id="cookie1">
+                        <span class="slider round"></span>
+                    </label>
+                     <p >Prénom (durée : 2 ans)</p>
+                </div>
+                <div class="optionnel">
+                    <label for="cookie2" class="switchConsentement">
+                        <input type="checkbox" id="cookie2">
+                        <span class="slider round"></span>
+                    </label>
+                     <p >Nom (durée : 2 ans)</p>
+                </div>
+                <div class="optionnel">
+                    <label for="cookie3" class="switchConsentement">
+                        <input type="checkbox" id="cookie3">
+                        <span class="slider round"></span>
+                    </label>
+                     <p >Adresse de livraison (durée : 2
+                        ans)</p>
+                </div>
+                <div class="optionnel">
+                    <label for="cookie4"class="switchConsentement">
+                        <input type="checkbox" id="cookie4">
+                        <span class="slider round"></span>
+                    </label>
+                   <p >Age (durée : 2 ans)</p>
+                </div>
+            </div>
+
+        </div>
+        <p>En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies et le respect des <a
+                class="condition" href="../view/conditionsUtilisation.view.php">Conditions Générales d'Utilisation</a>
+        </p>
+
+        <div class="bouttons">
+            <button id="savoirPlus" type="submit">En savoir plus</button>
+            <button id="accepter" type="submit">Accepter et continuer</button>
+        </div>
+    </form>
+</div>
 
 <body class="dark-mode">
     <?php include(__DIR__ . '/header.php'); ?>
 
     <main id="accueil">
-        
-    
+
+
         <div id="banner">
             <img src="../design/image/accueil/concert.jpg">
             <div id="banner-text">
@@ -27,43 +111,7 @@
             </div>
         </div>
 
-        <form class="cookie" action="accueil.ctrl.php" method="POST">
-            <h2>Cookies</h2>
-            <p>Nous utilisons des cookies pour vous garantir la meilleure expérience sur notre site et pour que votre naviguation soit plus fluide. <br><br>
-                Notes : nous ne récoltons vos données qu'à partir du moment où vous décidez de créer un compte. <br><br>
-            Certains cookies sont obligatoire au bon fonctionnement du site, d'autres sont optionnels et nous permettent d'améliorer votre expérience utilisateur. <br><br></p>
-            <p class="pImportant"> Cookies obligatoires : </p>
-            <ul>
-                <li>Dates de consentement des cookies (durée : 12 ans)</li>
-                <li>Adhésion aux cookies (durée : 2 ans)</li>
-                <li>Pseudo (durée : 2 ans)</li>
-                <li>Adresse mail (durée : 2 ans)</li>
-                <li>Numéro d'utilisateur (durée : 2 ans)</li>
-                <li>Mot de passe (durée : 2 ans)</li>
-            </ul>
 
-            <p class="pImportant">Cookies optionnels : </p>
-            <div id="cookie-optionnel">
-                <div class="optionnel">
-                    <input type="checkbox" id="cookie1"> <label for="cookie1">Prénom (durée : 2 ans)</label>
-                </div>
-                <div class="optionnel">
-                    <input type="checkbox" id="cookie2"> <label for="cookie2">Nom (durée : 2 ans)</label>
-                </div>
-                <div class="optionnel">
-                    <input type="checkbox" id="cookie3"> <label for="cookie3">Adresse de livraison (durée : 2 ans)</label>
-                </div>
-                <div class="optionnel">
-                    <input type="checkbox" id="cookie4"> <label for="cookie4">Age (durée : 2 ans)</label>
-                </div>
-            </div>
-            <p>En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies et le respect des <a class="condition" href="../view/conditionsUtilisation.view.php">Conditions Générales d'Utilisation</a></p>
-            
-            <div class="bouttons">
-                <button id="savoirPlus" type="submit">En savoir plus</button>
-                <button id="accepter" type="submit">Accepter et continuer</button>
-            </div>
-        </form>
 
         <div class="conteneur" id="divVIA">
             <ul class="conteneur" id="via">
@@ -110,6 +158,8 @@
 
     <?php include(__DIR__ . '/footer.php'); ?>
 </body>
+<script src="../js/accueil.js"></script>
+
 <script src="../js/crescendo.js"></script>
 <script src="../js/header.js"></script>
 <script src="../js/article.js"></script>
