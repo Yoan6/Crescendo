@@ -7,11 +7,12 @@ main {
 }
 
 #titre {
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: 50px;
-	height: 100px;
+	height: fit-content;
 	margin: auto;
 	color: var(--main-font-color);
 	border-bottom: solid 1px var(--main-font-color);
@@ -85,6 +86,7 @@ main {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
+	min-height: 80vh;
 }
 
 /*****************************
