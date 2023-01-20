@@ -116,3 +116,12 @@ if (enchereOuiNon.innerHTML === "oui") {
 }
 
 /////////////////////
+
+
+var taille = document.getElementById("taille");
+var sectionTaille = document.getElementById("sectionTaille");
+if(taille.innerHTML == ""){
+
+  sectionTaille.style.display = "none";
+
+}

@@ -111,8 +111,33 @@ main form #topForm>#divTopLeft>label {
     transition: transform 0.2s ease-in-out;
 
 }
+main form #topForm>#divTopLeft>#labelAjoutModif{
 
+    background-color: rgb(143, 143, 143);
+}
 
+main #labelAjoutModif{
+
+    position: absolute;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    pointer-events: none;
+}
+
+main #labelAjoutModif>svg {
+    display: none;
+}
+
+main #labelAjoutModif>span {
+    text-align: center;
+}
 
 main form #topForm>#divTopLeft>#labelAjout>span {
 

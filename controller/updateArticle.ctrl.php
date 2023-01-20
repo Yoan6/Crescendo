@@ -28,14 +28,17 @@
 
 
         //Si la date de début est inférieure à la date du jour, on la met à la date du jour
-        $dateEnchere = $_POST['dateEnchere'] ?? $enchere->getDateDebut()->format('Y-m-d');
+        $dateEnchere = $_POST['dateEnchere'] ?? null;
+        var_dump($dateEnchere);
 
-        if($enchere->getDateDebut() <= $todayDate &&  $dateEnchere >= $todayDate->format('Y-m-d') ){
-
-            $enchere->setDateDebut(new DateTime($dateEnchere));
-        
+        if($dateEnchere === null){
+            $dateEnchere = $enchere->getDateDebut()->format('Y-m-d');
         }
 
+
+        $enchere->setDateDebut(new DateTime($dateEnchere));
+
+        $dateFin = $enchere->getDateFin()->format('Y-m-d');
 
         /***************************************************************************
          **                         Données de l'article
@@ -47,6 +50,7 @@
         $dateEvenement = $_POST['dateEvenement'] ??  $article->getDateEvenement();
         $lieu = $_POST['lieu'] ??  $article->getLieu();
         $style = $_POST['style'] ??  $article->getStyle();
+        $numVendeur = $article->getVendeur()->getNumUtilisateur();
 
         $taille = $_POST['taille'] ?? $article->getTaille();
         $etat = $_POST['etat'] ??  $article->getEtat();
@@ -89,7 +93,7 @@
         $view->assign('titre', $titre);
         $view->assign('prixMin', $prixMin);
         $view->assign('dateEnchere', $dateEnchere);
-        
+        $view->assign('dateFin', $dateFin);
         $view->assign('description', $description);
 
         $view->assign('artiste', $artiste);
@@ -101,18 +105,16 @@
         $view->assign('etat', $etat);
         $view->assign('lieu', $lieu);
         $view->assign('controllerName', $controllerName . "?idArticleAModifier=$numEnchere");
-
+        $view->assign('numVendeur', $numVendeur);
 
         if ($confirmer == "confirmer" && count($errors) == 0) {
             // Prévisualiser l'enchère et prévenir de la réussite
 
             $view->assign('messages', $messages);
-            $view->display("z.test.afficherArticler.view.php");
+        header("Location: afficherArticle.ctrl.php?numEnchere=$numEnchere");
 
         } else {
-            // Aller vers la création d'une enchère
-            
-             
+            //On indique que nous sommes en mode modification   
             $modification = true;
             $view->assign('modification', $modification);
             $view->assign('todayDate', $todayDate->format('Y-m-d'));

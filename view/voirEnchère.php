@@ -69,8 +69,10 @@ if (strcmp($num_utilisateur, $numVendeur) == 0) {
 
             <div>
 
-                <h3 id="dateFinEnchère">
-                    L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span>
+                <h3 id="dateFinEnchère"> <?php if ( $dateDebut >= $dateActuelle) { ?>
+                    L'enchere commencera le <?= $dateDebut ?> <?php } else { ?>
+                    L'enchère se termine le <?= $dateFin ?> dans <span class="affichageTemps"></span> 
+                    <?php } ?>
                 </h3>
                 <input type="hidden" class="leTimerDeLArticle" value="<?= $dateFinIso->format('Y-m-d') ?>">
 
@@ -353,14 +355,12 @@ if (strcmp($num_utilisateur, $numVendeur) == 0) {
                             Information sur l'article
                         </h4>
                         <div>
-                            <section>
+                            <section id="sectionTaille">
                                 <h4>
                                     Taille:
 
                                 </h4>
-                                <p>
-                                    <?= $taille ?>
-                                </p>
+                                <p id="taille"><?= $taille ?></p>
 
                             </section>
                             <section>

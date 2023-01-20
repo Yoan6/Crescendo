@@ -17,6 +17,11 @@ inputImage2.addEventListener("change", uploadImage);
 //on met un event listener sur le troisième input de type file
 inputImage3.addEventListener("change", uploadImage);
 
+
+//Si le label ajout existe 
+if (labelAjout) {
+
+
 labelAjout.addEventListener("click", function () {
   if (images.length == 0) {
     inputImage.click();
@@ -27,6 +32,7 @@ labelAjout.addEventListener("click", function () {
   }
 });
 
+}
 
 function uploadImage() {
   if (images.length < 3) {

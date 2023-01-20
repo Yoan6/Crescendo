@@ -175,7 +175,7 @@ var pageSuivante = document.getElementById("pageSuivante");
 
 
 function rajoutDeParametre(url, parametre, valeur) {
-  url.searchParams.set(parametre, valeur);
+  url.searchParams.append(parametre, valeur);
   return url;
 }
 
@@ -197,12 +197,15 @@ for (let i = 0; i < numeroDePage.length; i++) {
 
 for(let [key, value] of parameters) {
   if(key !== "page") {
+    console.log(value);
   pageDebut.href = rajoutDeParametre(new URL(pageDebut.href), key, value);
   pagePrecedante.href = rajoutDeParametre(new URL(pagePrecedante.href), key, value);
   pageFin.href = rajoutDeParametre(new URL(pageFin.href), key, value);
   pageSuivante.href = rajoutDeParametre(new URL(pageSuivante.href), key, value);
   }
 }
+
+
 
 
 

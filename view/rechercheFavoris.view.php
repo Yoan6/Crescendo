@@ -18,9 +18,9 @@
 
     <main>
         <div id="topPage">
-            <div id="topPageLeft">
+            <div class="topPageLeft User">
                 <?php include(__DIR__ . '/maPageProfile/imageProfile.php'); ?>
-                <p id="titre">Vos Favoris</h1>
+                <p id="titreUser">Vos Favoris</p>
             </div>
         </div>
         <div id="principale">
