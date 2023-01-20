@@ -13,7 +13,7 @@ switchConsentement_oblige[i].checked = true;
 }
 
 var cookiesDejaAccepte = document.getElementById('cookiesDejaAccepte');
-var popUpCookies = document.getElementsByClassName('popUpCookies')[0];
+var popUpCookies = document.getElementsByClassName('popUpCookie')[0];
 
 if(cookiesDejaAccepte.innerHTML == "true") {
 popUpCookies.style.display = "none";
