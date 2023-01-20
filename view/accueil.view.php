@@ -91,7 +91,7 @@
         </p>
 
         <div class="bouttons">
-            <button id="savoirPlus" type="submit">En savoir plus</button>
+            <a id="savoirPlus" href="../view/conditionsUtilisation.view.php">En savoir plus</a>
             <button id="accepterCookies" type="submit">Accepter et continuer</button>
         </div>
     </form>
