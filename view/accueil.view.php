@@ -15,6 +15,7 @@
     session_start();
 } ?>
 
+<!--
 <p id="cookiesDejaAccepte">true</p>
 <div class="popUpCookie">
     <form class="cookie" action="accueil.ctrl.php" method="get">
@@ -52,6 +53,7 @@
         </div>
     </form>
 </div>
+-->
 
 
 <body class="dark-mode">
