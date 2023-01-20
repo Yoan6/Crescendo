@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="../design/article.css">
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
     <link rel="stylesheet" type="text/css" href="../design/monEspaceVendeur.css">
+    <link rel="stylesheet" type="text/css" href="../design/favorisEnchereGagnee.css">
+
 </head>
 
 <?php if(!isset($_SESSION)) { session_start(); }?>
@@ -20,7 +22,10 @@
     <div id="topPage">
             <div id="topPageLeftUser">
                 <?php include(__DIR__ . '/maPageProfile/imageProfile.php'); ?>
-                <p id="titre">Vos Enchères Remportées</h1>
+                
+            </div>
+            <div id="titreUser">
+            <p >Vos Enchères Remportées</p>
             </div>
         </div>
         <div id="principale">

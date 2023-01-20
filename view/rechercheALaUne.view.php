@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../design/crescendo.css">
     <link rel="stylesheet" type="text/css" href="../design/article.css">
     <link rel="stylesheet" type="text/css" href="../design/categories.css">
+    <link rel="stylesheet" type="text/css" href="../design/favorisEnchereGagnee.css">
 
 </head>
 
@@ -17,8 +18,8 @@
     <?php include(__DIR__ . '/header.php'); ?>
 
     <main>
-        <div>
-            <p id="titre">Les enchères les plus populaires</h1>
+        <div id="titreAlaUne">
+            <p >Les enchères les plus populaires</h1>
         </div>
         <div id="principale">
             <div id="divdroite">

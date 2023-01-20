@@ -18,7 +18,9 @@ align-items: center;
 }
 
 
-
+#cookiesDejaAccepte{
+    display: none;
+}
 
 
 

@@ -15,7 +15,9 @@
     session_start();
 } ?>
 
-<p id="cookiesDejaAccepte"></p>
+
+<!--
+<p id="cookiesDejaAccepte">true</p>
 <div class="popUpCookie">
     <form class="cookie" action="accueil.ctrl.php" method="get">
         <h2>Cookies</h2>
@@ -52,6 +54,7 @@
         </div>
     </form>
 </div>
+-->
 
 
 <body class="dark-mode">
@@ -103,7 +106,7 @@
 
         <div class="conteneur" id="articleSemaine">
             <div>
-                <h1>Articles Flash</h1>
+                <h1>Articles Flash (24h)</h1>
                 <?php include(__DIR__ . '/article/article.view.php'); ?>
             </div>
         </div>
