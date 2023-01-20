@@ -5,3 +5,4 @@
 5|pierre.durand@gmail.com|pierre_durand|motdepasse2|Durand|Pierre|1995-01-01|Marseille|2 avenue des Champs Elysées|13000|2022-01-02|profile.png
 6|claire.leblanc@gmail.com|claire_leblanc|motdepasse3|Leblanc|Claire|2000-01-01|Lyon|3 rue de la liberté|69000|2022-01-03|profile.png
 7|thomas.dupont@gmail.com|thomas_dupont|motdepasse4|Dupont|Thomas|2005-01-01|Toulouse|4 avenue des Arts|31000|2022-01-04|profile.png
+8|test.test@gmail.com|Test|$2y$10$a9Nay9t3gPSGY79Mdea8Zuq6DKSdelOFONWTymIUW6NcemF7VChF6|Test|Test|2000-01-01|Grenoble|236 Rue des Tests|38000|profile.png
