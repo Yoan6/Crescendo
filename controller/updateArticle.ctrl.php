@@ -16,7 +16,7 @@
     if ($article->getVendeur()->getNumUtilisateur() == $_SESSION['num_utilisateur']) {
         $errors = array();
         $messages = array();
-        $todayDate = new DateTime();
+        $todayDate = new DateTime(); // Date du jour
         // Pour relancer le controller
         $controllerName = basename(__FILE__);
         $confirmer = $_POST['confirmer'] ?? "";
@@ -30,6 +30,7 @@
         //Si la date de début est inférieure à la date du jour, on la met à la date du jour
         $dateEnchere = $_POST['dateEnchere'] ?? null;
 
+        // récupération de la date depuis la base de données s'il n'y a pas de date dans le formulaire
         if($dateEnchere === null){
             $dateEnchere = $enchere->getDateDebut()->format('Y-m-d');
         }
