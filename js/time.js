@@ -1,6 +1,6 @@
 
 var dateFin = document.getElementsByClassName('leTimerDeLArticle')[0];
-if (typeof dateFin === 'undefined') { 
+if (typeof dateFin !== 'undefined') { 
 var dateFinValeur = dateFin.value;
 var leTimerConteneur = document.getElementsByClassName('affichageTemps')[0];
 
