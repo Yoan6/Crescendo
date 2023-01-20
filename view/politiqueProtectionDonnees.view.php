@@ -61,6 +61,7 @@
             <p>Sur votre profil, vous avez un bouton “accéder à mes données”, un bouton “modifier mes données” et un 
                 bouton “supprimer mes données”. Ce dernier est sensible donc il y aura un message d’alerte qui vous 
                 informera sur l’importance des données.</p>
+            <p> Information : tout compte sera supprimé au bout de 2 ans en cas d'inactivité.</p>
         </div>
 
         <div>
