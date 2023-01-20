@@ -46,6 +46,7 @@ if ($connexion === null) {
                 $_SESSION['num_utilisateur'] = $utilisateur->getNumUtilisateur();
                 header("Location: ../controller/accueil.ctrl.php");
             }
+            // sinon on renvoie une erreur
             else {
                 array_push($errors, "L'identifiant ou le mot de passe n'est pas bon");
             }
@@ -57,6 +58,7 @@ if ($connexion === null) {
     array_push($errors, "Vous n'avez pas rentré de login ou mot de passe");
     }
 
+    // création de la vue et transmission du login et des erreurs
     $view = new View();
     $view->assign('login',$login);
     $view->assign('errors',$errors);

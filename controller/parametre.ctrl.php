@@ -37,8 +37,10 @@ if(isset($_FILES['changementImage'])) {
     $file_tmp = $file['tmp_name'];
 
     $file_size = $file['size'];
-    $file_error = $file['error'];   
+    $file_error = $file['error'];
+    // on sépare le nom du fichier avec le point en délimiteur 
     $file_ext = explode('.', $file_name);
+    // Récupèration de l'extension du fichier en la mettant en minuscules
     $file_ext = strtolower(end($file_ext));
 
     $allowed = array('jpg', 'jpeg', 'png');

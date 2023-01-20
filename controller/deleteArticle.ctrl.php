@@ -11,12 +11,14 @@
 
     if(!isset($_SESSION)) { session_start(); } 
 
-
+    // vérifie si l'utilisateur connecté est le vendeur de l'article
     if($article->getVendeur()->getNumUtilisateur() == $_SESSION['num_utilisateur']) { 
+        // s'il s'agit d'un lot, supprime l'enchère
         if ($enchere->getEstLot()) {
             $enchere->delete();
-        } else {
-            // C'est un article
+        } 
+        // sinon : c'est un article, on le supprime
+        else {
             $article->delete();
         }
 

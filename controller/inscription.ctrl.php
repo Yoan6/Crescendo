@@ -13,6 +13,7 @@ require_once(__DIR__ . '/../model/DAO.class.php');
 // Partie récupération des données
 ///////////////////////////////////////////////////////////////////////////////
 
+// Récuperation des données de l'utilisateur et encodage avec la fonction htmlspecialchars() pour éviter les attaques XSS
 $prenom = htmlspecialchars($_POST['prenom'] ?? '');
 $nom = htmlspecialchars($_POST['nom'] ?? '');
 $pseudo = htmlspecialchars($_POST['pseudo'] ?? '');

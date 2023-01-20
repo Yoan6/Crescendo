@@ -4,12 +4,16 @@
     include_once(__DIR__."/../model/Article.class.php");
     include_once(__DIR__."/../model/Enchere.class.php");
 
+    // demarre une session s'il n'y en a pas déjà une
     if(!isset($_SESSION)) { session_start(); } 
 
-
+    // recupere les informations de l'utilisateur
     $utilisateur = Utilisateur::readNum($_SESSION['num_utilisateur']);
+
+    //initialise les tableaux d'erreur et de message
     $errors = array();
     $messages = array();
+
     $article = null;
     $enchere = null;
     $todayDate = new DateTime();
@@ -27,6 +31,7 @@
      **                         Données de l'article
      ***************************************************************************/
     $nomsImages = array();
+    // Récuperation des données de l'article et encodage avec la fonction htmlspecialchars() pour éviter les attaques XSS
     $titre = htmlspecialchars($_POST['titre'] ?? "");
     $prixMin = htmlspecialchars($_POST['prixMin'] ?? 0);
     $description = htmlspecialchars($_POST['description'] ?? "");
@@ -46,21 +51,21 @@
      ***************************************************************************/
     // L'attribut required dans les balises html vérifie la pluspart des erreurs
     
-    // Gérer les images
-
+    // boucle pour chaque image uploadée
     foreach($_FILES as $image) {
+        // récupération des données de l'image
         $file_name = $image['name'] ?? "";
-        
         $file_type = $image['type'] ?? "";
         $file_tmp_name = $image['tmp_name'] ?? "";
         $file_error = $image['error'] ?? "";
         $file_size = $image['size'] ?? 0;
         if ($file_size == 0 && count($image) >= 1) {
-            goto finImage; // Pas très propre mais je n'ai pas trouvé d'autres moyens
+            goto finImage;
         } 
         else if ($file_name == "") {
             $errors[] = "Il faut mettre un nom sur l'image";
         }
+        // Vérifie si le type de l'image est jpeg ou PNG
         else if ($file_type != 'image/jpeg' && $file_type != 'image/png') {
             $errors[] = "L'image $file_name doit être un jpeg ou PNG"; // normalement l'input de l'html  vérifie ce format
         }
@@ -68,7 +73,7 @@
             $errors[] = "L'erreur sur $file_name " . $file_error . " a été détectée ";
         } 
         else {
-            // Pas d'erreurs l'ajouter
+            // Si il n'y a pas d'erreurs ajouter l'image
             $nomsImages[] = time() . "." .pathinfo($file_name,PATHINFO_EXTENSION); // Mettre les noms des fichiers pour la création d'un article
         }
     }
