@@ -1,23 +1,45 @@
 # Crescendo
 
+Ceci est un site web réalisé durant ma deuxième année universitaire qui est un site web de vente aux enchères réalisé en groupe de 6.
+Il permet de participer à des ventes aux enchères mais également d'en créer avec des comptes acheteurs et des comptes vendeurs.
+
+
 ## Comment accéder aux site hébergé sur le serveur :
 Mettre dans l'URL d'un naviguateur : 192.168.14.231 puis naviguez dans notre site.
+Le site a été prévu initialement pour fonctionner sur un serveur local à l'IUT donc ne fonctionnera pas en dehors.
 
 ## Test en local :
-Si vous décidez de tester en local, il va falloir que vous rentriez dans un terminal : git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2022-s3/s3.01/team-10/crescendo.git. 
+Si vous décidez de tester en local, il va falloir que vous rentriez dans un terminal :
 
-Ensuite, vous devez changez les droits pour que le site accède aux images sans problèmes : chmod -R o+wx data.
+```bash
+git clone https://github.com/Yoan6/crescendo.git.
+```
+
+Ensuite, vous devez changez les droits pour que le site accède aux images sans problèmes :
+
+```bash
+chmod -R o+wx data.
+```
 
 Ensuite, vous devez générer la base de donnée actuelle :
 
-    - chemin relatif de la base de donnée : 
-    /crescendo/data/b/backup_ancienneBase/
-    
-    - ouvrez la base de donnée : 
-    sqlite3 crescendo.db
-    
-    - chargez la base de donnée : 
-    .read create.sql
+- placez vous au niveau de la base de données :
+
+```bash
+cd crescendo/data/b/backup_ancienneBase/
+```
+
+- ouvrez la base de donnée :
+
+```bash
+sqlite3 crescendo.db
+```
+
+- chargez la base de donnée :
+
+```bash
+.read create.sql
+```
 
 ## Compte test
 Vous pouvez utilisez le compte test pour tester les fonctionnalité de notre site (si vous n'êtes pas connecté vous n'accédez pas à toute les fonctionnalités).

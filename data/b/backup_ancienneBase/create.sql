@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS CONCERNE (
 SELECT * from ARTICLE;
 .print
 
-insert into UTILISATEUR values (4,'root@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert into UTILISATEUR values (9,'root@gmail.com','test',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 SELECT * from UTILISATEUR;
 .print
 
